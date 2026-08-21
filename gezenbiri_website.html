@@ -1396,14 +1396,17 @@
 
         <!-- Mobile Drawer -->
         <div class="mobile-menu-drawer" id="mobileDrawer">
-            <a href="index.html" style="color: var(--charcoal); font-weight: 800;">⚡ Brand Hub</a>
-            <a href="gezenbiri_website.html">Ana Sayfa</a>
-            <a href="#workshops">Workshoplar</a>
-            <a href="#categories">Deneyimler</a>
-            <a href="#escapes">Geziler</a>
-            <a href="#community">Topluluk</a>
-            <a href="#manifesto">Hakkımızda</a>
-            <a href="#workshops" style="color: var(--coral); font-weight: 800;">Etkinlikleri Keşfet →</a>
+            <a href="index.html" style="color: var(--charcoal); font-weight: 800;">⚡ Brand System Hub</a>
+            <a href="gezenbiri_website.html" class="active">Ana Sayfa</a>
+            <a href="#workshops" onclick="toggleMobileMenu()">Workshoplar</a>
+            <a href="#categories" onclick="toggleMobileMenu()">Deneyimler</a>
+            <a href="#escapes" onclick="toggleMobileMenu()">Geziler &amp; Rotalar</a>
+            <a href="#community" onclick="toggleMobileMenu()">Topluluk</a>
+            <a href="#manifesto" onclick="toggleMobileMenu()">Hakkımızda</a>
+            <a href="brand-guidelines.html">Marka Kılavuzu</a>
+            <a href="trip-cards.html">Seyahat Kartları</a>
+            <a href="instagram-suite.html">Instagram Paketi</a>
+            <a href="#workshops" onclick="toggleMobileMenu()" style="color: var(--coral); font-weight: 800;">Etkinlikleri Keşfet →</a>
         </div>
     </header>
 
@@ -1849,6 +1852,9 @@
                 <div class="footer-brand-col">
                     <span class="footer-logo">gezenbiri<span class="brand-system-dot"></span></span>
                     <span class="footer-slogan">Bir yere gidelim.</span>
+                    <div style="font-size: 11.5px; font-weight: 700; color: var(--coral); margin-bottom: 12px;">
+                        gezenbiri.com.tr · gezenbiri.co
+                    </div>
                     
                     <a href="https://instagram.com/gezenbiri" target="_blank" rel="noopener noreferrer" class="footer-instagram-box">
                         <div class="ig-icon-badge">
@@ -1870,38 +1876,41 @@
                     <h4 class="footer-col-title">Keşfet</h4>
                     <ul class="footer-links-list">
                         <li><a href="#workshops">Workshoplar</a></li>
-                        <li><a href="#categories">Deneyimler</a></li>
-                        <li><a href="#escapes">Geziler</a></li>
+                        <li><a href="#categories">Yerel Deneyimler</a></li>
+                        <li><a href="#escapes">Hafta Sonu Gezileri</a></li>
+                        <li><a href="trip-cards.html">Seyahat Kartları Galerisi</a></li>
                         <li><a href="#workshops">Yaklaşan Etkinlikler</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 3: Topluluk -->
+                <!-- Col 3: Topluluk & Destek -->
                 <div>
                     <h4 class="footer-col-title">Topluluk</h4>
                     <ul class="footer-links-list">
-                        <li><a href="#community">Topluluk Etkinlikleri</a></li>
-                        <li><a href="#community">Üyeler</a></li>
-                        <li><a href="#categories">Ortak Masa Akşamları</a></li>
-                        <li><a href="#manifesto">Blog</a></li>
+                        <li><a href="#community">Topluluk Buluşmaları</a></li>
+                        <li><a href="#community">Üye Deneyimleri</a></li>
+                        <li><a href="#manifesto">Manifesto</a></li>
+                        <li><a href="mailto:selam@gezenbiri.com.tr">İletişim (selam@gezenbiri.com.tr)</a></li>
+                        <li><a href="https://instagram.com/gezenbiri" target="_blank" rel="noopener noreferrer">Instagram (@gezenbiri)</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 4: Hakkımızda -->
+                <!-- Col 4: Marka & Tasarım Sistemi -->
                 <div>
-                    <h4 class="footer-col-title">Hakkımızda</h4>
+                    <h4 class="footer-col-title">Tasarım &amp; Ekosistem</h4>
                     <ul class="footer-links-list">
-                        <li><a href="#manifesto">Hakkımızda</a></li>
-                        <li><a href="#manifesto">Kariyer</a></li>
-                        <li><a href="mailto:selam@gezenbiri.com.tr">İletişim</a></li>
-                        <li><a href="#faq">SSS</a></li>
+                        <li><a href="index.html" style="color:var(--coral); font-weight:700;">⚡ Brand System Hub</a></li>
+                        <li><a href="brand-guidelines.html">Marka Kılavuzu (15 Modül)</a></li>
+                        <li><a href="system-dot.html">System Dot Standartları</a></li>
+                        <li><a href="trip-cards.html">Seyahat Kartları</a></li>
+                        <li><a href="instagram-suite.html">Instagram Master Suite</a></li>
                     </ul>
                 </div>
 
                 <!-- Col 5: Bülten -->
                 <div>
                     <h4 class="footer-col-title">Bültenimize katıl</h4>
-                    <p class="newsletter-desc">Etkinliklerden ve yeni deneyimlerden ilk sen haberdar ol.</p>
+                    <p class="newsletter-desc">Etkinliklerden ve yeni rotalardan ilk sen haberdar ol.</p>
                     <form class="newsletter-form-row" onsubmit="handleNewsletter(event)">
                         <input type="email" id="nlEmail" class="newsletter-input" placeholder="E-posta adresin" required>
                         <button type="submit" class="newsletter-btn">Abone Ol</button>
@@ -1913,8 +1922,9 @@
             <!-- Bottom Legal Bar -->
             <div class="footer-bottom-bar">
                 <span>Türkiye’de ve bazen biraz daha uzakta.</span>
-                <span>© 2026 gezenbiri.com.tr · Tüm hakları saklıdır.</span>
+                <span>© 2026 gezenbiri.com.tr · gezenbiri.co · Tüm hakları saklıdır.</span>
                 <div class="footer-legal-links">
+                    <a href="index.html" style="color:var(--coral); font-weight:700;">⚡ Brand Hub</a>
                     <a href="#" onclick="showToast('Kullanım Koşulları'); return false;">Kullanım Koşulları</a>
                     <a href="#" onclick="showToast('Gizlilik Politikası'); return false;">Gizlilik Politikası</a>
                 </div>
