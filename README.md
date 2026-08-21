@@ -98,16 +98,16 @@ Tasarım sistemi kuralları [`brand.css`](file:///c:/Users/Mahir/Desktop/gezenbi
 
 ### Renk Paleti (65-20-10-5 Kuralı)
 
-| Ton Adı | Token | HEX Değeri | Rolü & Oranı |
-| :--- | :--- | :--- | :--- |
-| **Warm Cream** | `--gb-cream` | `#F6F3ED` | Tuval & Arka Plan (%65) |
-| **Deep Charcoal** | `--gb-charcoal` | `#202020` | Tipografi & Kontrast (%20) |
-| **Action Coral** | `--gb-coral` | `#FF4D3D` | Aksiyon, Butonlar, System Dot (%10) |
-| **Sage Green** | `--gb-sage` | `#A8B89A` | Doğa, Dinlenme, Vurgu Rozetleri (%5) |
-| **Sky Blue** | `--gb-sky` | `#A9D5E8` | Deniz & Kıyı Rotaları (Destekleyici) |
-| **Sand** | `--gb-sand` | `#D8CCBC` | Toprak, Taş Doku, Kart Arka Planı |
-| **Stone** | `--gb-stone` | `#D9D6D1` | Nötr Ayırıcılar & Çizgiler |
-| **Pure White** | `--gb-white` | `#FFFFFF` | Kart Gövdeleri & Temiz Katmanlar |
+| Resmi Token Adı | Türkçe Karşılığı | Token | HEX Değeri | Rolü & Oranı |
+| :--- | :--- | :--- | :--- | :--- |
+| **Warm Cream** | **Sıcak Krem** | `--gb-cream` | `#F6F3ED` | Tuval & Arka Plan (%65) |
+| **Dark Charcoal** | **Koyu Kömür** | `--gb-charcoal` | `#202020` | Tipografi & Kontrast (%20) |
+| **Action Coral** | **Aksiyon Mercanı** | `--gb-coral` | `#FF4D3D` | Aksiyon, Butonlar, System Dot (%10) |
+| **Sage Green** | **Adaçayı Yeşili** | `--gb-sage` | `#A8B89A` | Doğa, Dinlenme, Vurgu Rozetleri (%5) |
+| **Sky Blue** | **Gökyüzü Mavisi** | `--gb-sky` | `#A9D5E8` | Deniz & Kıyı Rotaları (Destekleyici) |
+| **Sand Beige** | **Kum Beji** | `--gb-sand` | `#D8CCBC` | Toprak, Sıcak Doku, Kart Arka Planı |
+| **Stone Grey** | **Taş Grisi** | `--gb-stone` | `#D9D6D1` | Nötr Ayırıcılar & Çizgiler |
+| **Pure White** | **Saf Beyaz** | `--gb-white` | `#FFFFFF` | Kart Gövdeleri & Temiz Katmanlar |
 
 ### Tipografi Skalası
 
