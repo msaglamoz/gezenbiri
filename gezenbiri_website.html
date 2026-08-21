@@ -96,7 +96,7 @@
             z-index: 1000;
             padding: 20px 0;
             border-bottom: 1px solid transparent;
-            transition: all 0.25s ease;
+            transition: background-color var(--gb-motion-fast), padding var(--gb-motion-fast), border-color var(--gb-motion-fast), box-shadow var(--gb-motion-fast);
         }
 
         .site-header.scrolled {
@@ -122,28 +122,6 @@
             align-items: baseline;
             cursor: pointer;
             text-transform: lowercase;
-        }
-
-        .brand-system-dot {
-            display: inline-block;
-            width: 0.15em;
-            height: 0.15em;
-            background-color: var(--coral);
-            border-radius: 50%;
-            margin-left: 0.12em;
-            transform: scaleY(1.03);
-            flex-shrink: 0;
-            vertical-align: baseline;
-        }
-
-        .live-badge-dot {
-            display: inline-block;
-            width: 6.5px;
-            height: 6.7px;
-            background-color: var(--coral);
-            border-radius: 50%;
-            transform: scaleY(1.03);
-            flex-shrink: 0;
         }
 
         .nav-menu {
@@ -1945,8 +1923,8 @@
             </div>
 
             <!-- Demo Disclaimer Footnote -->
-            <div style="text-align:center; font-size:11px; color:#888; margin-top:20px; padding-top:14px; border-top:1px dashed var(--border-card); line-height:1.5;">
-                Bu sayfadaki atölyeler, rotalar, fiyatlar ve kullanıcı paylaşımları gezenbiri marka deneyim prototipi örnekleridir.
+            <div class="gb-prototype-disclaimer">
+                Bu sayfadaki etkinlikler, rotalar, fiyatlar, kullanıcı yorumları ve topluluk verileri marka deneyim prototipi örnekleridir.
             </div>
         </div>
     </footer>
@@ -1995,30 +1973,44 @@
             mobileDrawer.classList.toggle('active');
         });
 
-        // Modal triggers with accessibility
-        function openBookingModal(title, meta, price, desc) {
+        // Focus Management for Accessibility
+        let lastFocusedElement = null;
+
+        function openBookingModal(title, meta, price, desc, triggerEl) {
+            lastFocusedElement = triggerEl || document.activeElement;
             document.getElementById('modalTag').innerText = "REZERVASYON & KAYIT";
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalMeta').innerText = meta;
             document.getElementById('modalPrice').innerText = price;
             document.getElementById('modalDesc').innerText = desc;
-            document.getElementById('bookingModal').classList.add('active');
+            const modal = document.getElementById('bookingModal');
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            const closeBtn = modal.querySelector('.modal-close-btn');
+            if (closeBtn) closeBtn.focus();
         }
 
-        function openDetailsModal(title, desc) {
+        function openDetailsModal(title, desc, triggerEl) {
+            lastFocusedElement = triggerEl || document.activeElement;
             document.getElementById('modalTag').innerText = "DENEYİM DETAYI";
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalMeta').innerText = "Gezenbiri Topluluk Deneyimleri";
             document.getElementById('modalPrice').innerText = "Ön Kayıt";
             document.getElementById('modalDesc').innerText = desc;
-            document.getElementById('bookingModal').classList.add('active');
+            const modal = document.getElementById('bookingModal');
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            const closeBtn = modal.querySelector('.modal-close-btn');
+            if (closeBtn) closeBtn.focus();
         }
 
         function closeModal() {
-            document.getElementById('bookingModal').classList.remove('active');
+            const modal = document.getElementById('bookingModal');
+            modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                lastFocusedElement.focus();
+            }
         }
 
         function closeModalOnOverlay(e) {
@@ -2060,36 +2052,73 @@
             showToast("Rezervasyon talebiniz alındı! En kısa sürede WhatsApp ile iletişime geçeceğiz.");
         }
 
-        // Dynamic event rendering from GezenbiriData (Single Source of Truth)
-        function renderWorkshopsFromData() {
-            if (typeof GezenbiriData === 'undefined') return;
-            const container = document.querySelector('.workshops-grid');
-            if (!container) return;
+        // Toast feedback
+        function showToast(msg) {
+            const toast = document.getElementById('toastBox');
+            toast.innerText = msg;
+            toast.classList.add('active');
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3500);
+        }
 
-            const workshops = GezenbiriData.getWorkshops();
-            if (workshops && workshops.length > 0) {
-                container.innerHTML = workshops.map(ws => `
-                    <div class="workshop-card" onclick="openBookingModal('${ws.title.replace(/'/g, "\\'")}', '${ws.location} — ${ws.startMeta.shortFormatted}', '${ws.price}', '${ws.description.replace(/'/g, "\\'")}')">
-                        <div class="ws-thumb-wrap">
-                            <img src="${ws.image}" alt="${ws.title}" class="ws-thumb-img">
-                        </div>
-                        <div class="ws-body">
-                            <div>
-                                <div class="ws-header-row">
-                                    <span class="ws-title-meta">${ws.title} — ${ws.location} — ${ws.startMeta.shortFormatted}</span>
-                                    <span class="ws-price">${ws.price}</span>
-                                </div>
-                                <p class="ws-desc">${ws.description}</p>
+        // Dynamic event rendering from GezenbiriData (Single Source of Truth)
+        function renderAllEventsFromData() {
+            if (typeof GezenbiriData === 'undefined') return;
+
+            // 1. Render Workshops
+            const wsContainer = document.querySelector('.workshops-grid');
+            if (wsContainer) {
+                const workshops = GezenbiriData.getWorkshops();
+                if (workshops && workshops.length > 0) {
+                    wsContainer.innerHTML = workshops.map(ws => `
+                        <div class="workshop-card" onclick="openBookingModal('${ws.title.replace(/'/g, "\\'")}', '${ws.location} — ${ws.startMeta.shortFormatted}', '${ws.price}', '${ws.description.replace(/'/g, "\\'")}', this)" tabindex="0" role="button" aria-label="${ws.title} kaydı">
+                            <div class="ws-thumb-wrap">
+                                <img src="${ws.image}" alt="${ws.title}" class="ws-thumb-img">
                             </div>
-                            <span class="ws-footer-link">İncele →</span>
+                            <div class="ws-body">
+                                <div>
+                                    <div class="ws-header-row">
+                                        <span class="ws-title-meta">${ws.title} — ${ws.location} — ${ws.startMeta.shortFormatted}</span>
+                                        <span class="ws-price">${ws.price}</span>
+                                    </div>
+                                    <p class="ws-desc">${ws.description}</p>
+                                </div>
+                                <span class="ws-footer-link">İncele →</span>
+                            </div>
                         </div>
-                    </div>
-                `).join('');
+                    `).join('');
+                }
+            }
+
+            // 2. Render Escapes
+            const escapeContainer = document.querySelector('.escapes-grid');
+            if (escapeContainer) {
+                const trips = GezenbiriData.getTrips();
+                if (trips && trips.length > 0) {
+                    escapeContainer.innerHTML = trips.slice(0, 3).map(trip => `
+                        <div class="escape-card" onclick="openBookingModal('${trip.title.replace(/'/g, "\\'")}', '${trip.location} — ${trip.startMeta.shortFormatted}', '${trip.price}', '${trip.description.replace(/'/g, "\\'")}', this)" tabindex="0" role="button" aria-label="${trip.title} detayları">
+                            <div class="escape-thumb">
+                                <img src="${trip.image}" alt="${trip.title}">
+                            </div>
+                            <div class="escape-info">
+                                <div>
+                                    <h3 class="escape-title">${trip.title}</h3>
+                                    <span class="escape-date">${trip.startMeta.shortFormatted}</span>
+                                </div>
+                                <div class="escape-bottom-row">
+                                    <span class="escape-price">${trip.price}</span>
+                                    <div class="circle-arrow-btn">→</div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
             }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderWorkshopsFromData();
+            renderAllEventsFromData();
         });
     </script>
 </body>

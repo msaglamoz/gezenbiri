@@ -888,8 +888,11 @@
             });
         });
 
-        // Modal Logic with accessibility
-        function openRouteModal(title, date, price, stay, desc, included) {
+        // Focus Management for Accessibility
+        let lastFocusedElement = null;
+
+        function openRouteModal(title, date, price, stay, desc, included, triggerEl) {
+            lastFocusedElement = triggerEl || document.activeElement;
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalDate').textContent = '📅 ' + date;
             document.getElementById('modalStay').textContent = '🏨 ' + stay;
@@ -900,8 +903,11 @@
             const waMsg = encodeURIComponent(`Merhaba gezenbiri! "${title}" (${date}) gezisi için bilgi almak ve yer ayırtmak istiyorum.`);
             document.getElementById('modalWaBtn').href = `https://wa.me/905000000000?text=${waMsg}`;
 
-            document.getElementById('tripModal').classList.add('active');
+            const modal = document.getElementById('tripModal');
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            const closeBtn = modal.querySelector('.modal-close');
+            if (closeBtn) closeBtn.focus();
         }
 
         function closeRouteModal(e) {
@@ -911,8 +917,12 @@
         }
 
         function closeRouteModalDirect() {
-            document.getElementById('tripModal').classList.remove('active');
+            const modal = document.getElementById('tripModal');
+            modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                lastFocusedElement.focus();
+            }
         }
 
         // Accessibility: ESC key to close modal
@@ -925,7 +935,7 @@
 
     <!-- DEMO DISCLAIMER FOOTNOTE -->
     <div class="gb-prototype-disclaimer">
-        Bu sayfadaki rotalar, fiyatlar ve etkinlik detayları <strong>gezenbiri Escape &amp; Seyahat Sistemi</strong> marka uygulama örnekleridir.
+        Bu sayfadaki etkinlikler, rotalar, fiyatlar, kullanıcı yorumları ve topluluk verileri marka deneyim prototipi örnekleridir.
     </div>
 
 </body>

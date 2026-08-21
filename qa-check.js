@@ -157,6 +157,51 @@ runCheck('brand.css is linked across all HTML entry points', () => {
     return issues;
 });
 
+// 8. Check for Modal Accessibility Attributes (role="dialog" & aria-modal="true")
+runCheck('Modals implement full WCAG semantics (role="dialog" & aria-modal="true")', () => {
+    const issues = [];
+    const modalPages = ['gezenbiri_website.html', 'trip-cards.html'];
+    modalPages.forEach(relPath => {
+        const fullPath = path.join(rootDir, relPath);
+        if (!fs.existsSync(fullPath)) return;
+        const content = fs.readFileSync(fullPath, 'utf8');
+        if (!content.includes('role="dialog"') || !content.includes('aria-modal="true"')) {
+            issues.push(`${relPath} is missing role="dialog" or aria-modal="true" on its modal element.`);
+        }
+    });
+    return issues;
+});
+
+// 9. Check for Prototype Disclaimer in all demo/lab pages
+runCheck('Prototype disclaimer is visible across all demo and lab pages', () => {
+    const issues = [];
+    const demoPages = ['gezenbiri_website.html', 'trip-cards.html', 'instagram-suite.html', 'brand-guidelines.html', 'index.html'];
+    demoPages.forEach(relPath => {
+        const fullPath = path.join(rootDir, relPath);
+        if (!fs.existsSync(fullPath)) return;
+        const content = fs.readFileSync(fullPath, 'utf8');
+        if (!content.includes('gb-prototype-disclaimer')) {
+            issues.push(`${relPath} is missing the standard gb-prototype-disclaimer element.`);
+        }
+    });
+    return issues;
+});
+
+// 10. Check that events.js is loaded in interactive pages
+runCheck('data/events.js is loaded in all interactive pages', () => {
+    const issues = [];
+    const interactivePages = ['gezenbiri_website.html', 'trip-cards.html', 'instagram-suite.html', 'index.html'];
+    interactivePages.forEach(relPath => {
+        const fullPath = path.join(rootDir, relPath);
+        if (!fs.existsSync(fullPath)) return;
+        const content = fs.readFileSync(fullPath, 'utf8');
+        if (!content.includes('src="data/events.js"') && !content.includes('src=\'data/events.js\'')) {
+            issues.push(`${relPath} does not load data/events.js.`);
+        }
+    });
+    return issues;
+});
+
 console.log('\n------------------------------------------------------');
 if (totalErrors === 0) {
     console.log(`🎉 ALL ${totalChecks} AUDIT CHECKS PASSED WITH 0 REGRESSIONS!`);
