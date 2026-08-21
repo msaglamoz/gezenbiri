@@ -1,0 +1,6 @@
+# gezenbiri — Search Engine Crawler Directive
+# Bu depo kurumsal marka sistemi ve geliştirici prototiplerini içerir.
+# Arama motoru indekslemesi tamamen kapalıdır.
+
+User-agent: *
+Disallow: /

@@ -442,6 +442,27 @@ check('assetAndLinkIntegrity', 'Zero Broken Assets: All local images in src="...
     return errs;
 });
 
+check('assetAndLinkIntegrity', 'Search Privacy: robots.txt disallows crawlers and all HTML files contain noindex/nofollow', () => {
+    const errs = [];
+    const robotsPath = path.join(rootDir, 'robots.txt');
+    if (!fs.existsSync(robotsPath)) {
+        errs.push('robots.txt does not exist in root directory.');
+    } else {
+        const robotsContent = fs.readFileSync(robotsPath, 'utf8');
+        if (!robotsContent.includes('Disallow: /')) {
+            errs.push('robots.txt does not disallow root crawling.');
+        }
+    }
+
+    productionFiles.filter(f => f.endsWith('.html')).forEach(f => {
+        const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
+        if (!content.includes('name="robots" content="noindex, nofollow')) {
+            errs.push(`${f} is missing <meta name="robots" content="noindex, nofollow..."> tag.`);
+        }
+    });
+    return errs;
+});
+
 // -------------------------------------------------------------
 // PRINT AUDIT REPORT
 // -------------------------------------------------------------
