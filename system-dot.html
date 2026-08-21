@@ -412,9 +412,22 @@
         }
 
         .morph-icon-desc {
-            font-size: 11px;
-            color: #666;
-            line-height: 1.4;
+            font-size: 11.5px;
+            color: #555;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+
+        .morph-icon-tag {
+            font-size: 9.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+            background: var(--cream);
+            padding: 3px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 1px solid var(--border);
+            letter-spacing: 0.2px;
         }
 
         /* 7. SYSTEM DOT ANAYASASI GRID */
@@ -1072,7 +1085,35 @@
     </div>
 
     <!-- 6. ADAPTİF MORPHING İKON SİSTEMİ -->
-    <div class="section-title">6. ADAPTİF MORPHING İKON SİSTEMİ (8 ÖZEL GLİF)</div>
+    <div class="section-title">
+        <span>6. ADAPTİF MORPHING İKON SİSTEMİ (8 ÖZEL GLİF)</span>
+        <span style="font-size:12px; font-weight:700; color:var(--coral);">Nükleer Çapa &amp; Piktogram Mimarisi</span>
+    </div>
+
+    <!-- İkonografi Açıklama & Kullanım Kılavuzu Kartı -->
+    <div class="presentation-card" style="width: 100%; max-width: 1100px; padding: 22px 26px; margin-bottom: 22px; background: #FFFFFF; border-left: 4px solid var(--coral); box-shadow: 0 4px 16px rgba(0,0,0,0.03);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 320px;">
+                <h4 style="font-size: 15px; font-weight: 900; color: var(--charcoal); margin: 0 0 8px 0;">
+                    Nükleer Çapa Prensibi &amp; İkonografide System Dot Entegrasyonu
+                </h4>
+                <p style="font-size: 12.5px; color: #555; line-height: 1.6; margin: 0 0 10px 0;">
+                    gezenbiri piktogram sisteminde <strong>System Dot</strong>, dekoratif bir dolgu değil; her glifin taşıdığı anlamın <em>"geometrik çekirdeği" (nucleus)</em> ve eylem odağıdır. Glifin iskeleti monoline <strong>Charcoal (#202020)</strong> ile çizilirken, o ikonun temsil ettiği "can alıcı an, varış koordinatı, kadeh damlası veya onay mührü" kesinlikle <strong>Action Coral (#FF4D3D)</strong> System Dot ile kilitlenir.
+                </p>
+                <div style="font-size: 11.5px; color: #777; line-height: 1.5;">
+                    <strong style="color:var(--charcoal);">Tasarımcı &amp; Geliştirici Kuralı:</strong> Bu 8 ikon, web sitesindeki rota kartlarında, filtre etiketlerinde, sosyal medya şablonlarında ve basılı katılımcı biletlerinde birincil navigasyon glifleri olarak kullanılır.
+                </div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: center; background: var(--cream); padding: 12px 18px; border-radius: 12px; border: 1px solid var(--border);">
+                <div style="font-size: 11.5px; color: var(--charcoal); font-weight: 700; line-height: 1.55;">
+                    <span style="color: var(--coral); font-weight: 900;">• Çizgi Kalınlığı:</span> 1.8px Monoline<br>
+                    <span style="color: var(--coral); font-weight: 900;">• Nokta Geometrisi:</span> scaleY(1.03) Elips<br>
+                    <span style="color: var(--coral); font-weight: 900;">• Odak Sayısı:</span> 1 Adet / Glif
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="icons-8-grid">
         
         <!-- 01: Konum -->
@@ -1085,7 +1126,8 @@
             </div>
             <div class="morph-icon-title">01. Konum &amp; Rota</div>
             <div class="morph-icon-sub">Hedef Koordinat Çapası</div>
-            <div class="morph-icon-desc">İğnenin kalbindeki hedef nokta. Varılacak rota merkezi.</div>
+            <div class="morph-icon-desc">Harita pininin kalbindeki hedef nokta. Web rotalarında varış durağını, toplanma noktasını ve seyahat kartı lokasyonunu işaretler.</div>
+            <span class="morph-icon-tag">Kullanım: Rotalar &amp; Lokasyon</span>
         </div>
 
         <!-- 02: Takvim -->
@@ -1106,7 +1148,8 @@
             </div>
             <div class="morph-icon-title">02. Takvim &amp; Tarih</div>
             <div class="morph-icon-sub">Seçili Aksiyon Günü</div>
-            <div class="morph-icon-desc">Izgaradaki seçili gün. O gün evde yokuz, yoldayız.</div>
+            <div class="morph-icon-desc">Izgaradaki seçili gün. O gün evde yokuz, yoldayız. Etkinlik başlangıç tarihlerinde ve geri sayım sayaçlarında zamanı mühürler.</div>
+            <span class="morph-icon-tag">Kullanım: Tarih &amp; Takvim Filtresi</span>
         </div>
 
         <!-- 03: Kamera -->
@@ -1120,7 +1163,8 @@
             </div>
             <div class="morph-icon-title">03. Kamera &amp; An</div>
             <div class="morph-icon-sub">Objektif Odak Noktası</div>
-            <div class="morph-icon-desc">Lensin merkezindeki odak. Yakalanacak unutulmaz kare.</div>
+            <div class="morph-icon-desc">Lensin merkezindeki deklanşör odağı. Fotoğraf yürüyüşleri, görsel hafıza galerileri ve Instagram hikaye şablonlarında anı yakalar.</div>
+            <span class="morph-icon-tag">Kullanım: Fotoğraf &amp; Galeri</span>
         </div>
 
         <!-- 04: Kahve -->
@@ -1137,7 +1181,8 @@
             </div>
             <div class="morph-icon-title">04. Kahve &amp; Mola</div>
             <div class="morph-icon-sub">Yükselen Sofra Közü</div>
-            <div class="morph-icon-desc">Fincanın üzerindeki buhar noktası. Ortak masada sohbet.</div>
+            <div class="morph-icon-desc">Fincanın üzerindeki buhar noktası. Sokak aralarında verilen spontane molaları, atölye kahve aralarını ve samimi sohbetleri simgeler.</div>
+            <span class="morph-icon-tag">Kullanım: Kahve &amp; Mola Durakları</span>
         </div>
 
         <!-- 05: Kadeh -->
@@ -1152,7 +1197,8 @@
             </div>
             <div class="morph-icon-title">05. Kadeh &amp; Tadım</div>
             <div class="morph-icon-sub">Yerel Lezzet Damlası</div>
-            <div class="morph-icon-desc">Kadehin dibindeki tadım damlası. Urla bağ rotası.</div>
+            <div class="morph-icon-desc">Kadehin içindeki ilk damla tadım odağı. Urla bağ rotaları, yerel üretici doğal şarap tadımları ve gastronomi buluşmalarında yer alır.</div>
+            <span class="morph-icon-tag">Kullanım: Gastronomi &amp; Şarap Rotaları</span>
         </div>
 
         <!-- 06: Pusula -->
@@ -1167,7 +1213,8 @@
             </div>
             <div class="morph-icon-title">06. Pusula &amp; Yön</div>
             <div class="morph-icon-sub">Kuzey İbre Çapası</div>
-            <div class="morph-icon-desc">Kadranın ortasındaki pusula merkezi. Spontane istikamet.</div>
+            <div class="morph-icon-desc">Kadranın ortasındaki pusula merkezi. Spontane istikameti, plansız keşif özgürlüğünü ve rota rehberliği modüllerini temsil eder.</div>
+            <span class="morph-icon-tag">Kullanım: Keşif &amp; Doğa Kaçamakları</span>
         </div>
 
         <!-- 07: Topluluk -->
@@ -1183,7 +1230,8 @@
             </div>
             <div class="morph-icon-title">07. Topluluk &amp; İnsan</div>
             <div class="morph-icon-sub">Ortak Bağ Halkası</div>
-            <div class="morph-icon-desc">İki insanı bağlayan ortak çapa. Yeni yol arkadaşlıkları.</div>
+            <div class="morph-icon-desc">İki insan figürünü birbirine bağlayan merkez nokta. Yol arkadaşlığını, tek başına gelip kurulan dostlukları ve uzun masaları simgeler.</div>
+            <span class="morph-icon-tag">Kullanım: Topluluk &amp; Sosyal Buluşmalar</span>
         </div>
 
         <!-- 08: Bilet -->
@@ -1197,7 +1245,8 @@
             </div>
             <div class="morph-icon-title">08. Bilet &amp; Rezervasyon</div>
             <div class="morph-icon-sub">Onaylanmış Mühür</div>
-            <div class="morph-icon-desc">Biletin üzerindeki onay damgası. Yola çıkmaya hazır bilet.</div>
+            <div class="morph-icon-desc">Bilet koçanı üzerindeki tescilli mühür. Kontenjan onayını, yola çıkmaya hazır biletleri ve dijital katılımcı kartlarını doğrular.</div>
+            <span class="morph-icon-tag">Kullanım: Rezervasyon &amp; Katılımcı Kartı</span>
         </div>
 
     </div>
