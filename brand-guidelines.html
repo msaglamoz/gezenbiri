@@ -18,18 +18,18 @@
     
     <style>
         :root {
-            --cream: #F6F3ED;
-            --charcoal: #202020;
-            --coral: #FF4D3D;
-            --coral-soft: rgba(255, 77, 61, 0.12);
-            --sage: #A8B89A;
-            --sky: #A9D5E8;
-            --sand: #D8CCBC;
-            --stone: #D9D6D1;
-            --white: #FFFFFF;
-            --border-line: #E2DDD5;
-            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-serif: 'Instrument Serif', Georgia, serif;
+            --cream: var(--gb-cream);
+            --charcoal: var(--gb-charcoal);
+            --coral: var(--gb-coral);
+            --coral-soft: var(--gb-coral-soft);
+            --sage: var(--gb-sage);
+            --sky: var(--gb-sky);
+            --sand: var(--gb-sand);
+            --stone: var(--gb-stone);
+            --white: var(--gb-white);
+            --border-line: var(--gb-border);
+            --font-main: var(--font-sans);
+            --font-serif: var(--font-serif);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -152,15 +152,16 @@
             text-transform: lowercase;
         }
 
-        .system-dot {
+        .brand-system-dot {
             display: inline-block;
             width: 0.15em;
-            height: 0.155em;
+            height: 0.15em;
             background-color: var(--coral);
             border-radius: 50%;
             margin-left: 0.12em;
             transform: scaleY(1.03);
             flex-shrink: 0;
+            vertical-align: baseline;
         }
 
         .statement-slogan {
@@ -851,10 +852,10 @@
             <span>Brand System Hub'a Dön</span>
         </a>
         <div class="quick-nav-links">
-            <a href="04_gezenbiri_system_dot.html" style="background:rgba(255,77,61,0.12); color:var(--coral); font-weight:800;">⚡ System Dot Portalı</a>
+            <a href="system-dot.html" style="background:rgba(255,77,61,0.12); color:var(--coral); font-weight:800;">⚡ System Dot Portalı</a>
             <a href="gezenbiri_website.html">Canlı Web Sitesi (V2)</a>
-            <a href="02_gezenbiri_trip_cards_editorial.html">Seyahat Kartları</a>
-            <a href="03_gezenbiri_instagram_suite.html">Instagram Suite</a>
+            <a href="trip-cards.html">Seyahat Kartları</a>
+            <a href="instagram-suite.html">Instagram Suite</a>
         </div>
     </div>
 
@@ -942,7 +943,7 @@
                         </div>
                         <div style="font-size:10px; color:#666; margin-top:8px; line-height:1.4; border-top:1px solid var(--border-line); padding-top:6px; display:flex; justify-content:space-between; align-items:center;">
                             <span>✓ <strong>Clear Space:</strong> 'i' harfi x-height %50'si. Min: 100px dijital / 25mm baskı.</span>
-                            <a href="04_gezenbiri_system_dot.html" style="color:var(--coral); font-weight:800; text-decoration:none; font-size:10px;">System Dot Rehberi →</a>
+                            <a href="system-dot.html" style="color:var(--coral); font-weight:800; text-decoration:none; font-size:10px;">System Dot Rehberi →</a>
                         </div>
                     </div>
                 </div>
@@ -1321,23 +1322,26 @@
                         <li>Büyük harf <strong>GEZENBİRİ</strong> veya iki kelime <strong>Gezen Biri</strong> kullanımı.</li>
                         <li>Ürün UI'ında native emoji kullanımı (yerine çizgi ikonlar kullanılır).</li>
                         <li>Açık krem üzerinde 14px ve altı Coral gövde metni (WCAG kontrast ihlali).</li>
+                        <li>"Bir yere gidelim." sloganındaki cümlenin sonundaki noktayı turuncu daireye çevirmek (bu normal tipografik noktalamadır).</li>
                     </ul>
                 </div>
                 <div>
-                    <h4>⚡ System Dot Kuralları</h4>
+                    <h4>⚡ System Dot &amp; Renk Ayrımı</h4>
                     <ul>
+                        <li><strong>Action Coral</strong> renktir; <strong>System Dot</strong> ise tanımlı geometrik marka elemanıdır.</li>
                         <li>Wordmark ile aralık master <strong>0.12em (~2.5px)</strong> standardına kilitlidir.</li>
                         <li>Form dikeyde <strong>%103 (scaleY 1.03)</strong> esnetilmiş organik elipstir.</li>
-                        <li>Bileşen başına en fazla 1 System Dot kullanılabilir.</li>
-                        <li>Statik logo dot'u sabittir; animasyon yalnızca <strong>Live Dot</strong>'a aittir.</li>
+                        <li>Her bağımsız bileşen kendi System Dot'una sahip olabilir; aynı bileşen içinde rekabet eden birden fazla dot kullanılmaz.</li>
+                        <li>Statik logo dot'u sabittir; animasyon yalnızca durum gösteren <strong>Live Dot</strong>'a aittir.</li>
                     </ul>
                 </div>
                 <div>
-                    <h4>🎯 Kürasyon &amp; Şeffaflık</h4>
+                    <h4>🎯 Kürasyon &amp; Operasyonel Şeffaflık</h4>
                     <ul>
-                        <li>Gizli rotalarda destinasyon sürpriz olabilir, ancak <strong>lojistik ve koşullar şeffaftır</strong>.</li>
+                        <li>Gizli rotalarda destinasyon sürpriz olabilir, ancak <strong>lojistik ve koşullar asla sürpriz olamaz</strong>.</li>
+                        <li>Marka dili (Tone of Voice), teknik ve hukuki operasyonel bilgilerin yerine geçemez.</li>
                         <li>Her etkinlikte süre, kontenjan, dahil olanlar ve fiziksel seviye açıkça belirtilir.</li>
-                        <li>Demo ekranlarında örnek tarih/içerik olduğu açıkça not düşülür.</li>
+                        <li>Demo ekranlarında örnek tarih/içerik olduğu <code>.gb-prototype-disclaimer</code> ile açıkça not düşülür.</li>
                     </ul>
                 </div>
             </div>

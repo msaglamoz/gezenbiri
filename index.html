@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gezenbiri — Marka & Tasarım Ekosistemi</title>
+    <title>gezenbiri — Marka &amp; Tasarım Ekosistemi</title>
     <meta name="description" content="gezenbiri; yaratıcı atölyeler, yerel sofralar, butik rotalar ve çağdaş Türk yaşam tarzı marka ekosistemi.">
     <meta name="keywords" content="gezenbiri, seyahat, rota, alaçatı, çeşme, urla, kapadokya, workshop, atölye, topluluk">
     <meta name="theme-color" content="#F6F3ED">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="gezenbiri — Marka & Tasarım Ekosistemi">
+    <meta property="og:title" content="gezenbiri — Marka &amp; Tasarım Ekosistemi">
     <meta property="og:description" content="“Bir yere gidelim.” Yaratıcı atölyelerden butik kaçamaklara çağdaş marka ekosistemi.">
     <meta property="og:image" content="assets/v2/hero_pottery.jpg">
     
@@ -24,40 +24,13 @@
     <link rel="stylesheet" href="brand.css">
     
     <style>
-        :root {
-            --cream: #F6F3ED;
-            --charcoal: #202020;
-            --coral: #FF4D3D;
-            --coral-hover: #E03E2F;
-            --coral-soft: rgba(255, 77, 61, 0.12);
-            --sage: #A8B89A;
-            --sky: #A9D5E8;
-            --sand: #F6F3ED;
-            --border: rgba(32, 32, 32, 0.08);
-            --white: #FFFFFF;
-            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-serif: 'Instrument Serif', Georgia, serif;
-        }
-
-        .brand-system-dot {
-            display: inline-block;
-            width: 0.15em;
-            height: 0.155em;
-            background-color: var(--coral);
-            border-radius: 50%;
-            margin-left: 0.12em;
-            transform: scaleY(1.03);
-            flex-shrink: 0;
-            vertical-align: baseline;
-        }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: var(--font-main);
-            background-color: var(--sand);
-            color: var(--charcoal);
-            padding: 50px 20px;
+            font-family: var(--font-sans);
+            background-color: var(--gb-cream);
+            color: var(--gb-charcoal);
+            padding: var(--gb-space-12) var(--gb-space-4);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -67,20 +40,20 @@
 
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: var(--gb-container-max);
         }
 
         /* Top Hero */
         .hero {
-            background-color: var(--cream);
-            border-radius: 32px;
+            background-color: var(--gb-cream);
+            border-radius: var(--gb-radius-lg);
             padding: 60px 56px;
-            border: 1px solid var(--border);
-            box-shadow: 0 30px 80px rgba(32,32,32,0.06);
+            border: 1px solid var(--gb-border-subtle);
+            box-shadow: var(--gb-shadow-floating);
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            margin-bottom: 35px;
+            margin-bottom: var(--gb-space-8);
             position: relative;
             overflow: hidden;
             gap: 30px;
@@ -108,34 +81,34 @@
             font-weight: 800;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--coral);
-            background: var(--white);
+            color: var(--gb-coral);
+            background: var(--gb-white);
             padding: 6px 18px;
-            border-radius: 100px;
-            margin-bottom: 20px;
-            border: 1px solid var(--border);
+            border-radius: var(--gb-radius-pill);
+            margin-bottom: var(--gb-space-4);
+            border: 1px solid var(--gb-border-subtle);
         }
 
         .hero-logo {
             font-size: 88px;
-            font-weight: 900;
+            font-weight: var(--gb-weight-logo);
             letter-spacing: -4px;
             line-height: 0.9;
-            margin-bottom: 18px;
-            color: var(--charcoal);
+            margin-bottom: var(--gb-space-4);
+            color: var(--gb-charcoal);
             text-transform: lowercase;
         }
 
         .hero-slogan {
             font-size: 30px;
-            font-weight: 800;
+            font-weight: var(--gb-weight-display);
             letter-spacing: -1px;
-            color: var(--charcoal);
-            margin-bottom: 12px;
+            color: var(--gb-charcoal);
+            margin-bottom: var(--gb-space-3);
         }
 
         .hero-sub {
-            font-size: 16px;
+            font-size: var(--gb-text-body-lg);
             color: rgba(32,32,32,0.78);
             line-height: 1.6;
         }
@@ -159,30 +132,30 @@
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin-bottom: 40px;
+            gap: var(--gb-gutter-desktop);
+            margin-bottom: var(--gb-space-8);
         }
 
         .tool-card {
-            background-color: var(--white);
-            border-radius: 24px;
+            background-color: var(--gb-white);
+            border-radius: var(--gb-radius-lg);
             padding: 36px 34px;
-            border: 1px solid var(--border);
-            box-shadow: 0 15px 45px rgba(32,32,32,0.04);
+            border: 1px solid var(--gb-border-subtle);
+            box-shadow: var(--gb-shadow-subtle);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform var(--gb-motion-fast), box-shadow var(--gb-motion-fast), border-color var(--gb-motion-fast);
             text-decoration: none;
-            color: var(--charcoal);
+            color: var(--gb-charcoal);
             position: relative;
             overflow: hidden;
         }
 
         .tool-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 25px 60px rgba(255, 77, 61, 0.15);
-            border-color: var(--coral);
+            box-shadow: var(--gb-shadow-floating);
+            border-color: var(--gb-coral);
         }
 
         /* Special Featured Style for Website (Spans 2 columns) */
@@ -197,7 +170,7 @@
         }
 
         .tool-card.featured-card:hover {
-            border-color: var(--coral);
+            border-color: var(--gb-coral);
             box-shadow: 0 25px 60px rgba(255, 77, 61, 0.22);
         }
 
@@ -206,12 +179,12 @@
             font-weight: 800;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--coral);
-            background: var(--cream);
+            color: var(--gb-coral);
+            background: var(--gb-cream);
             padding: 6px 14px;
-            border-radius: 100px;
+            border-radius: var(--gb-radius-pill);
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: var(--gb-space-3);
         }
 
         .website-actions-row {
@@ -221,44 +194,44 @@
         }
 
         .btn-website-primary {
-            background-color: var(--coral);
-            color: var(--white);
+            background-color: var(--gb-coral);
+            color: var(--gb-white);
             text-decoration: none;
             padding: 13px 20px;
-            border-radius: 12px;
+            border-radius: var(--gb-radius-sm);
             font-size: 13.5px;
             font-weight: 800;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.2s ease;
+            transition: transform var(--gb-motion-fast), box-shadow var(--gb-motion-fast), background-color var(--gb-motion-fast);
             box-shadow: 0 4px 14px rgba(255, 77, 61, 0.25);
         }
 
         .btn-website-primary:hover {
-            background-color: var(--coral-hover);
+            background-color: var(--gb-coral-hover);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(255, 77, 61, 0.35);
         }
 
         .btn-website-secondary {
-            background-color: var(--cream);
+            background-color: var(--gb-cream);
             color: #777;
             text-decoration: none;
             padding: 11px 18px;
-            border-radius: 12px;
+            border-radius: var(--gb-radius-sm);
             font-size: 12.5px;
             font-weight: 600;
-            border: 1px solid var(--border);
+            border: 1px solid var(--gb-border-subtle);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            transition: all 0.2s ease;
+            transition: background-color var(--gb-motion-fast), color var(--gb-motion-fast);
         }
 
         .btn-website-secondary:hover {
-            background-color: var(--white);
-            color: var(--charcoal);
+            background-color: var(--gb-white);
+            color: var(--gb-charcoal);
             border-color: #BBB;
         }
 
@@ -266,35 +239,35 @@
             font-size: 12px;
             font-weight: 800;
             letter-spacing: 2px;
-            color: var(--coral);
+            color: var(--gb-coral);
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: var(--gb-space-3);
         }
 
         .tool-title {
-            font-size: 26px;
-            font-weight: 800;
+            font-size: var(--gb-text-h2);
+            font-weight: var(--gb-weight-display);
             letter-spacing: -0.8px;
-            margin-bottom: 12px;
+            margin-bottom: var(--gb-space-3);
             line-height: 1.25;
         }
 
         .tool-desc {
-            font-size: 14.5px;
+            font-size: var(--gb-text-body);
             color: rgba(32,32,32,0.68);
             line-height: 1.55;
-            margin-bottom: 26px;
+            margin-bottom: var(--gb-space-6);
         }
 
         .tool-action {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-top: 18px;
-            border-top: 1px solid var(--border);
+            padding-top: var(--gb-space-4);
+            border-top: 1px solid var(--gb-border-subtle);
             font-size: 13.5px;
             font-weight: 800;
-            color: var(--coral);
+            color: var(--gb-coral);
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
@@ -303,18 +276,18 @@
             width: 38px;
             height: 38px;
             border-radius: 50%;
-            background: var(--cream);
+            background: var(--gb-cream);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 16px;
-            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+            transition: transform var(--gb-motion-fast), background var(--gb-motion-fast), color var(--gb-motion-fast);
         }
 
         .tool-card:hover .tool-arrow {
             transform: translateX(4px);
-            background: var(--coral);
-            color: var(--white);
+            background: var(--gb-coral);
+            color: var(--gb-white);
         }
 
         .mini-badge-list {
@@ -327,21 +300,10 @@
             font-size: 12px;
             font-weight: 700;
             color: #555;
-            background: var(--white);
-            border: 1px solid var(--border);
+            background: var(--gb-white);
+            border: 1px solid var(--gb-border-subtle);
             padding: 6px 14px;
-            border-radius: 100px;
-        }
-
-        /* Bottom Info */
-        .footer-note {
-            text-align: center;
-            font-size: 12.5px;
-            font-weight: 700;
-            color: rgba(32,32,32,0.55);
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            line-height: 1.6;
+            border-radius: var(--gb-radius-pill);
         }
 
         /* Responsive Breakpoints */
@@ -404,7 +366,7 @@
             <div class="hero-left">
                 <div class="brand-badge">Brand System Hub · gezenbiri.com.tr</div>
                 <div class="hero-logo">
-                    gezenbiri<span class="brand-system-dot"></span>
+                    gezenbiri<span class="gb-system-dot"></span>
                 </div>
                 <div class="hero-slogan">“Bir yere gidelim.”</div>
                 <p class="hero-sub">gezenbiri, birlikte yapılmaya değer şeyleri keşfetmek için var. Bir seramik masasında, uzun bir sofrada, küçük bir sokakta ya da bazen başka bir şehirde.</p>
@@ -416,14 +378,14 @@
             </div>
         </div>
 
-        <!-- Brand Standard & Production Portal -->
+        <!-- Section 01: Brand Standards & Production Portal -->
         <div style="margin-bottom: 16px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #888;">
             01 · CANLI YAYIN &amp; MASTER BRAND STANDARDS
         </div>
 
         <div class="tools-grid">
 
-            <!-- 00: CANLI WEB SİTESİ (Tek Birleşik Kart - V2 Master & V1 Arşiv) -->
+            <!-- 00: CANLI WEB SİTESİ (Tek Birleşik Kart - Master & V1 Arşiv) -->
             <div class="tool-card featured-card">
                 <div>
                     <div class="featured-preview-tag">✨ Canlı Web Portalı · Production Master</div>
@@ -453,7 +415,7 @@
             </div>
 
             <!-- 01: Brand System Guidelines -->
-            <a href="01_gezenbiri_brand_system.html" class="tool-card">
+            <a href="brand-guidelines.html" class="tool-card">
                 <div>
                     <div class="tool-num">Standart 01</div>
                     <h2 class="tool-title">Marka Kimliği &amp; Tasarım Sistemi</h2>
@@ -468,7 +430,7 @@
             </a>
 
             <!-- 02: Marka Davranışı: System Dot -->
-            <a href="04_gezenbiri_system_dot.html" class="tool-card">
+            <a href="system-dot.html" class="tool-card">
                 <div>
                     <div class="tool-num">Standart 02</div>
                     <h2 class="tool-title">Marka Davranışı: System Dot</h2>
@@ -484,7 +446,7 @@
 
         </div>
 
-        <!-- Brand Lab & Application Experiments -->
+        <!-- Section 02: Brand Lab & Application Experiments -->
         <div style="margin-bottom: 16px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #888;">
             02 · BRAND LAB &amp; DENEYSEL UYGULAMA ALANLARI
         </div>
@@ -492,7 +454,7 @@
         <div class="tools-grid">
 
             <!-- 03: Editorial Trip Cards -->
-            <a href="02_gezenbiri_trip_cards_editorial.html" class="tool-card">
+            <a href="trip-cards.html" class="tool-card">
                 <div>
                     <div class="tool-num">Lab 01 · Escape System</div>
                     <h2 class="tool-title">Seyahat &amp; Escape Rota Kartları</h2>
@@ -507,7 +469,7 @@
             </a>
 
             <!-- 04: Instagram Master Suite -->
-            <a href="03_gezenbiri_instagram_suite.html" class="tool-card">
+            <a href="instagram-suite.html" class="tool-card">
                 <div>
                     <div class="tool-num">Lab 02 · Social Media</div>
                     <h2 class="tool-title">Instagram Master Suite</h2>
@@ -523,8 +485,9 @@
 
         </div>
 
-        <div class="footer-note">
-            gezenbiri.com.tr · 2026 Marka &amp; Tasarım Ekosistemi · Swiss-Grid Modular Standard
+        <!-- Master Disclaimer Footnote -->
+        <div class="gb-prototype-disclaimer">
+            gezenbiri.com.tr · 2026 Marka &amp; Tasarım Ekosistemi · Swiss-Grid Modular Standard · Bu sayfadaki tüm uygulamalar tek veri kaynağından beslenmektedir.
         </div>
 
     </div>

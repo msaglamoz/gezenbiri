@@ -1,14 +1,15 @@
 /**
  * gezenbiri — Master Brand Design System & Central Component Library
- * Version: 2.1 (P0-P3 Master Specification)
+ * Version: 2.2 (Production-Ready Design System)
  * 
  * 1. COLOR TOKENS (65-20-10-5 Distribution & Supporting Palette)
  * 2. TYPOGRAPHY SCALE (Plus Jakarta Sans & Instrument Serif)
  * 3. SPACING & RADIUS TOKENS (4/8/12/16/24/32/48/64/96)
- * 4. SHADOW & MOTION TOKENS (180ms fast / 240ms standard)
- * 5. SYSTEM DOT GEOMETRY & COMPONENT
- * 6. ACCESSIBILITY & FOCUS-VISIBLE
- * 7. CORE UI COMPONENT LIBRARY
+ * 4. SHADOW & MOTION TOKENS (180ms fast / 240ms standard / 350ms slow)
+ * 5. 12/8/4 MASTER RESPONSIVE GRID TOKENS & UTILITIES
+ * 6. MASTER SYSTEM DOT SPECIFICATION (Exact 1.03 optical scale)
+ * 7. ACCESSIBILITY & FOCUS-VISIBLE
+ * 8. CORE UI COMPONENT LIBRARY (Buttons, Cards, Badges, Modals, Statuses, Toasts)
  */
 
 :root {
@@ -34,7 +35,7 @@
     --gb-border: #E2DDD5;
     --gb-border-subtle: rgba(32, 32, 32, 0.08);
 
-    /* Aliases for backward-compatibility */
+    /* Universal Aliases for Seamless Integration */
     --cream: var(--gb-cream);
     --charcoal: var(--gb-charcoal);
     --coral: var(--gb-coral);
@@ -95,10 +96,16 @@
     --gb-motion-fast: 180ms ease-out;
     --gb-motion-standard: 240ms cubic-bezier(0.16, 1, 0.3, 1);
     --gb-motion-slow: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* ================= 5. GRID & CONTAINER TOKENS ================= */
+    --gb-container-max: 1200px;
+    --gb-gutter-desktop: 24px;
+    --gb-gutter-tablet: 20px;
+    --gb-gutter-mobile: 16px;
 }
 
-/* ================= 5. MASTER SYSTEM DOT SPECIFICATION ================= */
-/* Single Source of Truth for gezenbiri wordmark & dot geometry */
+/* ================= 6. MASTER SYSTEM DOT SPECIFICATION ================= */
+/* Single Source of Truth for gezenbiri wordmark & dot geometry (Exact 1.03 optical scale) */
 
 .gb-logo,
 .brand-logo,
@@ -118,8 +125,8 @@
 .brand-system-dot,
 .system-dot {
     display: inline-block;
-    width: 0.15em;
-    height: 0.155em;
+    width: 0.15em !important;
+    height: 0.15em !important; /* Fixed: exactly equal base to avoid double-stretch */
     background-color: var(--gb-coral);
     border-radius: 50%;
     margin-left: 0.12em !important; /* Master 0.12em gap standard */
@@ -133,7 +140,7 @@
 .live-badge-dot {
     display: inline-block;
     width: 7px;
-    height: 7.2px;
+    height: 7px;
     border-radius: 50%;
     background-color: var(--gb-coral);
     transform: scaleY(1.03);
@@ -159,7 +166,7 @@
     100% { transform: scale(2.2); opacity: 0; }
 }
 
-/* ================= 6. ACCESSIBILITY & FOCUS-VISIBLE ================= */
+/* ================= 7. ACCESSIBILITY & FOCUS-VISIBLE ================= */
 :focus-visible {
     outline: 2.5px solid var(--gb-coral);
     outline-offset: 3px;
@@ -185,7 +192,45 @@
     justify-content: center;
 }
 
-/* ================= 7. REUSABLE UI COMPONENT LIBRARY ================= */
+/* ================= 8. RESPONSIVE GRID SYSTEM (12 / 8 / 4) ================= */
+.gb-container {
+    width: 100%;
+    max-width: var(--gb-container-max);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--gb-gutter-desktop);
+    padding-right: var(--gb-gutter-desktop);
+}
+
+.gb-grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--gb-gutter-desktop);
+}
+
+@media (max-width: 960px) {
+    .gb-container {
+        padding-left: var(--gb-gutter-tablet);
+        padding-right: var(--gb-gutter-tablet);
+    }
+    .gb-grid-12 {
+        grid-template-columns: repeat(8, 1fr);
+        gap: var(--gb-gutter-tablet);
+    }
+}
+
+@media (max-width: 600px) {
+    .gb-container {
+        padding-left: var(--gb-gutter-mobile);
+        padding-right: var(--gb-gutter-mobile);
+    }
+    .gb-grid-12 {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--gb-gutter-mobile);
+    }
+}
+
+/* ================= 9. REUSABLE UI COMPONENT LIBRARY ================= */
 
 /* Buttons */
 .gb-btn {
@@ -201,7 +246,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: all var(--gb-motion-fast);
+    transition: transform var(--gb-motion-fast), box-shadow var(--gb-motion-fast), background-color var(--gb-motion-fast);
     line-height: 1.2;
 }
 
@@ -281,6 +326,34 @@
     border-color: rgba(168, 184, 154, 0.35);
 }
 
+/* Status Classes */
+.gb-status-open {
+    color: #386641;
+    background-color: rgba(56, 102, 65, 0.12);
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--gb-radius-pill);
+    font-size: 12px;
+}
+
+.gb-status-limited {
+    color: var(--gb-coral);
+    background-color: var(--gb-coral-soft);
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: var(--gb-radius-pill);
+    font-size: 12px;
+}
+
+.gb-status-full {
+    color: #777;
+    background-color: rgba(0, 0, 0, 0.06);
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--gb-radius-pill);
+    font-size: 12px;
+}
+
 /* Cards */
 .gb-card {
     background-color: var(--gb-white);
@@ -288,7 +361,7 @@
     border-radius: var(--gb-radius-md);
     overflow: hidden;
     box-shadow: var(--gb-shadow-subtle);
-    transition: all var(--gb-motion-standard);
+    transition: transform var(--gb-motion-standard), box-shadow var(--gb-motion-standard), border-color var(--gb-motion-standard);
 }
 
 .gb-card:hover {
