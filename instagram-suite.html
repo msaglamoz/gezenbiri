@@ -2237,6 +2237,67 @@
 
     <!-- CENTRAL EVENT DATA -->
     <script src="data/events.js"></script>
+    <script>
+        // Dynamic Data Hydration from GezenbiriData (Single Source of Truth)
+        function hydrateInstagramSuiteFromData() {
+            if (typeof GezenbiriData === 'undefined') return;
+            const events = GezenbiriData.events;
+            if (!events || events.length === 0) return;
+
+            const wsSeramik = GezenbiriData.getById('EVT-WS-001');
+            const tripKapadokya = GezenbiriData.getById('EVT-TRIP-001');
+            const tripBozcaada = GezenbiriData.getById('EVT-TRIP-003');
+
+            // 1. Stories Hydration
+            const stories = document.querySelectorAll('.story-wrapper-suite');
+            if (stories.length >= 6) {
+                // Story 1: Kapadokya
+                if (tripKapadokya) {
+                    const date1 = stories[0].querySelector('.story-date-suite');
+                    if (date1) date1.textContent = tripKapadokya.startMeta.shortFormatted;
+                }
+                // Story 2: FOMO Kapadokya
+                if (tripKapadokya) {
+                    const date2 = stories[1].querySelector('.story-date-suite');
+                    if (date2) date2.textContent = tripKapadokya.startMeta.shortFormatted;
+                    const subtext = stories[1].querySelector('.story-subtext-suite');
+                    if (subtext) subtext.textContent = `Kontenjan dolmak üzere. ${tripKapadokya.startMeta.dayName} akşamı yola çıkıyoruz.`;
+                }
+                // Story 4: Seramik Workshop
+                if (wsSeramik) {
+                    const date4 = stories[3].querySelector('.story-date-suite');
+                    const pill4 = stories[3].querySelector('.trip-price-pill-suite');
+                    if (date4) date4.textContent = wsSeramik.startMeta.shortFormatted;
+                    if (pill4) pill4.textContent = `${wsSeramik.price} · ${wsSeramik.location.split(',')[0]}`;
+                }
+                // Story 6: Bozcaada
+                if (tripBozcaada) {
+                    const date6 = stories[5].querySelector('.story-date-suite');
+                    const pill6 = stories[5].querySelector('.trip-price-pill-suite');
+                    if (date6) date6.textContent = tripBozcaada.startMeta.shortFormatted;
+                    if (pill6) pill6.textContent = `${tripBozcaada.price} · Full Paket`;
+                }
+            }
+
+            // 2. Feed Posts Hydration
+            const posts = document.querySelectorAll('.post-card-preview');
+            if (posts.length >= 1 && tripKapadokya) {
+                // Post 1: Rota Duyuru
+                const p1Date = posts[0].querySelector('.post-viewport span[style*="color:var(--coral)"]');
+                if (p1Date) p1Date.textContent = tripKapadokya.startMeta.shortFormatted;
+                const p1Price = posts[0].querySelector('.post-viewport div:last-child span:first-child');
+                if (p1Price) p1Price.textContent = tripKapadokya.price;
+                const cap1 = document.getElementById('cap-1');
+                if (cap1) {
+                    cap1.innerHTML = `<strong>gezenbiri</strong> ${tripKapadokya.startMeta.dayName} akşamı çıkıyoruz, ${tripKapadokya.endMeta.dayName.toLowerCase()} dönüyoruz. Vadide balon seyri ve sıcak şarap seni bekliyor. Geliyorsan yaz ↓ #gezenbiri #kapadokya`;
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            hydrateInstagramSuiteFromData();
+        });
+    </script>
 
     <!-- DEMO DISCLAIMER FOOTNOTE -->
     <div class="gb-prototype-disclaimer">

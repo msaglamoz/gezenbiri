@@ -923,11 +923,94 @@
             }
         }
 
-        // Accessibility: ESC key to close modal
+        // Accessibility: Keyboard Focus Trap & ESC key to close modal
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && document.getElementById('tripModal').classList.contains('active')) {
+            const modal = document.getElementById('tripModal');
+            if (!modal || !modal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
                 closeRouteModalDirect();
+                return;
             }
+
+            if (e.key === 'Tab') {
+                const focusables = Array.from(modal.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+                if (focusables.length === 0) return;
+
+                const firstEl = focusables[0];
+                const lastEl = focusables[focusables.length - 1];
+
+                if (e.shiftKey) {
+                    if (document.activeElement === firstEl || !modal.contains(document.activeElement)) {
+                        e.preventDefault();
+                        lastEl.focus();
+                    }
+                } else {
+                    if (document.activeElement === lastEl || !modal.contains(document.activeElement)) {
+                        e.preventDefault();
+                        firstEl.focus();
+                    }
+                }
+            }
+        });
+
+        // Dynamic Hydration from GezenbiriData (Single Source of Truth)
+        function hydrateTripCardsFromData() {
+            if (typeof GezenbiriData === 'undefined') return;
+            const trips = GezenbiriData.getTrips();
+            if (!trips || trips.length === 0) return;
+
+            // Kapadokya (EVT-TRIP-001)
+            const kapadokya = trips.find(t => t.id === 'EVT-TRIP-001');
+            if (kapadokya) {
+                const pairs = document.querySelectorAll('.trip-pair');
+                if (pairs[0]) {
+                    const posterDate = pairs[0].querySelector('.poster-date');
+                    const posterPrice = pairs[0].querySelector('.poster-price');
+                    if (posterDate) posterDate.textContent = kapadokya.startMeta.shortFormatted;
+                    if (posterPrice) posterPrice.textContent = kapadokya.price;
+                }
+            }
+
+            // Alaçatı (EVT-TRIP-002)
+            const alacati = trips.find(t => t.id === 'EVT-TRIP-002');
+            if (alacati) {
+                const pairs = document.querySelectorAll('.trip-pair');
+                if (pairs[2]) {
+                    const posterDate = pairs[2].querySelector('.poster-date');
+                    const posterPrice = pairs[2].querySelector('.poster-price');
+                    if (posterDate) posterDate.textContent = alacati.startMeta.shortFormatted;
+                    if (posterPrice) posterPrice.textContent = alacati.price;
+                }
+            }
+
+            // Bozcaada (EVT-TRIP-003)
+            const bozcaada = trips.find(t => t.id === 'EVT-TRIP-003');
+            if (bozcaada) {
+                const pairs = document.querySelectorAll('.trip-pair');
+                if (pairs[3]) {
+                    const posterDate = pairs[3].querySelector('.poster-date');
+                    const posterPrice = pairs[3].querySelector('.poster-price');
+                    if (posterDate) posterDate.textContent = bozcaada.startMeta.shortFormatted;
+                    if (posterPrice) posterPrice.textContent = bozcaada.price;
+                }
+            }
+
+            // Sürpriz Rota (EVT-TRIP-004)
+            const surpriz = trips.find(t => t.id === 'EVT-TRIP-004');
+            if (surpriz) {
+                const pairs = document.querySelectorAll('.trip-pair');
+                if (pairs[6]) {
+                    const posterDate = pairs[6].querySelector('.poster-date');
+                    const posterPrice = pairs[6].querySelector('.poster-price');
+                    if (posterDate) posterDate.textContent = surpriz.startMeta.shortFormatted;
+                    if (posterPrice) posterPrice.textContent = surpriz.price;
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            hydrateTripCardsFromData();
         });
     </script>
 

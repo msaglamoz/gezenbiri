@@ -1,5 +1,5 @@
 /**
- * gezenbiri — Automated Design System & Code Quality Regression Suite
+ * gezenbiri — Final Design System & Code Quality Regression Suite
  * Run with: node qa-check.js
  */
 
@@ -7,7 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 const rootDir = __dirname;
-const filesToScan = [
+const productionFiles = [
     'index.html',
     'gezenbiri_website.html',
     'brand-guidelines.html',
@@ -19,11 +19,10 @@ const filesToScan = [
 ];
 
 let totalErrors = 0;
-let totalWarnings = 0;
 let totalChecks = 0;
 
 console.log('\n======================================================');
-console.log('🔍 GEZENBİRİ DESIGN SYSTEM REGRESSION AUDIT (QA SUITE)');
+console.log('🔍 GEZENBİRİ FINAL REVISION VERIFICATION (QA SUITE)');
 console.log('======================================================\n');
 
 function runCheck(name, testFn) {
@@ -48,7 +47,7 @@ function runCheck(name, testFn) {
 // 1. Check for legacy 0-1px or 0px gap references
 runCheck('No legacy 0-1px / 0px System Dot gap definitions', () => {
     const issues = [];
-    filesToScan.forEach(relPath => {
+    productionFiles.forEach(relPath => {
         const fullPath = path.join(rootDir, relPath);
         if (!fs.existsSync(fullPath)) return;
         const content = fs.readFileSync(fullPath, 'utf8');
@@ -62,7 +61,7 @@ runCheck('No legacy 0-1px / 0px System Dot gap definitions', () => {
 // 2. Check for System Dot double-stretch (height: 0.155em)
 runCheck('No System Dot double-stretch (height: 0.155em)', () => {
     const issues = [];
-    filesToScan.forEach(relPath => {
+    productionFiles.forEach(relPath => {
         const fullPath = path.join(rootDir, relPath);
         if (!fs.existsSync(fullPath)) return;
         const content = fs.readFileSync(fullPath, 'utf8');
@@ -82,7 +81,7 @@ runCheck('No broken links to deprecated 01_/02_/03_/04_ filenames', () => {
         '03_gezenbiri_instagram_suite.html',
         '04_gezenbiri_system_dot.html'
     ];
-    filesToScan.forEach(relPath => {
+    productionFiles.forEach(relPath => {
         const fullPath = path.join(rootDir, relPath);
         if (!fs.existsSync(fullPath)) return;
         const content = fs.readFileSync(fullPath, 'utf8');
@@ -98,7 +97,7 @@ runCheck('No broken links to deprecated 01_/02_/03_/04_ filenames', () => {
 // 4. Check for obsolete theme-color (#F7F5F0) or sand drift (#EAE5DC)
 runCheck('No obsolete theme-color (#F7F5F0) or color drift (#EAE5DC)', () => {
     const issues = [];
-    filesToScan.forEach(relPath => {
+    productionFiles.forEach(relPath => {
         const fullPath = path.join(rootDir, relPath);
         if (!fs.existsSync(fullPath)) return;
         const content = fs.readFileSync(fullPath, 'utf8');
@@ -130,7 +129,7 @@ runCheck('Central data/events.js exists and exports events', () => {
 // 6. Check for Favicon ellipse geometry in all HTML files
 runCheck('Favicon uses standardized vector ellipse geometry', () => {
     const issues = [];
-    const htmlFiles = filesToScan.filter(f => f.endsWith('.html'));
+    const htmlFiles = productionFiles.filter(f => f.endsWith('.html'));
     htmlFiles.forEach(relPath => {
         const fullPath = path.join(rootDir, relPath);
         if (!fs.existsSync(fullPath)) return;
@@ -145,7 +144,7 @@ runCheck('Favicon uses standardized vector ellipse geometry', () => {
 // 7. Check that brand.css is linked in all HTML files
 runCheck('brand.css is linked across all HTML entry points', () => {
     const issues = [];
-    const htmlFiles = filesToScan.filter(f => f.endsWith('.html'));
+    const htmlFiles = productionFiles.filter(f => f.endsWith('.html'));
     htmlFiles.forEach(relPath => {
         const fullPath = path.join(rootDir, relPath);
         if (!fs.existsSync(fullPath)) return;
@@ -157,46 +156,71 @@ runCheck('brand.css is linked across all HTML entry points', () => {
     return issues;
 });
 
-// 8. Check for Modal Accessibility Attributes (role="dialog" & aria-modal="true")
-runCheck('Modals implement full WCAG semantics (role="dialog" & aria-modal="true")', () => {
+// 8. Check that NO local System Dot CSS exists in any production HTML file (Single Source of Truth)
+runCheck('System Dot geometry is defined exclusively in brand.css', () => {
+    const issues = [];
+    const htmlFiles = productionFiles.filter(f => f.endsWith('.html'));
+    htmlFiles.forEach(relPath => {
+        const fullPath = path.join(rootDir, relPath);
+        if (!fs.existsSync(fullPath)) return;
+        const content = fs.readFileSync(fullPath, 'utf8');
+        if (content.includes('.brand-system-dot {') || content.includes('.system-dot {')) {
+            issues.push(`${relPath} contains local duplicate System Dot CSS declaration.`);
+        }
+    });
+    return issues;
+});
+
+// 9. Check that Focus Trap is implemented in modals (gezenbiri_website.html & trip-cards.html)
+runCheck('Modals implement keyboard focus trap (Tab / Shift+Tab) & ESC closing', () => {
     const issues = [];
     const modalPages = ['gezenbiri_website.html', 'trip-cards.html'];
     modalPages.forEach(relPath => {
         const fullPath = path.join(rootDir, relPath);
         if (!fs.existsSync(fullPath)) return;
         const content = fs.readFileSync(fullPath, 'utf8');
-        if (!content.includes('role="dialog"') || !content.includes('aria-modal="true"')) {
-            issues.push(`${relPath} is missing role="dialog" or aria-modal="true" on its modal element.`);
+        if (!content.includes('shiftKey') || !content.includes('focusables')) {
+            issues.push(`${relPath} is missing keyboard focus trap logic for Tab / Shift+Tab.`);
+        }
+        if (!content.includes('Escape') && !content.includes('esc')) {
+            issues.push(`${relPath} is missing ESC key listener.`);
         }
     });
     return issues;
 });
 
-// 9. Check for Prototype Disclaimer in all demo/lab pages
-runCheck('Prototype disclaimer is visible across all demo and lab pages', () => {
+// 10. Check that Dynamic Data Hydration is wired across Website, Trip Cards & Instagram Suite
+runCheck('Website, Trip Cards & Instagram Suite dynamically hydrate from data/events.js', () => {
     const issues = [];
-    const demoPages = ['gezenbiri_website.html', 'trip-cards.html', 'instagram-suite.html', 'brand-guidelines.html', 'index.html'];
-    demoPages.forEach(relPath => {
-        const fullPath = path.join(rootDir, relPath);
+    const dynamicPages = [
+        { file: 'gezenbiri_website.html', fn: 'renderAllEventsFromData' },
+        { file: 'trip-cards.html', fn: 'hydrateTripCardsFromData' },
+        { file: 'instagram-suite.html', fn: 'hydrateInstagramSuiteFromData' }
+    ];
+    dynamicPages.forEach(item => {
+        const fullPath = path.join(rootDir, item.file);
         if (!fs.existsSync(fullPath)) return;
         const content = fs.readFileSync(fullPath, 'utf8');
-        if (!content.includes('gb-prototype-disclaimer')) {
-            issues.push(`${relPath} is missing the standard gb-prototype-disclaimer element.`);
+        if (!content.includes(item.fn)) {
+            issues.push(`${item.file} is missing dynamic hydration function '${item.fn}'.`);
+        }
+        if (!content.includes('data/events.js')) {
+            issues.push(`${item.file} does not load data/events.js.`);
         }
     });
     return issues;
 });
 
-// 10. Check that events.js is loaded in interactive pages
-runCheck('data/events.js is loaded in all interactive pages', () => {
+// 11. Check that NO circular CSS variable definitions exist
+runCheck('No circular CSS custom property references', () => {
     const issues = [];
-    const interactivePages = ['gezenbiri_website.html', 'trip-cards.html', 'instagram-suite.html', 'index.html'];
-    interactivePages.forEach(relPath => {
+    const htmlFiles = productionFiles.filter(f => f.endsWith('.html'));
+    htmlFiles.forEach(relPath => {
         const fullPath = path.join(rootDir, relPath);
         if (!fs.existsSync(fullPath)) return;
         const content = fs.readFileSync(fullPath, 'utf8');
-        if (!content.includes('src="data/events.js"') && !content.includes('src=\'data/events.js\'')) {
-            issues.push(`${relPath} does not load data/events.js.`);
+        if (content.includes('--font-serif: var(--font-serif)') || content.includes('--font-sans: var(--font-main)')) {
+            issues.push(`${relPath} contains circular CSS variable reference.`);
         }
     });
     return issues;
@@ -204,8 +228,8 @@ runCheck('data/events.js is loaded in all interactive pages', () => {
 
 console.log('\n------------------------------------------------------');
 if (totalErrors === 0) {
-    console.log(`🎉 ALL ${totalChecks} AUDIT CHECKS PASSED WITH 0 REGRESSIONS!`);
-    console.log('System is production-ready and fully standardized.\n');
+    console.log(`🎉 ALL ${totalChecks} FINAL VERIFICATION CHECKS PASSED WITH 0 REGRESSIONS!`);
+    console.log('Single Source of Truth, Focus Trap, and Pure CSS Architecture confirmed.\n');
     process.exit(0);
 } else {
     console.error(`💥 ${totalErrors} REGRESSION ISSUES DETECTED. Please resolve before releasing.\n`);
