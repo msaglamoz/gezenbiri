@@ -1,81 +1,85 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F2EFE9"/>
-      <stop offset="100%" stop-color="#E5E0D6"/>
+    
+    <linearGradient id="wallBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EDECE8"/>
+      <stop offset="100%" stop-color="#E5E4DE"/>
     </linearGradient>
-    <linearGradient id="toteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F7F3EA"/>
-      <stop offset="50%" stop-color="#EFE9DD"/>
-      <stop offset="100%" stop-color="#E2DCCE"/>
+    <linearGradient id="tableBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F7EFE4"/>
+      <stop offset="50%" stop-color="#F3E9DC"/>
+      <stop offset="100%" stop-color="#EADBCA"/>
     </linearGradient>
-    <linearGradient id="strapGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#DCD6C7"/>
-      <stop offset="50%" stop-color="#EBE5D8"/>
-      <stop offset="100%" stop-color="#D0C9B9"/>
-    </linearGradient>
-    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#202020" flood-opacity="0.12"/>
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#202020" flood-opacity="0.08"/>
+    <filter id="studioShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#4A3E30" flood-opacity="0.12"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#4A3E30" flood-opacity="0.08"/>
     </filter>
-    <filter id="subtleCrease">
-      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
-      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.04 0"/>
-      <feComposite in2="SourceGraphic" in="gl" operator="in"/>
+    <filter id="contactShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#30261A" flood-opacity="0.25"/>
     </filter>
+
+    <linearGradient id="toteFabric" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FAF7F0"/>
+      <stop offset="40%" stop-color="#F2EDE0"/>
+      <stop offset="85%" stop-color="#E5DEC8"/>
+      <stop offset="100%" stop-color="#DCD4BC"/>
+    </linearGradient>
+    <linearGradient id="strapGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EBE3D0"/>
+      <stop offset="100%" stop-color="#D8CFB8"/>
+    </linearGradient>
   </defs>
 
-  <!-- Background Canvas -->
-  <rect width="800" height="600" fill="url(#bgGrad)"/>
   
-  <!-- Ambient Soft Vignette -->
-  <circle cx="400" cy="340" r="320" fill="#202020" opacity="0.02" filter="blur(40px)"/>
+  <!-- Studio Wall (Top) -->
+  <rect width="1000" height="480" fill="url(#wallBg)"/>
+  
+  <!-- Subtle Wall Soft Light -->
+  <circle cx="450" cy="192" r="500" fill="#FFFFFF" opacity="0.4" filter="blur(60px)"/>
 
-  <!-- TOTE HANDLES (STRAPS) -->
-  <!-- Left Strap -->
-  <path d="M310,210 C310,70 340,50 400,50 C460,50 490,70 490,210" fill="none" stroke="url(#strapGrad)" stroke-width="26" stroke-linecap="round" filter="url(#softShadow)"/>
-  <path d="M310,210 C310,70 340,50 400,50 C460,50 490,70 490,210" fill="none" stroke="#D3CCA" stroke-width="2" stroke-dasharray="6,4"/>
+  <!-- Studio Table Surface (Bottom) -->
+  <rect y="480" width="1000" height="520" fill="url(#tableBg)"/>
 
-  <!-- MAIN TOTE BODY -->
-  <g filter="url(#softShadow)">
-    <!-- Bag Shape -->
-    <path d="M260,200 L540,200 C548,200 554,206 552,214 L524,530 C522,542 512,550 500,550 L300,550 C288,550 278,542 276,530 L248,214 C246,206 252,200 260,200 Z" fill="url(#toteGrad)"/>
+  <!-- Horizon Shadow Line -->
+  <line x1="0" y1="480" x2="1000" y2="480" stroke="#DFD7CA" stroke-width="1.5"/>
     
-    <!-- Top Fold Hem -->
-    <path d="M259,200 L541,200 L539,235 L261,235 Z" fill="#E4DEC8" opacity="0.4"/>
-    <!-- Top Stitching Line -->
-    <line x1="260" y1="235" x2="540" y2="235" stroke="#BFB7A3" stroke-width="2" stroke-dasharray="5,4"/>
-    <line x1="262" y1="239" x2="538" y2="239" stroke="#BFB7A3" stroke-width="2" stroke-dasharray="5,4"/>
 
-    <!-- Subtle Crease Lines for Realism -->
-    <path d="M280,240 Q320,380 305,530" fill="none" stroke="#D0C8B5" stroke-width="1.5" opacity="0.6"/>
-    <path d="M520,240 Q485,390 495,530" fill="none" stroke="#D0C8B5" stroke-width="1.5" opacity="0.6"/>
-    <path d="M370,235 Q390,360 380,550" fill="none" stroke="#D8D0BE" stroke-width="1" opacity="0.5"/>
+  <!-- Contact Shadows on Table -->
+  <ellipse cx="500" cy="830" rx="260" ry="24" fill="#3D3224" opacity="0.14" filter="blur(16px)"/>
+  <ellipse cx="500" cy="825" rx="200" ry="12" fill="#2C2014" opacity="0.2" filter="blur(6px)"/>
 
-    <!-- WOVEN BRAND LABEL (Side Seam Tag) -->
-    <g transform="translate(245, 340)">
-      <rect x="-18" y="0" width="22" height="38" rx="3" fill="#202020"/>
-      <!-- Tiny gb. wordmark on label -->
-      <text x="-7" y="24" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="11" fill="#F6F3ED" text-anchor="middle" transform="rotate(-90 -7 24)">gb</text>
-      <ellipse cx="-1" cy="14" rx="1.6" ry="1.65" fill="#FF4D3D"/>
+  <!-- STRAPS -->
+  <path d="M380,380 C380,140 430,120 500,120 C570,120 620,140 620,380" fill="none" stroke="url(#strapGrad)" stroke-width="32" stroke-linecap="round" filter="url(#studioShadow)"/>
+  <path d="M380,380 C380,140 430,120 500,120 C570,120 620,140 620,380" fill="none" stroke="#C8BFAB" stroke-width="2" stroke-dasharray="8,6"/>
+
+  <!-- TOTE BODY -->
+  <g filter="url(#studioShadow)">
+    <!-- Main Body Shape -->
+    <path d="M310,360 L690,360 C702,360 710,370 706,382 L665,800 C662,816 648,828 632,828 L368,828 C352,828 338,816 335,800 L294,382 C290,370 298,360 310,360 Z" fill="url(#toteFabric)"/>
+
+    <!-- Top Hem Fold & Stitches -->
+    <path d="M309,360 L691,360 L688,405 L312,405 Z" fill="#E2DAC7" opacity="0.5"/>
+    <line x1="311" y1="405" x2="689" y2="405" stroke="#BFB69E" stroke-width="2.5" stroke-dasharray="6,5"/>
+    <line x1="313" y1="410" x2="687" y2="410" stroke="#BFB69E" stroke-width="2.5" stroke-dasharray="6,5"/>
+
+    <!-- Soft Fabric Creases -->
+    <path d="M340,410 Q400,600 375,800" fill="none" stroke="#D5CCB6" stroke-width="2" opacity="0.6"/>
+    <path d="M660,410 Q610,610 625,800" fill="none" stroke="#D5CCB6" stroke-width="2" opacity="0.6"/>
+    <path d="M460,405 Q485,580 470,820" fill="none" stroke="#DFD6C2" stroke-width="1.5" opacity="0.5"/>
+
+    <!-- WOVEN BRAND LABEL (Side Seam) -->
+    <g transform="translate(292, 540)">
+      <rect x="-24" y="0" width="28" height="48" rx="4" fill="#202020"/>
+      <text x="-10" y="30" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="13" fill="#F6F3ED" text-anchor="middle" transform="rotate(-90 -10 30)">gb</text>
+      <ellipse cx="-2" cy="18" rx="2.2" ry="2.27" fill="#FF4D3D"/>
     </g>
 
-    <!-- SLOGAN SERIGRAPHY PRINT (Center Chest) -->
-    <g transform="translate(400, 360)">
-      <!-- "Bir yere" line -->
-      <text x="0" y="0" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="900" font-size="38" fill="#202020" letter-spacing="-1.5" text-anchor="middle">Bir yere</text>
-      <!-- "gidelim." line with typographic black dot -->
-      <text x="0" y="44" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="900" font-size="38" fill="#202020" letter-spacing="-1.5" text-anchor="middle">gidelim.</text>
+    <!-- SLOGAN SERIGRAPHY PRINT (Center) -->
+    <g transform="translate(500, 580)">
+      <text x="0" y="0" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="900" font-size="46" fill="#282828" letter-spacing="-1.8" text-anchor="middle">Bir yere</text>
+      <text x="0" y="54" font-family="'Plus Jakarta Sans', -apple-system, sans-serif" font-weight="900" font-size="46" fill="#282828" letter-spacing="-1.8" text-anchor="middle">gidelim.</text>
       
-      <!-- Subtle Underline Subtext -->
-      <text x="0" y="86" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="10.5" fill="#706B5E" letter-spacing="2.5" text-transform="uppercase" text-anchor="middle">gezenbiri · 320 g/m² ham pamuk</text>
+      <text x="0" y="106" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="12" fill="#7A7263" letter-spacing="3" text-transform="uppercase" text-anchor="middle">gezenbiri · 320 g/m² ham pamuk</text>
     </g>
-  </g>
-
-  <!-- Technical Spec Tag Floating Pill -->
-  <g transform="translate(40, 520)">
-    <rect width="210" height="46" rx="10" fill="#FFFFFF" filter="url(#softShadow)"/>
-    <text x="16" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="11" fill="#202020">HAM BEZ ÇANTA (TOTE)</text>
-    <text x="16" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="10" fill="#FF4D3D">320 gr/m² Pamuk · Serigrafi</text>
   </g>
 </svg>
