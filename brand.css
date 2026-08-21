@@ -1,0 +1,202 @@
+/**
+ * gezenbiri — Master Brand Design System & Tokens (brand.css)
+ * Version: 2.0 (Standardized)
+ * Master Brand Guideline 65-Rule Compliance
+ */
+
+:root {
+    /* 1. Core Color Palette (65-20-10-5 Distribution) */
+    --gb-cream: #F6F3ED;          /* 65% Primary Canvas / Background */
+    --gb-charcoal: #202020;       /* 20% Text, High-contrast Surfaces & Structure */
+    --gb-coral: #FF4D3D;          /* 10% Action Coral: CTA, System Dot, Live states, Micro-accents */
+    --gb-sage: #A8B89A;           /* 5% Sage: Calming accents, nature, badges */
+
+    /* Supporting Palette */
+    --gb-sky: #A9D5E8;            /* Sky: Escape, air, freshness */
+    --gb-sand: #D8CCBC;           /* Sand: Warm earth, editorial cards */
+    --gb-stone: #D9D6D1;          /* Stone: Subtle dividers, background tints */
+    --gb-white: #FFFFFF;          /* Pure White: Crisp cards, inputs */
+
+    /* Alpha / Soft Variations */
+    --gb-coral-soft: rgba(255, 77, 61, 0.12);
+    --gb-charcoal-soft: rgba(32, 32, 32, 0.06);
+    --gb-sage-soft: rgba(168, 184, 154, 0.20);
+    --gb-sky-soft: rgba(169, 213, 232, 0.22);
+    --gb-border: #E2DDD5;
+    --gb-border-subtle: rgba(32, 32, 32, 0.08);
+
+    /* 2. Typography Tokens */
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+
+    /* Typography Hierarchy Scale */
+    --text-display-xl: 76px;
+    --text-display: 54px;
+    --text-h1: 38px;
+    --text-h2: 28px;
+    --text-h3: 22px;
+    --text-body-lg: 18px;
+    --text-body: 15px;
+    --text-small: 13px;
+    --text-caption: 11px;
+
+    /* Font Weights */
+    --weight-logo: 900;
+    --weight-display: 800;
+    --weight-heading: 700;
+    --weight-semibold: 600;
+    --weight-medium: 500;
+    --weight-regular: 400;
+
+    /* 3. Spacing System (Standard 4-8-12-16-24-32-48-64-96) */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-24: 96px;
+
+    /* 4. Radius System */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    --radius-lg: 24px;
+    --radius-pill: 999px;
+
+    /* 5. Shadows */
+    --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
+    --shadow-floating: 0 12px 36px rgba(0, 0, 0, 0.08);
+    --shadow-overlay: 0 25px 70px rgba(0, 0, 0, 0.14);
+
+    /* 6. Motion Defaults */
+    --transition-fast: 180ms ease-out;
+    --transition-normal: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ================= SYSTEM DOT SPECIFICATION ================= */
+.gb-wordmark {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-logo);
+    letter-spacing: -0.04em;
+    display: inline-flex;
+    align-items: baseline;
+    color: var(--gb-charcoal);
+    line-height: 1;
+    text-transform: lowercase;
+}
+
+.gb-system-dot {
+    display: inline-block;
+    width: 0.15em;
+    height: 0.155em;
+    background-color: var(--gb-coral);
+    border-radius: 50%;
+    margin-left: 0.12em; /* Master 0.12em standard (approx 2.5px at display size) */
+    transform: scaleY(1.03); /* Optical 103% vertical stretch */
+    flex-shrink: 0;
+    vertical-align: baseline;
+}
+
+/* Live Dot for active states, real-time events */
+.gb-live-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--gb-coral);
+    position: relative;
+}
+
+.gb-live-dot::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gb-coral);
+    animation: gb-pulse 1.8s infinite cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes gb-pulse {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Standard UI Buttons */
+.gb-btn-primary {
+    background-color: var(--gb-charcoal);
+    color: var(--gb-white);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: var(--weight-heading);
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all var(--transition-fast);
+}
+
+.gb-btn-primary:hover {
+    background-color: var(--gb-coral);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(255, 77, 61, 0.28);
+}
+
+.gb-btn-secondary {
+    background-color: var(--gb-white);
+    color: var(--gb-charcoal);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: var(--weight-heading);
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--gb-border);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all var(--transition-fast);
+}
+
+.gb-btn-secondary:hover {
+    border-color: var(--gb-charcoal);
+    background-color: var(--gb-cream);
+}
+
+.gb-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    background-color: var(--gb-white);
+    color: var(--gb-charcoal);
+    border: 1px solid var(--gb-border);
+}
+
+.gb-tag-coral {
+    background-color: var(--gb-coral-soft);
+    color: var(--gb-coral);
+    border-color: rgba(255, 77, 61, 0.2);
+}
+
+.gb-tag-sage {
+    background-color: var(--gb-sage-soft);
+    color: #4A633E;
+    border-color: rgba(168, 184, 154, 0.3);
+}

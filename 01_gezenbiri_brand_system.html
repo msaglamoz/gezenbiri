@@ -8,12 +8,13 @@
     <meta name="theme-color" content="#F6F3ED">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3' fill='%23FF4D3D'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3.2' fill='%23FF4D3D'/%3E%3C/svg%3E">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="brand.css">
     
     <style>
         :root {
@@ -148,15 +149,16 @@
             margin-bottom: 20px;
             display: inline-flex;
             align-items: baseline;
+            text-transform: lowercase;
         }
 
-        .action-dot {
+        .system-dot {
             display: inline-block;
-            width: 0.16em;
-            height: 0.165em;
+            width: 0.15em;
+            height: 0.155em;
             background-color: var(--coral);
             border-radius: 50%;
-            margin-left: 2.5px;
+            margin-left: 0.12em;
             transform: scaleY(1.03);
             flex-shrink: 0;
         }
@@ -170,17 +172,18 @@
         }
 
         .statement-tagline {
-            font-size: 17px;
+            font-size: 16.5px;
             font-weight: 700;
-            color: #444;
+            color: #333;
             margin-bottom: 8px;
         }
 
         .statement-sub {
-            font-size: 17px;
-            font-weight: 600;
-            color: #777;
+            font-size: 15px;
+            font-weight: 500;
+            color: #666;
             margin-bottom: 20px;
+            line-height: 1.5;
         }
 
         .coral-dot-line {
@@ -243,6 +246,7 @@
             font-size: 40px;
             font-weight: 900;
             letter-spacing: -2px;
+            text-transform: lowercase;
         }
         .wordmark-display span.coral { color: var(--coral); }
 
@@ -271,7 +275,6 @@
             letter-spacing: -1px;
             text-align: center;
         }
-        .pos-box span.coral { color: var(--coral); }
 
         .neg-box {
             background-color: var(--charcoal);
@@ -283,7 +286,6 @@
             color: var(--white);
             text-align: center;
         }
-        .neg-box span.coral { color: var(--coral); }
 
         /* 7 Color Palette Swatches */
         .color-swatches-grid {
@@ -367,8 +369,8 @@
         }
 
         .personality-traits {
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 11.5px;
+            font-weight: 800;
             color: var(--charcoal);
             line-height: 1.6;
             letter-spacing: 0.2px;
@@ -394,7 +396,7 @@
         /* ROW 4: FOTOĞRAFİ YÖNÜ & MARKA MİMARİSİ */
         .grid-row-4 {
             display: grid;
-            grid-template-columns: 1.8fr 1.2fr;
+            grid-template-columns: 1.6fr 1.4fr;
             gap: 40px;
             align-items: start;
         }
@@ -422,7 +424,7 @@
             font-size: 9px;
             font-weight: 800;
             color: #FFF;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.55);
             padding: 2px 6px;
             border-radius: 4px;
             backdrop-filter: blur(2px);
@@ -715,6 +717,7 @@
             letter-spacing: -1px;
             line-height: 1;
             color: var(--charcoal);
+            text-transform: lowercase;
         }
 
         .poster-statement-footer p {
@@ -730,12 +733,44 @@
             margin-top: 4px;
         }
 
+        /* 14: STRATEGIC & DIGITAL GUIDELINES STRIP */
+        .guidelines-strip-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            background: var(--white);
+            border: 1px solid var(--border-line);
+            border-radius: 16px;
+            padding: 20px 24px;
+            font-size: 11.5px;
+            line-height: 1.55;
+            color: #444;
+        }
+
+        .guidelines-strip-grid h4 {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .guidelines-strip-grid ul {
+            padding-left: 16px;
+        }
+
+        .guidelines-strip-grid li {
+            margin-bottom: 4px;
+        }
+
         /* RESPONSIVE STYLES */
         @media (max-width: 1024px) {
             .board-container {
                 padding: 40px 32px;
             }
-            .grid-row-1, .grid-row-2, .grid-row-3, .grid-row-4, .grid-row-5, .grid-row-6, .grid-row-7 {
+            .grid-row-1, .grid-row-2, .grid-row-3, .grid-row-4, .grid-row-5, .grid-row-6, .grid-row-7, .guidelines-strip-grid {
                 grid-template-columns: 1fr;
                 gap: 28px;
             }
@@ -817,7 +852,7 @@
         </a>
         <div class="quick-nav-links">
             <a href="04_gezenbiri_system_dot.html" style="background:rgba(255,77,61,0.12); color:var(--coral); font-weight:800;">⚡ System Dot Portalı</a>
-            <a href="gezenbiri_website.html">Canlı Web Sitesi</a>
+            <a href="gezenbiri_website.html">Canlı Web Sitesi (V2)</a>
             <a href="02_gezenbiri_trip_cards_editorial.html">Seyahat Kartları</a>
             <a href="03_gezenbiri_instagram_suite.html">Instagram Suite</a>
         </div>
@@ -831,9 +866,9 @@
             <div class="grid-row-1">
                 <!-- 01 Brand Statement -->
                 <div>
-                    <span class="section-tag">01 BRAND STATEMENT</span>
+                    <span class="section-tag">01 MARKA KONUMLANDIRMASI &amp; İMZA</span>
                     <div class="statement-logo">
-                        gezenbiri<span class="action-dot"></span>
+                        gezenbiri<span class="system-dot"></span>
                     </div>
                     <div class="statement-slogan">
                         Bir yere gidelim.
@@ -842,11 +877,11 @@
                         Gitmeye değer yerler. Tanışmaya değer insanlar.
                     </div>
                     <div class="statement-sub">
-                        Arada bir gitmek lazım.
+                        gezenbiri; insanları yaratıcı atölyeler, yerel sofralar, kültürel buluşmalar ve özenle kürate edilmiş butik geziler &amp; kaçamaklar etrafında bir araya getiren modern bir deneyim ve topluluk markasıdır.
                     </div>
                     <div class="coral-dot-line">
                         <div class="dot-circle"></div>
-                        <span style="font-size:10px; font-weight:800; color:var(--coral); letter-spacing:1px; text-transform:uppercase;">System Action Dot</span>
+                        <span style="font-size:10px; font-weight:800; color:var(--coral); letter-spacing:1px; text-transform:uppercase;">System Dot Standartı (0.12em &amp; %103 Geometri)</span>
                     </div>
                 </div>
 
@@ -859,12 +894,14 @@
                         </div>
                         <div class="type-hierarchy-list">
                             <div>
-                                <strong>Display / Logo</strong><br>Plus Jakarta Sans (900)<br><br>
-                                <strong>Heading / Başlık</strong><br>Plus Jakarta Sans (700)
+                                <strong>Master Logo</strong><br>Plus Jakarta Sans (900)<br><br>
+                                <strong>Display / Hero</strong><br>Plus Jakarta Sans (800)<br><br>
+                                <strong>Headings (H1/H2)</strong><br>Plus Jakarta Sans (700)
                             </div>
                             <div>
-                                <strong>Body / Gövde Metni</strong><br>Plus Jakarta Sans (400)<br><br>
-                                <strong>Editoryal / Alıntı</strong><br>Instrument Serif İtalik
+                                <strong>Gövde / Body Text</strong><br>Plus Jakarta Sans (400 / 500)<br><br>
+                                <strong>Editoryal / Manifesto</strong><br>Instrument Serif İtalik<br>
+                                <span style="font-size:9.5px; color:#888;">(UI buton, menü ve formlarda kullanılmaz)</span>
                             </div>
                         </div>
                     </div>
@@ -879,42 +916,40 @@
             <div class="grid-row-2">
                 <!-- 03 Logo Sistemi -->
                 <div>
-                    <span class="section-tag">03 LOGO SİSTEMİ</span>
+                    <span class="section-tag">03 LOGO SİSTEMİ &amp; CLEAR SPACE</span>
                     <div class="logo-system-box">
                         <div style="display:flex; justify-content:space-between; align-items:baseline;">
                             <div>
-                                <span style="font-size:9.5px; color:#888; display:block; margin-bottom:2px;">Birincil Logo</span>
-                                <div class="wordmark-display">gezenbiri<span class="action-dot"></span></div>
+                                <span style="font-size:9.5px; color:#888; display:block; margin-bottom:2px;">Birincil Wordmark (Lowercase)</span>
+                                <div class="wordmark-display">gezenbiri<span class="system-dot"></span></div>
                             </div>
                             <div>
-                                <span style="font-size:9.5px; color:#888; display:block; margin-bottom:2px; font-weight:700;">İkincil İşaretler</span>
+                                <span style="font-size:9.5px; color:#888; display:block; margin-bottom:2px; font-weight:700;">Resmi Monogram</span>
                                 <div class="monograms-row">
-                                    <span style="display:inline-flex; align-items:baseline;">gb<span class="action-dot" style="width:0.16em; height:0.165em; margin-left:2px;"></span></span>
-                                    <span style="color:#DDD; font-size:20px; font-weight:300;">/</span>
-                                    <span style="width:16px; height:16.5px; background:var(--coral); border-radius:50%; transform:scaleY(1.03); display:inline-block;" title="Saf System Dot"></span>
+                                    <span style="display:inline-flex; align-items:baseline;">gb<span class="system-dot" style="width:0.16em; height:0.165em; margin-left:0.12em;"></span></span>
                                 </div>
                             </div>
                         </div>
                         <div class="pos-neg-grid">
                             <div class="pos-box">
-                                <div>gezenbiri<span class="action-dot"></span></div>
+                                <div>gezenbiri<span class="system-dot"></span></div>
                                 <span style="display:block; font-size:8.5px; color:#888; margin-top:4px;">Pozitif (Krem Zemin)</span>
                             </div>
                             <div class="neg-box">
-                                <div>gezenbiri<span class="action-dot"></span></div>
+                                <div>gezenbiri<span class="system-dot"></span></div>
                                 <span style="display:block; font-size:8.5px; color:#AAA; margin-top:4px;">Negatif (Koyu Zemin)</span>
                             </div>
                         </div>
                         <div style="font-size:10px; color:#666; margin-top:8px; line-height:1.4; border-top:1px solid var(--border-line); padding-top:6px; display:flex; justify-content:space-between; align-items:center;">
-                            <span>✓ <strong>Kilit Kuralı:</strong> 2.5px optik nefes &amp; %3 dikey Water Coral kilit çapası.</span>
-                            <a href="04_gezenbiri_system_dot.html" style="color:var(--coral); font-weight:800; text-decoration:none; font-size:10px;">Modül 04 Rehberi →</a>
+                            <span>✓ <strong>Clear Space:</strong> 'i' harfi x-height %50'si. Min: 100px dijital / 25mm baskı.</span>
+                            <a href="04_gezenbiri_system_dot.html" style="color:var(--coral); font-weight:800; text-decoration:none; font-size:10px;">System Dot Rehberi →</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- 04 Renk Paleti (65-20-10 Kuralı & 7 Swatches) -->
+                <!-- 04 Renk Paleti (65-20-10-5 Kuralı & 7 Swatches) -->
                 <div>
-                    <span class="section-tag">04 RENK PALETİ (65-20-10 KURALI)</span>
+                    <span class="section-tag">04 RENK PALETİ (65–20–10–5 DAĞILIMI &amp; DESTEK PALETİ)</span>
                     <div class="color-swatches-grid">
                         <div class="swatch-item">
                             <div class="swatch-color-box" style="background:#F6F3ED;"></div>
@@ -926,7 +961,7 @@
                         </div>
                         <div class="swatch-item">
                             <div class="swatch-color-box" style="background:#FF4D3D;"></div>
-                            <div class="swatch-label">Water Coral<span>#FF4D3D (10%)</span></div>
+                            <div class="swatch-label">Action Coral<span>#FF4D3D (10%)</span></div>
                         </div>
                         <div class="swatch-item">
                             <div class="swatch-color-box" style="background:#A8B89A;"></div>
@@ -934,15 +969,15 @@
                         </div>
                         <div class="swatch-item">
                             <div class="swatch-color-box" style="background:#A9D5E8;"></div>
-                            <div class="swatch-label">Sky Blue<span>#A9D5E8</span></div>
+                            <div class="swatch-label">Sky Blue<span>#A9D5E8 (Destek)</span></div>
                         </div>
                         <div class="swatch-item">
                             <div class="swatch-color-box" style="background:#D8CCBC;"></div>
-                            <div class="swatch-label">Sand Beige<span>#D8CCBC</span></div>
+                            <div class="swatch-label">Sand Beige<span>#D8CCBC (Destek)</span></div>
                         </div>
                         <div class="swatch-item">
                             <div class="swatch-color-box" style="background:#D9D6D1;"></div>
-                            <div class="swatch-label">Stone Grey<span>#D9D6D1</span></div>
+                            <div class="swatch-label">Stone Grey<span>#D9D6D1 (Destek)</span></div>
                         </div>
                     </div>
                 </div>
@@ -959,8 +994,8 @@
                     <span class="section-tag">05 MARKA SES TONU (TONE OF VOICE)</span>
                     <div class="voice-table-mini">
                         <div class="voice-headers">
-                            <div>Geleneksel Turizm Dili</div>
-                            <div class="right">gezenbiri Dili</div>
+                            <div>Geleneksel Turizm Dili (Kullanılmaz)</div>
+                            <div class="right">gezenbiri Samimi Dili</div>
                         </div>
                         <div class="voice-item-pair">
                             <div class="wrong">“2 gece 3 gün konaklamalı eşsiz Çeşme turumuz sizleri bekliyor.”</div>
@@ -968,10 +1003,10 @@
                         </div>
                         <div class="voice-item-pair">
                             <div class="wrong">“Kontenjanlarımız sınırlıdır.”</div>
-                            <div class="correct">“Minibüste 6 kişilik yer kaldı.”</div>
+                            <div class="correct">“Masada 6 kişilik yer kaldı.”</div>
                         </div>
                         <div class="voice-item-pair">
-                            <div class="wrong">“Rezervasyon için bizimle iletişime geçebilirsiniz.”</div>
+                            <div class="wrong">“Rezervasyon için hemen tıklayın!”</div>
                             <div class="correct">“Geliyorsan yerini ayıralım.”</div>
                         </div>
                         <div class="voice-item-pair">
@@ -979,24 +1014,24 @@
                             <div class="correct">“Yolu bilen biri de geliyor.”</div>
                         </div>
                         <div class="voice-item-pair">
-                            <div class="wrong">“Tesis konaklaması dahildir.”</div>
-                            <div class="correct">“Güzel bir yerde kalıyoruz.”</div>
+                            <div class="wrong">“Unutulmaz bir tatil fırsatı!”</div>
+                            <div class="correct">“Bazen sadece evden çıkmak yeterlidir.”</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- 06 Marka Kişiliği & Kelime Bulutu -->
                 <div>
-                    <span class="section-tag">06 MARKA KİŞİLİĞİ &amp; EDİTORYAL KONSEPT</span>
+                    <span class="section-tag">06 MARKA KİŞİLİĞİ (5 ANA KARAKTER)</span>
                     <div class="personality-cloud-box">
                         <div class="editorial-quote">
-                            “Mekan sadece bir sahne. Asıl hikaye tanıştığın insanlardır.”
+                            “Mekan sadece bir sahne. Asıl hikaye birlikte yaşanan andır.”
                         </div>
                         <div class="personality-traits">
-                            spontane · sosyal · meraklı · sade · sıcak · rahat · şık · güvenilir · yerel · modern · insani
+                            Spontane · Sıcak · Meraklı · Sade · Sosyal
                         </div>
                         <div class="keywords-strip">
-                            hafta sonu kaçamağı · gün batımı · yol arkadaşlığı · sahilde kahve · yolda olma hali · samimi sofra · yaz akşamı · yeni insanlar · gerçek anlar · biraz deniz biraz sohbet
+                            yaratıcı atölye · uzun masa · hafta sonu kaçamağı · gün batımı · yol arkadaşlığı · yerel şarap tadımı · seramik masası · samimi sohbet · gerçek anlar
                         </div>
                     </div>
                 </div>
@@ -1012,76 +1047,76 @@
                 <div>
                     <span class="section-tag">07 FOTOĞRAFİ YÖNÜ &amp; IŞIK DİLİ</span>
                     <div class="photo-gallery-grid">
+                        <div class="photo-tile" style="background-image: url('assets/v2/hero_pottery.jpg');"><span>Seramik Atölyesi</span></div>
+                        <div class="photo-tile" style="background-image: url('assets/v2/escape_alacati.jpg');"><span>Alaçatı Sokak</span></div>
+                        <div class="photo-tile" style="background-image: url('assets/v2/workshop_sarap.jpg');"><span>Şarap Tadımı</span></div>
                         <div class="photo-tile" style="background-image: url('assets/kapadokya.jpg');"><span>Kapadokya Vadi</span></div>
-                        <div class="photo-tile" style="background-image: url('assets/alacati.jpg');"><span>Alaçatı Sokak</span></div>
+                        <div class="photo-tile" style="background-image: url('assets/v2/manifesto_dinner.jpg');"><span>Akşam Sofrası</span></div>
+                        <div class="photo-tile" style="background-image: url('assets/v2/escape_cesme.jpg');"><span>Çeşme Koyu</span></div>
                         <div class="photo-tile" style="background-image: url('assets/erciyes.jpg');"><span>Erciyes &amp; Yol</span></div>
-                        <div class="photo-tile" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300&q=80');"><span>Sahil Akşamı</span></div>
-                        <div class="photo-tile" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=300&q=80');"><span>Akşam Sofrası</span></div>
-                        <div class="photo-tile" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=300&q=80');"><span>Vapur Güvertesi</span></div>
-                        <div class="photo-tile" style="background-image: url('https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=300&q=80');"><span>Van &amp; Gün Batımı</span></div>
-                        <div class="photo-tile" style="background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=300&q=80');"><span>Yol Molası</span></div>
+                        <div class="photo-tile" style="background-image: url('assets/v2/workshop_fotograf.jpg');"><span>Fotoğraf Yürüyüşü</span></div>
                     </div>
                 </div>
 
                 <!-- 08 Marka Mimarisi & Alt Seriler -->
                 <div>
-                    <span class="section-tag">08 MARKA MİMARİSİ &amp; ALT KATEGORİLER</span>
+                    <span class="section-tag">08 MARKA MİMARİSİ (EXPERIENCE + ESCAPE)</span>
                     <div class="arch-list">
-                        <div class="arch-item">
-                            <div class="arch-item-head">
-                                <span class="arch-dot" style="background:#5C7550;"></span>
-                                <span>gezenbiri <strong style="color:#5C7550;">hafta sonu</strong></span>
-                            </div>
-                            <span class="sub-desc">Cuma-Pazar kaçamakları &amp; rotalar</span>
-                        </div>
-                        <div class="arch-item">
-                            <div class="arch-item-head">
-                                <span class="arch-dot" style="background:#35738E;"></span>
-                                <span>gezenbiri <strong style="color:#35738E;">uzak</strong></span>
-                            </div>
-                            <span class="sub-desc">Uzak rotalar &amp; doğa keşifleri</span>
-                        </div>
-                        <div class="arch-item">
-                            <div class="arch-item-head">
-                                <span class="arch-dot" style="background:#A0722E;"></span>
-                                <span>gezenbiri <strong style="color:#A0722E;">yerel</strong></span>
-                            </div>
-                            <span class="sub-desc">Şehir içi yerel deneyimler</span>
-                        </div>
                         <div class="arch-item">
                             <div class="arch-item-head">
                                 <span class="arch-dot" style="background:#728565;"></span>
                                 <span>gezenbiri <strong style="color:#728565;">atölye</strong></span>
                             </div>
-                            <span class="sub-desc">Seramik &amp; sanat workshopları</span>
+                            <span class="sub-desc">Seramik, sanat &amp; el işi</span>
                         </div>
                         <div class="arch-item">
                             <div class="arch-item-head">
                                 <span class="arch-dot" style="background:var(--coral);"></span>
                                 <span>gezenbiri <strong style="color:var(--coral);">sofra</strong></span>
                             </div>
-                            <span class="sub-desc">Gastronomi &amp; uzun masa sofraları</span>
+                            <span class="sub-desc">Tadım &amp; uzun masa buluşmaları</span>
+                        </div>
+                        <div class="arch-item">
+                            <div class="arch-item-head">
+                                <span class="arch-dot" style="background:#5C7550;"></span>
+                                <span>gezenbiri <strong style="color:#5C7550;">hafta sonu</strong></span>
+                            </div>
+                            <span class="sub-desc">Cuma-Pazar butik kaçamakları</span>
+                        </div>
+                        <div class="arch-item">
+                            <div class="arch-item-head">
+                                <span class="arch-dot" style="background:#35738E;"></span>
+                                <span>gezenbiri <strong style="color:#35738E;">rota</strong></span>
+                            </div>
+                            <span class="sub-desc">Doğa, vadi &amp; keşif seyahatleri</span>
+                        </div>
+                        <div class="arch-item">
+                            <div class="arch-item-head">
+                                <span class="arch-dot" style="background:#A0722E;"></span>
+                                <span>gezenbiri <strong style="color:#A0722E;">yerel</strong></span>
+                            </div>
+                            <span class="sub-desc">Şehir içi gizli mekanlar</span>
                         </div>
                         <div class="arch-item">
                             <div class="arch-item-head">
                                 <span class="arch-dot" style="background:var(--coral);"></span>
                                 <span>gezenbiri <strong style="color:var(--coral);">sürpriz</strong></span>
                             </div>
-                            <span class="sub-desc">Gizli rota &amp; spontane macera</span>
+                            <span class="sub-desc">Gizli destinasyonlu spontane rota</span>
                         </div>
                         <div class="arch-item">
                             <div class="arch-item-head">
                                 <span class="arch-dot" style="background:#8C4356;"></span>
-                                <span>gezenbiri <strong style="color:#8C4356;">özel</strong></span>
+                                <span>gezenbiri <strong style="color:#8C4356;">buluşma</strong></span>
                             </div>
-                            <span class="sub-desc">Küçük grup / butik rotalar</span>
+                            <span class="sub-desc">Topluluk kahvesi &amp; sohbet</span>
                         </div>
                         <div class="arch-item">
                             <div class="arch-item-head">
                                 <span class="arch-dot" style="background:var(--charcoal);"></span>
                                 <span>gezenbiri <strong style="color:var(--charcoal);">gece</strong></span>
                             </div>
-                            <span class="sub-desc">Konser &amp; akustik buluşmalar</span>
+                            <span class="sub-desc">Akustik konser &amp; açık hava</span>
                         </div>
                     </div>
                 </div>
@@ -1099,10 +1134,10 @@
                     <div class="icons-strip">
                         <div class="icon-box-clean"><svg viewBox="0 0 24 24"><path d="M12 21s-6-5.33-6-10a6 6 0 0 1 12 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg><span>konum</span></div>
                         <div class="icon-box-clean"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>takvim</span></div>
-                        <div class="icon-box-clean"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span>insanlar</span></div>
+                        <div class="icon-box-clean"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span>topluluk</span></div>
                         <div class="icon-box-clean"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg><span>fotoğraf</span></div>
                         <div class="icon-box-clean"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/></svg><span>kahve</span></div>
-                        <div class="icon-box-clean"><svg viewBox="0 0 24 24"><path d="M19 21L12 4 5 21h14z"/><path d="M12 4v17"/></svg><span>kamp</span></div>
+                        <div class="icon-box-clean"><svg viewBox="0 0 24 24"><path d="M19 21L12 4 5 21h14z"/><path d="M12 4v17"/></svg><span>rota</span></div>
                         <div class="icon-box-clean"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="13" rx="2"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/></svg><span>çanta</span></div>
                         <div class="icon-box-clean"><svg viewBox="0 0 24 24"><path d="M12 2v20M4 6h16l-3 4 3 4H4"/></svg><span>tabela</span></div>
                         <div class="icon-box-clean"><svg viewBox="0 0 24 24"><path d="M3 20h18M3 14h18M4 10h16a2 2 0 0 1 2 2v8H2v-8a2 2 0 0 1 2-2z"/></svg><span>butik otel</span></div>
@@ -1114,7 +1149,7 @@
 
                 <!-- 10 Community Layer -->
                 <div>
-                    <span class="section-tag">10 TOPLULUK KATMANI (COMMUNITY LAYER)</span>
+                    <span class="section-tag">10 TOPLULUK DİLİ (COMMUNITY PHRASES)</span>
                     <div class="community-pills-wrap">
                         <div class="community-pill coral">“yalnız gitmiyorsun”</div>
                         <div class="community-pill">“aynı yere, yeni insanlarla”</div>
@@ -1134,35 +1169,35 @@
             <div class="grid-row-6">
                 <!-- 11 Marka Uygulamaları (Brand Applications - Photographic Mockups) -->
                 <div>
-                    <span class="section-tag">11 MARKA UYGULAMALARI (BRAND APPLICATIONS)</span>
+                    <span class="section-tag">11 MARKA UYGULAMALARI &amp; MERCHANDISE</span>
                     <div class="brand-apps-visual-wrap">
                         <div class="brand-apps-photo-box">
                             <div class="brand-apps-photo-badge">“Bir yere gidelim.” Koleksiyonu</div>
                         </div>
-                        <div class="brand-apps-tags-grid">
+                        <div class="brand-app-tags-grid">
                             <div class="brand-app-tag-item">
-                                👜 Ham Bez Çanta
+                                Ham Bez Çanta
                                 <span>%100 Organik Pamuk</span>
                             </div>
                             <div class="brand-app-tag-item">
-                                ☕ Emaye Kupa
+                                Emaye Kupa
                                 <span>Ateşe Dayanıklı Çelik</span>
                             </div>
                             <div class="brand-app-tag-item">
-                                🧢 Yıkanmış Şapka
+                                Yıkanmış Şapka
                                 <span>Antrasit Mikro Nakış</span>
                             </div>
                             <div class="brand-app-tag-item">
-                                📓 Not Defteri
+                                Not Defteri
                                 <span>Sert Kapak Moleskine</span>
                             </div>
                             <div class="brand-app-tag-item">
-                                🔘 Çıkartma Paketi
+                                Çıkartma Paketi
                                 <span>Mat Vinil Mühür Seti</span>
                             </div>
                             <div class="brand-app-tag-item">
-                                🎗️ Dokuma Bileklik
-                                <span>Festival &amp; Etkinlik</span>
+                                Dokuma Bileklik
+                                <span>Etkinlik &amp; Buluşma</span>
                             </div>
                         </div>
                     </div>
@@ -1170,7 +1205,7 @@
 
                 <!-- 12 Seyahat Mühürleri & Çıkartmalar Vitrini (2x2 Grid) -->
                 <div>
-                    <span class="section-tag">12 SEYAHAT MÜHÜRLERİ &amp; ÇIKARTMALAR</span>
+                    <span class="section-tag">12 SEYAHAT MÜHÜRLERİ &amp; İMZA DAMGALARI</span>
                     <div class="seals-2x2-grid">
                         <!-- 01: Slogan Mührü -->
                         <div class="board-seal-mini-card">
@@ -1221,13 +1256,13 @@
                         <div class="board-seal-mini-card">
                             <div class="board-seal-sticker-mini coral">
                                 <div class="board-seal-ring-mini">
-                                    <div class="board-seal-mini-title" style="font-size: 26px; font-weight: 900; letter-spacing: -1.2px; line-height: 0.9; display:inline-flex; align-items:baseline;">gb<span class="action-dot" style="background:var(--cream); width:0.16em; height:0.165em; margin-left:2px;"></span></div>
+                                    <div class="board-seal-mini-title" style="font-size: 26px; font-weight: 900; letter-spacing: -1.2px; line-height: 0.9; display:inline-flex; align-items:baseline;">gb<span class="system-dot" style="background:var(--cream); width:0.16em; height:0.165em; margin-left:0.12em;"></span></div>
                                     <div class="board-seal-mini-sub" style="color:var(--white); font-size: 8px; margin-top: 3px;">gezenbiri</div>
                                 </div>
                             </div>
                             <div class="board-seal-mini-info">
                                 <div class="board-seal-mini-name">İmza Mührü</div>
-                                <div class="board-seal-mini-desc">Su mercanı lak damga</div>
+                                <div class="board-seal-mini-desc">Action Coral lak damga</div>
                             </div>
                         </div>
                     </div>
@@ -1243,33 +1278,67 @@
             <div class="grid-row-7">
                 <div class="manifesto-columns">
                     <div>
-                        Herkes gezgin değil.<br>
+                        Herkes profesyonel gezgin değil.<br>
                         Olmak zorunda da değil.<br><br>
                         Bazen insan sadece<br>
                         <strong>evden çıkmak ister.</strong>
                     </div>
                     <div>
-                        Yeni bir sokak görmek,<br>
-                        hiç tanımadığı biriyle<br>
-                        aynı masaya oturmak,<br>
-                        bir yerde gün batımına<br>
-                        denk gelmek.
+                        Yeni bir masada yemek yemek,<br>
+                        seramik çamuruna dokunmak,<br>
+                        aynı gün batımına denk gelmek,<br>
+                        arada bir de şehirden uzaklaşmak.
                     </div>
                     <div>
-                        Plan yapmadan da olur.<br>
-                        Çok uzağa gitmeden de.<br><br>
-                        Çünkü mesele kaç ülke<br>
-                        gördüğün değil.
+                        Büyük bavullara gerek yok.<br>
+                        Karmaşık planlara da.<br><br>
+                        Çünkü mesele kaç ülke gezdiğin değil;<br>
+                        <strong>birlikte ne yaşadığındır.</strong>
                     </div>
                 </div>
 
                 <div class="poster-statement-footer">
-                    <h3>gezenbiri<span class="action-dot"></span></h3>
+                    <h3>gezenbiri<span class="system-dot"></span></h3>
                     <p>Bir yere gidelim.</p>
                     <div class="closing-tag">
                         Arada bir gitmek lazım.<br>
                         <strong style="color:var(--charcoal); font-size:11px;">Biz de sadece gezenbiriyiz.</strong>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 14 DİJİTAL STANDARTLAR & DO / DON'T KURALLARI -->
+        <div>
+            <span class="section-tag">14 DİJİTAL ÜRÜN STANDARTLARI &amp; YASAKLAR (DO / DON'T)</span>
+            <div class="guidelines-strip-grid">
+                <div>
+                    <h4>🚫 Kesinlikle Kullanılmaz (Don'ts)</h4>
+                    <ul>
+                        <li>"Unutulmaz tatil", "erken rezervasyon", "tur fırsatı" gibi klasik acente dili.</li>
+                        <li>Büyük harf <strong>GEZENBİRİ</strong> veya iki kelime <strong>Gezen Biri</strong> kullanımı.</li>
+                        <li>Ürün UI'ında native emoji kullanımı (yerine çizgi ikonlar kullanılır).</li>
+                        <li>Açık krem üzerinde 14px ve altı Coral gövde metni (WCAG kontrast ihlali).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>⚡ System Dot Kuralları</h4>
+                    <ul>
+                        <li>Wordmark ile aralık master <strong>0.12em (~2.5px)</strong> standardına kilitlidir.</li>
+                        <li>Form dikeyde <strong>%103 (scaleY 1.03)</strong> esnetilmiş organik elipstir.</li>
+                        <li>Bileşen başına en fazla 1 System Dot kullanılabilir.</li>
+                        <li>Statik logo dot'u sabittir; animasyon yalnızca <strong>Live Dot</strong>'a aittir.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>🎯 Kürasyon &amp; Şeffaflık</h4>
+                    <ul>
+                        <li>Gizli rotalarda destinasyon sürpriz olabilir, ancak <strong>lojistik ve koşullar şeffaftır</strong>.</li>
+                        <li>Her etkinlikte süre, kontenjan, dahil olanlar ve fiziksel seviye açıkça belirtilir.</li>
+                        <li>Demo ekranlarında örnek tarih/içerik olduğu açıkça not düşülür.</li>
+                    </ul>
                 </div>
             </div>
         </div>

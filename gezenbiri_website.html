@@ -15,12 +15,13 @@
     <meta property="og:image" content="assets/v2/hero_pottery.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E1E1E'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F7F5F0' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3.5' fill='%23E25C43'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3.2' fill='%23FF4D3D'/%3E%3C/svg%3E">
 
-    <!-- Google Fonts: Plus Jakarta Sans & Instrument Serif -->
+    <!-- Google Fonts: Plus Jakarta Sans (300-900) & Instrument Serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="brand.css">
 
     <style>
         :root {
@@ -36,8 +37,8 @@
             --coral-soft: rgba(255, 77, 61, 0.12);
             --sage: #A8B89A;
             --sage-soft: rgba(168, 184, 154, 0.18);
-            --teal: #A9D5E8;
-            --teal-soft: rgba(169, 213, 232, 0.2);
+            --sky: #A9D5E8;
+            --sky-soft: rgba(169, 213, 232, 0.2);
             --sand-card: #D8CCBC;
             --border-card: #E2DDD5;
             --border-subtle: rgba(32, 32, 32, 0.08);
@@ -114,21 +115,22 @@
 
         .brand-logo {
             font-size: 26px;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: -1px;
             color: var(--charcoal);
             display: inline-flex;
             align-items: baseline;
             cursor: pointer;
+            text-transform: lowercase;
         }
 
         .brand-system-dot {
             display: inline-block;
-            width: 0.16em;
-            height: 0.165em;
+            width: 0.15em;
+            height: 0.155em;
             background-color: var(--coral);
             border-radius: 50%;
-            margin-left: 2.5px;
+            margin-left: 0.12em;
             transform: scaleY(1.03);
             flex-shrink: 0;
             vertical-align: baseline;
@@ -1399,9 +1401,9 @@
                 
                 <ul class="nav-menu">
                     <li class="nav-item active"><a href="gezenbiri_website.html">Ana Sayfa</a></li>
-                    <li class="nav-item"><a href="#workshops">Workshoplar</a></li>
+                    <li class="nav-item"><a href="#workshops">Atölyeler</a></li>
                     <li class="nav-item"><a href="#categories">Deneyimler</a></li>
-                    <li class="nav-item"><a href="#escapes">Geziler</a></li>
+                    <li class="nav-item"><a href="#escapes">Geziler &amp; Rotalar</a></li>
                     <li class="nav-item"><a href="#community">Topluluk</a></li>
                     <li class="nav-item"><a href="#manifesto">Hakkımızda</a></li>
                 </ul>
@@ -1419,7 +1421,7 @@
         <!-- Mobile Drawer -->
         <div class="mobile-menu-drawer" id="mobileDrawer">
             <a href="index.html" style="color: var(--charcoal); font-weight: 800;">⚡ Brand Hub</a>
-            <a href="gezenbiri_website.html">Ana Sayfa</a>
+            <a href="gezenbiri_website_v2.html">Ana Sayfa</a>
             <a href="#workshops">Workshoplar</a>
             <a href="#categories">Deneyimler</a>
             <a href="#escapes">Geziler</a>
@@ -1934,12 +1936,17 @@
 
             <!-- Bottom Legal Bar -->
             <div class="footer-bottom-bar">
-                <span>Alaçatı / Çeşme / Urla / Türkiye</span>
+                <span>Türkiye’de ve bazen biraz daha uzakta.</span>
                 <span>© 2026 gezenbiri.com.tr · Tüm hakları saklıdır.</span>
                 <div class="footer-legal-links">
                     <a href="#" onclick="showToast('Kullanım Koşulları'); return false;">Kullanım Koşulları</a>
                     <a href="#" onclick="showToast('Gizlilik Politikası'); return false;">Gizlilik Politikası</a>
                 </div>
+            </div>
+
+            <!-- Demo Disclaimer Footnote -->
+            <div style="text-align:center; font-size:11px; color:#888; margin-top:20px; padding-top:14px; border-top:1px dashed var(--border-card); line-height:1.5;">
+                Bu sayfadaki atölyeler, rotalar, fiyatlar ve kullanıcı paylaşımları gezenbiri marka deneyim prototipi örnekleridir.
             </div>
         </div>
     </footer>
