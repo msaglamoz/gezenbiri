@@ -50,70 +50,9 @@
             padding: 0 24px;
         }
 
-        /* Top Bar & Navigation */
-        .top-nav {
-            background: rgba(246, 243, 237, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            padding: 16px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand-wordmark {
-            font-size: 26px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            color: var(--charcoal);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: baseline;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .nav-btn {
-            font-size: 12.5px;
-            font-weight: 800;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 100px;
-            transition: all 0.2s ease;
-        }
-
-        .nav-btn-hub {
-            background: var(--white);
-            color: var(--charcoal);
-            border: 1px solid var(--border);
-        }
-
-        .nav-btn-hub:hover {
-            border-color: #999;
-        }
-
-        .nav-btn-doc {
-            background: var(--coral);
-            color: var(--white);
-        }
-
-        .nav-btn-doc:hover {
-            background: var(--coral-hover);
-        }
-
-        /* Page Hero & Lab Header */
+        /* Hero Header */
         .lab-hero {
-            padding: 40px 0 30px 0;
+            padding: 30px 0 24px 0;
             text-align: center;
         }
 
@@ -759,17 +698,21 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="top-nav">
-        <div class="container nav-flex">
-            <a href="index.html" class="brand-wordmark">gezenbiri<span class="brand-system-dot"></span></a>
-            <div class="nav-links">
-                <a href="index.html" class="nav-btn nav-btn-hub">⚡ Brand Hub</a>
-                <a href="system-dot.html" class="nav-btn nav-btn-hub">System Dot Portalı</a>
-                <a href="brand-guidelines.html" class="nav-btn nav-btn-doc">Marka Kılavuzu</a>
-            </div>
+    <!-- TOP NAVIGATION BAR -->
+    <div class="top-brand-nav" style="padding-top: 16px;">
+        <a href="index.html" class="btn-nav-back">
+            <span>←</span>
+            <span>Brand System Hub'a Dön</span>
+        </a>
+        <div class="quick-nav-links">
+            <a href="brand-guidelines.html">Marka Kılavuzu</a>
+            <a href="system-dot.html">System Dot</a>
+            <a href="icon-morph-motion.html" class="active">Motion Lab</a>
+            <a href="gezenbiri_website.html">Web Portalı</a>
+            <a href="trip-cards.html">Seyahat Kartları</a>
+            <a href="instagram-suite.html">Instagram Suite</a>
         </div>
-    </nav>
+    </div>
 
     <!-- Lab Header -->
     <header class="container lab-hero">
