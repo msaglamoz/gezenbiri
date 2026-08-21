@@ -1,6 +1,6 @@
 /**
- * gezenbiri — Complete 360-Degree Brand Guidelines & Design System Audit (20 Master Tests)
- * Run with: node full-audit.js
+ * gezenbiri — 360-Degree Master Brand Guidelines & Deep DOM Linter (25 Master Checks)
+ * Run with: npm test  OR  node full-audit.js
  */
 
 const fs = require('fs');
@@ -19,11 +19,12 @@ const productionFiles = [
 ];
 
 console.log('\n======================================================================');
-console.log('🌟 GEZENBİRİ MASTER BRAND GUIDELINE & DESIGN SYSTEM AUDIT (20 TESTS)');
+console.log('🌟 GEZENBİRİ MASTER BRAND GUIDELINE & DOM STRUCTURAL LINTER (25 CHECKS)');
 console.log('======================================================================\n');
 
 const auditResults = {
     brandIdentity: [],
+    domStructure: [],
     colorPalette: [],
     systemDotGeometry: [],
     typography: [],
@@ -31,7 +32,7 @@ const auditResults = {
     accessibility: [],
     dataArchitecture: [],
     designTokens: [],
-    linksAndNavigation: []
+    assetAndLinkIntegrity: []
 };
 
 let totalIssues = 0;
@@ -96,7 +97,47 @@ check('brandIdentity', 'Module 02: Maximum 1 System Dot per independent logo com
 });
 
 // -------------------------------------------------------------
-// 2. COLOR PALETTE (MODULE 03: 65-20-10-5 RULE & 7 TONES)
+// 2. DOM STRUCTURE & LOGO COMPONENT LINTING (PREVENTS DESYNC)
+// -------------------------------------------------------------
+check('domStructure', 'DOM Linter: System Dot is ALWAYS a <span> element, never a block <div>', () => {
+    const errs = [];
+    productionFiles.filter(f => f.endsWith('.html')).forEach(f => {
+        const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
+        if (content.includes('<div class="system-dot"') || content.includes('<div class="brand-system-dot"')) {
+            errs.push(`${f} uses <div> for System Dot instead of inline <span>.`);
+        }
+    });
+    return errs;
+});
+
+check('domStructure', 'DOM Linter: No obsolete .logotext wrappers around brand wordmark', () => {
+    const errs = [];
+    productionFiles.filter(f => f.endsWith('.html')).forEach(f => {
+        const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
+        if (content.includes('class="logotext"')) {
+            errs.push(`${f} contains prohibited legacy .logotext wrapper.`);
+        }
+    });
+    return errs;
+});
+
+check('domStructure', 'DOM Linter: No inline width/height style overrides on System Dots', () => {
+    const errs = [];
+    productionFiles.filter(f => f.endsWith('.html')).forEach(f => {
+        const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
+        const dotMatches = [...content.matchAll(/class=["'][^"']*(?:brand-system-dot|system-dot)[^"']*["'][^>]*style=["']([^"']+)["']/g)];
+        dotMatches.forEach(m => {
+            const style = m[1];
+            if (style.includes('width') || style.includes('height')) {
+                errs.push(`${f} overrides System Dot geometry inline: style="${style}".`);
+            }
+        });
+    });
+    return errs;
+});
+
+// -------------------------------------------------------------
+// 3. COLOR PALETTE (MODULE 03: 65-20-10-5 RULE & 7 TONES)
 // -------------------------------------------------------------
 check('colorPalette', 'Module 03: Canvas uses Warm Cream (#F6F3ED) and meta theme-color matches', () => {
     const errs = [];
@@ -124,7 +165,7 @@ check('colorPalette', 'Module 03: Core 4 colors (Cream, Charcoal, Coral, Sage) +
 });
 
 // -------------------------------------------------------------
-// 3. SYSTEM DOT GEOMETRY (MODULES 02, 10, 14)
+// 4. SYSTEM DOT GEOMETRY (MODULES 02, 10, 14)
 // -------------------------------------------------------------
 check('systemDotGeometry', 'Single Source of Truth: Geometry defined ONLY in brand.css', () => {
     const errs = [];
@@ -163,7 +204,6 @@ check('systemDotGeometry', 'Favicons use standardized vector ellipse (rx=3, ry=3
 check('systemDotGeometry', 'Module 14: Logo System Dot is static, animation only on live indicators', () => {
     const errs = [];
     const brandCss = fs.readFileSync(path.join(rootDir, 'brand.css'), 'utf8');
-    // .brand-system-dot must not have animation: pulse attached directly
     if (brandCss.includes('.brand-system-dot {\n    animation:') || brandCss.includes('.brand-system-dot {\n            animation:')) {
         errs.push('brand.css applies pulsing animation to static logo dot.');
     }
@@ -171,7 +211,7 @@ check('systemDotGeometry', 'Module 14: Logo System Dot is static, animation only
 });
 
 // -------------------------------------------------------------
-// 4. TYPOGRAPHY & CSS VARIABLES (MODULE 04)
+// 5. TYPOGRAPHY & CSS VARIABLES (MODULE 04)
 // -------------------------------------------------------------
 check('typography', 'Plus Jakarta Sans and Instrument Serif loaded cleanly without circular loops', () => {
     const errs = [];
@@ -188,7 +228,7 @@ check('typography', 'Plus Jakarta Sans and Instrument Serif loaded cleanly witho
 });
 
 // -------------------------------------------------------------
-// 5. TONE OF VOICE & FORBIDDEN TERMS (MODULE 06)
+// 6. TONE OF VOICE & FORBIDDEN TERMS (MODULE 06)
 // -------------------------------------------------------------
 check('toneOfVoice', 'Module 06: Prohibited agency clichés (unutulmaz tatil, erken rezervasyon, vb.) are absent from UI copy', () => {
     const errs = [];
@@ -205,7 +245,7 @@ check('toneOfVoice', 'Module 06: Prohibited agency clichés (unutulmaz tatil, er
 });
 
 // -------------------------------------------------------------
-// 6. ACCESSIBILITY & WCAG AA COMPLIANCE (MODULE 11)
+// 7. ACCESSIBILITY & WCAG AA COMPLIANCE (MODULE 11)
 // -------------------------------------------------------------
 check('accessibility', 'Modals implement role="dialog", aria-modal="true", keyboard focus trap (Tab/Shift+Tab), and ESC closing', () => {
     const errs = [];
@@ -240,7 +280,7 @@ check('accessibility', 'Focus visible and prefers-reduced-motion are present in 
 });
 
 // -------------------------------------------------------------
-// 7. CENTRAL DATA & HYDRATION ARCHITECTURE (MODULE 12)
+// 8. CENTRAL DATA & HYDRATION ARCHITECTURE (MODULE 12)
 // -------------------------------------------------------------
 check('dataArchitecture', 'data/events.js provides single source of truth for workshops & trips', () => {
     const errs = [];
@@ -284,7 +324,7 @@ check('dataArchitecture', 'All dynamic pages (Website, Trip Cards, Instagram Sui
 });
 
 // -------------------------------------------------------------
-// 8. MASTER DESIGN TOKENS (MODULE 15)
+// 9. MASTER DESIGN TOKENS (MODULE 15)
 // -------------------------------------------------------------
 check('designTokens', 'Module 15: brand.css defines full token specification (colors, radii, shadows, spacing)', () => {
     const errs = [];
@@ -312,9 +352,9 @@ check('designTokens', 'Module 15: brand.css defines full token specification (co
 });
 
 // -------------------------------------------------------------
-// 9. LINKS, DIRECTORY ARCHITECTURE & DISCLAIMERS
+// 10. ASSET, LINK AND NAVIGATION INTEGRITY
 // -------------------------------------------------------------
-check('linksAndNavigation', 'Clean URLs: No deprecated 01_/02_/03_/04_ filenames or broken paths in active files', () => {
+check('assetAndLinkIntegrity', 'Clean URLs: No deprecated 01_/02_/03_/04_ filenames or broken paths in active files', () => {
     const errs = [];
     const deprecated = ['01_gezenbiri_brand_system', '02_gezenbiri_trip_cards', '03_gezenbiri_instagram_suite', '04_gezenbiri_system_dot'];
     productionFiles.forEach(f => {
@@ -328,7 +368,7 @@ check('linksAndNavigation', 'Clean URLs: No deprecated 01_/02_/03_/04_ filenames
     return errs;
 });
 
-check('linksAndNavigation', 'Standard prototype disclaimer is present across all demo and brand hub pages', () => {
+check('assetAndLinkIntegrity', 'Standard prototype disclaimer is present across all demo and brand hub pages', () => {
     const errs = [];
     const demoPages = ['gezenbiri_website.html', 'trip-cards.html', 'instagram-suite.html', 'brand-guidelines.html', 'index.html'];
     demoPages.forEach(f => {
@@ -340,7 +380,7 @@ check('linksAndNavigation', 'Standard prototype disclaimer is present across all
     return errs;
 });
 
-check('linksAndNavigation', 'Brand domains (gezenbiri.com.tr / gezenbiri.co) and Instagram are present in Hub & Website', () => {
+check('assetAndLinkIntegrity', 'Brand domains (gezenbiri.com.tr / gezenbiri.co) and Instagram are present in Hub & Website', () => {
     const errs = [];
     const hubPages = ['index.html', 'gezenbiri_website.html'];
     hubPages.forEach(f => {
@@ -351,6 +391,38 @@ check('linksAndNavigation', 'Brand domains (gezenbiri.com.tr / gezenbiri.co) and
         if (!content.includes('instagram.com/gezenbiri')) {
             errs.push(`${f} is missing official Instagram account reference.`);
         }
+    });
+    return errs;
+});
+
+check('assetAndLinkIntegrity', 'Zero Broken Assets: All local images in src="..." and CSS url(...) resolve to physical files on disk', () => {
+    const errs = [];
+    productionFiles.filter(f => f.endsWith('.html')).forEach(relFile => {
+        const fullPath = path.join(rootDir, relFile);
+        const dir = path.dirname(fullPath);
+        const content = fs.readFileSync(fullPath, 'utf8');
+
+        // Check local images in src="..."
+        const srcMatches = [...content.matchAll(/src=["']([^"']+)["']/g)];
+        srcMatches.forEach(m => {
+            const url = m[1];
+            if (url.startsWith('http') || url.startsWith('data:') || url.includes('${')) return;
+            const resolved = path.resolve(dir, url);
+            if (!fs.existsSync(resolved)) {
+                errs.push(`Broken src in ${relFile}: ${url}`);
+            }
+        });
+
+        // Check local background-images in url('...')
+        const urlMatches = [...content.matchAll(/url\(['"]?([^'"\)]+)['"]?\)/g)];
+        urlMatches.forEach(m => {
+            const url = m[1];
+            if (url.startsWith('http') || url.startsWith('data:') || url.startsWith('#') || url.includes('${')) return;
+            const resolved = path.resolve(dir, url);
+            if (!fs.existsSync(resolved)) {
+                errs.push(`Broken CSS url in ${relFile}: ${url}`);
+            }
+        });
     });
     return errs;
 });
@@ -373,7 +445,7 @@ Object.keys(auditResults).forEach(category => {
 console.log('\n----------------------------------------------------------------------');
 console.log(`AUDIT SUMMARY: ${totalChecks} Checks Performed | ${totalIssues} Issues Found`);
 if (totalIssues === 0) {
-    console.log('🏆 100% BRAND COMPLIANCE CONFIRMED ACROSS ALL 15 MODULES & PAGES!');
+    console.log('🏆 100% BRAND & DOM INTEGRITY CONFIRMED ACROSS ALL 25 MASTER CHECKS!');
 } else {
     console.log(`⚠️ ${totalIssues} non-compliant issues detected. Needs attention.`);
 }
