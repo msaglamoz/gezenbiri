@@ -1429,8 +1429,18 @@
             .escapes-3col-grid { grid-template-columns: 1fr; }
             .community-master-grid { grid-template-columns: 1fr; }
             .faq-grid { grid-template-columns: 1fr; }
-            .footer-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
             .footer-bottom-bar { flex-direction: column; gap: 10px; text-align: center; }
+        }
+
+        @media (max-width: 520px) {
+            .hero-title { font-size: 34px; letter-spacing: -1.2px; }
+            .collage-card-main { height: 260px; }
+            .collage-card-side { flex-direction: column; }
+            .side-sub-card { height: 190px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .newsletter-form-row { flex-direction: column; }
+            .newsletter-input-box, .newsletter-submit-btn { width: 100%; }
         }
     </style>
 </head>
