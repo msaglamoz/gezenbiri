@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gezenbiri — Instagram Master Suite & Sosyal Medya Varlıkları</title>
+    <meta name="description" content="1080x1080 px avatarlar, 10'lu editoryal Highlight kapakları, 6 adet 9:16 story şablonu, 8 feed post formatı ve operasyonel rehber.">
+    <meta name="theme-color" content="#F6F3ED">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3' fill='%23FF4D3D'/%3E%3C/svg%3E">
+
+    <!-- Fonts: Plus Jakarta Sans & Instrument Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cream: #F6F3ED;
+            --charcoal: #202020;
+            --coral: #FF4D3D;
+            --coral-hover: #E83F2F;
+            --sage: #A8B89A;
+            --sky: #A9D5E8;
+            --sand: #EAE5DC;
+            --stone: #D9D6D1;
+            --white: #FFFFFF;
+            --border: #DDD7CE;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+
+        .brand-system-dot {
+            display: inline-block;
+            width: 0.16em;
+            height: 0.165em;
+            background-color: var(--coral);
+            border-radius: 50%;
+            margin-left: 2.5px;
+            transform: scaleY(1.03);
+            flex-shrink: 0;
+            vertical-align: baseline;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--cream);
+            color: var(--charcoal);
+            padding: 24px 20px 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* Top Navigation Bar */
+        .top-brand-nav {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding: 0 4px;
+        }
+
+        .btn-nav-back {
+            background-color: var(--white);
+            color: var(--charcoal);
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 12.5px;
+            font-weight: 800;
+            border: 1px solid rgba(32,32,32,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .btn-nav-back:hover {
+            background-color: var(--coral);
+            color: var(--white);
+            border-color: var(--coral);
+            transform: translateX(-2px);
+        }
+
+        .quick-nav-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .quick-nav-links a {
+            font-size: 12px;
+            font-weight: 700;
+            color: #555;
+            text-decoration: none;
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .quick-nav-links a:hover {
+            background: var(--white);
+            color: var(--coral);
+        }
+
+        .header {
+            text-align: center;
+            max-width: 860px;
+            margin-bottom: 40px;
+        }
+
+        .header-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            background: rgba(255, 77, 61, 0.08);
+            padding: 6px 18px;
+            border-radius: 100px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 77, 61, 0.15);
+        }
+
+        .header h1 {
+            font-size: 40px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 10px;
+        }
+
+        .header h1 span { color: var(--coral); }
+        .header p { color: #666; font-size: 15px; line-height: 1.6; }
+
+        .suite-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 56px;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--charcoal);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--charcoal);
+        }
+
+        .section-label span.desc {
+            font-size: 12px;
+            color: #777;
+            text-transform: none;
+            letter-spacing: 0;
+            font-weight: 600;
+        }
+
+        /* 1. PHONE PROFILE SIMULATION */
+        .phone-showcase-row {
+            background: var(--white);
+            border-radius: 28px;
+            border: 1px solid var(--border);
+            padding: 36px;
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+        }
+
+        .phone-mockup-frame {
+            width: 330px;
+            background: var(--white);
+            border-radius: 40px;
+            border: 10px solid var(--charcoal);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+            padding: 20px 14px;
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .phone-top-notch {
+            width: 110px;
+            height: 18px;
+            background: var(--charcoal);
+            border-radius: 0 0 12px 12px;
+            margin: -20px auto 14px auto;
+        }
+
+        .ig-ui-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .ig-ui-avatar-wrap {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            padding: 2.5px;
+            background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ig-ui-avatar {
+            width: 100%;
+            height: 100%;
+            background-color: #F6F3ED;
+            border-radius: 50%;
+            border: 2px solid var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 11px;
+            color: #202020;
+            letter-spacing: -0.6px;
+            text-align: center;
+            box-shadow: inset 0 0 0 1px rgba(32,32,32,0.08);
+            transition: all 0.25s ease;
+        }
+
+        .ig-ui-stats {
+            display: flex;
+            gap: 16px;
+            text-align: center;
+        }
+
+        .ig-ui-stats div strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .ig-ui-stats div span {
+            font-size: 10.5px;
+            color: #777;
+        }
+
+        .ig-ui-bio {
+            font-size: 11px;
+            line-height: 1.45;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .ig-ui-bio strong { font-weight: 800; display: block; font-size: 12px; }
+        .ig-ui-bio span.tag { color: #888; font-weight: 600; }
+
+        .ig-ui-buttons {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .ig-ui-btn {
+            flex: 1;
+            background: #EFEFEF;
+            border: none;
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--charcoal);
+            cursor: pointer;
+        }
+
+        .ig-ui-highlights {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #F0ECE4;
+        }
+
+        .ig-ui-hl-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .ig-ui-hl-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            border: 1px solid #DCD6CC;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ig-ui-hl-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ig-ui-hl-item span {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: #555;
+            text-transform: lowercase;
+        }
+
+        .ig-ui-grid-3x3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+
+        .ig-ui-thumb {
+            aspect-ratio: 1/1;
+            background-color: var(--sand);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .phone-info-col h3 {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.8px;
+            margin-bottom: 12px;
+        }
+
+        .phone-info-col p {
+            color: #555;
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .meta-bullet-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .meta-bullet-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .meta-bullet-item span.dot {
+            width: 8px;
+            height: 8.2px;
+            border-radius: 50%;
+            background: var(--coral);
+            transform: scaleY(1.03);
+            display: inline-block;
+        }
+
+        /* 2. AVATAR & HIGHLIGHTS GRID */
+        .preview-grid {
+            display: grid;
+            gap: 24px;
+            width: 100%;
+        }
+
+        .preview-grid.avatars-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .preview-grid.highlights-grid {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .item-card {
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            padding: 24px 16px 20px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+            transition: all 0.25s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--coral);
+            box-shadow: 0 12px 30px rgba(255, 77, 61, 0.12);
+        }
+
+        /* NATIVE 136px CRISP CIRCLES (PERFECT OPTICAL & GEOMETRICAL CENTERING) */
+        .highlight-cover-circle, .avatar-cover-circle {
+            width: 136px;
+            height: 136px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border: 4px solid var(--white);
+            outline: 2px solid var(--border);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+            user-select: none;
+            box-sizing: border-box;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .item-card:hover .highlight-cover-circle,
+        .item-card:hover .avatar-cover-circle {
+            outline-color: var(--coral);
+            transform: scale(1.05);
+            box-shadow: 0 12px 32px rgba(255, 77, 61, 0.22);
+        }
+
+        /* Highlight & Avatar Color Themes */
+        .theme-dark { background-color: #202020; color: #F6F3ED; }
+        .theme-coral { background-color: #FF4D3D; color: #FFFFFF; }
+        .theme-sage { background-color: #A8B89A; color: #202020; }
+        .theme-cream { background-color: #F6F3ED; color: #202020; }
+        .theme-sky { background-color: #A9D5E8; color: #202020; }
+        .theme-white { background-color: #FFFFFF; color: #202020; }
+        .theme-sand { background-color: #EAE5DC; color: #202020; }
+        .theme-night { background-color: #141414; color: #F6F3ED; }
+        .theme-olive { background-color: #6C7D5B; color: #FFFFFF; }
+
+        /* Unified Editorial Serif Typography for Highlights */
+        .hl-serif-letter {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-size: 70px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            letter-spacing: -1.5px;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            transform: translateY(-2px);
+        }
+
+        .hl-serif-letter span.dot {
+            display: inline-block;
+            width: 0.16em;
+            height: 0.165em;
+            background-color: var(--coral);
+            border-radius: 50%;
+            transform: scaleY(1.03);
+            margin-left: 2.5px;
+            vertical-align: baseline;
+        }
+
+        .theme-coral .hl-serif-letter span.dot {
+            background-color: #F6F3ED;
+        }
+
+        .hl-serif-symbol {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: normal;
+            font-size: 56px;
+            line-height: 1;
+            color: var(--coral);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Avatar Typography (Perfect Center Alignment) */
+        .avatar-wordmark-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 22px;
+            letter-spacing: -0.8px;
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        .avatar-mono-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 52px;
+            letter-spacing: -2px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        .avatar-serif-text {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-size: 64px;
+            line-height: 1;
+            letter-spacing: -2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            transform: translateY(-2px);
+        }
+
+        .avatar-ring-box {
+            width: 104px;
+            height: 104px;
+            border-radius: 50%;
+            border: 1.5px dashed rgba(246, 243, 237, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            box-sizing: border-box;
+        }
+
+        .avatar-ring-text {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 42px;
+            letter-spacing: -2px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        .item-label {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--charcoal);
+            text-align: center;
+        }
+
+        .item-sub {
+            font-size: 11px;
+            color: #777;
+            font-weight: 600;
+            margin-top: -6px;
+            text-align: center;
+        }
+
+        .btn-mini-download {
+            background: var(--cream);
+            color: var(--charcoal);
+            border: 1px solid var(--border);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 2px;
+        }
+
+        .btn-mini-download:hover {
+            background: var(--coral);
+            color: var(--white);
+            border-color: var(--coral);
+        }
+
+        /* 3. DİKEY INSTAGRAM STORYLERİ (9:16 - 6 FORMATLI 3x2 IZGARA) */
+        .stories-grid-suite {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            width: 100%;
+        }
+
+        .story-wrapper-suite {
+            width: 100%;
+            aspect-ratio: 9/16;
+            max-height: 580px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+            border: 1px solid var(--border);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .story-wrapper-suite:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(255, 77, 61, 0.2);
+            border-color: var(--coral);
+        }
+
+        .story-banner-suite {
+            width: 100%;
+            height: 100%;
+            background-color: var(--charcoal);
+            color: var(--white);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 30px 24px;
+            box-sizing: border-box;
+        }
+
+        .story-banner-suite::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(20,20,20,0.3) 0%, rgba(20,20,20,0.65) 50%, rgba(10,10,10,0.92) 100%);
+            z-index: 1;
+        }
+
+        .story-banner-suite.coral-overlay::before {
+            background: linear-gradient(180deg, rgba(255, 77, 61, 0.75) 0%, rgba(20, 20, 20, 0.94) 100%);
+        }
+
+        .story-banner-suite > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .story-top-suite {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .story-badge-suite {
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.18);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .story-date-suite {
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            color: var(--coral);
+        }
+
+        .story-center-suite {
+            margin: auto 0;
+        }
+
+        .story-hero-title-suite {
+            font-size: 26px;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+
+        .story-hero-title-suite span.coral { color: var(--coral); }
+        .story-hero-title-suite em { font-family: var(--font-serif); font-weight: 400; font-style: italic; }
+
+        .story-subtext-suite {
+            font-size: 13px;
+            line-height: 1.45;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .trip-price-pill-suite {
+            display: inline-block;
+            background: rgba(246, 243, 237, 0.96);
+            color: var(--charcoal);
+            font-size: 12.5px;
+            font-weight: 900;
+            padding: 7px 16px;
+            border-radius: 100px;
+            letter-spacing: 0.2px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+        }
+
+        .story-countdown-box {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.25);
+            backdrop-filter: blur(8px);
+            padding: 10px 16px;
+            border-radius: 14px;
+            display: inline-flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-top: 10px;
+        }
+
+        .story-countdown-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--cream);
+        }
+
+        .story-countdown-digits {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--white);
+        }
+
+        .story-poll-box {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 16px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .story-poll-option {
+            background: rgba(255,255,255,0.9);
+            color: var(--charcoal);
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .story-tip-box {
+            background: rgba(255,255,255,0.15);
+            border: 1px dashed rgba(255,255,255,0.35);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            color: var(--cream);
+            margin-top: 8px;
+            backdrop-filter: blur(6px);
+        }
+
+        .story-bottom-suite {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 16px;
+        }
+
+        .story-cta-suite {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .cta-dot-suite {
+            width: 8px;
+            height: 8.2px;
+            background: var(--coral);
+            border-radius: 50%;
+            transform: scaleY(1.03);
+            display: inline-block;
+        }
+
+        .story-logo-suite {
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: -0.8px;
+            color: var(--white);
+            display: inline-flex;
+            align-items: baseline;
+        }
+
+        /* 4. POST & CAROUSEL TEMPLATES SHOWCASE */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .post-card-preview {
+            background: var(--white);
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .post-card-preview:hover {
+            transform: translateY(-4px);
+            border-color: var(--coral);
+        }
+
+        .post-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 12px;
+            background: var(--white);
+            border-bottom: 1px solid #F0ECE4;
+        }
+
+        .post-header-user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .post-mini-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--cream);
+            border: 1px solid var(--border);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 900;
+            color: var(--charcoal);
+        }
+
+        .post-username {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .post-options-dots {
+            font-size: 14px;
+            color: #888;
+            font-weight: 900;
+        }
+
+        .post-viewport {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px;
+            color: var(--white);
+            overflow: hidden;
+            background-color: var(--charcoal);
+        }
+
+        .post-viewport.dark-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.75) 100%);
+            z-index: 1;
+        }
+
+        .post-viewport > * { position: relative; z-index: 2; }
+
+        .carousel-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0,0,0,0.65);
+            color: var(--white);
+            padding: 3px 8px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 800;
+            backdrop-filter: blur(4px);
+            z-index: 3;
+        }
+
+        .post-actions-bar {
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-bottom: 1px solid #F4EFE7;
+        }
+
+        .actions-icons-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .action-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .post-caption-box {
+            font-size: 11px;
+            line-height: 1.4;
+            color: #333;
+        }
+
+        .post-caption-box strong { color: var(--charcoal); }
+
+        .post-meta-footer {
+            padding: 10px 12px;
+            background: #FAF8F5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-meta-footer h5 {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--charcoal);
+            margin-bottom: 1px;
+        }
+
+        .post-meta-footer p {
+            font-size: 9.5px;
+            color: #777;
+        }
+
+        .btn-copy-caption {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            color: var(--charcoal);
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-copy-caption:hover {
+            background: var(--coral);
+            color: var(--white);
+            border-color: var(--coral);
+        }
+
+        /* 5. OPERATIONAL GUIDELINES */
+        .guidelines-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .guide-col h4 {
+            font-size: 14px;
+            font-weight: 900;
+            color: var(--charcoal);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px dashed #EEE;
+            font-size: 11.5px;
+        }
+
+        .schedule-row strong { color: var(--charcoal); }
+        .schedule-row span { color: #666; }
+
+        .caption-formula-box {
+            background: var(--cream);
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            line-height: 1.5;
+        }
+
+        .hashtag-cloud {
+            font-size: 11.5px;
+            line-height: 1.6;
+            color: #555;
+            background: var(--cream);
+            padding: 14px;
+            border-radius: 12px;
+        }
+
+        .hashtag-cloud span.highlight {
+            color: var(--coral);
+            font-weight: 800;
+        }
+
+        /* TOAST NOTIFICATION */
+        .toast-notify {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            animation: toastIn 0.3s ease;
+        }
+
+        @keyframes toastIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .posts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stories-grid-suite {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .guidelines-card {
+                grid-template-columns: 1fr;
+            }
+            .phone-showcase-row {
+                grid-template-columns: 1fr;
+                padding: 24px;
+            }
+            .preview-grid.highlights-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 16px 12px 60px 12px;
+            }
+            .top-brand-nav {
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+            }
+            .quick-nav-links {
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+            .preview-grid.avatars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .preview-grid.highlights-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .stories-grid-suite {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                margin: 0 auto;
+            }
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <div class="top-brand-nav">
+        <a href="index.html" class="btn-nav-back">
+            <span>←</span>
+            <span>Brand System Hub'a Dön</span>
+        </a>
+        <div class="quick-nav-links">
+            <a href="04_gezenbiri_system_dot.html" style="background:rgba(255,77,61,0.12); color:var(--coral); font-weight:800;">⚡ System Dot Portalı</a>
+            <a href="gezenbiri_website.html">Canlı Web Sitesi</a>
+            <a href="01_gezenbiri_brand_system.html">Marka Kılavuzu</a>
+            <a href="02_gezenbiri_trip_cards_editorial.html">Seyahat Kartları</a>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="header-tag">gezenbiri · Social Media Kit 2026</div>
+        <h1>Instagram <span>Master Suite</span> &amp; Sosyal Medya Varlıkları</h1>
+        <p>1080x1080 px avatarlar, 10'lu editoryal Highlight kapakları, 6 adet 9:16 story şablonu, 8 feed post formatı ve operasyonel rehber.</p>
+    </div>
+
+    <div class="suite-container">
+
+        <!-- 01. LIVE IPHONE PROFILE SIMULATION -->
+        <div>
+            <div class="section-label">
+                <span>01. Canlı Profil Simülasyonu</span>
+                <span class="desc">Biyografi, İstatistikler &amp; Canlı Izgara Görünümü</span>
+            </div>
+
+            <div class="phone-showcase-row">
+                <div class="phone-mockup-frame">
+                    <div class="phone-top-notch"></div>
+                    
+                    <div class="ig-ui-header">
+                        <div class="ig-ui-avatar-wrap">
+                            <div class="ig-ui-avatar" id="liveMockupAvatar" style="background:#F6F3ED; color:#202020; font-family:'Plus Jakarta Sans', sans-serif; font-weight:900; font-size:12px; display:inline-flex; align-items:center; justify-content:center;">gezenbiri<span class="brand-system-dot" style="font-size:12px;"></span></div>
+                        </div>
+                        <div class="ig-ui-stats">
+                            <div><strong>142</strong><span>gönderi</span></div>
+                            <div><strong>5.4K</strong><span>takipçi</span></div>
+                            <div><strong>180</strong><span>takip</span></div>
+                        </div>
+                    </div>
+
+                    <div class="ig-ui-bio">
+                        <strong>gezenbiri</strong>
+                        <span class="tag">Seyahat &amp; Deneyim Topluluğu</span><br>
+                        “Bir yere gidelim.”<br>
+                        Alaçatı · Çeşme · Urla · Kapadokya · Bozcaada<br>
+                        Yol arkadaşlığı &amp; hafta sonu kaçamakları ↓<br>
+                        <a href="gezenbiri_website.html" style="color:var(--coral); text-decoration:none; font-weight:800;">gezenbiri.com.tr</a>
+                    </div>
+
+                    <div class="ig-ui-buttons">
+                        <button class="ig-ui-btn">Takip Et</button>
+                        <button class="ig-ui-btn">Mesaj</button>
+                        <button class="ig-ui-btn">👤+</button>
+                    </div>
+
+                    <!-- Highlight bubbles in phone mockup with unified editorial typography -->
+                    <div class="ig-ui-highlights">
+                        <div class="ig-ui-hl-item">
+                            <div class="ig-ui-hl-circle">
+                                <div class="ig-ui-hl-inner" style="background:#202020; color:#F6F3ED; font-family:'Instrument Serif', serif; font-style:italic; font-size:26px;">a<span style="color:#FF4D3D;">.</span></div>
+                            </div>
+                            <span>alaçatı</span>
+                        </div>
+                        <div class="ig-ui-hl-item">
+                            <div class="ig-ui-hl-circle">
+                                <div class="ig-ui-hl-inner" style="background:#FF4D3D; color:#FFF; font-family:'Instrument Serif', serif; font-style:italic; font-size:26px;">ç<span style="color:#FFF;">.</span></div>
+                            </div>
+                            <span>çeşme</span>
+                        </div>
+                        <div class="ig-ui-hl-item">
+                            <div class="ig-ui-hl-circle">
+                                <div class="ig-ui-hl-inner" style="background:#A8B89A; color:#202020; font-family:'Instrument Serif', serif; font-style:italic; font-size:26px;">u<span style="color:#FF4D3D;">.</span></div>
+                            </div>
+                            <span>urla</span>
+                        </div>
+                        <div class="ig-ui-hl-item">
+                            <div class="ig-ui-hl-circle">
+                                <div class="ig-ui-hl-inner" style="background:#202020; color:#F6F3ED; font-family:'Instrument Serif', serif; font-style:italic; font-size:26px;">k<span style="color:#FF4D3D;">.</span></div>
+                            </div>
+                            <span>kapadokya</span>
+                        </div>
+                        <div class="ig-ui-hl-item">
+                            <div class="ig-ui-hl-circle">
+                                <div class="ig-ui-hl-inner" style="background:#A9D5E8; color:#202020; font-family:'Instrument Serif', serif; font-style:italic; font-size:26px;">b<span style="color:#FF4D3D;">.</span></div>
+                            </div>
+                            <span>bozcaada</span>
+                        </div>
+                    </div>
+
+                    <!-- 3x3 Grid in phone mockup -->
+                    <div class="ig-ui-grid-3x3">
+                        <div class="ig-ui-thumb" style="background-image: url('assets/kapadokya.jpg');"></div>
+                        <div class="ig-ui-thumb" style="background-image: url('assets/alacati.jpg');"></div>
+                        <div class="ig-ui-thumb" style="background-image: url('assets/erciyes.jpg');"></div>
+                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=200&q=80');"></div>
+                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=200&q=80');"></div>
+                    </div>
+                </div>
+
+                <div class="phone-info-col">
+                    <h3>Kusursuz Instagram Vitrini</h3>
+                    <p>
+                        Markanın dijital dünyadaki ilk izlenimi olan profil sayfası; tipografik netlik, uyumlu renk paleti ve davetkar bir editoryal ses tonu ile yapılandırılmıştır.
+                    </p>
+                    <div class="meta-bullet-list">
+                        <div class="meta-bullet-item"><span class="dot"></span><span>1080x1080 px yüksek çözünürlüklü 4 avatar varyantı</span></div>
+                        <div class="meta-bullet-item"><span class="dot"></span><span>10 adet birbiriyle %100 uyumlu editoryal Highlight kapağı</span></div>
+                        <div class="meta-bullet-item"><span class="dot"></span><span>6 farklı formatta 9:16 Dikey Story koleksiyonu</span></div>
+                        <div class="meta-bullet-item"><span class="dot"></span><span>8 adet hazır feed post formatı &amp; tek tıkla metin kopyalama</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02. AVATAR KOLEKSİYONU (8'Lİ MASTER KOLEKSİYON) -->
+        <div>
+            <div class="section-label">
+                <span>02. Avatar Koleksiyonu (1080x1080 px Full HD)</span>
+                <span class="desc">8 Resmi Marka Varyantı · Tıkla ve Profilde Canlı Gör &amp; PNG İndir</span>
+            </div>
+
+            <div class="preview-grid avatars-grid" style="grid-template-columns: repeat(4, 1fr);">
+                <!-- Avatar 1: Cream Primary Wordmark -->
+                <div class="item-card">
+                    <div class="avatar-cover-circle theme-cream" onclick="setLiveMockupAvatar('#F6F3ED', '#202020', 'gezenbiri', 'wordmark')">
+                        <span class="avatar-wordmark-text">gezenbiri<span class="brand-system-dot" style="font-size:22px;"></span></span>
+                    </div>
+                    <div class="item-label">01. Birincil Krem</div>
+                    <div class="item-sub">Krem zemin / Kömür logo &amp; System Dot</div>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn-mini-download" onclick="setLiveMockupAvatar('#F6F3ED', '#202020', 'gezenbiri', 'wordmark')">Dene</button>
+                        <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-full', 'gezenbiri-avatar-krem', 'gezenbiri', '#F6F3ED', '#202020')">PNG</button>
+                    </div>
+                </div>
+
+                <!-- Avatar 2: Charcoal Dark Monogram -->
+                <div class="item-card">
+                    <div class="avatar-cover-circle theme-dark" onclick="setLiveMockupAvatar('#202020', '#F6F3ED', 'gb.', 'mono')">
+                        <span class="avatar-mono-text">gb<span class="brand-system-dot" style="font-size:52px;"></span></span>
+                    </div>
+                    <div class="item-label">02. Koyu Monogram</div>
+                    <div class="item-sub">Antrasit zemin / %3 Water Coral gb.</div>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn-mini-download" onclick="setLiveMockupAvatar('#202020', '#F6F3ED', 'gb.', 'mono')">Dene</button>
+                        <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-mono', 'gezenbiri-avatar-antrasit', 'gb', '#202020', '#F6F3ED')">PNG</button>
+                    </div>
+                </div>
+
+                <!-- Avatar 3: Coral Energetic Monogram (Inversion Rule) -->
+                <div class="item-card">
+                    <div class="avatar-cover-circle theme-coral" onclick="setLiveMockupAvatar('#FF4D3D', '#FFFFFF', 'gb.', 'mono')">
+                        <span class="avatar-mono-text" style="color:#FFF;">gb<span class="brand-system-dot" style="background-color:#F6F3ED; font-size:52px;"></span></span>
+                    </div>
+                    <div class="item-label">03. Su Mercanı Enerji</div>
+                    <div class="item-sub">Mercan zemin / Krem kilit (Tersyüz ✓)</div>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn-mini-download" onclick="setLiveMockupAvatar('#FF4D3D', '#FFFFFF', 'gb.', 'mono')">Dene</button>
+                        <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-mono-inv', 'gezenbiri-avatar-mercan', 'gb', '#FF4D3D', '#FFFFFF')">PNG</button>
+                    </div>
+                </div>
+
+                <!-- Avatar 4: Sage Green Nature Monogram -->
+                <div class="item-card">
+                    <div class="avatar-cover-circle theme-sage" onclick="setLiveMockupAvatar('#A8B89A', '#202020', 'gb.', 'mono')">
+                        <span class="avatar-mono-text" style="color:var(--charcoal);">gb<span class="brand-system-dot" style="font-size:52px;"></span></span>
+                    </div>
+                    <div class="item-label">04. Adaçayı Yeşili</div>
+                    <div class="item-sub">Adaçayı zemin / Doğa &amp; Hafta sonu</div>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn-mini-download" onclick="setLiveMockupAvatar('#A8B89A', '#202020', 'gb.', 'mono')">Dene</button>
+                        <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-mono', 'gezenbiri-avatar-adacayi', 'gb', '#A8B89A', '#202020')">PNG</button>
+                    </div>
+                </div>
+
+                <!-- Avatar 5: Primary App Icon (System Dot) -->
+                <div class="item-card">
+                    <div class="avatar-cover-circle theme-dark" onclick="setLiveMockupAvatar('#202020', '#FF4D3D', '', 'app-icon')">
+                        <div style="width:64px; height:66px; background:var(--coral); border-radius:50%; transform:scaleY(1.03);"></div>
+                    </div>
+                    <div class="item-label">05. Primary App Icon</div>
+                    <div class="item-sub">Koyu zemin / Saf %3 System Dot</div>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn-mini-download" onclick="setLiveMockupAvatar('#202020', '#FF4D3D', '', 'app-icon')">Dene</button>
+                        <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-app-icon', 'gezenbiri-avatar-app-icon', '', '#202020', '#FF4D3D')">PNG</button>
+                    </div>
+                </div>
+
+                <!-- Avatar 6: Editorial Serif Monogram -->
+                <div class="item-card">
+                    <div class="avatar-cover-circle theme-sand" onclick="setLiveMockupAvatar('#D8CCBC', '#202020', 'gb.', 'serif')">
+                        <div class="avatar-serif-text">gb<span class="brand-system-dot" style="font-size:52px;"></span></div>
+                    </div>
+                    <div class="item-label">06. Editoryal Serif</div>
+                    <div class="item-sub">Kum zemin / İtalik gb. &amp; System Dot</div>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn-mini-download" onclick="setLiveMockupAvatar('#D8CCBC', '#202020', 'gb.', 'serif')">Dene</button>
+                        <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-serif', 'gezenbiri-avatar-editoryal-serif', 'gb', '#D8CCBC', '#202020')">PNG</button>
+                    </div>
+                </div>
+
+                <!-- Avatar 7: Clean Minimal White -->
+                <div class="item-card">
+                    <div class="avatar-cover-circle theme-white" onclick="setLiveMockupAvatar('#FFFFFF', '#202020', 'gb.', 'mono')">
+                        <span class="avatar-mono-text" style="color:var(--charcoal);">gb<span class="brand-system-dot" style="font-size:52px;"></span></span>
+                    </div>
+                    <div class="item-label">07. Minimal Saf Beyaz</div>
+                    <div class="item-sub">Beyaz zemin / %3 Water Coral gb.</div>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn-mini-download" onclick="setLiveMockupAvatar('#FFFFFF', '#202020', 'gb.', 'mono')">Dene</button>
+                        <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-mono', 'gezenbiri-avatar-saf-beyaz', 'gb', '#FFFFFF', '#202020')">PNG</button>
+                    </div>
+                </div>
+
+                <!-- Avatar 8: Deep Night Ring -->
+                <div class="item-card">
+                    <div class="avatar-cover-circle theme-night" onclick="setLiveMockupAvatar('#141414', '#F6F3ED', 'gb.', 'ring')">
+                        <div class="avatar-ring-box">
+                            <span class="avatar-ring-text">gb<span class="brand-system-dot" style="font-size:42px;"></span></span>
+                        </div>
+                    </div>
+                    <div class="item-label">08. Gece &amp; Özel Seri</div>
+                    <div class="item-sub">Derin siyah / Çerçeveli gb. &amp; System Dot</div>
+                    <div style="display:flex; gap:6px;">
+                        <button class="btn-mini-download" onclick="setLiveMockupAvatar('#141414', '#F6F3ED', 'gb.', 'ring')">Dene</button>
+                        <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-ring', 'gezenbiri-avatar-gece-serisi', 'gb', '#141414', '#F6F3ED')">PNG</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03. HIGHLIGHT KAPAKLARI (10'LU BİRLEŞİK EDİTORYAL SET) -->
+        <div>
+            <div class="section-label">
+                <span>03. Instagram Highlight (Öne Çıkanlar) Kapakları</span>
+                <span class="desc">1080x1080 px %100 Uyumlu Editoryal Serif 10'lu Koleksiyon</span>
+            </div>
+
+            <div class="preview-grid highlights-grid">
+                <!-- 01: Alaçatı -->
+                <div class="item-card">
+                    <div class="highlight-cover-circle theme-dark">
+                        <div class="hl-serif-letter">a<span class="dot">.</span></div>
+                    </div>
+                    <div class="item-label">Alaçatı</div>
+                    <div class="item-sub">Antrasit / Editoryal a.</div>
+                    <button class="btn-mini-download" onclick="downloadGraphicPNG('hl-serif', 'hl-alacati', 'a.', '#202020', '#F6F3ED')">PNG İndir</button>
+                </div>
+
+                <!-- 02: Çeşme -->
+                <div class="item-card">
+                    <div class="highlight-cover-circle theme-coral">
+                        <div class="hl-serif-letter">ç<span class="dot">.</span></div>
+                    </div>
+                    <div class="item-label">Çeşme</div>
+                    <div class="item-sub">Mercan / Editoryal ç.</div>
+                    <button class="btn-mini-download" onclick="downloadGraphicPNG('hl-serif', 'hl-cesme', 'ç.', '#FF4D3D', '#FFFFFF')">PNG İndir</button>
+                </div>
+
+                <!-- 03: Urla -->
+                <div class="item-card">
+                    <div class="highlight-cover-circle theme-sage">
+                        <div class="hl-serif-letter">u<span class="dot">.</span></div>
+                    </div>
+                    <div class="item-label">Urla</div>
+                    <div class="item-sub">Adaçayı / Editoryal u.</div>
+                    <button class="btn-mini-download" onclick="downloadGraphicPNG('hl-serif', 'hl-urla', 'u.', '#A8B89A', '#202020')">PNG İndir</button>
+                </div>
+
+                <!-- 04: Kapadokya -->
+                <div class="item-card">
+                    <div class="highlight-cover-circle theme-cream">
+                        <div class="hl-serif-letter">k<span class="dot">.</span></div>
+                    </div>
+                    <div class="item-label">Kapadokya</div>
+                    <div class="item-sub">Krem / Editoryal k.</div>
+                    <button class="btn-mini-download" onclick="downloadGraphicPNG('hl-serif', 'hl-kapadokya', 'k.', '#F6F3ED', '#202020')">PNG İndir</button>
+                </div>
+
+                <!-- 05: Bozcaada -->
+                <div class="item-card">
+                    <div class="highlight-cover-circle theme-sky">
+                        <div class="hl-serif-letter">b<span class="dot">.</span></div>
+                    </div>
+                    <div class="item-label">Bozcaada</div>
+                    <div class="item-sub">Gök Mavisi / Editoryal b.</div>
+                    <button class="btn-mini-download" onclick="downloadGraphicPNG('hl-serif', 'hl-bozcaada', 'b.', '#A9D5E8', '#202020')">PNG İndir</button>
+                </div>
+
+                <!-- 06: Kaş & Kekova -->
+                <div class="item-card">
+                    <div class="highlight-cover-circle theme-dark">
+                        <div class="hl-serif-letter">k<span class="dot">.</span></div>
+                    </div>
+                    <div class="item-label">Kaş &amp; Kekova</div>
+                    <div class="item-sub">Antrasit / Editoryal k.</div>
+                    <button class="btn-mini-download" onclick="downloadGraphicPNG('hl-serif', 'hl-kas', 'k.', '#202020', '#F6F3ED')">PNG İndir</button>
+                </div>
+
+                <!-- 07: Hafta Sonu -->
+                <div class="item-card">
+                    <div class="highlight-cover-circle theme-sage">
+                        <div class="hl-serif-letter" style="font-size:56px;">hs<span class="dot">.</span></div>
+                    </div>
+                    <div class="item-label">Hafta Sonu</div>
+                    <div class="item-sub">Adaçayı / Editoryal hs.</div>
+                    <button class="btn-mini-download" onclick="downloadGraphicPNG('hl-serif', 'hl-haftasonu', 'hs.', '#A8B89A', '#202020')">PNG İndir</button>
+                </div>
+
+                <!-- 08: SSS / Sorular -->
+                <div class="item-card">
+                    <div class="highlight-cover-circle theme-coral">
+                        <div class="hl-serif-letter">?<span class="dot">.</span></div>
+                    </div>
+                    <div class="item-label">Sıkça Sorulanlar</div>
+                    <div class="item-sub">Mercan / Soru Glifi</div>
+                    <button class="btn-mini-download" onclick="downloadGraphicPNG('hl-serif', 'hl-sss', '?.', '#FF4D3D', '#FFFFFF')">PNG İndir</button>
+                </div>
+
+                <!-- 09: Topluluk & Sofralar -->
+                <div class="item-card">
+                    <div class="highlight-cover-circle theme-cream">
+                        <div class="hl-serif-letter" style="font-size:48px;">ugc<span class="dot">.</span></div>
+                    </div>
+                    <div class="item-label">Topluluk Anları</div>
+                    <div class="item-sub">Krem / UGC Sofraları</div>
+                    <button class="btn-mini-download" onclick="downloadGraphicPNG('hl-serif', 'hl-topluluk', 'ugc.', '#F6F3ED', '#202020')">PNG İndir</button>
+                </div>
+
+                <!-- 10: Sürpriz Rota -->
+                <div class="item-card">
+                    <div class="highlight-cover-circle theme-dark">
+                        <div class="hl-serif-symbol">✦</div>
+                    </div>
+                    <div class="item-label">Sürpriz Rota</div>
+                    <div class="item-sub">Antrasit / Yıldız Glifi</div>
+                    <button class="btn-mini-download" onclick="downloadGraphicPNG('hl-symbol', 'hl-surpriz', '✦', '#202020', '#FF4D3D')">PNG İndir</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04. DİKEY INSTAGRAM STORY ŞABLONLARI (9:16 - 6 ADET) -->
+        <div>
+            <div class="section-label">
+                <span>04. Dikey Instagram Story Şablonları (9:16 · 6 Adet)</span>
+                <span class="desc">Duyuru, FOMO Sayacı, Anket, Workshop, SSS ve Ada Kaçamağı Formatları</span>
+            </div>
+
+            <div class="stories-grid-suite">
+
+                <!-- Story 1: Yeni Rota / Çeşme & Ilıca -->
+                <div class="story-wrapper-suite">
+                    <div class="story-banner-suite" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80');">
+                        <div class="story-top-suite">
+                            <span class="story-badge-suite">gezenbiri · yeni rota</span>
+                            <span class="story-date-suite">07 EYL</span>
+                        </div>
+                        <div class="story-center-suite">
+                            <h3 class="story-hero-title-suite">
+                                Ilıca &amp; Çeşme<br>
+                                <em>“sabah deniz, akşam gün batımı.”</em>
+                            </h3>
+                            <p class="story-subtext-suite">
+                                Dalga sesleri, kumsal yürüyüşü ve sahilde kahve molası.
+                            </p>
+                            <span class="trip-price-pill-suite">₺1.950 · 1 Gece 2 Gün</span>
+                        </div>
+                        <div class="story-bottom-suite">
+                            <div class="story-cta-suite">
+                                <span class="cta-dot-suite"></span>
+                                <span>Hemen Yerini Ayır →</span>
+                            </div>
+                            <span class="story-logo-suite">gezenbiri<span class="brand-system-dot"></span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 2: FOMO / Son Kontenjan Sayacı (Kapadokya) -->
+                <div class="story-wrapper-suite">
+                    <div class="story-banner-suite coral-overlay" style="background-image: url('assets/kapadokya.jpg');">
+                        <div class="story-top-suite">
+                            <span class="story-badge-suite" style="background:rgba(255,255,255,0.25);">gezenbiri · son yerler</span>
+                            <span class="story-date-suite" style="color:#FFF;">17 EKİ</span>
+                        </div>
+                        <div class="story-center-suite">
+                            <h3 class="story-hero-title-suite">
+                                “Son 3 yer kaldı.”<br>
+                                <em>Vadide gün doğumu &amp; sıcak şarap.</em>
+                            </h3>
+                            <p class="story-subtext-suite">
+                                Kontenjan dolmak üzere. Cuma akşamı yola çıkıyoruz.
+                            </p>
+                            <div class="story-countdown-box">
+                                <span class="story-countdown-label">Kayıtların Kapanmasına:</span>
+                                <span class="story-countdown-digits">02 GÜN : 14 SAAT</span>
+                            </div>
+                        </div>
+                        <div class="story-bottom-suite">
+                            <div class="story-cta-suite">
+                                <span class="cta-dot-suite" style="background:#FFF;"></span>
+                                <span>Mesaj At veya Kaydır ↑</span>
+                            </div>
+                            <span class="story-logo-suite">gezenbiri<span class="brand-system-dot"></span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 3: Anket & Topluluk Oylaması (Alaçatı) -->
+                <div class="story-wrapper-suite">
+                    <div class="story-banner-suite" style="background-image: url('assets/alacati.jpg');">
+                        <div class="story-top-suite">
+                            <span class="story-badge-suite">gezenbiri · anket</span>
+                            <span class="story-date-suite">HAFTA SONU</span>
+                        </div>
+                        <div class="story-center-suite">
+                            <h3 class="story-hero-title-suite">
+                                Bu hafta sonu<br>
+                                <em>nereye gidelim?</em>
+                            </h3>
+                            <p class="story-subtext-suite">
+                                Gezgin topluluğumuz oyluyor, rotayı birlikte çiziyoruz.
+                            </p>
+                            <div class="story-poll-box">
+                                <div class="story-poll-option">
+                                    <span>Alaçatı Sokakları</span>
+                                    <span style="color:var(--coral);">68%</span>
+                                </div>
+                                <div class="story-poll-option">
+                                    <span>Kapadokya Vadileri</span>
+                                    <span style="color:#777;">32%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="story-bottom-suite">
+                            <div class="story-cta-suite">
+                                <span class="cta-dot-suite"></span>
+                                <span>Oylamaya Katıl →</span>
+                            </div>
+                            <span class="story-logo-suite">gezenbiri<span class="brand-system-dot"></span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 4: Yerel Deneyim & Workshop (Seramik & Sanat) -->
+                <div class="story-wrapper-suite">
+                    <div class="story-banner-suite" style="background-image: url('https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=800&q=80');">
+                        <div class="story-top-suite">
+                            <span class="story-badge-suite">gezenbiri · workshop</span>
+                            <span class="story-date-suite">21 AĞU</span>
+                        </div>
+                        <div class="story-center-suite">
+                            <h3 class="story-hero-title-suite">
+                                Seramik Atölyesi<br>
+                                <em>“toprağa şekil ver, fincanını üret.”</em>
+                            </h3>
+                            <p class="story-subtext-suite">
+                                Tüm malzemeler, eğitmen desteği, fırınlama ve kahve ikramı dahil.
+                            </p>
+                            <span class="trip-price-pill-suite">₺1.450 · Alaçatı</span>
+                        </div>
+                        <div class="story-bottom-suite">
+                            <div class="story-cta-suite">
+                                <span class="cta-dot-suite"></span>
+                                <span>Atölyeye Katıl →</span>
+                            </div>
+                            <span class="story-logo-suite">gezenbiri<span class="brand-system-dot"></span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 5: Soru-Cevap & SSS (Tek Başına Katılım) -->
+                <div class="story-wrapper-suite">
+                    <div class="story-banner-suite" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80');">
+                        <div class="story-top-suite">
+                            <span class="story-badge-suite">gezenbiri · sss</span>
+                            <span class="story-date-suite">BİLGİ</span>
+                        </div>
+                        <div class="story-center-suite">
+                            <h3 class="story-hero-title-suite">
+                                “Tek başıma<br>
+                                <em>gelebilir miyim?”</em>
+                            </h3>
+                            <p class="story-subtext-suite">
+                                Katılımcılarımızın %70'i tek geliyor ve ilk akşamdan arkadaş oluyor.
+                            </p>
+                            <div class="story-tip-box">
+                                💡 Kontenjanlar 12-16 kişiyle sınırlıdır.
+                            </div>
+                        </div>
+                        <div class="story-bottom-suite">
+                            <div class="story-cta-suite">
+                                <span class="cta-dot-suite"></span>
+                                <span>Soru Sor / DM →</span>
+                            </div>
+                            <span class="story-logo-suite">gezenbiri<span class="brand-system-dot"></span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 6: Hafta Sonu Kaçamağı (Bozcaada) -->
+                <div class="story-wrapper-suite">
+                    <div class="story-banner-suite" style="background-image: url('https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=800&q=80');">
+                        <div class="story-top-suite">
+                            <span class="story-badge-suite">gezenbiri · ada kaçamağı</span>
+                            <span class="story-date-suite">23 AĞU</span>
+                        </div>
+                        <div class="story-center-suite">
+                            <h3 class="story-hero-title-suite">
+                                Bozcaada Kaçamağı<br>
+                                <em>“cumartesi gidip pazar dönüyoruz.”</em>
+                            </h3>
+                            <p class="story-subtext-suite">
+                                Vapur yolculuğu, ada sokakları ve Polente fenerinde gün batımı kadehi.
+                            </p>
+                            <span class="trip-price-pill-suite">₺2.450 · Full Paket</span>
+                        </div>
+                        <div class="story-bottom-suite">
+                            <div class="story-cta-suite">
+                                <span class="cta-dot-suite"></span>
+                                <span>Hemen İncele →</span>
+                            </div>
+                            <span class="story-logo-suite">gezenbiri<span class="brand-system-dot"></span></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 05. FEED POST VE CAROUSEL ŞABLONLARI (8 ADET) -->
+        <div>
+            <div class="section-label">
+                <span>05. Feed Post ve Carousel Şablonları (8 Format)</span>
+                <span class="desc">Tek Tıkla Metin Kopyalama Desteği</span>
+            </div>
+
+            <div class="posts-grid">
+
+                <!-- Post 1: Rota Duyuru Afişi -->
+                <div class="post-card-preview">
+                    <div class="post-header-bar">
+                        <div class="post-header-user">
+                            <div class="post-mini-avatar">gb<span class="brand-system-dot" style="font-size:10px;"></span></div>
+                            <span class="post-username">gezenbiri</span>
+                        </div>
+                        <span class="post-options-dots">•••</span>
+                    </div>
+                    <div class="post-viewport dark-overlay" style="background-image: url('assets/kapadokya.jpg');">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="background:rgba(255,255,255,0.2); backdrop-filter:blur(4px); padding:3px 8px; border-radius:100px; font-size:9.5px; font-weight:800;">HAFTA SONU</span>
+                            <span style="font-size:11px; font-weight:800; color:var(--coral);">17 EKİ</span>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 21px; font-weight:900; line-height:1.1; letter-spacing:-0.5px;">
+                                Vadide gün doğumu &amp;<br>sıcak şarap.
+                            </h4>
+                            <div style="font-size:11px; opacity:0.9; margin-top:4px;">Kapadokya · 2 Gece 3 Gün</div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:800;">
+                            <span>₺3.600</span>
+                            <span style="color:var(--coral);">Son 3 Yer →</span>
+                        </div>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="actions-icons-row">
+                            <div class="action-group">
+                                <span>❤️</span> <span>💬</span> <span>↗️</span>
+                            </div>
+                            <span>🏷️</span>
+                        </div>
+                        <div class="post-caption-box" id="cap-1">
+                            <strong>gezenbiri</strong> Cuma akşamı çıkıyoruz, pazar dönüyoruz. Vadide balon seyri ve sıcak şarap seni bekliyor. Geliyorsan yaz ↓ #gezenbiri #kapadokya
+                        </div>
+                    </div>
+                    <div class="post-meta-footer">
+                        <div>
+                            <h5>01. Rota Duyuru Afişi</h5>
+                            <p>Yeni açılan gezilerin görseli.</p>
+                        </div>
+                        <button class="btn-copy-caption" onclick="copyCaptionText('cap-1', this)">Metni Kopyala</button>
+                    </div>
+                </div>
+
+                <!-- Post 2: Alıntı / Manifesto Postu -->
+                <div class="post-card-preview">
+                    <div class="post-header-bar">
+                        <div class="post-header-user">
+                            <div class="post-mini-avatar" style="background:var(--charcoal); color:#FFF;">gb<span class="brand-system-dot" style="font-size:10px;"></span></div>
+                            <span class="post-username">gezenbiri</span>
+                        </div>
+                        <span class="post-options-dots">•••</span>
+                    </div>
+                    <div class="post-viewport" style="background-color: var(--cream); color: var(--charcoal);">
+                        <div style="font-size:10px; font-weight:800; color:var(--coral); letter-spacing:1px;">MANIFESTO</div>
+                        <div>
+                            <p style="font-family:var(--font-serif); font-style:italic; font-size: 21px; line-height:1.25; color:var(--charcoal);">
+                                “Bazen insan sadece evden çıkmak ister. Yeni bir sokak görmek, hiç tanımadığı biriyle aynı masaya oturmak.”
+                            </p>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:10.5px; font-weight:800;">
+                            <span>gezenbiri</span>
+                            <span style="color:#777;">Bir yere gidelim.</span>
+                        </div>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="actions-icons-row">
+                            <div class="action-group">
+                                <span>❤️</span> <span>💬</span> <span>↗️</span>
+                            </div>
+                            <span>🏷️</span>
+                        </div>
+                        <div class="post-caption-box" id="cap-2">
+                            <strong>gezenbiri</strong> Mesele kaç ülke gördüğün değil. Arada bir gitmek lazım. #biryeregidelim #gezenbiri #spontane
+                        </div>
+                    </div>
+                    <div class="post-meta-footer">
+                        <div>
+                            <h5>02. Manifesto / Tipografik</h5>
+                            <p>Marka ruhunu yansıtan post.</p>
+                        </div>
+                        <button class="btn-copy-caption" onclick="copyCaptionText('cap-2', this)">Metni Kopyala</button>
+                    </div>
+                </div>
+
+                <!-- Post 3: Carousel Kapağı / Rehber -->
+                <div class="post-card-preview">
+                    <div class="post-header-bar">
+                        <div class="post-header-user">
+                            <div class="post-mini-avatar">gb<span class="brand-system-dot" style="font-size:10px;"></span></div>
+                            <span class="post-username">gezenbiri</span>
+                        </div>
+                        <span class="post-options-dots">•••</span>
+                    </div>
+                    <div class="post-viewport" style="background-color: var(--white); color: var(--charcoal); border: 1px solid var(--border);">
+                        <div class="carousel-badge">1/6 📑</div>
+                        <div style="font-size:10px; font-weight:800; color:#888;">GEZGİN REHBERİ</div>
+                        <div>
+                            <div style="font-size:11.5px; font-weight:800; color:var(--coral); text-transform:uppercase; margin-bottom:4px;">REHBER</div>
+                            <h4 style="font-size: 21px; font-weight:900; line-height:1.15;">
+                                Hafta sonu Alaçatı’da<br>ne yapılır?
+                            </h4>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:10.5px; font-weight:800; color:#666;">
+                            <span>gezenbiri</span>
+                            <span>5 Gizli Nokta →</span>
+                        </div>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="actions-icons-row">
+                            <div class="action-group">
+                                <span>❤️</span> <span>💬</span> <span>↗️</span>
+                            </div>
+                            <span>🏷️</span>
+                        </div>
+                        <div class="post-caption-box" id="cap-3">
+                            <strong>gezenbiri</strong> Turist kalabalığından uzak 5 yer. Kaydır ve kaydet! #alacati #gezenbiri #rehber
+                        </div>
+                    </div>
+                    <div class="post-meta-footer">
+                        <div>
+                            <h5>03. Carousel Kapağı</h5>
+                            <p>Eğitici rehber kapak şablonu.</p>
+                        </div>
+                        <button class="btn-copy-caption" onclick="copyCaptionText('cap-3', this)">Metni Kopyala</button>
+                    </div>
+                </div>
+
+                <!-- Post 4: Topluluk (UGC) Postu -->
+                <div class="post-card-preview">
+                    <div class="post-header-bar">
+                        <div class="post-header-user">
+                            <div class="post-mini-avatar">gb<span class="brand-system-dot" style="font-size:10px;"></span></div>
+                            <span class="post-username">gezenbiri</span>
+                        </div>
+                        <span class="post-options-dots">•••</span>
+                    </div>
+                    <div class="post-viewport dark-overlay" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80');">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="background:rgba(255,255,255,0.25); backdrop-filter:blur(4px); padding:3px 8px; border-radius:100px; font-size:9.5px; font-weight:800;">TOPLULUK</span>
+                            <span style="font-size:12px; font-weight:800;">URLA SOFRASI</span>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 19px; font-weight:900; line-height:1.2;">
+                                “Aynı masada<br>tanışıyoruz.”
+                            </h4>
+                        </div>
+                        <div style="font-size:10.5px; font-weight:700; opacity:0.9;">
+                            📸 @gezenbiri Topluluğu
+                        </div>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="actions-icons-row">
+                            <div class="action-group">
+                                <span>❤️</span> <span>💬</span> <span>↗️</span>
+                            </div>
+                            <span>🏷️</span>
+                        </div>
+                        <div class="post-caption-box" id="cap-4">
+                            <strong>gezenbiri</strong> Geçen haftadan bir Urla akşamı. Yalnız geldiler, arkadaş olarak döndüler. #gezenbiri #urla #topluluk
+                        </div>
+                    </div>
+                    <div class="post-meta-footer">
+                        <div>
+                            <h5>04. Topluluk (UGC) Postu</h5>
+                            <p>Samimi sofra ve insan anları.</p>
+                        </div>
+                        <button class="btn-copy-caption" onclick="copyCaptionText('cap-4', this)">Metni Kopyala</button>
+                    </div>
+                </div>
+
+                <!-- Post 5: FOMO / Son Kontenjan İlanı -->
+                <div class="post-card-preview">
+                    <div class="post-header-bar">
+                        <div class="post-header-user">
+                            <div class="post-mini-avatar">gb<span class="brand-system-dot" style="font-size:10px;"></span></div>
+                            <span class="post-username">gezenbiri</span>
+                        </div>
+                        <span class="post-options-dots">•••</span>
+                    </div>
+                    <div class="post-viewport dark-overlay" style="background-image: url('https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=600&q=80');">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="background:var(--coral); color:#FFF; padding:3px 8px; border-radius:100px; font-size:9.5px; font-weight:800;">SON 2 YER</span>
+                            <span style="font-size:11px; font-weight:800;">BOZCAADA</span>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 21px; font-weight:900; line-height:1.15;">
+                                “Cumartesi sabah<br>vapurdayız.”
+                            </h4>
+                            <div style="font-size:11px; opacity:0.9; margin-top:4px;">23 - 24 Ağustos · Ada Butik Oteli</div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:800;">
+                            <span>₺2.450</span>
+                            <span style="color:var(--coral);">Kayıt Ol →</span>
+                        </div>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="actions-icons-row">
+                            <div class="action-group">
+                                <span>❤️</span> <span>💬</span> <span>↗️</span>
+                            </div>
+                            <span>🏷️</span>
+                        </div>
+                        <div class="post-caption-box" id="cap-5">
+                            <strong>gezenbiri</strong> Bozcaada için son 2 kontenjan! Rüzgar güllerinde gün batımı kaçmaz. DM atın ↓ #gezenbiri #bozcaada
+                        </div>
+                    </div>
+                    <div class="post-meta-footer">
+                        <div>
+                            <h5>05. Son Kontenjan İlanı</h5>
+                            <p>Hızlı aksiyona çağıran post.</p>
+                        </div>
+                        <button class="btn-copy-caption" onclick="copyCaptionText('cap-5', this)">Metni Kopyala</button>
+                    </div>
+                </div>
+
+                <!-- Post 6: Workshop / Atölye Duyurusu -->
+                <div class="post-card-preview">
+                    <div class="post-header-bar">
+                        <div class="post-header-user">
+                            <div class="post-mini-avatar">gb<span class="brand-system-dot" style="font-size:10px;"></span></div>
+                            <span class="post-username">gezenbiri</span>
+                        </div>
+                        <span class="post-options-dots">•••</span>
+                    </div>
+                    <div class="post-viewport dark-overlay" style="background-image: url('https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=600&q=80');">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="background:var(--sage); color:var(--charcoal); padding:3px 8px; border-radius:100px; font-size:9.5px; font-weight:800;">WORKSHOP</span>
+                            <span style="font-size:11px; font-weight:800;">ALAÇATI</span>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 20px; font-weight:900; line-height:1.15;">
+                                Toprağa şekil ver,<br>
+                                fincanını üret.
+                            </h4>
+                            <div style="font-size:11px; opacity:0.9; margin-top:4px;">Seramik Atölyesi · 21 Ağustos</div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:800;">
+                            <span>₺1.450</span>
+                            <span style="color:var(--coral);">Detaylar →</span>
+                        </div>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="actions-icons-row">
+                            <div class="action-group">
+                                <span>❤️</span> <span>💬</span> <span>↗️</span>
+                            </div>
+                            <span>🏷️</span>
+                        </div>
+                        <div class="post-caption-box" id="cap-6">
+                            <strong>gezenbiri</strong> Bu çarşamba Alaçatı'da çömlek tornasındayız. Kendi tasarımını fırınla ve alıp götür. #workshop #seramik
+                        </div>
+                    </div>
+                    <div class="post-meta-footer">
+                        <div>
+                            <h5>06. Workshop Postu</h5>
+                            <p>Yaratıcı atölye deneyimleri.</p>
+                        </div>
+                        <button class="btn-copy-caption" onclick="copyCaptionText('cap-6', this)">Metni Kopyala</button>
+                    </div>
+                </div>
+
+                <!-- Post 7: Gezgin Yorumu / Testimonial -->
+                <div class="post-card-preview">
+                    <div class="post-header-bar">
+                        <div class="post-header-user">
+                            <div class="post-mini-avatar" style="background:var(--sage); color:#FFF;">gb<span class="brand-system-dot" style="font-size:10px;"></span></div>
+                            <span class="post-username">gezenbiri</span>
+                        </div>
+                        <span class="post-options-dots">•••</span>
+                    </div>
+                    <div class="post-viewport" style="background-color: var(--charcoal); color: var(--white);">
+                        <div style="font-size:10px; font-weight:800; color:var(--coral); letter-spacing:1px;">GEZGİN DENEYİMİ</div>
+                        <div>
+                            <p style="font-family:var(--font-serif); font-style:italic; font-size: 20px; line-height:1.3; color:var(--cream);">
+                                “Tek başıma katıldım ama ilk akşamdan itibaren yıllardır tanışıyormuşuz gibi bir sofra kuruldu.”
+                            </p>
+                            <div style="font-size:11px; color:#AAA; margin-top:8px; font-weight:700;">— Selin D. · Urla Gezgini</div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:10.5px; font-weight:800;">
+                            <span>gezenbiri topluluğu</span>
+                            <span style="color:var(--coral);">5.000+ Gezgin</span>
+                        </div>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="actions-icons-row">
+                            <div class="action-group">
+                                <span>❤️</span> <span>💬</span> <span>↗️</span>
+                            </div>
+                            <span>🏷️</span>
+                        </div>
+                        <div class="post-caption-box" id="cap-7">
+                            <strong>gezenbiri</strong> Tek başına gelmekten çekinenlere kulak verin. Biz hep birlikteyiz. #gezenbiri #topluluk #arkadaşlık
+                        </div>
+                    </div>
+                    <div class="post-meta-footer">
+                        <div>
+                            <h5>07. Gezgin Yorumu Postu</h5>
+                            <p>Sosyal kanıt ve güven içeriği.</p>
+                        </div>
+                        <button class="btn-copy-caption" onclick="copyCaptionText('cap-7', this)">Metni Kopyala</button>
+                    </div>
+                </div>
+
+                <!-- Post 8: Gizli Sürpriz Rota İlanı -->
+                <div class="post-card-preview">
+                    <div class="post-header-bar">
+                        <div class="post-header-user">
+                            <div class="post-mini-avatar" style="background:var(--coral); color:#FFF;">gb</div>
+                            <span class="post-username">gezenbiri</span>
+                        </div>
+                        <span class="post-options-dots">•••</span>
+                    </div>
+                    <div class="post-viewport" style="background: linear-gradient(135deg, #202020 0%, #111111 100%); color: var(--white);">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="background:var(--coral); color:#FFF; padding:3px 8px; border-radius:100px; font-size:9.5px; font-weight:800;">GİZLİ ROTA</span>
+                            <span style="font-size:11px; font-weight:800; color:var(--coral);">11 EKİ</span>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 21px; font-weight:900; line-height:1.15; color:var(--coral);">
+                                “Nereye gittiğimizi<br>minibüste söyleyeceğiz.”
+                            </h4>
+                            <div style="font-size:11px; opacity:0.8; margin-top:4px;">Tek kural: soru sormak yok.</div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:11px; font-weight:800;">
+                            <span>₺2.900 · Full Paket</span>
+                            <span style="color:var(--coral);">Yerini Kap →</span>
+                        </div>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="actions-icons-row">
+                            <div class="action-group">
+                                <span>❤️</span> <span>💬</span> <span>↗️</span>
+                            </div>
+                            <span>🏷️</span>
+                        </div>
+                        <div class="post-caption-box" id="cap-8">
+                            <strong>gezenbiri</strong> Spontane yaşamayı sevenler burada mı? Valizini topla, gerisini bize bırak. #gizlirota #gezenbiri #macera
+                        </div>
+                    </div>
+                    <div class="post-meta-footer">
+                        <div>
+                            <h5>08. Gizli Rota Postu</h5>
+                            <p>Merak ve spontanelik odağı.</p>
+                        </div>
+                        <button class="btn-copy-caption" onclick="copyCaptionText('cap-8', this)">Metni Kopyala</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 06. OPERASYONEL REHBER -->
+        <div>
+            <div class="section-label">
+                <span>06. Sosyal Medya Operasyon Rehberi</span>
+                <span class="desc">Yayın Takvimi, Caption Formülü &amp; Hashtag Seti</span>
+            </div>
+
+            <div class="guidelines-card">
+                <!-- Col 1: Yayın Takvimi -->
+                <div class="guide-col">
+                    <h4>📅 Haftalık Yayın Takvimi</h4>
+                    <div class="schedule-row"><strong>Pazartesi</strong> <span>Hafta sonu UGC geri dönüşleri</span></div>
+                    <div class="schedule-row"><strong>Çarşamba</strong> <span>Yeni rota duyuru afişi</span></div>
+                    <div class="schedule-row"><strong>Cuma 09:00</strong> <span style="color:var(--coral); font-weight:800;">Son yer story + sayaç</span></div>
+                    <div class="schedule-row"><strong>Cuma 19:00</strong> <span>Minibüs kalkış check-in story</span></div>
+                    <div class="schedule-row"><strong>Cumartesi</strong> <span>Canlı gezi anları &amp; sofralar</span></div>
+                    <div class="schedule-row"><strong>Pazar</strong> <span>Dönüş yolu &amp; teşekkür</span></div>
+                </div>
+
+                <!-- Col 2: Caption Formülü -->
+                <div class="guide-col">
+                    <h4>✍️ Caption Yazım Formülü</h4>
+                    <div class="caption-formula-box">
+                        <strong>1. Satır:</strong> Dikkat çekici kısa cümle<br>
+                        <strong>2. Satır:</strong> Tarih · Fiyat · Rota<br>
+                        <strong>3. Satır:</strong> FOMO &amp; Kapasite notu<br>
+                        <strong>4. Satır:</strong> "Geliyorsan yaz ↓"<br><br>
+                        <span style="color:#777; font-size:10.5px;">✓ Maksimum 150 karakter<br>✓ Emoji abartısı yok<br>✓ Cümle sonuna nokta koy.</span>
+                    </div>
+                </div>
+
+                <!-- Col 3: Hashtag Seti -->
+                <div class="guide-col">
+                    <h4>🏷️ Hashtag Seti</h4>
+                    <div class="hashtag-cloud">
+                        #gezenbiri &nbsp; #biryeregidelim<br>
+                        #haftasonukaçamağı &nbsp; #türkiye<br>
+                        #spontanegezi &nbsp; #gezigrubu<br>
+                        #bozcaada &nbsp; #kapadokya<br>
+                        #alaçatı &nbsp; #urla &nbsp; #kaş<br>
+                        <span class="highlight">#gezenbiri[rota] ← dinamik</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast-notify" id="toastBox">
+        <span>✓</span>
+        <span id="toastMsg">İşlem başarılı!</span>
+    </div>
+
+    <script>
+        // Copy Caption Functionality
+        function copyCaptionText(elementId, btn) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const text = el.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const oldText = btn.innerText;
+                btn.innerText = "✓ Kopyalandı";
+                btn.style.background = "#FF4D3D";
+                btn.style.color = "#FFF";
+                showToast("Metin ve etiketler panoya kopyalandı!");
+                setTimeout(() => {
+                    btn.innerText = oldText;
+                    btn.style.background = "";
+                    btn.style.color = "";
+                }, 2000);
+            });
+        }
+
+        // Live Mockup Avatar Switcher
+        function setLiveMockupAvatar(bg, color, text, styleType) {
+            const avatarEl = document.getElementById('liveMockupAvatar');
+            if (!avatarEl) return;
+            avatarEl.style.backgroundColor = bg;
+            avatarEl.style.color = color;
+            avatarEl.style.display = "flex";
+            avatarEl.style.alignItems = "center";
+            avatarEl.style.justifyContent = "center";
+
+            if (styleType === 'wordmark') {
+                avatarEl.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+                avatarEl.style.fontSize = "12px";
+                avatarEl.style.fontWeight = "900";
+                avatarEl.innerHTML = `gezenbiri<span class="brand-system-dot" style="font-size:12px;"></span>`;
+            } else if (styleType === 'mono') {
+                avatarEl.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+                avatarEl.style.fontSize = "26px";
+                avatarEl.style.fontWeight = "900";
+                const dotColor = (bg === '#FF4D3D') ? '#F6F3ED' : '#FF4D3D';
+                avatarEl.innerHTML = `gb<span class="brand-system-dot" style="font-size:26px; background-color:${dotColor};"></span>`;
+            } else if (styleType === 'app-icon') {
+                avatarEl.innerHTML = `<div style="width:34px; height:35px; background:#FF4D3D; border-radius:50%; transform:scaleY(1.03);"></div>`;
+            } else if (styleType === 'serif') {
+                avatarEl.style.fontFamily = "'Instrument Serif', Georgia, serif";
+                avatarEl.style.fontStyle = "italic";
+                avatarEl.style.fontSize = "32px";
+                avatarEl.innerHTML = `gb<span class="brand-system-dot" style="font-size:32px;"></span>`;
+            } else if (styleType === 'ring') {
+                avatarEl.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+                avatarEl.style.fontSize = "22px";
+                avatarEl.style.fontWeight = "900";
+                avatarEl.innerHTML = `gb<span class="brand-system-dot" style="font-size:22px;"></span>`;
+            }
+            showToast("Canlı Instagram profil avatarı güncellendi!");
+        }
+
+        // Direct Canvas to 1080x1080 PNG Downloader Engine
+        function downloadGraphicPNG(type, filename, param, bgColor, primaryColor) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1080;
+            canvas.height = 1080;
+            const ctx = canvas.getContext('2d');
+
+            // 1. Draw Background
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, 1080, 1080);
+
+            ctx.textBaseline = 'middle';
+
+            if (type === 'avatar-full') {
+                ctx.fillStyle = primaryColor;
+                ctx.font = '900 160px "Plus Jakarta Sans", sans-serif';
+                const textWidth = ctx.measureText("gezenbiri").width;
+                const startX = 540 - (textWidth + 30) / 2;
+                ctx.textAlign = 'left';
+                ctx.fillText("gezenbiri", startX, 550);
+                // Draw %3 System Dot
+                ctx.fillStyle = '#FF4D3D';
+                ctx.beginPath();
+                ctx.ellipse(startX + textWidth + 14, 528, 14, 14.42, 0, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (type === 'avatar-mono' || type === 'avatar-mono-inv') {
+                ctx.fillStyle = primaryColor;
+                ctx.font = '900 380px "Plus Jakarta Sans", sans-serif';
+                const textWidth = ctx.measureText("gb").width;
+                const startX = 540 - (textWidth + 60) / 2;
+                ctx.textAlign = 'left';
+                ctx.fillText("gb", startX, 570);
+                // Draw %3 System Dot (Warm Cream on coral bg, else Water Coral)
+                ctx.fillStyle = (type === 'avatar-mono-inv') ? '#F6F3ED' : '#FF4D3D';
+                ctx.beginPath();
+                ctx.ellipse(startX + textWidth + 30, 520, 32, 33, 0, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (type === 'avatar-app-icon') {
+                ctx.fillStyle = '#FF4D3D';
+                ctx.beginPath();
+                ctx.ellipse(540, 540, 240, 247.2, 0, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (type === 'avatar-serif') {
+                ctx.font = 'italic 460px "Instrument Serif", Georgia, serif';
+                ctx.fillStyle = primaryColor;
+                const textWidth = ctx.measureText("gb").width;
+                const startX = 540 - (textWidth + 50) / 2;
+                ctx.textAlign = 'left';
+                ctx.fillText("gb", startX, 570);
+                ctx.fillStyle = '#FF4D3D';
+                ctx.beginPath();
+                ctx.ellipse(startX + textWidth + 24, 524, 30, 31, 0, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (type === 'avatar-ring') {
+                // Outer subtle ring
+                ctx.strokeStyle = 'rgba(246, 243, 237, 0.4)';
+                ctx.lineWidth = 14;
+                ctx.setLineDash([24, 18]);
+                ctx.beginPath();
+                ctx.arc(540, 540, 440, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.setLineDash([]); // reset
+
+                ctx.fillStyle = primaryColor;
+                ctx.font = '900 340px "Plus Jakarta Sans", sans-serif';
+                const textWidth = ctx.measureText("gb").width;
+                const startX = 540 - (textWidth + 50) / 2;
+                ctx.textAlign = 'left';
+                ctx.fillText("gb", startX, 560);
+                ctx.fillStyle = '#FF4D3D';
+                ctx.beginPath();
+                ctx.ellipse(startX + textWidth + 24, 516, 26, 26.8, 0, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (type === 'hl-serif') {
+                ctx.font = 'italic 500px "Instrument Serif", Georgia, serif';
+                ctx.fillStyle = primaryColor;
+                ctx.textAlign = 'center';
+                ctx.fillText(param, 540, 550);
+            } else if (type === 'hl-symbol') {
+                ctx.font = 'italic 460px "Instrument Serif", Georgia, serif';
+                ctx.fillStyle = primaryColor;
+                ctx.textAlign = 'center';
+                ctx.fillText(param, 540, 540);
+            }
+
+            // Export PNG
+            const link = document.createElement('a');
+            link.download = `${filename}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            showToast(`${filename}.png başarıyla indirildi!`);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastBox');
+            const msgEl = document.getElementById('toastMsg');
+            if (msgEl) msgEl.innerText = msg;
+            toast.style.display = 'flex';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2500);
+        }
+    </script>
+
+</body>
+</html>

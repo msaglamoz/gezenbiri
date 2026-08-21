@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gezenbiri — Editoryal Seyahat Kartları ve Rota Koleksiyonu</title>
+    <meta name="description" content="Alaçatı, Çeşme, Ilıca, Urla, Bozcaada, Kaş, Kapadokya ve Karadeniz editoryal seyahat kartları.">
+    <meta name="theme-color" content="#F6F3ED">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3' fill='%23FF4D3D'/%3E%3C/svg%3E">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cream: #F6F3ED;
+            --charcoal: #202020;
+            --coral: #FF4D3D;
+            --coral-hover: #E83F2F;
+            --coral-soft: rgba(255, 77, 61, 0.12);
+            --sage: #A8B89A;
+            --sky: #A9D5E8;
+            --white: #FFFFFF;
+            --snow: #EDF3F7;
+            --bg: #E7E2D8;
+            --border: #DCD6CC;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+
+        .brand-system-dot {
+            display: inline-block;
+            width: 0.16em;
+            height: 0.165em;
+            background-color: var(--coral);
+            border-radius: 50%;
+            margin-left: 2.5px;
+            transform: scaleY(1.03);
+            flex-shrink: 0;
+            vertical-align: baseline;
+        }
+
+        .live-badge-dot {
+            display: inline-block;
+            width: 6.5px;
+            height: 6.7px;
+            background-color: var(--coral);
+            border-radius: 50%;
+            transform: scaleY(1.03);
+            flex-shrink: 0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--charcoal);
+            padding: 24px 20px 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* Top Utility Nav */
+        .top-brand-nav {
+            width: 100%;
+            max-width: 1160px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding: 0 4px;
+        }
+
+        .btn-nav-back {
+            background-color: var(--cream);
+            color: var(--charcoal);
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 12.5px;
+            font-weight: 800;
+            border: 1px solid rgba(32,32,32,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .btn-nav-back:hover {
+            background-color: var(--coral);
+            color: var(--white);
+            border-color: var(--coral);
+            transform: translateX(-2px);
+        }
+
+        .quick-nav-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .quick-nav-links a {
+            font-size: 12px;
+            font-weight: 700;
+            color: #555;
+            text-decoration: none;
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .quick-nav-links a:hover {
+            background: var(--white);
+            color: var(--coral);
+        }
+
+        .header {
+            text-align: center;
+            max-width: 900px;
+            margin-bottom: 32px;
+        }
+
+        .header-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            background: var(--cream);
+            padding: 6px 20px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            margin-bottom: 14px;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+        }
+
+        .header h1 span { color: var(--coral); }
+        .header p { color: #555; font-size: 16px; line-height: 1.6; }
+
+        /* FILTER TABS */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 36px;
+            max-width: 800px;
+        }
+
+        .filter-btn {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            color: var(--charcoal);
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 12.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--charcoal);
+            color: var(--white);
+            border-color: var(--charcoal);
+        }
+
+        .filter-btn.active {
+            box-shadow: 0 4px 12px rgba(32,32,32,0.15);
+        }
+
+        /* GRID FOR TRIP CARDS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            width: 100%;
+            max-width: 1160px;
+            justify-content: center;
+        }
+
+        /* PAIR WRAPPER (Primary Poster + Backstage Info Card) */
+        .trip-pair {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .trip-pair.hidden {
+            display: none !important;
+        }
+
+        /* 1. PRIMARY EDITORIAL POSTER WITH LOCATION IMAGERY */
+        .primary-poster {
+            width: 100%;
+            height: 400px;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            padding: 32px 34px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(32,32,32,0.08);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: var(--charcoal);
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        .primary-poster::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.18) 40%, rgba(0,0,0,0.85) 100%);
+            z-index: 1;
+        }
+
+        .primary-poster:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(255, 77, 61, 0.25);
+        }
+
+        /* Poster Top Meta */
+        .poster-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .poster-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 100px;
+            background: rgba(255,255,255,0.22);
+            backdrop-filter: blur(8px);
+            color: var(--white);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .poster-date {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 0.5px;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(8px);
+            padding: 5px 14px;
+            border-radius: 100px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* Poster Center Headline */
+        .poster-center {
+            margin: auto 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .poster-dest-title {
+            font-size: 44px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.02;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            color: var(--white);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .poster-copy {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 24px;
+            line-height: 1.25;
+            color: rgba(255,255,255,0.95);
+            text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+        }
+
+        /* Poster Bottom */
+        .poster-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-top: 1px solid rgba(255,255,255,0.25);
+            padding-top: 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .poster-price {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--white);
+        }
+
+        .poster-wordmark {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--white);
+            display: inline-flex;
+            align-items: baseline;
+        }
+
+        /* 2. SECONDARY BACKSTAGE INFORMATION CARD */
+        .backstage-card {
+            background-color: var(--white);
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            padding: 20px 24px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .backstage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            border-bottom: 1px solid #EEE;
+            padding-bottom: 8px;
+        }
+
+        .backstage-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .detail-item h6 {
+            font-size: 10px;
+            color: #888;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+
+        .detail-item p {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .backstage-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid #EEE;
+            font-size: 11px;
+        }
+
+        .btn-inspect-route {
+            background: var(--cream);
+            color: var(--charcoal);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-inspect-route:hover {
+            background: var(--coral);
+            color: var(--white);
+            border-color: var(--coral);
+        }
+
+        /* MODAL DIALOG */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(6px);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--white);
+            border-radius: 24px;
+            max-width: 580px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 32px;
+            box-shadow: 0 30px 90px rgba(0,0,0,0.3);
+            position: relative;
+            animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.92); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--cream);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            color: var(--charcoal);
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--coral);
+            color: var(--white);
+        }
+
+        .modal-header-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 6px;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .modal-meta-bar {
+            display: flex;
+            gap: 16px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #666;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #EEE;
+        }
+
+        .modal-section-title {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--charcoal);
+            margin: 16px 0 8px 0;
+        }
+
+        .modal-included-box {
+            background: var(--cream);
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-modal-wa {
+            flex: 1;
+            background: #25D366;
+            color: #FFF;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 13.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-modal-wa:hover {
+            background: #1EBE5D;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 820px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 32px;
+            }
+            .top-brand-nav {
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+            }
+            .quick-nav-links {
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <div class="top-brand-nav">
+        <a href="index.html" class="btn-nav-back">
+            <span>←</span>
+            <span>Brand System Hub'a Dön</span>
+        </a>
+        <div class="quick-nav-links">
+            <a href="04_gezenbiri_system_dot.html" style="background:rgba(255,77,61,0.12); color:var(--coral); font-weight:800;">⚡ System Dot Portalı</a>
+            <a href="gezenbiri_website.html">Canlı Web Sitesi</a>
+            <a href="01_gezenbiri_brand_system.html">Marka Kılavuzu</a>
+            <a href="03_gezenbiri_instagram_suite.html">Instagram Suite</a>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="header-badge">gezenbiri<span class="brand-system-dot"></span> · authentic escape collection</div>
+        <h1>Editoryal <span>Seyahat Kartları</span> &amp; Rota Vitrini</h1>
+        <p>Alaçatı, Çeşme, Ilıca ve Urla kıyılarından Bozcaada ve Kapadokya gün doğumuna; gerçek lokasyon görselleriyle tasarlanmış editoryal gezi kartları.</p>
+    </div>
+
+    <!-- FILTER BUTTONS -->
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">Tüm Rotalar (8)</button>
+        <button class="filter-btn" data-filter="aegean">Ege &amp; Sahil</button>
+        <button class="filter-btn" data-filter="valley">Vadi &amp; Doğa</button>
+        <button class="filter-btn" data-filter="weekend">Hafta Sonu</button>
+        <button class="filter-btn" data-filter="secret">Sürpriz Rota</button>
+    </div>
+
+    <!-- CARDS GRID -->
+    <div class="cards-grid">
+
+        <!-- 01: KAPADOKYA -->
+        <div class="trip-pair" data-cat="valley weekend">
+            <div class="primary-poster" style="background-image: url('assets/kapadokya.jpg');" onclick="openRouteModal('Kapadokya Vadi Kaçamağı', '17 - 19 Ekim', '₺3.600', 'Cave Butik Otel', 'Balon seyri, Kızılçukur gün batımı yürüyüşü, sıcak şarap tadımı ve yerel çömlek atölyesi.', 'Ulaşım, 2 Gece Butik Konaklama, Rehberlik, Kahvaltı, Vadi Transferleri')">
+                <div class="poster-top">
+                    <span class="poster-tag">gezenbiri · vadi</span>
+                    <span class="poster-date">17 EKİ</span>
+                </div>
+                <div class="poster-center">
+                    <h2 class="poster-dest-title">KAPADOKYA</h2>
+                    <div class="poster-copy">“vadide gün doğumu &amp; sıcak şarap.”</div>
+                </div>
+                <div class="poster-bottom">
+                    <span class="poster-price">₺3.600</span>
+                    <div class="poster-wordmark">gezenbiri<span class="brand-system-dot"></span></div>
+                </div>
+            </div>
+            <div class="backstage-card">
+                <div class="backstage-header">
+                    <span>Kapadokya · Detay Kartı</span>
+                    <span>2 Gece 3 Gün</span>
+                </div>
+                <div class="backstage-details">
+                    <div class="detail-item"><h6>Vadi</h6><p>Kızılçukur Yürüyüşü</p></div>
+                    <div class="detail-item"><h6>Konaklama</h6><p>Cave Butik Otel</p></div>
+                    <div class="detail-item"><h6>Sabah</h6><p>Balon Seyri &amp; Kahve</p></div>
+                </div>
+                <div class="backstage-footer">
+                    <span style="color:#666;">✓ Ulaşım &nbsp; ✓ Cave Otel &nbsp; ✓ Kahvaltı</span>
+                    <button class="btn-inspect-route" onclick="openRouteModal('Kapadokya Vadi Kaçamağı', '17 - 19 Ekim', '₺3.600', 'Cave Butik Otel', 'Balon seyri, Kızılçukur gün batımı yürüyüşü, sıcak şarap tadımı ve yerel çömlek atölyesi.', 'Ulaşım, 2 Gece Butik Konaklama, Rehberlik, Kahvaltı, Vadi Transferleri')">Detaylar →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02: ILICA & ÇEŞME -->
+        <div class="trip-pair" data-cat="aegean weekend">
+            <div class="primary-poster" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80');" onclick="openRouteModal('Ilıca & Çeşme Deniz Rotası', '07 - 08 Eylül', '₺1.950', 'Bahçeli Butik Otel', 'Sabah Ilıca koyu serinliği, kumru & sahil kahvesi, akşam Urla bağ rotasında gün batımı kadehi.', 'Gidiş-Dönüş Ulaşım, 1 Gece Konaklama, Kahvaltı, Plaj Transferi')">
+                <div class="poster-top">
+                    <span class="poster-tag">gezenbiri · sahil</span>
+                    <span class="poster-date">07 EYL</span>
+                </div>
+                <div class="poster-center">
+                    <h2 class="poster-dest-title">ILICA · ÇEŞME</h2>
+                    <div class="poster-copy">“sabah deniz, dalgalar &amp; gün batımı kadehi.”</div>
+                </div>
+                <div class="poster-bottom">
+                    <span class="poster-price">₺1.950</span>
+                    <div class="poster-wordmark">gezenbiri<span class="brand-system-dot"></span></div>
+                </div>
+            </div>
+            <div class="backstage-card">
+                <div class="backstage-header">
+                    <span>Ilıca &amp; Çeşme · Detay</span>
+                    <span>1 Gece 2 Gün</span>
+                </div>
+                <div class="backstage-details">
+                    <div class="detail-item"><h6>Plaj</h6><p>Ilıca Koyu &amp; Deniz</p></div>
+                    <div class="detail-item"><h6>Mola</h6><p>Kumru &amp; Sahilde Kahve</p></div>
+                    <div class="detail-item"><h6>Konaklama</h6><p>Butik Bahçeli Otel</p></div>
+                </div>
+                <div class="backstage-footer">
+                    <span style="color:#666;">✓ Ulaşım &nbsp; ✓ Konaklama &nbsp; ✓ Kahvaltı</span>
+                    <button class="btn-inspect-route" onclick="openRouteModal('Ilıca & Çeşme Deniz Rotası', '07 - 08 Eylül', '₺1.950', 'Bahçeli Butik Otel', 'Sabah Ilıca koyu serinliği, kumru & sahil kahvesi, akşam Urla bağ rotasında gün batımı kadehi.', 'Gidiş-Dönüş Ulaşım, 1 Gece Konaklama, Kahvaltı, Plaj Transferi')">Detaylar →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03: ALAÇATI & ÇEŞME -->
+        <div class="trip-pair" data-cat="aegean">
+            <div class="primary-poster" style="background-image: url('assets/alacati.jpg');" onclick="openRouteModal('Alaçatı Taş Sokaklar', '24 - 25 Ağustos', '₺2.950', 'Taş Konak Butik', 'Antika pazarı turu, butik kahveciler, taş konak dinlenmesi ve akşam zeytinyağlı Ege sofrası.', 'Ulaşım, 1 Gece Taş Konak, Serpme Kahvaltı, Rehber')">
+                <div class="poster-top">
+                    <span class="poster-tag">gezenbiri · yerel</span>
+                    <span class="poster-date">24 AĞU</span>
+                </div>
+                <div class="poster-center">
+                    <h2 class="poster-dest-title">ALAÇATI</h2>
+                    <div class="poster-copy">“taş sokaklar, begonvil &amp; akşam Ege sofrası.”</div>
+                </div>
+                <div class="poster-bottom">
+                    <span class="poster-price">₺2.950</span>
+                    <div class="poster-wordmark">gezenbiri<span class="brand-system-dot"></span></div>
+                </div>
+            </div>
+            <div class="backstage-card">
+                <div class="backstage-header">
+                    <span>Alaçatı &amp; Çeşme · Detay</span>
+                    <span>1 Gece 2 Gün</span>
+                </div>
+                <div class="backstage-details">
+                    <div class="detail-item"><h6>Sokak</h6><p>Antika Pazarı &amp; Kahve</p></div>
+                    <div class="detail-item"><h6>Konaklama</h6><p>Taş Konak Butik</p></div>
+                    <div class="detail-item"><h6>Akşam</h6><p>Zeytinyağlı &amp; Meyhane</p></div>
+                </div>
+                <div class="backstage-footer">
+                    <span style="color:#666;">✓ Ulaşım &nbsp; ✓ Taş Konak &nbsp; ✓ Kahvaltı</span>
+                    <button class="btn-inspect-route" onclick="openRouteModal('Alaçatı Taş Sokaklar', '24 - 25 Ağustos', '₺2.950', 'Taş Konak Butik', 'Antika pazarı turu, butik kahveciler, taş konak dinlenmesi ve akşam zeytinyağlı Ege sofrası.', 'Ulaşım, 1 Gece Taş Konak, Serpme Kahvaltı, Rehber')">Detaylar →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04: BOZCAADA -->
+        <div class="trip-pair" data-cat="aegean weekend">
+            <div class="primary-poster" style="background-image: url('https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=1000&q=80');" onclick="openRouteModal('Bozcaada Hafta Sonu Kaçamağı', '23 - 24 Ağustos', '₺2.450', 'Ada Butik Oteli', 'Vapur yolculuğu, Rum mahallesi sokakları, Ayazma plajı ve Polente fenerinde rüzgar gülleriyle gün batımı.', 'Ulaşım, Vapur Geçişleri, 1 Gece Ada Oteli, Ada Kahvaltısı')">
+                <div class="poster-top">
+                    <span class="poster-tag">gezenbiri · hafta sonu</span>
+                    <span class="poster-date">23 AĞU</span>
+                </div>
+                <div class="poster-center">
+                    <h2 class="poster-dest-title">BOZCAADA</h2>
+                    <div class="poster-copy">“cumartesi gidip pazar dönüyoruz.”</div>
+                </div>
+                <div class="poster-bottom">
+                    <span class="poster-price">₺2.450</span>
+                    <div class="poster-wordmark">gezenbiri<span class="brand-system-dot"></span></div>
+                </div>
+            </div>
+            <div class="backstage-card">
+                <div class="backstage-header">
+                    <span>Bozcaada · Detay Kartı</span>
+                    <span>1 Gece 2 Gün</span>
+                </div>
+                <div class="backstage-details">
+                    <div class="detail-item"><h6>Ulaşım</h6><p>Minibüs + Vapur</p></div>
+                    <div class="detail-item"><h6>Konaklama</h6><p>Ada Butik Oteli</p></div>
+                    <div class="detail-item"><h6>Akşam</h6><p>Rüzgar Gülleri &amp; Gün Batımı</p></div>
+                </div>
+                <div class="backstage-footer">
+                    <span style="color:#666;">✓ Ulaşım &nbsp; ✓ Vapur &nbsp; ✓ Kahvaltı</span>
+                    <button class="btn-inspect-route" onclick="openRouteModal('Bozcaada Hafta Sonu Kaçamağı', '23 - 24 Ağustos', '₺2.450', 'Ada Butik Oteli', 'Vapur yolculuğu, Rum mahallesi sokakları, Ayazma plajı ve Polente fenerinde rüzgar gülleriyle gün batımı.', 'Ulaşım, Vapur Geçişleri, 1 Gece Ada Oteli, Ada Kahvaltısı')">Detaylar →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05: KAŞ & KEKOVA -->
+        <div class="trip-pair" data-cat="aegean weekend">
+            <div class="primary-poster" style="background-image: url('https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1000&q=80');" onclick="openRouteModal('Kaş & Kekova Mavi Yolculuk', '30 Ağu - 01 Eyl', '₺3.200', 'Merkez Butik Otel', 'Kaputaş plajı, özel tekne ile Batık Şehir Kekova turu, Meis manzaralı akşam yemeği.', 'Ulaşım, 2 Gece Konaklama, Özel Tekne Turu, Kahvaltılar')">
+                <div class="poster-top">
+                    <span class="poster-tag">gezenbiri · hafta sonu</span>
+                    <span class="poster-date">30 AĞU</span>
+                </div>
+                <div class="poster-center">
+                    <h2 class="poster-dest-title">KAŞ · KEKOVA</h2>
+                    <div class="poster-copy">“batık şehir, turkuaz koylar &amp; akşam sofrası.”</div>
+                </div>
+                <div class="poster-bottom">
+                    <span class="poster-price">₺3.200</span>
+                    <div class="poster-wordmark">gezenbiri<span class="brand-system-dot"></span></div>
+                </div>
+            </div>
+            <div class="backstage-card">
+                <div class="backstage-header">
+                    <span>Kaş &amp; Kekova · Detay Kartı</span>
+                    <span>2 Gece 3 Gün</span>
+                </div>
+                <div class="backstage-details">
+                    <div class="detail-item"><h6>Deniz</h6><p>Özel Tekne Turu</p></div>
+                    <div class="detail-item"><h6>Konaklama</h6><p>Merkez Butik Otel</p></div>
+                    <div class="detail-item"><h6>Akşam</h6><p>Meyhane &amp; Müzik</p></div>
+                </div>
+                <div class="backstage-footer">
+                    <span style="color:#666;">✓ Ulaşım &nbsp; ✓ Tekne Turu &nbsp; ✓ Kahvaltı</span>
+                    <button class="btn-inspect-route" onclick="openRouteModal('Kaş & Kekova Mavi Yolculuk', '30 Ağu - 01 Eyl', '₺3.200', 'Merkez Butik Otel', 'Kaputaş plajı, özel tekne ile Batık Şehir Kekova turu, Meis manzaralı akşam yemeği.', 'Ulaşım, 2 Gece Konaklama, Özel Tekne Turu, Kahvaltılar')">Detaylar →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 06: KARADENİZ YAYLALARI -->
+        <div class="trip-pair" data-cat="valley weekend">
+            <div class="primary-poster" style="background-image: url('https://images.unsplash.com/photo-1544830237-775c75463768?auto=format&fit=crop&w=1000&q=80');" onclick="openRouteModal('Karadeniz Bulut Denizi', '06 - 08 Eylül', '₺4.100', 'Ahşap Dağ Evi', 'Pokut ve Sal yaylaları bulut denizi manzarası, Fırtına deresi kenarında tulum eşliğinde çay sohbeti.', 'Ulaşım, 2 Gece Dağ Evi, Yerel Yayla Kahvaltıları, 4x4 Transferler')">
+                <div class="poster-top">
+                    <span class="poster-tag">gezenbiri · hafta sonu</span>
+                    <span class="poster-date">06 EYL</span>
+                </div>
+                <div class="poster-center">
+                    <h2 class="poster-dest-title">KARADENİZ</h2>
+                    <div class="poster-copy">“cuma akşamı çıkıyoruz, arada biraz Karadeniz.”</div>
+                </div>
+                <div class="poster-bottom">
+                    <span class="poster-price">₺4.100</span>
+                    <div class="poster-wordmark">gezenbiri<span class="brand-system-dot"></span></div>
+                </div>
+            </div>
+            <div class="backstage-card">
+                <div class="backstage-header">
+                    <span>Karadeniz · Detay Kartı</span>
+                    <span>2 Gece 3 Gün</span>
+                </div>
+                <div class="backstage-details">
+                    <div class="detail-item"><h6>Rota</h6><p>Pokut &amp; Fırtına Deresi</p></div>
+                    <div class="detail-item"><h6>Konaklama</h6><p>Dağ Evi / Ahşap Konak</p></div>
+                    <div class="detail-item"><h6>Deneyim</h6><p>Bulut Denizi &amp; Tulum</p></div>
+                </div>
+                <div class="backstage-footer">
+                    <span style="color:#666;">✓ Ulaşım &nbsp; ✓ Ahşap Konak &nbsp; ✓ Kahvaltı</span>
+                    <button class="btn-inspect-route" onclick="openRouteModal('Karadeniz Bulut Denizi', '06 - 08 Eylül', '₺4.100', 'Ahşap Dağ Evi', 'Pokut ve Sal yaylaları bulut denizi manzarası, Fırtına deresi kenarında tulum eşliğinde çay sohbeti.', 'Ulaşım, 2 Gece Dağ Evi, Yerel Yayla Kahvaltıları, 4x4 Transferler')">Detaylar →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 07: AKYAKA & AZMAK -->
+        <div class="trip-pair" data-cat="aegean">
+            <div class="primary-poster" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80');" onclick="openRouteModal('Akyaka & Azmak Nehri', '13 - 14 Eylül', '₺2.850', 'Ula Mimarisi Butik Otel', 'Buz gibi Azmak nehrinde kano ve yüzme molası, Akçapınar okaliptüs yolu, akşam kamp ateşi.', 'Ulaşım, 1 Gece Butik Otel, Kano Aktivitesi, Sabah Kahvaltısı')">
+                <div class="poster-top">
+                    <span class="poster-tag">gezenbiri · ege</span>
+                    <span class="poster-date">13 EYL</span>
+                </div>
+                <div class="poster-center">
+                    <h2 class="poster-dest-title">AKYAKA</h2>
+                    <div class="poster-copy">“azmak nehri &amp; rüzgarın peşinde.”</div>
+                </div>
+                <div class="poster-bottom">
+                    <span class="poster-price">₺2.850</span>
+                    <div class="poster-wordmark">gezenbiri<span class="brand-system-dot"></span></div>
+                </div>
+            </div>
+            <div class="backstage-card">
+                <div class="backstage-header">
+                    <span>Akyaka · Detay Kartı</span>
+                    <span>1 Gece 2 Gün</span>
+                </div>
+                <div class="backstage-details">
+                    <div class="detail-item"><h6>Aktivite</h6><p>Kano &amp; Azmak Yüzüşü</p></div>
+                    <div class="detail-item"><h6>Konaklama</h6><p>Ula Mimari Otel</p></div>
+                    <div class="detail-item"><h6>Akşam</h6><p>Orman Kenarı Ateş</p></div>
+                </div>
+                <div class="backstage-footer">
+                    <span style="color:#666;">✓ Ulaşım &nbsp; ✓ Kano &nbsp; ✓ Kahvaltı</span>
+                    <button class="btn-inspect-route" onclick="openRouteModal('Akyaka & Azmak Nehri', '13 - 14 Eylül', '₺2.850', 'Ula Mimarisi Butik Otel', 'Buz gibi Azmak nehrinde kano ve yüzme molası, Akçapınar okaliptüs yolu, akşam kamp ateşi.', 'Ulaşım, 1 Gece Butik Otel, Kano Aktivitesi, Sabah Kahvaltısı')">Detaylar →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 08: GİZLİ SÜRPRİZ ROTA -->
+        <div class="trip-pair" data-cat="secret weekend">
+            <div class="primary-poster" style="background: linear-gradient(135deg, #202020 0%, #111 100%);" onclick="openRouteModal('Gizli Sürpriz Rota', '11 - 12 Ekim', '₺2.900', 'Sürpriz Butik Konak', 'Nereye gittiğimizi minibüse binince söyleyeceğiz. Tek kural: soru sormak yok, bol sohbet var.', 'Ulaşım, 1 Gece Konaklama, Tüm Yemekler & Sürpriz Etkinlikler')">
+                <div class="poster-top">
+                    <span class="poster-tag" style="background:var(--coral); color:#FFF;">gezenbiri · sürpriz</span>
+                    <span class="poster-date">11 EKİ</span>
+                </div>
+                <div class="poster-center">
+                    <h2 class="poster-dest-title" style="color:var(--coral);">GİZLİ ROTA</h2>
+                    <div class="poster-copy">“nereye gittiğimizi minibüse binince söyleyeceğiz.”</div>
+                </div>
+                <div class="poster-bottom">
+                    <span class="poster-price">₺2.900</span>
+                    <div class="poster-wordmark">gezenbiri<span class="brand-system-dot"></span></div>
+                </div>
+            </div>
+            <div class="backstage-card">
+                <div class="backstage-header">
+                    <span>Gizli Rota · Detay Kartı</span>
+                    <span>Hafta Sonu Kaçışı</span>
+                </div>
+                <div class="backstage-details">
+                    <div class="detail-item"><h6>Kural</h6><p>Soru Sormak Yok</p></div>
+                    <div class="detail-item"><h6>Çanta</h6><p>Hafif &amp; Rahat</p></div>
+                    <div class="detail-item"><h6>Hedef</h6><p>Garantili Hikaye</p></div>
+                </div>
+                <div class="backstage-footer">
+                    <span style="color:#666;">✓ Ulaşım &nbsp; ✓ Konaklama &nbsp; ✓ Sürprizler</span>
+                    <button class="btn-inspect-route" onclick="openRouteModal('Gizli Sürpriz Rota', '11 - 12 Ekim', '₺2.900', 'Sürpriz Butik Konak', 'Nereye gittiğimizi minibüse binince söyleyeceğiz. Tek kural: soru sormak yok, bol sohbet var.', 'Ulaşım, 1 Gece Konaklama, Tüm Yemekler & Sürpriz Etkinlikler')">Detaylar →</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL DIALOG -->
+    <div class="modal-backdrop" id="tripModal" onclick="closeRouteModal(event)">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeRouteModalDirect()">✕</button>
+            <div class="modal-header-tag">gezenbiri · Rota Detayı</div>
+            <h3 class="modal-title" id="modalTitle">Rota Başlığı</h3>
+            <div class="modal-meta-bar">
+                <span id="modalDate">📅 Tarih</span>
+                <span id="modalStay">🏨 Konaklama</span>
+                <span id="modalPrice" style="color:var(--coral); font-weight:900;">₺0</span>
+            </div>
+            
+            <div class="modal-section-title">Rota &amp; Deneyim Özeti</div>
+            <p id="modalDesc" style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:16px;">Özet</p>
+
+            <div class="modal-section-title">Dahil Olanlar</div>
+            <div class="modal-included-box" id="modalIncluded">
+                ✓ Ulaşım &nbsp; ✓ Butik Otel Konaklaması &nbsp; ✓ Sabah Kahvaltıları &nbsp; ✓ Rehberlik
+            </div>
+
+            <div class="modal-actions">
+                <a href="#" id="modalWaBtn" target="_blank" class="btn-modal-wa">
+                    <span>💬 WhatsApp ile Yerini Ayır</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Category Filter Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const tripPairs = document.querySelectorAll('.trip-pair');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                tripPairs.forEach(pair => {
+                    const cats = pair.getAttribute('data-cat') || '';
+                    if (filter === 'all' || cats.includes(filter)) {
+                        pair.classList.remove('hidden');
+                    } else {
+                        pair.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Modal Logic
+        function openRouteModal(title, date, price, stay, desc, included) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDate').textContent = '📅 ' + date;
+            document.getElementById('modalStay').textContent = '🏨 ' + stay;
+            document.getElementById('modalPrice').textContent = price;
+            document.getElementById('modalDesc').textContent = desc;
+            document.getElementById('modalIncluded').textContent = included;
+
+            const waMsg = encodeURIComponent(`Merhaba gezenbiri! "${title}" (${date}) gezisi için bilgi almak ve yer ayırtmak istiyorum.`);
+            document.getElementById('modalWaBtn').href = `https://wa.me/905000000000?text=${waMsg}`;
+
+            document.getElementById('tripModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRouteModal(e) {
+            if (e.target.id === 'tripModal') {
+                closeRouteModalDirect();
+            }
+        }
+
+        function closeRouteModalDirect() {
+            document.getElementById('tripModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+
+</body>
+</html>

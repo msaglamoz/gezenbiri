@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gezenbiri — Bir yere gidelim.</title>
+    <meta name="description" content="Kültürel workshoplar, yerel deneyimler, yeni insanlar ve arada bir küçük kaçamaklar. Gezenbiri topluluğuna katıl.">
+    <meta name="keywords" content="gezenbiri, seyahat, workshop, seramik atölyesi, şarap tadımı, alaçatı, çeşme, urla, gezi">
+    <meta name="theme-color" content="#F7F5F0">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="gezenbiri — Bir yere gidelim.">
+    <meta property="og:description" content="Kültürel workshoplar, yerel deneyimler, yeni insanlar ve arada bir küçük kaçamaklar.">
+    <meta property="og:image" content="assets/v2/hero_pottery.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E1E1E'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F7F5F0' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3.5' fill='%23E25C43'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Instrument Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-canvas: #F6F3ED;
+            --bg-canvas-subtle: #EDE8DF;
+            --bg-white: #FFFFFF;
+            --charcoal: #202020;
+            --text-lead: #333333;
+            --text-muted: #6B6B6B;
+            --text-light: #8E8E8E;
+            --coral: #FF4D3D;
+            --coral-hover: #E03E2F;
+            --coral-soft: rgba(255, 77, 61, 0.12);
+            --sage: #A8B89A;
+            --sage-soft: rgba(168, 184, 154, 0.18);
+            --teal: #A9D5E8;
+            --teal-soft: rgba(169, 213, 232, 0.2);
+            --sand-card: #D8CCBC;
+            --border-card: #E2DDD5;
+            --border-subtle: rgba(32, 32, 32, 0.08);
+            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.03);
+            --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.08);
+            --radius-card: 16px;
+            --radius-btn: 8px;
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-canvas);
+            color: var(--charcoal);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 14.5px;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* ================= 1. HEADER & NAVBAR ================= */
+        .site-header {
+            background-color: var(--bg-canvas);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid transparent;
+            transition: all 0.25s ease;
+        }
+
+        .site-header.scrolled {
+            background-color: rgba(248, 246, 242, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom-color: var(--border-card);
+            padding: 14px 0;
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.03);
+        }
+
+        .nav-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--charcoal);
+            display: inline-flex;
+            align-items: baseline;
+            cursor: pointer;
+        }
+
+        .brand-system-dot {
+            display: inline-block;
+            width: 0.16em;
+            height: 0.165em;
+            background-color: var(--coral);
+            border-radius: 50%;
+            margin-left: 2.5px;
+            transform: scaleY(1.03);
+            flex-shrink: 0;
+            vertical-align: baseline;
+        }
+
+        .live-badge-dot {
+            display: inline-block;
+            width: 6.5px;
+            height: 6.7px;
+            background-color: var(--coral);
+            border-radius: 50%;
+            transform: scaleY(1.03);
+            flex-shrink: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 34px;
+        }
+
+        .nav-item a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--charcoal);
+            position: relative;
+            padding: 6px 0;
+            transition: color 0.2s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--coral);
+        }
+
+        .nav-item.active a {
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .nav-item.active a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2.5px;
+            background-color: var(--coral);
+            border-radius: 2px;
+        }
+
+        .btn-hub-link {
+            font-size: 12px;
+            font-weight: 800;
+            color: #555555;
+            text-decoration: none;
+            padding: 8px 14px;
+            background: var(--bg-white);
+            border: 1px solid var(--border-card);
+            border-radius: 100px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-hub-link:hover {
+            color: var(--charcoal);
+            border-color: #BBB;
+            background: #FAF8F5;
+        }
+
+        .btn-header-cta {
+            background-color: var(--coral);
+            color: #FFFFFF;
+            font-size: 13.5px;
+            font-weight: 700;
+            padding: 10px 22px;
+            border-radius: var(--radius-btn);
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(255, 77, 61, 0.25);
+            display: inline-block;
+        }
+
+        .btn-header-cta:hover {
+            background-color: var(--coral-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(255, 77, 61, 0.35);
+        }
+
+        .btn-mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            color: var(--charcoal);
+        }
+
+        /* Mobile Drawer */
+        .mobile-menu-drawer {
+            display: none;
+            flex-direction: column;
+            background: #FFFFFF;
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border-card);
+            gap: 14px;
+        }
+
+        .mobile-menu-drawer.active {
+            display: flex;
+        }
+
+        .mobile-menu-drawer a {
+            font-size: 15px;
+            font-weight: 600;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border-card);
+        }
+
+        /* ================= 2. HERO SECTION ================= */
+        .hero-section {
+            padding: 34px 0 54px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 1.2fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 58px;
+            font-weight: 800;
+            letter-spacing: -2.2px;
+            line-height: 1.08;
+            color: var(--charcoal);
+            margin-bottom: 20px;
+        }
+
+        .hero-lead {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-lead);
+            line-height: 1.45;
+            margin-bottom: 16px;
+            max-width: 480px;
+        }
+
+        .hero-manifesto-text {
+            font-style: italic;
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 470px;
+        }
+
+        .hero-btn-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 34px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary-solid {
+            background-color: var(--coral);
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 13px 26px;
+            border-radius: var(--radius-btn);
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(255, 77, 61, 0.25);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary-solid:hover {
+            background-color: var(--coral-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(255, 77, 61, 0.35);
+        }
+
+        .btn-secondary-outline {
+            background-color: transparent;
+            color: var(--coral);
+            border: 1.5px solid rgba(255, 77, 61, 0.6);
+            font-size: 14px;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: var(--radius-btn);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary-outline:hover {
+            background-color: var(--coral-soft);
+            border-color: var(--coral);
+        }
+
+        .hero-community-proof {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .hero-avatar-stack {
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-avatar-img {
+            height: 32px;
+            width: auto;
+            border-radius: 100px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+
+        .hero-proof-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .hero-proof-count {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .hero-proof-loc {
+            font-size: 11.5px;
+            color: var(--text-muted);
+        }
+
+        .hero-image-wrap {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+            background: #E8E3DA;
+        }
+
+        .hero-main-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            border-radius: 18px;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hero-image-wrap:hover .hero-main-img {
+            transform: scale(1.02);
+        }
+
+        /* ================= 3. SECTION: BU ARALAR NELER VAR? ================= */
+        .section-categories {
+            padding: 44px 0 54px 0;
+        }
+
+        .section-title {
+            font-size: 23px;
+            font-weight: 800;
+            letter-spacing: -0.6px;
+            color: var(--charcoal);
+            margin-bottom: 22px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .category-card {
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-card);
+            padding: 24px 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            min-height: 240px;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(255, 77, 61, 0.4);
+        }
+
+        .category-card-top {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .category-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cat-icon-wrap {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .cat-card-title {
+            font-size: 16.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+            letter-spacing: -0.3px;
+        }
+
+        .cat-item-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin-top: 6px;
+            padding-left: 2px;
+        }
+
+        .cat-item-list li {
+            font-size: 12.5px;
+            color: #4A4A4A;
+            line-height: 1.4;
+            font-weight: 500;
+            transition: color 0.15s ease;
+        }
+
+        .category-card:hover .cat-item-list li {
+            color: var(--charcoal);
+        }
+
+        .cat-card-bottom {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 18px;
+        }
+
+        .circle-arrow-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--border-card);
+            background-color: var(--bg-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555555;
+            font-size: 14px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .category-card:hover .circle-arrow-btn {
+            background-color: var(--coral);
+            border-color: var(--coral);
+            color: #FFFFFF;
+            transform: translateX(3px);
+        }
+
+        /* ================= 4. SECTION: ÖNE ÇIKAN WORKSHOPLAR ================= */
+        .section-workshops {
+            padding: 44px 0 54px 0;
+        }
+
+        .section-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .link-see-all {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--coral);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        .link-see-all:hover {
+            transform: translateX(3px);
+            color: var(--coral-hover);
+        }
+
+        .workshops-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .workshop-card {
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            box-shadow: var(--shadow-subtle);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+        }
+
+        .workshop-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(255, 77, 61, 0.4);
+        }
+
+        .ws-thumb-wrap {
+            position: relative;
+            width: 100%;
+            height: 124px;
+            background-color: #ECE7DF;
+            overflow: hidden;
+        }
+
+        .ws-thumb-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .workshop-card:hover .ws-thumb-img {
+            transform: scale(1.05);
+        }
+
+        .ws-body {
+            padding: 16px 16px 14px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+            gap: 8px;
+        }
+
+        .ws-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .ws-title-meta {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--charcoal);
+            line-height: 1.35;
+        }
+
+        .ws-price {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--coral);
+            white-space: nowrap;
+        }
+
+        .ws-desc {
+            font-style: italic;
+            font-size: 11.5px;
+            color: var(--text-muted);
+            line-height: 1.45;
+            margin: 4px 0 10px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .ws-footer-link {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--coral);
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            transition: transform 0.2s ease;
+        }
+
+        .workshop-card:hover .ws-footer-link {
+            transform: translateX(3px);
+        }
+
+        /* ================= 5. SECTION: ARADA BİR KÜÇÜK KAÇAMAKLAR ================= */
+        .section-escapes {
+            padding: 44px 0 54px 0;
+        }
+
+        .section-title-wrap {
+            margin-bottom: 22px;
+        }
+
+        .section-subtitle {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .escapes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .escape-card {
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            display: flex;
+            align-items: stretch;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            height: 104px;
+        }
+
+        .escape-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(255, 77, 61, 0.4);
+        }
+
+        .escape-thumb {
+            width: 140px;
+            height: 100%;
+            flex-shrink: 0;
+            overflow: hidden;
+            background-color: #ECE7DF;
+        }
+
+        .escape-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .escape-card:hover .escape-thumb img {
+            transform: scale(1.06);
+        }
+
+        .escape-info {
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .escape-title {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+            line-height: 1.25;
+        }
+
+        .escape-date {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .escape-bottom-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 6px;
+        }
+
+        .escape-price {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .escape-card:hover .circle-arrow-btn {
+            background-color: var(--coral);
+            border-color: var(--coral);
+            color: #FFFFFF;
+            transform: translateX(2px);
+        }
+
+        /* ================= 6. SECTION: AYNI YERDE BULUŞAN İNSANLAR ================= */
+        .section-community {
+            padding: 44px 0 54px 0;
+        }
+
+        .community-master-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr 1fr 1fr 1.05fr;
+            gap: 16px;
+            align-items: stretch;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .community-master-grid::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+
+        .comm-info-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px 4px 10px 0;
+        }
+
+        .comm-title {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--charcoal);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .comm-points {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comm-points li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12.5px;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+
+        .comm-points-icon {
+            width: 18px;
+            height: 18px;
+            opacity: 0.7;
+            flex-shrink: 0;
+        }
+
+        .comm-manifesto-sub {
+            font-style: italic;
+            font-size: 11.5px;
+            color: var(--text-muted);
+            line-height: 1.45;
+            margin-top: 14px;
+        }
+
+        /* Testimonial Cards */
+        .testimonial-card {
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-card);
+            padding: 18px 16px 14px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(255, 77, 61, 0.4);
+        }
+
+        .test-avatar-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .test-avatar-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid var(--border-card);
+        }
+
+        .test-quote {
+            font-size: 11.5px;
+            color: #444444;
+            line-height: 1.5;
+            margin-bottom: 14px;
+            font-weight: 500;
+        }
+
+        .test-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: auto;
+        }
+
+        .test-author-name {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .test-author-loc {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .btn-heart-like {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #AAA;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            padding: 2px;
+        }
+
+        .btn-heart-like:hover, .btn-heart-like.liked {
+            color: var(--coral);
+            transform: scale(1.15);
+        }
+
+        /* Community Join CTA Card */
+        .comm-join-card {
+            background-color: var(--sand-card);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-card);
+            padding: 22px 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: var(--shadow-subtle);
+            transition: all 0.25s ease;
+            text-decoration: none;
+        }
+
+        .comm-join-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(30, 30, 30, 0.2);
+        }
+
+        .comm-join-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .comm-join-avatars {
+            height: 26px;
+            width: auto;
+            border-radius: 100px;
+            margin-bottom: 6px;
+        }
+
+        .comm-join-count {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 14px;
+        }
+
+        .comm-join-action {
+            font-size: 12.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        .comm-join-card:hover .comm-join-action {
+            transform: translateX(3px);
+            color: var(--coral);
+        }
+
+        /* ================= 7. SECTION: MANIFESTO BANNER ================= */
+        .section-manifesto-banner {
+            margin: 44px 0 54px 0;
+            background-color: var(--bg-canvas-subtle);
+            border-top: 1px solid var(--border-card);
+            border-bottom: 1px solid var(--border-card);
+            padding: 34px 0;
+        }
+
+        .manifesto-banner-inner {
+            display: grid;
+            grid-template-columns: 1.15fr 1.8fr 0.75fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .manifesto-photo-wrap {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .manifesto-photo-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .manifesto-center-text {
+            position: relative;
+            padding-left: 36px;
+        }
+
+        .manifesto-quote-mark {
+            position: absolute;
+            left: 0;
+            top: -12px;
+            font-family: var(--font-serif);
+            font-size: 64px;
+            color: var(--sage);
+            line-height: 1;
+            opacity: 0.85;
+        }
+
+        .manifesto-body-lines {
+            font-size: 15.5px;
+            line-height: 1.65;
+            color: var(--charcoal);
+            font-weight: 500;
+        }
+
+        .manifesto-body-lines span.highlight {
+            font-weight: 700;
+        }
+
+        .manifesto-art-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.85;
+        }
+
+        .manifesto-art-img {
+            max-width: 110px;
+            height: auto;
+        }
+
+        /* ================= 8. SECTION: FOOTER ================= */
+        .site-footer {
+            background-color: var(--bg-canvas);
+            padding: 56px 0 34px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr 1fr 1.4fr;
+            gap: 36px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand-col {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--charcoal);
+        }
+
+        .footer-slogan {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .footer-instagram-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .ig-icon-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            flex-shrink: 0;
+        }
+
+        .ig-text-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .ig-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .ig-handle {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--charcoal);
+            transition: color 0.2s ease;
+        }
+
+        .ig-handle:hover {
+            color: var(--coral);
+        }
+
+        .footer-col-title {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+            letter-spacing: -0.2px;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links-list a {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--coral);
+        }
+
+        .newsletter-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.45;
+            margin-bottom: 14px;
+        }
+
+        .newsletter-form-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .newsletter-input {
+            flex-grow: 1;
+            background-color: var(--bg-white);
+            border: 1px solid var(--border-card);
+            border-radius: var(--radius-btn);
+            padding: 10px 12px;
+            font-size: 12.5px;
+            font-family: var(--font-sans);
+            color: var(--charcoal);
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .newsletter-input:focus {
+            border-color: var(--coral);
+        }
+
+        .newsletter-btn {
+            background-color: var(--coral);
+            color: #FFFFFF;
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 10px 16px;
+            border-radius: var(--radius-btn);
+            cursor: pointer;
+            transition: background 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .newsletter-btn:hover {
+            background-color: var(--coral-hover);
+        }
+
+        .footer-bottom-bar {
+            border-top: 1px solid var(--border-card);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11.5px;
+            color: var(--text-light);
+            font-weight: 500;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-legal-links a:hover {
+            color: var(--charcoal);
+        }
+
+        /* ================= 9. INTERACTIVE MODAL & TOAST ================= */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(20, 20, 20, 0.65);
+            backdrop-filter: blur(6px);
+            z-index: 99999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background-color: #FFFFFF;
+            border-radius: 20px;
+            max-width: 540px;
+            width: 100%;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+            animation: modalFadeUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalFadeUp {
+            from { transform: translateY(20px) scale(0.96); opacity: 0; }
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-canvas);
+            border: 1px solid var(--border-card);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            color: var(--charcoal);
+            transition: all 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            background: var(--coral);
+            color: #FFFFFF;
+        }
+
+        .modal-tag {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--coral);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .modal-meta-row {
+            display: flex;
+            gap: 16px;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border-card);
+        }
+
+        .modal-desc {
+            font-size: 13.5px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .modal-booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .modal-input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-card);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .modal-input:focus {
+            border-color: var(--coral);
+        }
+
+        .modal-submit-btn {
+            background-color: var(--coral);
+            color: #FFFFFF;
+            border: none;
+            padding: 13px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .modal-submit-btn:hover {
+            background-color: var(--coral-hover);
+        }
+
+        /* Toast notification */
+        .toast-notification {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background-color: var(--charcoal);
+            color: #FFFFFF;
+            padding: 14px 22px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 100000;
+            display: none;
+            animation: toastPop 0.3s ease;
+        }
+
+        .toast-notification.active {
+            display: block;
+        }
+
+        @keyframes toastPop {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* ================= 10. RESPONSIVE BREAKPOINTS ================= */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .hero-title {
+                font-size: 46px;
+            }
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .workshops-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .escapes-grid {
+                grid-template-columns: 1fr;
+            }
+            .community-master-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .comm-info-col {
+                grid-column: span 2;
+            }
+            .manifesto-banner-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .manifesto-photo-wrap {
+                max-width: 480px;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu, .btn-header-cta {
+                display: none;
+            }
+            .btn-mobile-toggle {
+                display: block;
+            }
+            .hero-title {
+                font-size: 38px;
+                letter-spacing: -1.5px;
+            }
+            .categories-grid, .workshops-grid {
+                grid-template-columns: 1fr;
+            }
+            .community-master-grid {
+                grid-template-columns: 1fr;
+            }
+            .comm-info-col {
+                grid-column: span 1;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .footer-bottom-bar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER & NAVBAR -->
+    <header class="site-header" id="navbar">
+        <div class="container">
+            <div class="nav-wrap">
+                <a href="gezenbiri_website.html" class="brand-logo">gezenbiri<span class="brand-system-dot"></span></a>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item active"><a href="gezenbiri_website.html">Ana Sayfa</a></li>
+                    <li class="nav-item"><a href="#workshops">Workshoplar</a></li>
+                    <li class="nav-item"><a href="#categories">Deneyimler</a></li>
+                    <li class="nav-item"><a href="#escapes">Geziler</a></li>
+                    <li class="nav-item"><a href="#community">Topluluk</a></li>
+                    <li class="nav-item"><a href="#manifesto">Hakkımızda</a></li>
+                </ul>
+
+                <div class="header-actions">
+                    <a href="index.html" class="btn-hub-link">⚡ Brand Hub</a>
+                    <a href="#workshops" class="btn-header-cta">Etkinlikleri Keşfet</a>
+                    <button class="btn-mobile-toggle" id="mobileToggle" aria-label="Menüyü Aç">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div class="mobile-menu-drawer" id="mobileDrawer">
+            <a href="index.html" style="color: var(--charcoal); font-weight: 800;">⚡ Brand Hub</a>
+            <a href="gezenbiri_website_v2.html">Ana Sayfa</a>
+            <a href="#workshops">Workshoplar</a>
+            <a href="#categories">Deneyimler</a>
+            <a href="#escapes">Geziler</a>
+            <a href="#community">Topluluk</a>
+            <a href="#manifesto">Hakkımızda</a>
+            <a href="#workshops" style="color: var(--coral); font-weight: 800;">Etkinlikleri Keşfet →</a>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                
+                <!-- Left Column -->
+                <div class="hero-content">
+                    <h1 class="hero-title">Bir yere gidelim.</h1>
+                    
+                    <p class="hero-lead">
+                        Kültürel workshoplar, yerel deneyimler, yeni insanlar ve arada bir küçük kaçamaklar.
+                    </p>
+                    
+                    <p class="hero-manifesto-text">
+                        Gezenbiri; birlikte bir şeyler öğrenmek, üretmek, tanışmak ve bazen de bir yerlere gitmek isteyen insanlar için.
+                    </p>
+
+                    <div class="hero-btn-row">
+                        <a href="#workshops" class="btn-primary-solid">Workshopları Gör</a>
+                        <a href="#escapes" class="btn-secondary-outline">Yaklaşan Etkinlikler</a>
+                    </div>
+
+                    <div class="hero-community-proof">
+                        <div class="hero-avatar-stack">
+                            <img src="assets/v2/hero_avatars.jpg" alt="Üyeler" class="hero-avatar-img">
+                        </div>
+                        <div class="hero-proof-info">
+                            <span class="hero-proof-count">3.200+ üye</span>
+                            <span class="hero-proof-loc">Alaçatı, Çeşme, Urla ve çevresi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="hero-media">
+                    <div class="hero-image-wrap">
+                        <img src="assets/v2/hero_pottery.jpg" alt="Gezenbiri Seramik Workshopu" class="hero-main-img">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. BU ARALAR NELER VAR? (KATEGORİ KARTLARI) -->
+    <section class="section-categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">Bu aralar neler var?</h2>
+
+            <div class="categories-grid">
+                
+                <!-- 01: Workshoplar -->
+                <div class="category-card" onclick="openDetailsModal('Workshoplar', 'Seramik, Doğal Şarap Tadımı, Fotoğraf Yürüyüşü ve Ege Mutfağı atölyeleriyle yeni beceriler kazanıp samimi ortamlarda tanışıyoruz.')">
+                    <div class="category-card-top">
+                        <div class="category-card-header">
+                            <div class="cat-icon-wrap">
+                                <!-- Ceramic Vase Icon -->
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7D8F72" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 3h8l1 4H7l1-4z"/>
+                                    <path d="M7 7c-2.5 3-2.5 7 0 10 1.5 1.8 3.5 3 5 3s3.5-1.2 5-3c2.5-3 2.5-7 0-10"/>
+                                    <line x1="9" y1="13" x2="15" y2="13"/>
+                                </svg>
+                            </div>
+                            <h3 class="cat-card-title">Workshoplar</h3>
+                        </div>
+                        <ul class="cat-item-list">
+                            <li>Seramik</li>
+                            <li>Doğal şarap tadımı</li>
+                            <li>Fotoğraf yürüyüşü</li>
+                            <li>Yaratıcı yazarlık</li>
+                            <li>Ege mutfağı atölyesi</li>
+                        </ul>
+                    </div>
+                    <div class="cat-card-bottom">
+                        <div class="circle-arrow-btn">→</div>
+                    </div>
+                </div>
+
+                <!-- 02: Yerel Deneyimler -->
+                <div class="category-card" onclick="openDetailsModal('Yerel Deneyimler', 'Urla bağ rotaları, yerel üretici pazarları, sakin koylarda gün batımı sohbetleri ve özel kahve tadımları.')">
+                    <div class="category-card-top">
+                        <div class="category-card-header">
+                            <div class="cat-icon-wrap">
+                                <!-- Botanical Sprout Icon -->
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5A99A8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22V10"/>
+                                    <path d="M12 10c0-4.5 3.5-8 8-8 0 4.5-3.5 8-8 8z"/>
+                                    <path d="M12 14c0-3.5-2.5-6-6-6 0 3.5 2.5 6 6 6z"/>
+                                </svg>
+                            </div>
+                            <h3 class="cat-card-title">Yerel Deneyimler</h3>
+                        </div>
+                        <ul class="cat-item-list">
+                            <li>Bağ rotası</li>
+                            <li>Pazar gezisi</li>
+                            <li>Gün batımı buluşması</li>
+                            <li>Kahve rotası</li>
+                        </ul>
+                    </div>
+                    <div class="cat-card-bottom">
+                        <div class="circle-arrow-btn">→</div>
+                    </div>
+                </div>
+
+                <!-- 03: Topluluk Etkinlikleri -->
+                <div class="category-card" onclick="openDetailsModal('Topluluk Etkinlikleri', 'Yeni insanlarla tanışmak, ortak uzun masalarda yemek yemek ve samimi akşam sohbetlerine katılmak için düzenli buluşmalar.')">
+                    <div class="category-card-top">
+                        <div class="category-card-header">
+                            <div class="cat-icon-wrap">
+                                <!-- 2 People Icon -->
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF4D3D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                </svg>
+                            </div>
+                            <h3 class="cat-card-title">Topluluk Etkinlikleri</h3>
+                        </div>
+                        <ul class="cat-item-list">
+                            <li>ortak masa akşamı</li>
+                            <li>yeni insanlarla tanışma buluşması</li>
+                            <li>küçük grup akşamları</li>
+                        </ul>
+                    </div>
+                    <div class="cat-card-bottom">
+                        <div class="circle-arrow-btn">→</div>
+                    </div>
+                </div>
+
+                <!-- 04: Geziler -->
+                <div class="category-card" onclick="openDetailsModal('Geziler & Kaçamaklar', 'Hafta sonu spontane Alaçatı, Çeşme ve Ilıca rotaları. Plan yapmadan, küçük gruplarla keşif.')">
+                    <div class="category-card-top">
+                        <div class="category-card-header">
+                            <div class="cat-icon-wrap">
+                                <!-- Luggage Icon -->
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#777777" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="6" width="18" height="15" rx="3"/>
+                                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                    <line x1="10" y1="11" x2="10" y2="16"/>
+                                    <line x1="14" y1="11" x2="14" y2="16"/>
+                                </svg>
+                            </div>
+                            <h3 class="cat-card-title">Geziler</h3>
+                        </div>
+                        <ul class="cat-item-list">
+                            <li>Alaçatı hafta sonu</li>
+                            <li>Çeşme günübirlik</li>
+                            <li>Ilıca kaçamağı</li>
+                        </ul>
+                    </div>
+                    <div class="cat-card-bottom">
+                        <div class="circle-arrow-btn">→</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ÖNE ÇIKAN WORKSHOPLAR -->
+    <section class="section-workshops" id="workshops">
+        <div class="container">
+            <div class="section-header-flex">
+                <h2 class="section-title" style="margin-bottom: 0;">Öne çıkan workshoplar</h2>
+                <a href="#workshops" class="link-see-all">Tüm workshopları gör →</a>
+            </div>
+
+            <div class="workshops-grid">
+                
+                <!-- Workshop 1: Seramik -->
+                <div class="workshop-card" onclick="openBookingModal('Seramik Atölyesi', 'Alaçatı — 24 Ağu', '850 TL', 'Toprağa dokun, kendi objeni üret. Başlangıç dostu, tüm malzemeler dahil.')">
+                    <div class="ws-thumb-wrap">
+                        <img src="assets/v2/workshop_seramik.jpg" alt="Seramik Atölyesi" class="ws-thumb-img">
+                    </div>
+                    <div class="ws-body">
+                        <div>
+                            <div class="ws-header-row">
+                                <span class="ws-title-meta">Seramik Atölyesi — Alaçatı — 24 Ağu</span>
+                                <span class="ws-price">850 TL</span>
+                            </div>
+                            <p class="ws-desc">Toprağa dokun, kendi objeni üret. Başlangıç dostu, tüm malzemeler dahil.</p>
+                        </div>
+                        <span class="ws-footer-link">İncele →</span>
+                    </div>
+                </div>
+
+                <!-- Workshop 2: Şarap Tadımı -->
+                <div class="workshop-card" onclick="openBookingModal('Doğal Şarap Tadımı', 'Urla — 31 Ağu', '950 TL', 'Yerel üreticilerden doğal şaraplar, sohbet ve küçük tabaklarla tadım.')">
+                    <div class="ws-thumb-wrap">
+                        <img src="assets/v2/workshop_sarap.jpg" alt="Doğal Şarap Tadımı" class="ws-thumb-img">
+                    </div>
+                    <div class="ws-body">
+                        <div>
+                            <div class="ws-header-row">
+                                <span class="ws-title-meta">Doğal Şarap Tadımı — Urla — 31 Ağu</span>
+                                <span class="ws-price">950 TL</span>
+                            </div>
+                            <p class="ws-desc">Yerel üreticilerden doğal şaraplar, sohbet ve küçük tabaklarla tadım.</p>
+                        </div>
+                        <span class="ws-footer-link">İncele →</span>
+                    </div>
+                </div>
+
+                <!-- Workshop 3: Fotoğraf Yürüyüşü -->
+                <div class="workshop-card" onclick="openBookingModal('Fotoğraf Yürüyüşü', 'Çeşme — 7 Eyl', '750 TL', 'Işık, kompozisyon ve hikâye. Birlikte yürüyor, birlikte çekiyoruz.')">
+                    <div class="ws-thumb-wrap">
+                        <img src="assets/v2/workshop_fotograf.jpg" alt="Fotoğraf Yürüyüşü" class="ws-thumb-img">
+                    </div>
+                    <div class="ws-body">
+                        <div>
+                            <div class="ws-header-row">
+                                <span class="ws-title-meta">Fotoğraf Yürüyüşü — Çeşme — 7 Eyl</span>
+                                <span class="ws-price">750 TL</span>
+                            </div>
+                            <p class="ws-desc">Işık, kompozisyon ve hikâye. Birlikte yürüyor, birlikte çekiyoruz.</p>
+                        </div>
+                        <span class="ws-footer-link">İncele →</span>
+                    </div>
+                </div>
+
+                <!-- Workshop 4: Ege Sofrası -->
+                <div class="workshop-card" onclick="openBookingModal('Ege Sofrası Workshopu', 'Ilıca — 14 Eyl', '900 TL', 'Mevsimlik Ege lezzetleri, tarifler ve paylaşım dolu bir masa.')">
+                    <div class="ws-thumb-wrap">
+                        <img src="assets/v2/workshop_ege.jpg" alt="Ege Sofrası Workshopu" class="ws-thumb-img">
+                    </div>
+                    <div class="ws-body">
+                        <div>
+                            <div class="ws-header-row">
+                                <span class="ws-title-meta">Ege Sofrası Workshopu — Ilıca — 14 Eyl</span>
+                                <span class="ws-price">900 TL</span>
+                            </div>
+                            <p class="ws-desc">Mevsimlik Ege lezzetleri, tarifler ve paylaşım dolu bir masa.</p>
+                        </div>
+                        <span class="ws-footer-link">İncele →</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ARADA BİR KÜÇÜK KAÇAMAKLAR -->
+    <section class="section-escapes" id="escapes">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2 class="section-title" style="margin-bottom: 2px;">Arada bir küçük kaçamaklar</h2>
+                <p class="section-subtitle">Bazen de biraz yola çıkıyoruz.</p>
+            </div>
+
+            <div class="escapes-grid">
+                
+                <!-- Escape 1: Alaçatı -->
+                <div class="escape-card" onclick="openBookingModal('Alaçatı Hafta Sonu', '23–24 Ağu', '1.950 TL', 'Taş sokaklar, butik otel konaklaması, yerel tasarım dükkanları ve akşam yemeği.')">
+                    <div class="escape-thumb">
+                        <img src="assets/v2/escape_alacati.jpg" alt="Alaçatı Hafta Sonu">
+                    </div>
+                    <div class="escape-info">
+                        <div>
+                            <h3 class="escape-title">Alaçatı Hafta Sonu</h3>
+                            <span class="escape-date">23–24 Ağu</span>
+                        </div>
+                        <div class="escape-bottom-row">
+                            <span class="escape-price">1.950 TL</span>
+                            <div class="circle-arrow-btn">→</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Escape 2: Çeşme -->
+                <div class="escape-card" onclick="openBookingModal('Çeşme Gün Batımı Kaçamağı', '6 Eyl', '1.750 TL', 'Sakin koylarda yüzme molası, gün batımında tekne turu ve şarap eşleşmesi.')">
+                    <div class="escape-thumb">
+                        <img src="assets/v2/escape_cesme.jpg" alt="Çeşme Gün Batımı Kaçamağı">
+                    </div>
+                    <div class="escape-info">
+                        <div>
+                            <h3 class="escape-title">Çeşme Gün Batımı Kaçamağı</h3>
+                            <span class="escape-date">6 Eyl</span>
+                        </div>
+                        <div class="escape-bottom-row">
+                            <span class="escape-price">1.750 TL</span>
+                            <div class="circle-arrow-btn">→</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Escape 3: Ilıca -->
+                <div class="escape-card" onclick="openBookingModal('Ilıca Pazar Günü', '14 Eyl', '950 TL', 'Turkuaz sularda kumsal günü, yerel Ege kahvaltısı ve sahil boyu yürüyüş.')">
+                    <div class="escape-thumb">
+                        <img src="assets/v2/escape_ilica.jpg" alt="Ilıca Pazar Günü">
+                    </div>
+                    <div class="escape-info">
+                        <div>
+                            <h3 class="escape-title">Ilıca Pazar Günü</h3>
+                            <span class="escape-date">14 Eyl</span>
+                        </div>
+                        <div class="escape-bottom-row">
+                            <span class="escape-price">950 TL</span>
+                            <div class="circle-arrow-btn">→</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. AYNI YERDE BULUŞAN İNSANLAR (TOPLULUK & YORUMLAR) -->
+    <section class="section-community" id="community">
+        <div class="container">
+            <div class="community-master-grid">
+                
+                <!-- Left Info Block -->
+                <div class="comm-info-col">
+                    <div>
+                        <h2 class="comm-title">Aynı yerde buluşan insanlar</h2>
+                        <ul class="comm-points">
+                            <li>
+                                <svg class="comm-points-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                <span>Yeni insanlarla tanış.</span>
+                            </li>
+                            <li>
+                                <svg class="comm-points-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                                <span>Aynı masada buluş.</span>
+                            </li>
+                            <li>
+                                <svg class="comm-points-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"></circle><path d="M10 22v-6.5l-2-2.5 1.5-3.5L12 11l2.5-1.5 1.5 3.5-2 2.5V22"></path></svg>
+                                <span>Birlikte öğren, birlikte dolaş.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="comm-manifesto-sub">Bazen bir workshop, bazen bir gün batımı yeter.</p>
+                </div>
+
+                <!-- Testimonial 1: Selin A. -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="test-avatar-row">
+                            <img src="assets/v2/avatar_selin.jpg" alt="Selin A." class="test-avatar-img">
+                        </div>
+                        <p class="test-quote">“Seramik atölyesinde tanıştığımız arkadaş grubuyla şimdi her ay farklı bir şey keşfediyoruz.”</p>
+                    </div>
+                    <div class="test-footer">
+                        <div>
+                            <span class="test-author-name">Selin A.</span>
+                            <span class="test-author-loc">Alaçatı</span>
+                        </div>
+                        <button class="btn-heart-like" onclick="toggleHeart(this)" aria-label="Beğen">♡</button>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2: Can B. -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="test-avatar-row">
+                            <img src="assets/v2/avatar_can.jpg" alt="Can B." class="test-avatar-img">
+                        </div>
+                        <p class="test-quote">“Urla’daki şarap tadımı harikaydı. Hem öğrendik hem çok güzel insanlarla tanıştık.”</p>
+                    </div>
+                    <div class="test-footer">
+                        <div>
+                            <span class="test-author-name">Can B.</span>
+                            <span class="test-author-loc">İzmir</span>
+                        </div>
+                        <button class="btn-heart-like" onclick="toggleHeart(this)" aria-label="Beğen">♡</button>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3: İrem T. -->
+                <div class="testimonial-card">
+                    <div>
+                        <div class="test-avatar-row">
+                            <img src="assets/v2/avatar_irem.jpg" alt="İrem T." class="test-avatar-img">
+                        </div>
+                        <p class="test-quote">“Fotoğraf yürüyüşleri sayesinde bölgeyi bambaşka bir gözle görmeye başladım.”</p>
+                    </div>
+                    <div class="test-footer">
+                        <div>
+                            <span class="test-author-name">İrem T.</span>
+                            <span class="test-author-loc">Çeşme</span>
+                        </div>
+                        <button class="btn-heart-like" onclick="toggleHeart(this)" aria-label="Beğen">♡</button>
+                    </div>
+                </div>
+
+                <!-- Community Join CTA Card -->
+                <a href="#community" class="comm-join-card" onclick="openDetailsModal('Topluluk Üyeliği', 'Gezenbiri topluluğuna katılarak WhatsApp ve özel etkinlik gruplarımıza dahil olabilir, öncelikli rezervasyon haklarından yararlanabilirsin.')">
+                    <div>
+                        <h3 class="comm-join-title">Topluluğumuza katıl</h3>
+                        <img src="assets/v2/community_avatars.jpg" alt="Topluluk Üyeleri" class="comm-join-avatars">
+                        <div class="comm-join-count">3.200+ üye</div>
+                    </div>
+                    <div class="comm-join-action">
+                        <span>Topluluğu Keşfet</span>
+                        <span>→</span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. MANIFESTO BANNER -->
+    <section class="section-manifesto-banner" id="manifesto">
+        <div class="container">
+            <div class="manifesto-banner-inner">
+                
+                <!-- Left Photo -->
+                <div class="manifesto-photo-wrap">
+                    <img src="assets/v2/manifesto_dinner.jpg" alt="Masada buluşan insanlar">
+                </div>
+
+                <!-- Center Quote -->
+                <div class="manifesto-center-text">
+                    <div class="manifesto-quote-mark">“</div>
+                    <p class="manifesto-body-lines">
+                        Herkes gezgin değil.<br>
+                        Olmak zorunda da değil.<br>
+                        Bazen insan sadece evden çıkmak, yeni bir şey öğrenmek,<br>
+                        güzel bir masaya oturmak ve birkaç yeni insanla tanışmak ister.<br>
+                        <span class="highlight">Gezenbiri tam da bunun için var.</span>
+                    </p>
+                </div>
+
+                <!-- Right Botanical Art -->
+                <div class="manifesto-art-wrap">
+                    <img src="assets/v2/botanical_art.jpg" alt="Zarif Botanik Çizim" class="manifesto-art-img">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                
+                <!-- Col 1: Brand -->
+                <div class="footer-brand-col">
+                    <span class="footer-logo">gezenbiri<span class="brand-system-dot"></span></span>
+                    <span class="footer-slogan">Bir yere gidelim.</span>
+                    
+                    <a href="https://instagram.com/gezenbiri" target="_blank" rel="noopener noreferrer" class="footer-instagram-box">
+                        <div class="ig-icon-badge">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </div>
+                        <div class="ig-text-meta">
+                            <span class="ig-label">Instagram'da bizi takip et</span>
+                            <span class="ig-handle">@gezenbiri</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Col 2: Keşfet -->
+                <div>
+                    <h4 class="footer-col-title">Keşfet</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#workshops">Workshoplar</a></li>
+                        <li><a href="#categories">Deneyimler</a></li>
+                        <li><a href="#escapes">Geziler</a></li>
+                        <li><a href="#workshops">Yaklaşan Etkinlikler</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Topluluk -->
+                <div>
+                    <h4 class="footer-col-title">Topluluk</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#community">Topluluk Etkinlikleri</a></li>
+                        <li><a href="#community">Üyeler</a></li>
+                        <li><a href="#categories">Ortak Masa Akşamları</a></li>
+                        <li><a href="#manifesto">Blog</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Hakkımızda -->
+                <div>
+                    <h4 class="footer-col-title">Hakkımızda</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#manifesto">Hakkımızda</a></li>
+                        <li><a href="#manifesto">Kariyer</a></li>
+                        <li><a href="mailto:selam@gezenbiri.com.tr">İletişim</a></li>
+                        <li><a href="#faq">SSS</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 5: Bülten -->
+                <div>
+                    <h4 class="footer-col-title">Bültenimize katıl</h4>
+                    <p class="newsletter-desc">Etkinliklerden ve yeni deneyimlerden ilk sen haberdar ol.</p>
+                    <form class="newsletter-form-row" onsubmit="handleNewsletter(event)">
+                        <input type="email" id="nlEmail" class="newsletter-input" placeholder="E-posta adresin" required>
+                        <button type="submit" class="newsletter-btn">Abone Ol</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Bottom Legal Bar -->
+            <div class="footer-bottom-bar">
+                <span>Alaçatı / Çeşme / Urla / Türkiye</span>
+                <span>© 2026 gezenbiri.com.tr · Tüm hakları saklıdır.</span>
+                <div class="footer-legal-links">
+                    <a href="#" onclick="showToast('Kullanım Koşulları'); return false;">Kullanım Koşulları</a>
+                    <a href="#" onclick="showToast('Gizlilik Politikası'); return false;">Gizlilik Politikası</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE DETAIL & BOOKING MODAL -->
+    <div class="modal-overlay" id="bookingModal" onclick="closeModalOnOverlay(event)">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeModal()">×</button>
+            <div class="modal-tag" id="modalTag">WORKSHOP KAYDI</div>
+            <h3 class="modal-title" id="modalTitle">Seramik Atölyesi</h3>
+            <div class="modal-meta-row">
+                <span id="modalMeta">Alaçatı — 24 Ağu</span>
+                <span id="modalPrice" style="color: var(--coral); font-weight: 800;">850 TL</span>
+            </div>
+            <p class="modal-desc" id="modalDesc">Toprağa dokun, kendi objeni üret. Başlangıç dostu, tüm malzemeler dahil.</p>
+            
+            <form class="modal-booking-form" onsubmit="handleBookingSubmit(event)">
+                <input type="text" class="modal-input" placeholder="Adınız Soyadınız" required>
+                <input type="tel" class="modal-input" placeholder="Telefon Numaranız (05XX...)" required>
+                <input type="email" class="modal-input" placeholder="E-posta Adresiniz" required>
+                <button type="submit" class="modal-submit-btn">Yerinizi Ayırın</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast-notification" id="toastBox">İşlem başarıyla gerçekleştirildi.</div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Header scroll styling
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile drawer toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        mobileToggle.addEventListener('click', () => {
+            mobileDrawer.classList.toggle('active');
+        });
+
+        // Modal triggers
+        function openBookingModal(title, meta, price, desc) {
+            document.getElementById('modalTag').innerText = "REZERVASYON & KAYIT";
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMeta').innerText = meta;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('bookingModal').classList.add('active');
+        }
+
+        function openDetailsModal(title, desc) {
+            document.getElementById('modalTag').innerText = "DENEYİM DETAYI";
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMeta').innerText = "Gezenbiri Topluluk Deneyimleri";
+            document.getElementById('modalPrice').innerText = "Ön Kayıt";
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('bookingModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+        }
+
+        function closeModalOnOverlay(e) {
+            if (e.target.id === 'bookingModal') {
+                closeModal();
+            }
+        }
+
+        // Heart like toggle
+        function toggleHeart(btn) {
+            btn.classList.toggle('liked');
+            if (btn.classList.contains('liked')) {
+                btn.innerHTML = '❤️';
+                showToast("Deneyim yorumunu beğendiniz!");
+            } else {
+                btn.innerHTML = '♡';
+            }
+        }
+
+        // Newsletter form
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const email = document.getElementById('nlEmail').value;
+            showToast("Bültenimize kaydoldunuz (" + email + "). Aramıza hoş geldiniz!");
+            document.getElementById('nlEmail').value = '';
+        }
+
+        // Booking form
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            closeModal();
+            showToast("Rezervasyon talebiniz alındı! En kısa sürede WhatsApp ile iletişime geçeceğiz.");
+        }
+
+        // Toast feedback
+        function showToast(msg) {
+            const toast = document.getElementById('toastBox');
+            toast.innerText = msg;
+            toast.classList.add('active');
+            setTimeout(() => {
+                toast.classList.remove('active');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gezenbiri — Marka & Tasarım Ekosistemi</title>
+    <meta name="description" content="gezenbiri; spontane rotalar, yerel deneyimler, yaratıcı workshoplar ve çağdaş Türk yaşam tarzı marka ekosistemi.">
+    <meta name="keywords" content="gezenbiri, seyahat, rota, alaçatı, çeşme, urla, kapadokya, workshop, gezi topluluğu">
+    <meta name="theme-color" content="#F6F3ED">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="gezenbiri — Marka & Tasarım Ekosistemi">
+    <meta property="og:description" content="“Bir yere gidelim.” Kapadokya gün doğumundan Alaçatı taş sokaklarına marka ekosistemi ve seyahat portalı.">
+    <meta property="og:image" content="assets/v2/hero_pottery.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3' fill='%23E25C43'/%3E%3C/svg%3E">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cream: #F6F3ED;
+            --charcoal: #202020;
+            --coral: #FF4D3D;
+            --coral-soft: rgba(255, 77, 61, 0.12);
+            --sage: #A8B89A;
+            --sky: #A9D5E8;
+            --sand: #F6F3ED;
+            --border: rgba(32, 32, 32, 0.08);
+            --white: #FFFFFF;
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+
+        .brand-system-dot {
+            display: inline-block;
+            width: 0.16em;
+            height: 0.165em;
+            background-color: var(--coral);
+            border-radius: 50%;
+            margin-left: 2.5px;
+            transform: scaleY(1.03);
+            flex-shrink: 0;
+            vertical-align: baseline;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--sand);
+            color: var(--charcoal);
+            padding: 50px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* Top Hero */
+        .hero {
+            background-color: var(--cream);
+            border-radius: 32px;
+            padding: 60px 56px;
+            border: 1px solid var(--border);
+            box-shadow: 0 30px 80px rgba(32,32,32,0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+            gap: 30px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 77, 61, 0.12) 0%, rgba(246, 243, 237, 0) 70%);
+            top: -100px; right: -100px;
+            pointer-events: none;
+        }
+
+        .hero-left {
+            max-width: 680px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--coral);
+            background: var(--white);
+            padding: 6px 18px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .hero-logo {
+            font-size: 88px;
+            font-weight: 900;
+            letter-spacing: -4px;
+            line-height: 0.9;
+            margin-bottom: 18px;
+            color: var(--charcoal);
+        }
+
+        .hero-slogan {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .hero-sub {
+            font-size: 16px;
+            color: rgba(32,32,32,0.72);
+            line-height: 1.6;
+        }
+
+        .hero-right {
+            text-align: right;
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0;
+        }
+
+        .manifesto-pill {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 26px;
+            color: rgba(32,32,32,0.85);
+            line-height: 1.3;
+        }
+
+        /* Tools Master Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .tool-card {
+            background-color: var(--white);
+            border-radius: 24px;
+            padding: 36px 34px;
+            border: 1px solid var(--border);
+            box-shadow: 0 15px 45px rgba(32,32,32,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            color: var(--charcoal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 60px rgba(255, 77, 61, 0.15);
+            border-color: var(--coral);
+        }
+
+        /* Special Featured Style for Website (Spans 2 columns) */
+        .tool-card.featured-card {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAF8F5 100%);
+            border: 2px solid rgba(255, 77, 61, 0.3);
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .tool-card.featured-card:hover {
+            border-color: var(--coral);
+            box-shadow: 0 25px 60px rgba(255, 77, 61, 0.22);
+        }
+
+        .featured-preview-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            background: var(--cream);
+            padding: 6px 14px;
+            border-radius: 100px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .website-actions-row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-website-primary {
+            background-color: var(--coral);
+            color: var(--white);
+            text-decoration: none;
+            padding: 13px 20px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(255, 77, 61, 0.25);
+        }
+
+        .btn-website-primary:hover {
+            background-color: var(--coral-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 77, 61, 0.35);
+        }
+
+        .btn-website-secondary {
+            background-color: var(--cream);
+            color: var(--charcoal);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 13.5px;
+            font-weight: 700;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+
+        .btn-website-secondary:hover {
+            background-color: var(--white);
+            border-color: var(--charcoal);
+            transform: translateY(-1px);
+        }
+
+        .tool-num {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--coral);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .tool-title {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+
+        .tool-desc {
+            font-size: 14.5px;
+            color: rgba(32,32,32,0.68);
+            line-height: 1.55;
+            margin-bottom: 26px;
+        }
+
+        .tool-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .tool-arrow {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+
+        .tool-card:hover .tool-arrow {
+            transform: translateX(4px);
+            background: var(--coral);
+            color: var(--white);
+        }
+
+        .mini-badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .mini-badge {
+            font-size: 12px;
+            font-weight: 700;
+            color: #555;
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 100px;
+        }
+
+        /* Bottom Info */
+        .footer-note {
+            text-align: center;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: rgba(32,32,32,0.55);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            line-height: 1.6;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 960px) {
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 40px 32px;
+            }
+            .hero-logo {
+                font-size: 64px;
+            }
+            .hero-right {
+                text-align: left;
+                margin-top: 10px;
+            }
+            .tool-card.featured-card {
+                grid-template-columns: 1fr;
+                grid-column: span 1;
+            }
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 24px 14px;
+            }
+            .hero {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+            .hero-logo {
+                font-size: 48px;
+                letter-spacing: -2px;
+            }
+            .hero-slogan {
+                font-size: 24px;
+            }
+            .manifesto-pill {
+                font-size: 20px;
+            }
+            .tool-card {
+                padding: 26px 20px;
+                border-radius: 18px;
+            }
+            .tool-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Brand Header Hero -->
+        <div class="hero">
+            <div class="hero-left">
+                <div class="brand-badge">Brand System Hub · gezenbiri.com.tr</div>
+                <div class="hero-logo">
+                    gezenbiri<span class="brand-system-dot"></span>
+                </div>
+                <div class="hero-slogan">“Bir yere gidelim.”</div>
+                <p class="hero-sub">Kapadokya gün doğumundan Alaçatı taş sokaklarına, Çeşme, Ilıca ve Urla rotalarından Bozcaada gün batımına; spontane ve çağdaş Türk yaşam tarzı marka ekosistemi.</p>
+            </div>
+            <div class="hero-right">
+                <div class="manifesto-pill">
+                    “Arada bir gitmek lazım.<br>Biz de sadece gezenbiriyiz.”
+                </div>
+            </div>
+        </div>
+
+        <!-- Master Ecosystem Tools Grid -->
+        <div class="tools-grid">
+
+            <!-- 00: CANLI WEB SİTESİ (Tek Birleşik Kart - V2 & V1 Seçenekleri) -->
+            <div class="tool-card featured-card">
+                <div>
+                    <div class="featured-preview-tag">✨ Canlı Web Sitesi · Resmi Yayın</div>
+                    <h2 class="tool-title" style="font-size: 32px; margin-bottom: 8px;">gezenbiri Web Sitesi</h2>
+                    <p class="tool-desc" style="margin-bottom: 0;">
+                        Kültürel workshoplar, yerel deneyimler, hafta sonu kaçamakları ve sıcak topluluk anları için tasarlanan canlı web ekosistemi.
+                    </p>
+                </div>
+                <div>
+                    <div class="mini-badge-list" style="margin-bottom: 20px;">
+                        <span class="mini-badge">🏺 Workshoplar</span>
+                        <span class="mini-badge">🍷 Yerel Rotalar</span>
+                        <span class="mini-badge">🌸 Kaçamaklar</span>
+                        <span class="mini-badge">💬 Topluluk</span>
+                    </div>
+                    <div class="website-actions-row">
+                        <a href="gezenbiri_website_v2.html" class="btn-website-primary">
+                            <span>Web Sitesini Aç (V2)</span>
+                            <span style="font-size:16px;">→</span>
+                        </a>
+                        <a href="gezenbiri_website_v1.html" class="btn-website-secondary">
+                            <span>Web Sitesini Aç (V1)</span>
+                            <span style="font-size:16px;">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 02: Brand System Guidelines -->
+            <a href="01_gezenbiri_brand_system.html" class="tool-card">
+                <div>
+                    <div class="tool-num">Modül 01</div>
+                    <h2 class="tool-title">Marka Kimliği &amp; Tasarım Sistemi</h2>
+                    <p class="tool-desc">
+                        13 modüllü Master Brand Guideline: Renk Sistemi (65-20-10), Tipografi Hiyerarşisi, Ses Tonu, Fotoğraf Dili, Seyahat Mühürleri ve Manifesto.
+                    </p>
+                </div>
+                <div class="tool-action">
+                    <span>Sistemi Aç</span>
+                    <div class="tool-arrow">→</div>
+                </div>
+            </a>
+
+            <!-- 03: Editorial Trip Cards -->
+            <a href="02_gezenbiri_trip_cards_editorial.html" class="tool-card">
+                <div>
+                    <div class="tool-num">Modül 02</div>
+                    <h2 class="tool-title">Editoryal Seyahat Kartları</h2>
+                    <p class="tool-desc">
+                        Alaçatı, Çeşme, Ilıca, Urla, Bozcaada, Kaş ve Kapadokya için gerçek lokasyon görselli editoryal seyahat kartları ve teknik backstage detayları.
+                    </p>
+                </div>
+                <div class="tool-action">
+                    <span>Kartları İncele</span>
+                    <div class="tool-arrow">→</div>
+                </div>
+            </a>
+
+            <!-- 04: Instagram Master Suite -->
+            <a href="03_gezenbiri_instagram_suite.html" class="tool-card">
+                <div>
+                    <div class="tool-num">Modül 03</div>
+                    <h2 class="tool-title">Instagram Master Suite</h2>
+                    <p class="tool-desc">
+                        iPhone canlı profil simülasyonu, 1080x1080 px avatarlar, 10'lu Highlights, 9:16 dikey storyler, 8 adet feed post şablonu ve PNG dışa aktarma aracı.
+                    </p>
+                </div>
+                <div class="tool-action">
+                    <span>Instagram Paketini Aç</span>
+                    <div class="tool-arrow">→</div>
+                </div>
+            </a>
+
+            <!-- 05: Marka Davranışı: System Dot -->
+            <a href="04_gezenbiri_system_dot.html" class="tool-card">
+                <div>
+                    <div class="tool-num">Modül 04</div>
+                    <h2 class="tool-title">Marka Davranışı: System Dot</h2>
+                    <p class="tool-desc">
+                        %3 dikey formlu turuncu çapa matrisi, logo varyasyonları, App Icon stratejisi, UI mockupları ve tek tıkla tüm varlıkları indiren ZIP motoru.
+                    </p>
+                </div>
+                <div class="tool-action">
+                    <span>System Dot Portalını Aç</span>
+                    <div class="tool-arrow">→</div>
+                </div>
+            </a>
+
+        </div>
+
+        <div class="footer-note">
+            gezenbiri.com.tr · 2026 Marka &amp; Tasarım Ekosistemi · Swiss-Grid Modular Standard
+        </div>
+
+    </div>
+
+</body>
+</html>

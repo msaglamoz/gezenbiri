@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gezenbiri — Marka Davranış ve System Dot İkon Sistemi</title>
+    <meta name="description" content="Logodaki oranlı daire artık sadece bir nokta değil; Aksiyonun, Tamamlanmanın ve Planın sembolü. %3 dikey esnetilmiş özel form, 0-1px yapışık wordmark matrisi ve UI Elementlerine sızmış sistem demosu.">
+    <meta name="theme-color" content="#F6F3ED">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3' fill='%23FF4D3D'/%3E%3C/svg%3E">
+
+    <!-- Fonts: Plus Jakarta Sans & Instrument Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Export Libraries: html2canvas, JSZip, FileSaver -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <style>
+        :root {
+            --cream: #F6F3ED;
+            --charcoal: #202020;
+            --coral: #FF4D3D;
+            --coral-soft: rgba(255, 77, 61, 0.12);
+            --sage: #A8B89A;
+            --sky: #A9D5E8;
+            --sand: #D8CCBC;
+            --stone: #D9D6D1;
+            --white: #FFFFFF;
+            --bg: #F6F3ED;
+            --border: #E2DDD5;
+            --font-main: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 30px 20px 80px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Navigation */
+        .top-brand-nav {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-nav-back {
+            background-color: var(--white);
+            color: var(--charcoal);
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 12.5px;
+            font-weight: 800;
+            border: 1px solid rgba(32,32,32,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .btn-nav-back:hover {
+            background-color: var(--coral);
+            color: var(--white);
+            border-color: var(--coral);
+            transform: translateX(-2px);
+        }
+
+        .quick-nav-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .quick-nav-links a {
+            font-size: 12px;
+            font-weight: 700;
+            color: #555;
+            text-decoration: none;
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .quick-nav-links a:hover {
+            background: var(--white);
+            color: var(--coral);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 900px;
+        }
+
+        .header h1 {
+            color: var(--charcoal);
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 14px;
+            line-height: 1.15;
+        }
+
+        .header p {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .btn-download-all {
+            background-color: var(--charcoal);
+            color: var(--white);
+            border: none;
+            padding: 18px 40px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 17px;
+            cursor: pointer;
+            margin-bottom: 45px;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .btn-download-all:hover {
+            transform: translateY(-3px);
+            background-color: var(--coral);
+            box-shadow: 0 15px 40px rgba(255,77,61,0.3);
+        }
+
+        /* SECTION HEADERS */
+        .section-title {
+            width: 100%;
+            max-width: 1100px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #D5D8DC;
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--charcoal);
+            margin-top: 40px;
+            margin-bottom: 26px;
+            letter-spacing: -0.8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 530px);
+            gap: 40px;
+            justify-content: center;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .presentation-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .presentation-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid #EEE;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #FAFAFA;
+        }
+
+        .card-header h3 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .card-header span {
+            font-size: 11px;
+            color: #777;
+            background: #EDE8DF;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+        }
+
+        .capture-area {
+            width: 530px;
+            height: 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: var(--white);
+            overflow: hidden;
+        }
+
+        /* 
+         * LOGO SYSTEM:
+         * Plus Jakarta Sans 900, tight kerning, 0-1px gap, 3% vertical stretch on dot.
+         */
+        .logo-wrapper {
+            font-size: 96px;
+            font-weight: 900;
+            letter-spacing: -5px;
+            line-height: 0.85;
+            display: flex;
+            align-items: flex-end;
+            color: var(--charcoal);
+            user-select: none;
+        }
+
+        .logotext {
+            display: inline-block;
+            margin-right: 1px;
+        }
+
+        .system-dot {
+            width: 24px;
+            height: 24px;
+            background-color: var(--coral);
+            border-radius: 50%;
+            margin-bottom: 3px;
+            flex-shrink: 0;
+            /* 3% vertical stretch to give life / not pure sterile */
+            transform: scaleY(1.03);
+            box-shadow: none;
+        }
+
+        /* DOUBLE APP ICON */
+        .icon-flat {
+            width: 200px;
+            height: 200px;
+            background-color: var(--coral);
+            border-radius: 50%;
+            transform: scaleY(1.03); /* Maintain the brand stretch */
+        }
+        
+        .icon-highlight {
+            width: 200px;
+            height: 200px;
+            background-color: var(--coral);
+            border-radius: 50%;
+            transform: scaleY(1.03);
+            /* 1-2% Micro highlight */
+            box-shadow: inset 0px 6px 14px rgba(255,255,255,0.25), inset 0px -6px 14px rgba(0,0,0,0.1);
+        }
+
+        /* UI MOCKUPS / PRODUCT BEHAVIOR */
+        
+        /* 1: Action Button */
+        .ui-button {
+            background-color: var(--charcoal);
+            color: var(--white);
+            padding: 20px 38px;
+            border-radius: 100px;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.8px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            user-select: none;
+        }
+
+        .ui-button-dot {
+            width: 14px;
+            height: 14px;
+            background: var(--coral);
+            border-radius: 50%;
+            transform: scaleY(1.03);
+            flex-shrink: 0;
+        }
+
+        /* 2: Notification Toast */
+        .ui-toast {
+            background-color: var(--white);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            padding: 24px 36px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-left: 6px solid var(--coral);
+        }
+
+        .toast-content h4 {
+            margin: 0 0 5px 0;
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--charcoal);
+            letter-spacing: -0.5px;
+        }
+
+        .toast-content p {
+            margin: 0;
+            font-size: 15px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* 3: Map Pin Marker */
+        .ui-map-bg {
+            width: 100%;
+            height: 100%;
+            background: #E8E5DF; /* gezenbiri map tone */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Grid lines for map illusion */
+        .ui-map-bg::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(#D5D0C6 1px, transparent 1px), linear-gradient(90deg, #D5D0C6 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .map-pulse {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 77, 61, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .map-pin-dot {
+            width: 26px;
+            height: 26px;
+            background: var(--coral);
+            border-radius: 50%;
+            transform: scaleY(1.03);
+            box-shadow: 0 6px 18px rgba(255, 77, 61, 0.45);
+            border: 3px solid var(--white);
+        }
+
+        /* 8'li Morphing İkonografi Grid */
+        .icons-8-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 255px);
+            gap: 20px;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .morph-icon-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px 18px 20px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
+        }
+
+        .morph-icon-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--coral);
+            box-shadow: 0 10px 25px rgba(255,77,61,0.12);
+        }
+
+        .morph-icon-frame {
+            width: 74px;
+            height: 74px;
+            border-radius: 50%;
+            background: #FAF8F5;
+            border: 1px solid #EAE5DC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .morph-icon-svg {
+            width: 38px;
+            height: 38px;
+        }
+
+        .morph-icon-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+        }
+
+        .morph-icon-sub {
+            font-size: 11.5px;
+            color: var(--coral);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .morph-icon-desc {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* 7. SYSTEM DOT ANAYASASI GRID */
+        .rules-8-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 530px);
+            gap: 24px;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 50px;
+        }
+
+        .rule-card {
+            background: var(--white);
+            border-radius: 18px;
+            padding: 24px 26px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .rule-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 34px rgba(0,0,0,0.07);
+            border-color: rgba(255,77,61,0.25);
+        }
+
+        .rule-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .rule-number {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--coral);
+            background: rgba(255,77,61,0.08);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .rule-badge-status {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: #777;
+            text-transform: uppercase;
+        }
+
+        .rule-title {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--charcoal);
+            letter-spacing: -0.4px;
+        }
+
+        .rule-text {
+            font-size: 12.5px;
+            color: #555;
+            line-height: 1.55;
+        }
+
+        /* VISUAL LAB DEMONSTRATOR BOX */
+        .rule-visual-lab {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 2px 0;
+            position: relative;
+        }
+
+        .do-dont-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .do-card, .dont-card {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 24px 10px 12px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 68px;
+        }
+
+        .do-card {
+            border: 1.5px solid #4CAF50;
+        }
+
+        .dont-card {
+            border: 1.5px solid #F44336;
+            background: #FFFBFB;
+        }
+
+        .pill-do {
+            position: absolute;
+            top: 5px;
+            left: 6px;
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #2E7D32;
+            background: #E8F5E9;
+            padding: 2px 5px;
+            border-radius: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        .pill-dont {
+            position: absolute;
+            top: 5px;
+            left: 6px;
+            font-size: 8.5px;
+            font-weight: 800;
+            color: #C62828;
+            background: #FFEBEE;
+            padding: 2px 5px;
+            border-radius: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        /* Kural 2 Visual - Geometry Lab */
+        .geometry-compare-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: var(--white);
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .geo-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .geo-circle-1to1 {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #D9D6D1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #555;
+            border: 1px dashed #999;
+        }
+
+        .geo-circle-1to103 {
+            width: 40px;
+            height: 41.2px;
+            border-radius: 50%;
+            background: var(--coral);
+            transform: scaleY(1.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9.5px;
+            font-weight: 800;
+            color: #FFF;
+        }
+
+        .geo-label {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--charcoal);
+            text-align: center;
+        }
+
+        .geo-sublabel {
+            font-size: 8.5px;
+            color: #777;
+        }
+
+        /* Kural 3 Visual - Micro Kerning Zoom */
+        .micro-kerning-zoom {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .kerning-display-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--charcoal);
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .measure-line {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: 0.3px;
+            background: rgba(255,77,61,0.08);
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px dashed var(--coral);
+        }
+
+        /* Kural 5 Visual - Inversion 4-grid */
+        .inversion-4-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        .inv-mini-card {
+            padding: 8px 4px;
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            font-size: 10.5px;
+            font-weight: 900;
+            border: 1px solid rgba(0,0,0,0.06);
+            text-align: center;
+        }
+
+        .inv-dot {
+            width: 6.5px;
+            height: 6.7px;
+            border-radius: 50%;
+            transform: scaleY(1.03);
+            margin-left: 2px;
+            display: inline-block;
+            vertical-align: baseline;
+        }
+
+        /* Kural 6 Visual - Triad UI */
+        .triad-ui-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        .triad-item-box {
+            background: var(--white);
+            border-radius: 6px;
+            padding: 8px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .triad-tag {
+            font-size: 8px;
+            font-weight: 800;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        /* Kural 7 Visual - 3 Glyphs */
+        .glyphs-3-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+        }
+
+        .glyph-mini-box {
+            background: var(--white);
+            border-radius: 6px;
+            padding: 8px 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            border: 1px solid var(--border);
+        }
+
+        .glyph-mini-box svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .glyph-mini-label {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        /* Kural 8 Visual - Live Pulse */
+        .pulse-lab-box {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 10px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 8px;
+        }
+
+        .live-chip-specimen {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 77, 61, 0.08);
+            border: 1px solid rgba(255, 77, 61, 0.25);
+            padding: 5px 12px;
+            border-radius: 100px;
+            font-size: 10.5px;
+            font-weight: 800;
+            color: var(--coral);
+        }
+
+        .pulse-live-dot {
+            width: 7.5px;
+            height: 7.7px;
+            background-color: var(--coral);
+            border-radius: 50%;
+            transform: scaleY(1.03);
+            animation: prestigeHeroPulse 2s infinite ease-in-out;
+        }
+
+        .rule-specimen-pill {
+            margin-top: 2px;
+            padding: 7px 10px;
+            background: var(--cream);
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--border);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1140px) {
+            .workspace-grid, .rules-8-grid {
+                grid-template-columns: 1fr;
+                max-width: 530px;
+            }
+            .icons-8-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 530px;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .capture-area, .presentation-card, .rule-card {
+                width: 100%;
+            }
+            .workspace-grid, .icons-8-grid, .rules-8-grid {
+                grid-template-columns: 1fr;
+                width: 100%;
+            }
+            .logo-wrapper {
+                font-size: 64px;
+                letter-spacing: -3px;
+            }
+            .system-dot {
+                width: 16px;
+                height: 16.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <div class="top-brand-nav">
+        <a href="index.html" class="btn-nav-back">
+            <span>←</span>
+            <span>Brand System Hub'a Dön</span>
+        </a>
+        <div class="quick-nav-links">
+            <a href="01_gezenbiri_brand_system.html">Marka Kılavuzu</a>
+            <a href="gezenbiri_website.html">Canlı Web Sitesi</a>
+            <a href="02_gezenbiri_trip_cards_editorial.html">Seyahat Kartları</a>
+            <a href="03_gezenbiri_instagram_suite.html">Instagram Suite</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>MARKA DAVRANIŞI: SYSTEM DOT</h1>
+        <p>Logodaki oranlı daire artık "Sadece bir nokta" değil; Aksiyonun, Tamamlanmanın ve Planın sembolü. %3 dikey esnetilmiş özel form, 0-1px yapışık wordmark matrisi ve UI Elementlerine sızmış sistem demosu hazır.</p>
+    </div>
+
+    <!-- Master Batch ZIP Exporter Button -->
+    <button id="downloadBtn" class="btn-download-all">📦 Tüm Brand Sistemini İndir (ZIP)</button>
+
+    <!-- 1. RENK PALETİ (65-20-10 KURALI & 7 TON) -->
+    <div class="section-title">
+        <span>1. RENK PALETİ (65-20-10 KURALI &amp; GEZENBİRİ MASTER TONLARI)</span>
+        <span style="font-size:12px; font-weight:700; color:#777;">Referans: 01_gezenbiri_brand_system.html</span>
+    </div>
+    
+    <!-- 4 Ana Master Kart (65-20-10-5) -->
+    <div class="workspace-grid" style="grid-template-columns: repeat(4, 255px); gap: 20px; margin-bottom: 20px;">
+        
+        <!-- 01: Warm Cream (65%) -->
+        <div class="presentation-card">
+            <div style="height: 140px; background-color: var(--cream); border-bottom: 1px solid var(--border);"></div>
+            <div style="padding: 18px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <h3 style="margin:0; font-size:15px;">Warm Cream</h3>
+                    <span style="font-size:10px; font-weight:800; color:var(--coral); background:rgba(255,77,61,0.1); padding:2px 6px; border-radius:4px;">65%</span>
+                </div>
+                <p style="margin:0; font-size:13px; font-weight:800; color:#777;">HEX #F6F3ED<br>RGB 246, 243, 237</p>
+                <div style="font-size:11.5px; margin-top:8px; color:#555;">Temiz Zeminler / Negatif Alanlar</div>
+            </div>
+        </div>
+
+        <!-- 02: Charcoal (20%) -->
+        <div class="presentation-card">
+            <div style="height: 140px; background-color: var(--charcoal);"></div>
+            <div style="padding: 18px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <h3 style="margin:0; font-size:15px;">Charcoal</h3>
+                    <span style="font-size:10px; font-weight:800; color:#FFF; background:var(--charcoal); padding:2px 6px; border-radius:4px; border:1px solid #444;">20%</span>
+                </div>
+                <p style="margin:0; font-size:13px; font-weight:800; color:#888;">HEX #202020<br>RGB 32, 32, 32</p>
+                <div style="font-size:11.5px; margin-top:8px; color:#555;">Ana Marka Rengi / Tipografi</div>
+            </div>
+        </div>
+
+        <!-- 03: Water Coral (10%) -->
+        <div class="presentation-card">
+            <div style="height: 140px; background-color: var(--coral);"></div>
+            <div style="padding: 18px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <h3 style="margin:0; font-size:15px;">Water Coral</h3>
+                    <span style="font-size:10px; font-weight:800; color:#FFF; background:var(--coral); padding:2px 6px; border-radius:4px;">10%</span>
+                </div>
+                <p style="margin:0; font-size:13px; font-weight:800; color:#888;">HEX #FF4D3D<br>RGB 255, 77, 61</p>
+                <div style="font-size:11.5px; margin-top:8px; color:#555;">Sistem Noktası / Aksiyon Çapası</div>
+            </div>
+        </div>
+
+        <!-- 04: Sage Green (5%) -->
+        <div class="presentation-card">
+            <div style="height: 140px; background-color: var(--sage);"></div>
+            <div style="padding: 18px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <h3 style="margin:0; font-size:15px;">Sage Green</h3>
+                    <span style="font-size:10px; font-weight:800; color:#2E4A2E; background:rgba(168,184,154,0.35); padding:2px 6px; border-radius:4px;">5%</span>
+                </div>
+                <p style="margin:0; font-size:13px; font-weight:800; color:#888;">HEX #A8B89A<br>RGB 168, 184, 154</p>
+                <div style="font-size:11.5px; margin-top:8px; color:#555;">Doğa &amp; Hafta Sonu Kaçamağı</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 3 İkincil / Tamamlayıcı Atmosfer Tonu -->
+    <div class="workspace-grid" style="grid-template-columns: repeat(3, 345px); gap: 20px; margin-bottom: 30px;">
+        
+        <!-- 05: Sky Blue -->
+        <div class="presentation-card">
+            <div style="height: 100px; background-color: var(--sky);"></div>
+            <div style="padding: 16px;">
+                <h3 style="margin:0 0 4px 0; font-size:14px;">Sky Blue</h3>
+                <p style="margin:0; font-size:12.5px; font-weight:800; color:#888;">HEX #A9D5E8 · RGB 169, 213, 232</p>
+                <div style="font-size:11px; margin-top:6px; color:#666;">Sahil, Deniz &amp; Kıyı Rotaları</div>
+            </div>
+        </div>
+
+        <!-- 06: Sand Beige -->
+        <div class="presentation-card">
+            <div style="height: 100px; background-color: var(--sand);"></div>
+            <div style="padding: 16px;">
+                <h3 style="margin:0 0 4px 0; font-size:14px;">Sand Beige</h3>
+                <p style="margin:0; font-size:12.5px; font-weight:800; color:#888;">HEX #D8CCBC · RGB 216, 204, 188</p>
+                <div style="font-size:11px; margin-top:6px; color:#666;">Sıcak Kum &amp; Toprak Dokuları</div>
+            </div>
+        </div>
+
+        <!-- 07: Stone Grey -->
+        <div class="presentation-card">
+            <div style="height: 100px; background-color: var(--stone);"></div>
+            <div style="padding: 16px;">
+                <h3 style="margin:0 0 4px 0; font-size:14px;">Stone Grey</h3>
+                <p style="margin:0; font-size:12.5px; font-weight:800; color:#888;">HEX #D9D6D1 · RGB 217, 214, 209</p>
+                <div style="font-size:11px; margin-top:6px; color:#666;">Taş Mimari &amp; Nötr Grid Çizgileri</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 2. TİPOGRAFİ SİSTEMİ -->
+    <div class="section-title">2. TİPOGRAFİ SİSTEMİ (MODERN GROTESK)</div>
+    <div class="workspace-grid" style="grid-template-columns: 100%;">
+        <div class="presentation-card" style="padding: 40px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; border-bottom: 2px solid #EEE; padding-bottom:20px; margin-bottom:20px; flex-wrap:wrap; gap:16px;">
+                <h1 style="font-size: 72px; font-weight: 900; margin: 0; letter-spacing: -3px; color: var(--charcoal); line-height: 0.9;">Plus Jakarta Sans</h1>
+                <div style="text-align: right;">
+                    <div style="font-size: 22px; font-weight: 800; letter-spacing: -0.8px; color: var(--charcoal);">ExtraBold (800) &amp; Black (900)</div>
+                    <div style="color: #888; font-size:13px;">Ana Başlıklar, Logotayp &amp; Matris İçin</div>
+                </div>
+            </div>
+            <p style="font-size: 28px; font-weight: 500; line-height: 1.5; color: #555; word-wrap: break-word; letter-spacing: -0.8px; margin: 0 0 24px 0;">
+                A B C Ç D E F G Ğ H I İ J K L M N O Ö P R S Ş T U Ü V Y Z<br>
+                <span style="font-weight: 900; color: var(--charcoal);">a b c ç d e f g ğ h ı i j k l m n o ö p r s ş t u ü v y z</span><br>
+                0 1 2 3 4 5 6 7 8 9 ( ! ? &amp; @ # % · ✦ )
+            </p>
+            <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                <div style="background:var(--bg); padding: 20px; border-radius: 12px; flex:1; min-width:260px;">
+                    <h4 style="margin:0 0 10px 0; color:var(--coral); font-size:15px; font-weight:800;">Kritik Kural 1: Denge &amp; Netlik</h4>
+                    <p style="margin:0; font-size:13.5px; color:#555; line-height:1.5;">gezenbiri markasında tipografi samimi, modern ve yüksek okunabilirlikli geometriye sahiptir. Başlıklarda Display ağırlık kullanılır.</p>
+                </div>
+                <div style="background:var(--bg); padding: 20px; border-radius: 12px; flex:1; min-width:260px;">
+                    <h4 style="margin:0 0 10px 0; color:var(--coral); font-size:15px; font-weight:800;">Kritik Kural 2: Tight Kerning (Sıkı Blok &amp; 0-1px Nokta Kilidi)</h4>
+                    <p style="margin:0; font-size:13.5px; color:#555; line-height:1.5;">Logo ve kampanya afişlerinde harf aralıkları kompakt tutulur. Turuncu çapa noktası cümlenin sonuna 0-1px kenetlenerek tamamlama hissi verir.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. LOGO İMZASI -->
+    <div class="section-title">3. LOGO İMZASI</div>
+    <div class="workspace-grid">
+        
+        <!-- 01: Renkli Master -->
+        <div class="presentation-card">
+            <div class="card-header"><h3>Renkli Master</h3><span>gezenbiri_main.png</span></div>
+            <div class="capture-area" id="brand-main">
+                <div class="logo-wrapper">
+                    <span class="logotext">gezenbiri</span>
+                    <div class="system-dot"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02: Siyah Versiyon -->
+        <div class="presentation-card">
+            <div class="card-header"><h3>Siyah Versiyon</h3><span>gezenbiri_black.png</span></div>
+            <div class="capture-area" id="brand-black">
+                <div class="logo-wrapper" style="color:var(--charcoal)">
+                    <span class="logotext">gezenbiri</span>
+                    <div class="system-dot" style="background:var(--charcoal)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03: Beyaz Ters (Karanlık Yüzey) -->
+        <div class="presentation-card">
+            <div class="card-header"><h3>Beyaz Ters (Karanlık Yüzey)</h3><span>gezenbiri_white.png</span></div>
+            <div class="capture-area" id="brand-white" style="background-color: var(--charcoal)">
+                <div class="logo-wrapper" style="color:var(--white)">
+                    <span class="logotext">gezenbiri</span>
+                    <div class="system-dot" style="background:var(--coral)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 04: Zıt Blok (Mercan Yüzey) -->
+        <div class="presentation-card">
+            <div class="card-header"><h3>Zıt Blok (Meydan Okuyan)</h3><span>gezenbiri_contrast.png</span></div>
+            <div class="capture-area" id="brand-contrast" style="background-color: var(--coral)">
+                <div class="logo-wrapper" style="color:var(--white)">
+                    <span class="logotext">gezenbiri</span>
+                    <div class="system-dot" style="background:var(--cream)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05: Adaçayı Doğa Kasası -->
+        <div class="presentation-card">
+            <div class="card-header"><h3>Adaçayı Doğa Kasası</h3><span>gezenbiri_sage.png</span></div>
+            <div class="capture-area" id="brand-sage" style="background-color: var(--sage)">
+                <div class="logo-wrapper" style="color:var(--white)">
+                    <span class="logotext">gezenbiri</span>
+                    <div class="system-dot" style="background:var(--coral)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 06: Sıcak Krem Zemin -->
+        <div class="presentation-card">
+            <div class="card-header"><h3>Sıcak Krem Editoryal</h3><span>gezenbiri_cream.png</span></div>
+            <div class="capture-area" id="brand-cream" style="background-color: var(--cream)">
+                <div class="logo-wrapper" style="color:var(--charcoal)">
+                    <span class="logotext">gezenbiri</span>
+                    <div class="system-dot" style="background:var(--coral)"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 4. APP ICON STRATEJİSİ -->
+    <div class="section-title">4. APP ICON STRATEJİSİ</div>
+    <div class="workspace-grid">
+        
+        <div class="presentation-card">
+            <div class="card-header"><h3>A: Primary (Ultra Flat)</h3><span>gezenbiri_app_flat.png</span></div>
+            <div class="capture-area" id="app-flat">
+                <div class="icon-flat"></div>
+            </div>
+        </div>
+
+        <div class="presentation-card">
+            <div class="card-header"><h3>B: Secondary (Micro Highlight)</h3><span>gezenbiri_app_high.png</span></div>
+            <div class="capture-area" id="app-high">
+                <div class="icon-highlight"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 5. ÜRÜN İÇİ DAVRANIŞ (UI MOCKUPS) -->
+    <div class="section-title">5. ÜRÜN İÇİ DAVRANIŞ (UI MOCKUPS)</div>
+    <div class="workspace-grid">
+        
+        <!-- UI: Keşfet / Rezervasyon Butonu -->
+        <div class="presentation-card">
+            <div class="card-header"><h3>UI: Aksiyon Butonu (Keşfet)</h3><span>ui_button.png</span></div>
+            <div class="capture-area" id="ui-button">
+                <div class="ui-button">
+                    <div class="ui-button-dot"></div> ETKİNLİKLERİ KEŞFET
+                </div>
+            </div>
+        </div>
+
+        <!-- UI: Bildirim Toast -->
+        <div class="presentation-card">
+            <div class="card-header"><h3>UI: Bildirim (Planda!)</h3><span>ui_toast.png</span></div>
+            <div class="capture-area" id="ui-toast">
+                <div class="ui-toast">
+                    <div class="toast-content">
+                        <h4>Rotan Planda!</h4>
+                        <p>Cuma sabahı Alaçatı'da buluşuyoruz.</p>
+                    </div>
+                    <div class="ui-button-dot" style="width:20px;height:20px;margin-left:20px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UI: Harita Pini -->
+        <div class="presentation-card" style="grid-column: span 2;">
+            <div class="card-header"><h3>UI: Harita Pini (Koordinat &amp; Radar)</h3><span>ui_map.png</span></div>
+            <div class="capture-area" id="ui-map" style="width: 100%; height: 350px;">
+                <div class="ui-map-bg">
+                    <div class="map-pulse">
+                        <div class="map-pin-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 6. ADAPTİF MORPHING İKON SİSTEMİ -->
+    <div class="section-title">6. ADAPTİF MORPHING İKON SİSTEMİ (8 ÖZEL GLİF)</div>
+    <div class="icons-8-grid">
+        
+        <!-- 01: Konum -->
+        <div class="morph-icon-card" id="card-icon-pin">
+            <div class="morph-icon-frame">
+                <svg class="morph-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 28C16 28 25 19.5 25 13A9 9 0 1 0 7 13C7 19.5 16 28 16 28Z"/>
+                    <ellipse cx="16" cy="13" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                </svg>
+            </div>
+            <div class="morph-icon-title">01. Konum &amp; Rota</div>
+            <div class="morph-icon-sub">Hedef Koordinat Çapası</div>
+            <div class="morph-icon-desc">İğnenin kalbindeki hedef nokta. Varılacak rota merkezi.</div>
+        </div>
+
+        <!-- 02: Takvim -->
+        <div class="morph-icon-card" id="card-icon-calendar">
+            <div class="morph-icon-frame">
+                <svg class="morph-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="6" width="22" height="21" rx="4"/>
+                    <line x1="16" y1="3" x2="16" y2="7"/>
+                    <line x1="10" y1="3" x2="10" y2="7"/>
+                    <line x1="22" y1="3" x2="22" y2="7"/>
+                    <line x1="5" y1="12" x2="27" y2="12"/>
+                    <circle cx="10" cy="17" r="1.5" fill="#1E1E1E"/>
+                    <circle cx="16" cy="17" r="1.5" fill="#1E1E1E"/>
+                    <circle cx="22" cy="17" r="1.5" fill="#1E1E1E"/>
+                    <circle cx="10" cy="22" r="1.5" fill="#1E1E1E"/>
+                    <ellipse cx="16" cy="22" rx="2.8" ry="2.9" fill="#FF4D3D" stroke="none"/>
+                </svg>
+            </div>
+            <div class="morph-icon-title">02. Takvim &amp; Tarih</div>
+            <div class="morph-icon-sub">Seçili Aksiyon Günü</div>
+            <div class="morph-icon-desc">Izgaradaki seçili gün. O gün evde yokuz, yoldayız.</div>
+        </div>
+
+        <!-- 03: Kamera -->
+        <div class="morph-icon-card" id="card-icon-camera">
+            <div class="morph-icon-frame">
+                <svg class="morph-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 10H10L12 7H20L22 10H26C27.1 10 28 10.9 28 12V24C28 25.1 27.1 26 26 26H6C4.9 26 4 25.1 4 24V12C4 10.9 4.9 10 6 10Z"/>
+                    <circle cx="16" cy="18" r="6"/>
+                    <ellipse cx="16" cy="18" rx="3.2" ry="3.3" fill="#FF4D3D" stroke="none"/>
+                </svg>
+            </div>
+            <div class="morph-icon-title">03. Kamera &amp; An</div>
+            <div class="morph-icon-sub">Objektif Odak Noktası</div>
+            <div class="morph-icon-desc">Lensin merkezindeki odak. Yakalanacak unutulmaz kare.</div>
+        </div>
+
+        <!-- 04: Kahve -->
+        <div class="morph-icon-card" id="card-icon-cup">
+            <div class="morph-icon-frame">
+                <svg class="morph-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 11H23V20C23 23.3 20.3 26 17 26H11C7.7 26 5 23.3 5 20V11Z"/>
+                    <path d="M23 14H25C26.7 14 28 15.3 28 17C28 18.7 26.7 20 25 20H23"/>
+                    <path d="M3 29H25"/>
+                    <ellipse cx="14" cy="6" rx="2.5" ry="2.6" fill="#FF4D3D" stroke="none"/>
+                    <path d="M10 8C10 7 11 6 11 5"/>
+                    <path d="M18 8C18 7 17 6 17 5"/>
+                </svg>
+            </div>
+            <div class="morph-icon-title">04. Kahve &amp; Mola</div>
+            <div class="morph-icon-sub">Yükselen Sofra Közü</div>
+            <div class="morph-icon-desc">Fincanın üzerindeki buhar noktası. Ortak masada sohbet.</div>
+        </div>
+
+        <!-- 05: Kadeh -->
+        <div class="morph-icon-card" id="card-icon-wine">
+            <div class="morph-icon-frame">
+                <svg class="morph-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 5H24C24 13 19 17 16 17C13 17 8 13 8 5Z"/>
+                    <line x1="16" y1="17" x2="16" y2="27"/>
+                    <line x1="11" y1="27" x2="21" y2="27"/>
+                    <ellipse cx="16" cy="12" rx="3.2" ry="3.3" fill="#FF4D3D" stroke="none"/>
+                </svg>
+            </div>
+            <div class="morph-icon-title">05. Kadeh &amp; Tadım</div>
+            <div class="morph-icon-sub">Yerel Lezzet Damlası</div>
+            <div class="morph-icon-desc">Kadehin dibindeki tadım damlası. Urla bağ rotası.</div>
+        </div>
+
+        <!-- 06: Pusula -->
+        <div class="morph-icon-card" id="card-icon-compass">
+            <div class="morph-icon-frame">
+                <svg class="morph-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="16" cy="16" r="12"/>
+                    <polygon points="16,8 19,16 16,15 13,16" fill="#1E1E1E"/>
+                    <polygon points="16,24 19,16 16,17 13,16" fill="none" stroke="#1E1E1E"/>
+                    <ellipse cx="16" cy="16" rx="2.8" ry="2.9" fill="#FF4D3D" stroke="none"/>
+                </svg>
+            </div>
+            <div class="morph-icon-title">06. Pusula &amp; Yön</div>
+            <div class="morph-icon-sub">Kuzey İbre Çapası</div>
+            <div class="morph-icon-desc">Kadranın ortasındaki pusula merkezi. Spontane istikamet.</div>
+        </div>
+
+        <!-- 07: Topluluk -->
+        <div class="morph-icon-card" id="card-icon-community">
+            <div class="morph-icon-frame">
+                <svg class="morph-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 25V23C6 20.8 7.8 19 10 19H14C16.2 19 18 20.8 18 23V25"/>
+                    <circle cx="12" cy="13" r="4"/>
+                    <path d="M19 19.3C20.8 19.8 22 21.3 22 23V25"/>
+                    <circle cx="21" cy="12" r="3"/>
+                    <ellipse cx="17" cy="16" rx="2.6" ry="2.7" fill="#FF4D3D" stroke="none"/>
+                </svg>
+            </div>
+            <div class="morph-icon-title">07. Topluluk &amp; İnsan</div>
+            <div class="morph-icon-sub">Ortak Bağ Halkası</div>
+            <div class="morph-icon-desc">İki insanı bağlayan ortak çapa. Yeni yol arkadaşlıkları.</div>
+        </div>
+
+        <!-- 08: Bilet -->
+        <div class="morph-icon-card" id="card-icon-ticket">
+            <div class="morph-icon-frame">
+                <svg class="morph-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 9C5 7.9 5.9 7 7 7H25C26.1 7 27 7.9 27 9V14C25.5 14 24.5 15 24.5 16C24.5 17 25.5 18 27 18V23C27 24.1 26.1 25 25 25H7C5.9 25 5 24.1 5 23V18C6.5 18 7.5 17 7.5 16C7.5 15 6.5 14 5 14V9Z"/>
+                    <line x1="12" y1="8" x2="12" y2="24" stroke-dasharray="2 2"/>
+                    <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                </svg>
+            </div>
+            <div class="morph-icon-title">08. Bilet &amp; Rezervasyon</div>
+            <div class="morph-icon-sub">Onaylanmış Mühür</div>
+            <div class="morph-icon-desc">Biletin üzerindeki onay damgası. Yola çıkmaya hazır bilet.</div>
+        </div>
+
+    </div>
+
+    <!-- 7. SYSTEM DOT ANAYASASI: 8 ALTIN MARKA DAVRANIŞ KURALI -->
+    <div class="section-title">
+        <span>7. SYSTEM DOT ANAYASASI: 8 ALTIN MARKA DAVRANIŞ KURALI</span>
+        <span style="font-size:12px; font-weight:700; color:var(--coral);">Görsel Standart Kılavuzu</span>
+    </div>
+
+    <div class="rules-8-grid">
+        
+        <!-- Kural 1: DO / DON'T -->
+        <div class="rule-card">
+            <div class="rule-header-row">
+                <span class="rule-number">KURAL 01</span>
+                <span class="rule-badge-status">ODAK SINIRI</span>
+            </div>
+            <h4 class="rule-title">Göz Bebeği &amp; Tekil Odak Prensibi</h4>
+            <p class="rule-text">
+                Her görsel bileşende veya başlıkta <strong>yalnızca 1 adet</strong> turuncu odak noktası yaşar. Çift veya çoklu nokta kullanımı gözü yorar ve yasaktır.
+            </p>
+            <div class="rule-visual-lab">
+                <div class="do-dont-row">
+                    <div class="do-card">
+                        <span class="pill-do">✓ DOĞRU (1 ODAK)</span>
+                        <div style="font-size:16px; font-weight:900; color:var(--charcoal); display:inline-flex; align-items:baseline;">
+                            gezenbiri<span style="width:5px; height:5.2px; background:var(--coral); border-radius:50%; margin-left:2px; transform:scaleY(1.03);"></span>
+                        </div>
+                    </div>
+                    <div class="dont-card">
+                        <span class="pill-dont">✕ HATALI (ÇOKLU)</span>
+                        <div style="font-size:14px; font-weight:900; color:#888; display:inline-flex; align-items:baseline; text-decoration:line-through;">
+                            <span style="color:var(--coral);">•</span>ge<span style="color:var(--coral);">•</span>zen<span style="color:var(--coral);">•</span>biri<span style="color:var(--coral);">•</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rule-specimen-pill">
+                <span>Standart: Tekil Odak Mührü</span>
+                <span style="color:var(--coral);">✓ 1 Bileşen = 1 Nokta</span>
+            </div>
+        </div>
+
+        <!-- Kural 2: GEOMETRİ LAB -->
+        <div class="rule-card">
+            <div class="rule-header-row">
+                <span class="rule-number">KURAL 02</span>
+                <span class="rule-badge-status">GEOMETRİ KODU</span>
+            </div>
+            <h4 class="rule-title">%3 Dikey Esneme &amp; Momentum (1:1.03)</h4>
+            <p class="rule-text">
+                Nokta mekanik 1:1 tam daire değildir. Gözün yatay basıklık illüzyonunu kırmak için dikey eksende <strong>%3 esnetilmiştir (scaleY: 1.03)</strong>.
+            </p>
+            <div class="rule-visual-lab">
+                <div class="geometry-compare-box">
+                    <div class="geo-col">
+                        <div class="geo-circle-1to1">1:1</div>
+                        <div class="geo-label">Mekanik 1:1</div>
+                        <div class="geo-sublabel">Basık Görünüm ✕</div>
+                    </div>
+                    <div class="geo-col">
+                        <div class="geo-circle-1to103">+3% ↑</div>
+                        <div class="geo-label" style="color:var(--coral);">scaleY(1.03)</div>
+                        <div class="geo-sublabel" style="color:#2E7D32;">Dinamik İvme ✓</div>
+                    </div>
+                </div>
+            </div>
+            <div class="rule-specimen-pill">
+                <span>Matris: scaleY(1.03)</span>
+                <span style="color:var(--coral);">✓ Dinamik Momentum</span>
+            </div>
+        </div>
+
+        <!-- Kural 3: MİKROSKOPİK KERNING ZOOM -->
+        <div class="rule-card">
+            <div class="rule-header-row">
+                <span class="rule-number">KURAL 03</span>
+                <span class="rule-badge-status">KERNING KİLİDİ</span>
+            </div>
+            <h4 class="rule-title">2.5px Optik Altın Oran Nefes &amp; Kilit</h4>
+            <p class="rule-text">
+                <code>gezenbiri</code> logotaypının bittiği yerde nokta harfe yapışıp leke yapmaz, kopup gitmez. <strong>2.5px (~0.12em)</strong> nefesle kilitlenir.
+            </p>
+            <div class="rule-visual-lab">
+                <div class="micro-kerning-zoom">
+                    <div class="kerning-display-row">
+                        <span>ri</span>
+                        <span class="measure-line">↔ 2.5px</span>
+                        <span style="width:10px; height:10.3px; background:var(--coral); border-radius:50%; transform:scaleY(1.03); display:inline-block; margin-left:3px;"></span>
+                    </div>
+                    <div style="font-size:9.5px; color:#666; font-weight:700; display:flex; gap:12px;">
+                        <span>0px (Çarpışma ✕)</span>
+                        <span style="color:var(--coral);">2.5px (Altın Kilit ✓)</span>
+                        <span>8px (Kopuk ✕)</span>
+                    </div>
+                </div>
+            </div>
+            <div class="rule-specimen-pill">
+                <span>Nefes Mesafesi: 2.5px</span>
+                <span style="color:var(--coral);">✓ 'i' Anatomisi Korunur</span>
+            </div>
+        </div>
+
+        <!-- Kural 4: FLAT VS BLUR -->
+        <div class="rule-card">
+            <div class="rule-header-row">
+                <span class="rule-number">KURAL 04</span>
+                <span class="rule-badge-status">VEKTÖR SAFLIĞI</span>
+            </div>
+            <h4 class="rule-title">Sıfır Gölge &amp; Saf Düz Vektör Kuralı</h4>
+            <p class="rule-text">
+                Yapay <code>box-shadow</code>, <code>drop-shadow</code> veya blur yasaktır. Daima saf, kristal netliğinde düz <strong>Water Coral (#FF4D3D)</strong> olarak çizilir.
+            </p>
+            <div class="rule-visual-lab">
+                <div class="do-dont-row">
+                    <div class="do-card">
+                        <span class="pill-do">✓ DOĞRU (FLAT)</span>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <div style="width:24px; height:24.7px; background:var(--coral); border-radius:50%; transform:scaleY(1.03);"></div>
+                            <span style="font-size:10px; font-weight:800; color:var(--charcoal);">Net Kenar</span>
+                        </div>
+                    </div>
+                    <div class="dont-card">
+                        <span class="pill-dont">✕ HATALI (GÖLGE)</span>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <div style="width:24px; height:24px; background:var(--coral); border-radius:50%; box-shadow:0 8px 16px rgba(255,77,61,0.7); filter:blur(0.5px);"></div>
+                            <span style="font-size:10px; font-weight:800; color:#C62828;">Yapay Blur</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rule-specimen-pill">
+                <span>Gölge / Efekt: 0px (Yok)</span>
+                <span style="color:var(--coral);">✓ Pure Flat Vector</span>
+            </div>
+        </div>
+
+        <!-- Kural 5: 4 ZEMİN MATRİSİ -->
+        <div class="rule-card">
+            <div class="rule-header-row">
+                <span class="rule-number">KURAL 05</span>
+                <span class="rule-badge-status">ZITLIK KODU</span>
+            </div>
+            <h4 class="rule-title">Zıtlık &amp; Zemin Uyum Kuralı (Inversion)</h4>
+            <p class="rule-text">
+                Krem ve Kömür zeminlerde nokta Water Coral kalır. Mercan (#FF4D3D) zemin üzerinde ise nokta <strong>Warm Cream (#F6F3ED)</strong> rengine tersyüz olur.
+            </p>
+            <div class="rule-visual-lab">
+                <div class="inversion-4-grid">
+                    <div class="inv-mini-card" style="background:#F6F3ED; color:#202020;">
+                        <span>gb<span class="inv-dot" style="background:#FF4D3D;"></span></span>
+                        <span style="font-size:8px; color:#777;">Krem</span>
+                    </div>
+                    <div class="inv-mini-card" style="background:#202020; color:#FFFFFF;">
+                        <span>gb<span class="inv-dot" style="background:#FF4D3D;"></span></span>
+                        <span style="font-size:8px; color:#AAA;">Kömür</span>
+                    </div>
+                    <div class="inv-mini-card" style="background:#FF4D3D; color:#FFFFFF; border:1px solid #FF8175;">
+                        <span>gb<span class="inv-dot" style="background:#F6F3ED;"></span></span>
+                        <span style="font-size:8px; color:#FFE4E0; font-weight:800;">Tersyüz ✓</span>
+                    </div>
+                    <div class="inv-mini-card" style="background:#A8B89A; color:#FFFFFF;">
+                        <span>gb<span class="inv-dot" style="background:#FF4D3D;"></span></span>
+                        <span style="font-size:8px; color:#FFF;">Adaçayı</span>
+                    </div>
+                </div>
+            </div>
+            <div class="rule-specimen-pill">
+                <span>Mercan Zemin: Krem Nokta</span>
+                <span style="color:var(--coral);">✓ Kusursuz Kontrast</span>
+            </div>
+        </div>
+
+        <!-- Kural 6: 3 CANLI UI ÖRNEĞİ -->
+        <div class="rule-card">
+            <div class="rule-header-row">
+                <span class="rule-number">KURAL 06</span>
+                <span class="rule-badge-status">DAVRANIŞ KODU</span>
+            </div>
+            <h4 class="rule-title">Üçlü Anlamsal Çerçeve</h4>
+            <p class="rule-text">
+                Nokta tek amaçlı değildir; butonda <em>tetikleyici</em>, başlıkta <em>kesin karar</em>, haritada <em>hedef koordinat</em> rolü üstlenir.
+            </p>
+            <div class="rule-visual-lab">
+                <div class="triad-ui-row">
+                    <div class="triad-item-box">
+                        <span class="triad-tag">1. Aksiyon (CTA)</span>
+                        <div style="background:#202020; color:#FFF; padding:4px 8px; border-radius:100px; font-size:9.5px; font-weight:800; display:inline-flex; align-items:center; gap:4px;">
+                            Keşfet <span style="width:4px; height:4.2px; background:var(--coral); border-radius:50%;"></span>
+                        </div>
+                    </div>
+                    <div class="triad-item-box">
+                        <span class="triad-tag">2. Karar Mührü</span>
+                        <div style="font-size:11px; font-weight:900; color:var(--charcoal);">
+                            Alaçatı<span style="width:4px; height:4.2px; background:var(--coral); border-radius:50%; display:inline-block; margin-left:1px;"></span>
+                        </div>
+                    </div>
+                    <div class="triad-item-box">
+                        <span class="triad-tag">3. Koordinat</span>
+                        <div style="display:inline-flex; align-items:center; gap:3px; font-size:10px; font-weight:800; color:var(--coral);">
+                            <span>📍 [•] Hedef</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rule-specimen-pill">
+                <span>Rol: Aksiyon · Karar · Koordinat</span>
+                <span style="color:var(--coral);">✓ Anlamsal Bütünlük</span>
+            </div>
+        </div>
+
+        <!-- Kural 7: MORPHING İKONOGRAFİ -->
+        <div class="rule-card">
+            <div class="rule-header-row">
+                <span class="rule-number">KURAL 07</span>
+                <span class="rule-badge-status">İKONOGRAFİ</span>
+            </div>
+            <h4 class="rule-title">Morphing Adaptasyon &amp; İkonografi</h4>
+            <p class="rule-text">
+                1.8px minimalist antrasit kontur (#1E1E1E) gövdeler; ikonun odak noktası (pin, takvim, lens) <strong>System Dot</strong> formuna morflanır.
+            </p>
+            <div class="rule-visual-lab">
+                <div class="glyphs-3-row">
+                    <div class="glyph-mini-box">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8">
+                            <path d="M16 3C10.5 3 6 7.5 6 13C6 21 16 29 16 29C16 29 26 21 26 13C26 7.5 21.5 3 16 3Z"/>
+                            <ellipse cx="16" cy="13" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                        </svg>
+                        <span class="glyph-mini-label">Konum Pini</span>
+                    </div>
+                    <div class="glyph-mini-box">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8">
+                            <rect x="4" y="6" width="24" height="22" rx="4"/>
+                            <line x1="4" y1="12" x2="28" y2="12"/>
+                            <ellipse cx="16" cy="20" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                        </svg>
+                        <span class="glyph-mini-label">Takvim</span>
+                    </div>
+                    <div class="glyph-mini-box">
+                        <svg viewBox="0 0 32 32" fill="none" stroke="#1E1E1E" stroke-width="1.8">
+                            <path d="M5 10H9L11 7H21L23 10H27C28.1 10 29 10.9 29 12V24C29 25.1 28.1 26 27 26H5C3.9 26 3 25.1 3 24V12C3 10.9 3.9 10 5 10Z"/>
+                            <circle cx="16" cy="18" r="6"/>
+                            <ellipse cx="16" cy="18" rx="2.8" ry="2.9" fill="#FF4D3D" stroke="none"/>
+                        </svg>
+                        <span class="glyph-mini-label">Objektif</span>
+                    </div>
+                </div>
+            </div>
+            <div class="rule-specimen-pill">
+                <span>Kontur: 1.8px Minimal</span>
+                <span style="color:var(--coral);">✓ 8 Glif Adaptasyonu</span>
+            </div>
+        </div>
+
+        <!-- Kural 8: CANLI NABIZ LAB -->
+        <div class="rule-card">
+            <div class="rule-header-row">
+                <span class="rule-number">KURAL 08</span>
+                <span class="rule-badge-status">DİNAMİK UI</span>
+            </div>
+            <h4 class="rule-title">Canlı Durum &amp; Senkronize Nabız</h4>
+            <p class="rule-text">
+                Aciliyet durumlarında veya hover anlarında nokta yapay ışık saçmadan, sadece geometrik ölçekleme ile organik nefes alıp nabız atar.
+            </p>
+            <div class="rule-visual-lab">
+                <div class="pulse-lab-box">
+                    <div class="live-chip-specimen">
+                        <span class="pulse-live-dot"></span>
+                        <span>Son 2 Yer Kaldı</span>
+                    </div>
+                    <div class="live-chip-specimen" style="background:rgba(168,184,154,0.15); border-color:var(--sage); color:var(--charcoal);">
+                        <span class="pulse-live-dot" style="background-color:var(--sage);"></span>
+                        <span>Kayıtlar Açık</span>
+                    </div>
+                </div>
+            </div>
+            <div class="rule-specimen-pill">
+                <span>Animasyon: Geometrik Nefes</span>
+                <span style="color:var(--coral);">✓ Live Urgent State</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ZIP BATCH EXPORTER SCRIPT -->
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('downloadBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '⏳ Varlıklar Çıkarılıyor (ZIP Hazırlanıyor)...';
+            btn.disabled = true;
+
+            const zip = new JSZip();
+            const targets = [
+                { id: 'brand-main', filename: '1_gezenbiri_Logo_Main.png' },
+                { id: 'brand-black', filename: '2_gezenbiri_Logo_Black.png' },
+                { id: 'brand-white', filename: '3_gezenbiri_Logo_White.png' },
+                { id: 'brand-contrast', filename: '4_gezenbiri_Logo_Contrast.png' },
+                { id: 'brand-sage', filename: '5_gezenbiri_Logo_Sage.png' },
+                { id: 'brand-cream', filename: '6_gezenbiri_Logo_Cream.png' },
+                { id: 'app-flat', filename: '7_App_Icon_Flat.png' },
+                { id: 'app-high', filename: '8_App_Icon_Highlight.png' },
+                { id: 'ui-button', filename: '9_UI_Button.png' },
+                { id: 'ui-toast', filename: '10_UI_Notification.png' },
+                { id: 'ui-map', filename: '11_UI_MapPin.png' }
+            ];
+
+            try {
+                for (let t of targets) {
+                    const elm = document.getElementById(t.id);
+                    if (!elm) continue;
+
+                    const isMap = t.id === 'ui-map';
+                    const prevBg = elm.style.backgroundColor;
+                    if (!isMap && prevBg === '') elm.style.backgroundColor = 'transparent';
+                    
+                    await new Promise(r => setTimeout(r, 60));
+                    const canvas = await html2canvas(elm, { backgroundColor: null, scale: 3, logging: false });
+                    if (!isMap) elm.style.backgroundColor = prevBg;
+
+                    const base64Data = canvas.toDataURL('image/png').split(',')[1];
+                    zip.file(t.filename, base64Data, {base64: true});
+                }
+
+                const content = await zip.generateAsync({type: "blob"});
+                saveAs(content, "gezenbiri_System_Assets.zip");
+
+                btn.innerHTML = '✨ İndirme Tamam! Tekrar İndir';
+                btn.disabled = false;
+
+            } catch (error) {
+                console.error(error);
+                alert("ZIP oluşturulurken bir hata oluştu.");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
