@@ -89,13 +89,13 @@
     --gb-space-24: 96px;
 
     --gb-radius-sm: 8px;          /* Controls, tags, inputs */
-    --gb-radius-md: 16px;         /* Standard cards */
-    --gb-radius-lg: 24px;         /* Large hero cards & Modals */
+    --gb-radius-md: 12px;         /* Standard cards */
+    --gb-radius-lg: 20px;         /* Large hero cards & Modals */
     --gb-radius-pill: 999px;      /* Pill badges & circular icons */
 
     /* ================= 4. SHADOW & MOTION ================= */
     --gb-shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
-    --gb-shadow-floating: 0 12px 36px rgba(0, 0, 0, 0.08);
+    --gb-shadow-floating: 0 16px 40px rgba(0, 0, 0, 0.12);
     --gb-shadow-overlay: 0 25px 70px rgba(0, 0, 0, 0.16);
 
     --gb-motion-fast: 180ms ease-out;
@@ -235,7 +235,7 @@
     }
 }
 
-/* ================= 9. REUSABLE UI COMPONENT LIBRARY ================= */
+/* ================= 8. REUSABLE UI COMPONENT LIBRARY ================= */
 
 /* Buttons */
 .gb-btn {

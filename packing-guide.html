@@ -20,15 +20,9 @@
 
     <style>
         :root {
-            --bg-page: var(--gb-cream);
-            --charcoal: var(--gb-charcoal);
-            --coral: var(--gb-coral);
-            --sage: var(--gb-sage);
-            --sky: var(--gb-sky);
-            --sand: var(--gb-sand);
-            --white: var(--gb-white);
-            --border-card: var(--gb-border);
-            --border-light: rgba(0, 0, 0, 0.05);
+            /* Not: Temel tokenlar brand.css'ten gelir. Sayfa-özel: */
+            --bg-page: var(--gb-cream);           /* packing-guide arka zemin */
+            --border-light: rgba(0, 0, 0, 0.05);  /* hafif kart sınır rengi */
         }
 
         * {
@@ -895,7 +889,7 @@
     </div>
 
     <!-- SCRIPT LOGIC -->
-    <script src="data/events.js"></script>
+    <!-- events.js bu sayfada kullanılmamaktadır. Veri gerekirse data/events.js yeniden eklenebilir. -->
     <script>
         const destinationData = {
             alacati: {

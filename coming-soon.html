@@ -216,6 +216,61 @@
             color: #777;
             text-align: center;
         }
+
+        /* ========================================
+           EDITORIAL DYNAMIC STREAM — cs- prefix
+           Nefes alan, zarif tipografik akış
+        ======================================== */
+
+        .editorial-stream-wrap {
+            margin: 12px 0 28px 0;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .editorial-stream-text {
+            font-family: var(--font-serif);
+            font-size: clamp(26px, 5vw, 40px);
+            font-style: italic;
+            color: var(--gb-charcoal);
+            line-height: 1.25;
+            display: inline-flex;
+            align-items: baseline;
+            justify-content: center;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .editorial-stream-text.fade-out {
+            opacity: 0;
+            transform: translateY(-6px);
+        }
+
+        .editorial-stream-text.fade-in {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+
+        .editorial-sub {
+            font-size: 16px;
+            font-weight: 500;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        .description-text {
+            font-size: 14.5px;
+            color: #888;
+            max-width: 480px;
+            line-height: 1.6;
+            margin-bottom: 36px;
+        }
     </style>
 </head>
 <body>
@@ -242,6 +297,13 @@
             </div>
 
             <h1 class="slogan-title">Bir yere gidelim.</h1>
+
+            <!-- ── Dinamik Editoryal Cümle Akışı ── -->
+            <div class="editorial-stream-wrap" aria-live="polite">
+                <div class="editorial-stream-text" id="streamText">
+                    “Belki Alaçatı'da bir taş avluya...”
+                </div>
+            </div>
 
             <p class="editorial-sub">
                 Gitmeye değer yerler. Tanışmaya değer insanlar.
@@ -278,4 +340,49 @@
     </div>
 
 </body>
+
+<script>
+/* ====================================================
+   gezenbiri coming-soon — Editoryal Dinamik Cümle Akışı
+   Nefes alan, duru, saf tipografik rota fısıltıları
+==================================================== */
+
+const DESTINATION_STREAM = [
+    '“Belki Alaçatı\'da bir taş avluya...”',
+    '“Belki Kapadokya\'da vadi gün doğumuna...”',
+    '“Belki Urla\'da gün batımı ve bir bağ sofrasına...”',
+    '“Belki ellerimizde çamurla bir seramik atölyesine...”',
+    '“Belki Bozcaada\'da rüzgar güllerine karşı bir kadehe...”',
+    '“Belki nereye gittiğimizi bilmediğimiz sürpriz bir yola...”'
+];
+
+let streamIndex = 0;
+const streamEl = document.getElementById('streamText');
+const STREAM_INTERVAL = 3200; // ms
+
+function nextPhrase() {
+    if (!streamEl) return;
+    
+    // Fade out & slight slide up
+    streamEl.classList.add('fade-out');
+
+    setTimeout(() => {
+        streamIndex = (streamIndex + 1) % DESTINATION_STREAM.length;
+        streamEl.textContent = DESTINATION_STREAM[streamIndex];
+        
+        // Reset classes and trigger fade in
+        streamEl.classList.remove('fade-out');
+        streamEl.classList.add('fade-in');
+
+        // Reflow for transition
+        void streamEl.offsetHeight;
+        streamEl.classList.remove('fade-in');
+    }, 400);
+}
+
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!prefersReduced && streamEl) {
+    setInterval(nextPhrase, STREAM_INTERVAL);
+}
+</script>
 </html>

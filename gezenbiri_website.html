@@ -57,19 +57,17 @@
     
     <style>
         :root {
-            --bg-cream: #F6F3ED;
-            --white: #FFFFFF;
-            --charcoal: #202020;
-            --text-dark: #202020;
+            /* Not: Tüm temel tokenlar (--coral, --charcoal, --white vb.) brand.css'ten gelir. */
+            /* Sayfa-özel takma adlar: */
+            --bg-cream: var(--gb-cream);
+            --text-dark: var(--gb-charcoal);
             --text-muted: #555555;
             --text-light: #777777;
-            --coral: #FF4D3D;
-            --coral-hover: #E83F2F;
-            --sage-green: #A8B89A;
+            --sage-green: var(--gb-sage);
             --sage-card: #8FA281;
-            --sky-blue: #A9D5E8;
-            --sand-card: #D8CCBC;
-            --border-light: rgba(32, 32, 32, 0.08);
+            --sky-blue: var(--gb-sky);
+            --sand-card: var(--gb-sand);
+            --border-light: var(--gb-border-subtle);
             --border-card: rgba(32, 32, 32, 0.1);
             --card-shadow: 0 8px 24px rgba(0,0,0,0.04);
             --card-shadow-hover: 0 16px 36px rgba(0,0,0,0.09);
@@ -1608,7 +1606,7 @@
                         <div class="gb-mini-body">
                             <div>
                                 <h3 class="gb-mini-title">Alaçatı Hafta Sonu</h3>
-                                <div class="gb-mini-loc">📍 Alaçatı</div>
+                                <div class="gb-mini-loc"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="var(--coral,#FF4D3D)"/></svg> Alaçatı</div>
                                 <p class="gb-mini-desc">Taş sokaklar, iyi kahve ve Ege ruhu.</p>
                             </div>
                             <div class="gb-mini-footer">
@@ -1628,7 +1626,7 @@
                         <div class="gb-mini-body">
                             <div>
                                 <h3 class="gb-mini-title">Çeşme Kaçamağı</h3>
-                                <div class="gb-mini-loc">📍 Çeşme</div>
+                                <div class="gb-mini-loc"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="var(--coral,#FF4D3D)"/></svg> Çeşme</div>
                                 <p class="gb-mini-desc">Mavi sular, güzel plajlar ve gün batımları.</p>
                             </div>
                             <div class="gb-mini-footer">
@@ -1648,7 +1646,7 @@
                         <div class="gb-mini-body">
                             <div>
                                 <h3 class="gb-mini-title">Kapadokya Gün Doğumu</h3>
-                                <div class="gb-mini-loc">📍 Kapadokya</div>
+                                <div class="gb-mini-loc"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="var(--coral,#FF4D3D)"/></svg> Kapadokya</div>
                                 <p class="gb-mini-desc">Balonlar, vadi yürüyüşleri ve otantik deneyimler.</p>
                             </div>
                             <div class="gb-mini-footer">
@@ -1668,7 +1666,7 @@
                         <div class="gb-mini-body">
                             <div>
                                 <h3 class="gb-mini-title">Urla Rotası</h3>
-                                <div class="gb-mini-loc">📍 Urla</div>
+                                <div class="gb-mini-loc"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="var(--coral,#FF4D3D)"/></svg> Urla</div>
                                 <p class="gb-mini-desc">Bağ rotaları, sanat durakları ve yerel lezzetler.</p>
                             </div>
                             <div class="gb-mini-footer">
@@ -1699,7 +1697,7 @@
                         <div class="gb-mini-body">
                             <div>
                                 <h3 class="gb-mini-title">Seramik Atölyesi</h3>
-                                <div class="gb-mini-loc">📍 Alaçatı</div>
+                                <div class="gb-mini-loc"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="var(--coral,#FF4D3D)"/></svg> Alaçatı</div>
                                 <p class="gb-mini-desc">Toprağa şekil ver, kendini ifade et.</p>
                             </div>
                             <div class="gb-mini-footer">
@@ -1720,7 +1718,7 @@
                         <div class="gb-mini-body">
                             <div>
                                 <h3 class="gb-mini-title">Doğal Şarap Tadımı</h3>
-                                <div class="gb-mini-loc">📍 Urla</div>
+                                <div class="gb-mini-loc"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="var(--coral,#FF4D3D)"/></svg> Urla</div>
                                 <p class="gb-mini-desc">Urla bağlarında doğal şarap tadımı.</p>
                             </div>
                             <div class="gb-mini-footer">
@@ -1741,7 +1739,7 @@
                         <div class="gb-mini-body">
                             <div>
                                 <h3 class="gb-mini-title">Fotoğraf Yürüyüşü</h3>
-                                <div class="gb-mini-loc">📍 Çeşme</div>
+                                <div class="gb-mini-loc"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="var(--coral,#FF4D3D)"/></svg> Çeşme</div>
                                 <p class="gb-mini-desc">Işık, kompozisyon ve hikayeler.</p>
                             </div>
                             <div class="gb-mini-footer">
@@ -1762,7 +1760,7 @@
                         <div class="gb-mini-body">
                             <div>
                                 <h3 class="gb-mini-title">Ege Sofrası Buluşması</h3>
-                                <div class="gb-mini-loc">📍 Ilıca</div>
+                                <div class="gb-mini-loc"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="var(--coral,#FF4D3D)"/></svg> Ilıca</div>
                                 <p class="gb-mini-desc">Ege mutfağı ve güzel sohbetler.</p>
                             </div>
                             <div class="gb-mini-footer">
@@ -2135,19 +2133,19 @@
             if (kapadokya) {
                 const elD = document.getElementById('heroKapDate');
                 const elP = document.getElementById('heroKapPrice');
-                if (elD) elD.textContent = `${kapadokya.startMeta.day} ${kapadokya.startMeta.month.slice(0,3).toUpperCase()}`;
+                if (elD) elD.textContent = `${kapadokya.startMeta.dayNum} ${kapadokya.startMeta.monthName.slice(0,3).toUpperCase()}`;
                 if (elP) elP.textContent = `${kapadokya.price} · 2 Gece`;
             }
             if (alacati) {
                 const elD = document.getElementById('heroAlaDate');
                 const elP = document.getElementById('heroAlaPrice');
-                if (elD) elD.textContent = `${alacati.startMeta.day} ${alacati.startMeta.month.slice(0,3).toUpperCase()}`;
+                if (elD) elD.textContent = `${alacati.startMeta.dayNum} ${alacati.startMeta.monthName.slice(0,3).toUpperCase()}`;
                 if (elP) elP.textContent = alacati.price;
             }
             if (urla) {
                 const elD = document.getElementById('heroUrlaDate');
                 const elP = document.getElementById('heroUrlaPrice');
-                if (elD) elD.textContent = `${urla.startMeta.day} ${urla.startMeta.month.slice(0,3).toUpperCase()}`;
+                if (elD) elD.textContent = `${urla.startMeta.dayNum} ${urla.startMeta.monthName.slice(0,3).toUpperCase()}`;
                 if (elP) elP.textContent = urla.price;
             }
 
@@ -2155,12 +2153,12 @@
             const escapesGrid = document.getElementById('escapesGrid');
             if (escapesGrid) {
                 escapesGrid.innerHTML = trips.slice(0, 4).map(t => {
-                    const dateFormatted = GezenbiriData.formatDateTurkish(t.startDate, t.endDate);
+                    const dateFormatted = t.startMeta ? t.startMeta.fullFormatted : GezenbiriData.formatDateTurkish(t.startDate).fullFormatted;
                     const safeTitle = t.title.replace(/'/g, "\\'");
                     const safeDesc = t.description.replace(/'/g, "\\'");
                     const safeInc = (t.included || []).join(' · ').replace(/'/g, "\\'");
-                    const day = t.startMeta ? t.startMeta.day : (t.startDate ? t.startDate.split('-')[2] : '24');
-                    const month = t.startMeta ? t.startMeta.month.slice(0,3) : 'Ağu';
+                    const day = t.startMeta ? t.startMeta.dayNum : (t.startDate ? t.startDate.split('-')[2] : '24');
+                    const month = t.startMeta ? t.startMeta.monthName.slice(0,3) : 'Ağu';
                     const loc = t.destination || t.location || 'Alaçatı';
                     return `
                         <div class="gb-mini-card" onclick="openTripModal('${safeTitle}', '${dateFormatted}', '${t.price}', 'Butik Otel', '${safeDesc}', '${safeInc}')">
@@ -2173,7 +2171,7 @@
                             <div class="gb-mini-body">
                                 <div>
                                     <h3 class="gb-mini-title">${t.title}</h3>
-                                    <div class="gb-mini-loc">📍 ${loc}</div>
+                                    <div class="gb-mini-loc"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="var(--coral,#FF4D3D)"/></svg> ${loc}</div>
                                     <p class="gb-mini-desc">${t.description.slice(0, 50)}...</p>
                                 </div>
                                 <div class="gb-mini-footer">
@@ -2189,12 +2187,12 @@
             const wsGrid = document.getElementById('workshopsGrid');
             if (wsGrid) {
                 wsGrid.innerHTML = workshops.slice(0, 4).map(w => {
-                    const dateFormatted = GezenbiriData.formatDateTurkish(w.startDate);
+                    const dateFormatted = w.startMeta ? w.startMeta.fullFormatted : GezenbiriData.formatDateTurkish(w.startDate).fullFormatted;
                     const safeTitle = w.title.replace(/'/g, "\\'");
                     const safeDesc = w.description.replace(/'/g, "\\'");
                     const safeInc = (w.included || []).join(' · ').replace(/'/g, "\\'");
-                    const day = w.startMeta ? w.startMeta.day : (w.startDate ? w.startDate.split('-')[2] : '21');
-                    const month = w.startMeta ? w.startMeta.month.slice(0,3) : 'Ağu';
+                    const day = w.startMeta ? w.startMeta.dayNum : (w.startDate ? w.startDate.split('-')[2] : '21');
+                    const month = w.startMeta ? w.startMeta.monthName.slice(0,3) : 'Ağu';
                     const loc = w.location ? w.location.split(',')[0] : 'Alaçatı';
                     return `
                         <div class="gb-mini-card" onclick="openTripModal('${safeTitle}', '${dateFormatted}', '${w.price}', 'Atölye Mekanı', '${safeDesc}', '${safeInc}')">
@@ -2207,7 +2205,7 @@
                             <div class="gb-mini-body">
                                 <div>
                                     <h3 class="gb-mini-title">${w.title}</h3>
-                                    <div class="gb-mini-loc">📍 ${loc}</div>
+                                    <div class="gb-mini-loc"><svg width="10" height="12" viewBox="0 0 10 12" fill="none" aria-hidden="true" style="flex-shrink:0"><path d="M5 0C2.24 0 0 2.24 0 5c0 3.75 5 7 5 7s5-3.25 5-7c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1 1 5 3.5a1.5 1.5 0 0 1 0 3z" fill="var(--coral,#FF4D3D)"/></svg> ${loc}</div>
                                     <p class="gb-mini-desc">${w.description.slice(0, 50)}...</p>
                                 </div>
                                 <div class="gb-mini-footer">
