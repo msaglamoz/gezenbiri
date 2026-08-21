@@ -139,6 +139,7 @@ msaglamoz/gezenbiri/
 ├── gezenbiri_website.html       # Resmi Canlı Web Sitesi (3'lü kolajlı Master vitrin)
 ├── brand-guidelines.html        # 15 Modüllük Kapsamlı Marka Kılavuzu & Standartlar
 ├── system-dot.html              # System Dot Standartları, ZIP İndirme & Logo Vitrini
+├── icon-morph-motion.html        # Adaptif Morphing İkon & Kanca (Hook) Motion Laboratuvarı
 ├── trip-cards.html              # Çift Yüzlü Editoryal Seyahat Kartları Vitrini
 ├── instagram-suite.html         # Instagram Story (9:16) & Feed (1:1) Master Şablon Paketi
 ├── brand.css                    # Tek Doğruluk Kaynağı: Master Design Tokens & CSS
@@ -169,7 +170,8 @@ graph TD
     E --> D
     E --> F["brand-guidelines.html (Marka Kılavuzu)"]
     E --> G["system-dot.html (System Dot Portalı)"]
-    E --> H["index.html (Brand Hub)"]
+    E --> H["icon-morph-motion.html (Motion Lab)"]
+    E --> I["index.html (Brand Hub)"]
 ```
 
 * **Master CSS:** [`brand.css`](file:///c:/Users/Mahir/Desktop/gezenbiri/brand.css) tüm sayfaların tasarım tokenlarını, System Dot geometrisini ve tipografi kurallarını tek bir kaynaktan yönetir.
