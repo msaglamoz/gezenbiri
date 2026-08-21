@@ -483,17 +483,36 @@
             transform-origin: center;
         }
 
-        /* Animation 5: Ticket Stamp Impact */
+        /* Animation 5: Ticket Stamp Impact & Verification Seal */
         @keyframes animStampImpact {
-            0%, 100% { transform: scale(1); }
-            10% { transform: scale(1.4) rotate(6deg); }
-            20% { transform: scale(0.9) rotate(-3deg); }
-            30% { transform: scale(1) rotate(0deg); }
+            0%, 20% { transform: rotate(0deg) scale(1); }
+            30% { transform: rotate(-3deg) scale(0.95) translateY(1.5px); }
+            42% { transform: rotate(2deg) scale(1.03) translateY(-1px); }
+            54% { transform: rotate(-1deg) scale(0.99); }
+            65%, 100% { transform: rotate(0deg) scale(1) translateY(0); }
         }
 
+        @keyframes animStampDot {
+            0% { transform: translateY(-16px) scale(0); opacity: 0; }
+            18% { transform: translateY(-12px) scale(1.3); opacity: 0.9; }
+            28% { transform: translateY(0) scale(0.8); opacity: 1; filter: drop-shadow(0 0 8px #FF4D3D); }
+            38% { transform: translateY(0) scale(1.3); filter: drop-shadow(0 0 4px #FF4D3D); }
+            48% { transform: translateY(0) scale(0.95); }
+            58%, 85% { transform: translateY(0) scale(1); filter: none; opacity: 1; }
+            92% { transform: translateY(0) scale(1.15); filter: drop-shadow(0 0 5px #FF4D3D); }
+            100% { transform: translateY(-16px) scale(0); opacity: 0; }
+        }
+
+        .motion-ticket-card,
         .motion-ticket-stamp {
-            animation: animStampImpact 3.5s ease infinite;
+            animation: animStampImpact 3.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
             transform-origin: center;
+        }
+
+        .motion-ticket-dot {
+            animation: animStampDot 3.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+            transform-origin: 20px 16px;
+            transform-box: fill-box;
         }
 
         /* Animation 6: Camera Focus & Shutter Blink */
@@ -947,10 +966,10 @@
                         <span style="font-size:10.5px; color:#FFE4E0;">08 / GLİF</span>
                     </div>
                     <div class="post-icon-center">
-                        <svg viewBox="0 0 32 32" width="68" height="68" fill="none" stroke="var(--white)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="motion-ticket-stamp">
+                        <svg viewBox="0 0 32 32" width="68" height="68" fill="none" stroke="var(--white)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="motion-ticket-card">
                             <path d="M5 9C5 7.9 5.9 7 7 7H25C26.1 7 27 7.9 27 9V14C25.5 14 24.5 15 24.5 16C24.5 17 25.5 18 27 18V23C27 24.1 26.1 25 25 25H7C5.9 25 5 24.1 5 23V18C6.5 18 7.5 17 7.5 16C7.5 15 6.5 14 5 14V9Z"/>
                             <line x1="12" y1="8" x2="12" y2="24" stroke-dasharray="2 2"/>
-                            <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#F6F3ED" stroke="none"/>
+                            <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#F6F3ED" stroke="none" class="motion-ticket-dot"/>
                         </svg>
                     </div>
                     <div>
@@ -1197,7 +1216,7 @@
             },
             {
                 name: '05. Kadeh & Tadım',
-                svg: `<svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="motion-glass">
+                svg: `<svg class="stage-icon-svg motion-glass" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M8 5H24C24 13 19 17 16 17C13 17 8 13 8 5Z"/>
                         <line x1="16" y1="17" x2="16" y2="27"/>
                         <line x1="11" y1="27" x2="21" y2="27"/>
@@ -1227,10 +1246,10 @@
             },
             {
                 name: '08. Bilet & Rezervasyon',
-                svg: `<svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="motion-ticket-stamp">
+                svg: `<svg class="stage-icon-svg motion-ticket-card" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 9C5 7.9 5.9 7 7 7H25C26.1 7 27 7.9 27 9V14C25.5 14 24.5 15 24.5 16C24.5 17 25.5 18 27 18V23C27 24.1 26.1 25 25 25H7C5.9 25 5 24.1 5 23V18C6.5 18 7.5 17 7.5 16C7.5 15 6.5 14 5 14V9Z"/>
                         <line x1="12" y1="8" x2="12" y2="24" stroke-dasharray="2 2"/>
-                        <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                        <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none" class="motion-ticket-dot"/>
                       </svg>`
             }
         ];
@@ -1245,6 +1264,11 @@
             if (glyphsData[index]) {
                 stageSvg.innerHTML = glyphsData[index].svg;
                 stageBadge.textContent = glyphsData[index].name;
+                if (!isPlaying) {
+                    stageSvg.querySelectorAll('*').forEach(el => {
+                        el.style.animationPlayState = 'paused';
+                    });
+                }
             }
         }
 
@@ -1269,7 +1293,8 @@
                 }
                 .motion-pin, .motion-pin-dot, .motion-glass, .motion-wine-dot,
                 .motion-compass-needle, .motion-compass-dot, .motion-steam-dot,
-                .motion-ticket-stamp, .motion-camera-dot, .motion-comm-dot {
+                .motion-ticket-stamp, .motion-ticket-card, .motion-ticket-dot,
+                .motion-camera-dot, .motion-comm-dot, .motion-hook-dot {
                     animation-duration: ${1 / speed * 3}s !important;
                 }
             `;
@@ -1279,7 +1304,7 @@
         let isPlaying = true;
         function toggleMotionState(btn) {
             isPlaying = !isPlaying;
-            const elements = document.querySelectorAll('.motion-pin, .motion-pin-dot, .motion-glass, .motion-wine-dot, .motion-compass-needle, .motion-compass-dot, .motion-steam-dot, .motion-ticket-stamp, .motion-camera-dot, .motion-comm-dot');
+            const elements = document.querySelectorAll('.motion-pin, .motion-pin-dot, .motion-glass, .motion-wine-dot, .motion-compass-needle, .motion-compass-dot, .motion-steam-dot, .motion-ticket-stamp, .motion-ticket-card, .motion-ticket-dot, .motion-camera-dot, .motion-comm-dot, .motion-hook-dot');
             
             elements.forEach(el => {
                 el.style.animationPlayState = isPlaying ? 'running' : 'paused';
@@ -1340,10 +1365,10 @@
                 badge: 'Kanca 05 · Aciliyet / Bilet',
                 q: '"Son 2 kontenjan<br>kaldı."',
                 a: 'Bavulunu topla, biletin onaylandı. →',
-                svg: `<svg viewBox="0 0 32 32" width="70" height="70" fill="none" stroke="var(--charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="motion-ticket-stamp">
+                svg: `<svg viewBox="0 0 32 32" width="70" height="70" fill="none" stroke="var(--charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="motion-ticket-card">
                         <path d="M5 9C5 7.9 5.9 7 7 7H25C26.1 7 27 7.9 27 9V14C25.5 14 24.5 15 24.5 16C24.5 17 25.5 18 27 18V23C27 24.1 26.1 25 25 25H7C5.9 25 5 24.1 5 23V18C6.5 18 7.5 17 7.5 16C7.5 15 6.5 14 5 14V9Z"/>
                         <line x1="12" y1="8" x2="12" y2="24" stroke-dasharray="2 2"/>
-                        <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                        <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none" class="motion-ticket-dot"/>
                       </svg>`
             }
         ];
@@ -1358,6 +1383,11 @@
                 document.getElementById('hookQText').innerHTML = item.q;
                 document.getElementById('hookAText').textContent = item.a;
                 document.getElementById('hookIconBox').innerHTML = item.svg;
+                if (!isPlaying) {
+                    document.getElementById('hookIconBox').querySelectorAll('*').forEach(el => {
+                        el.style.animationPlayState = 'paused';
+                    });
+                }
             }
         }
     </script>
