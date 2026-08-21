@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="capBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F4EFE8"/>
+      <stop offset="100%" stop-color="#E2DDD2"/>
+    </linearGradient>
+    <linearGradient id="charcoalTwill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3A3A3A"/>
+      <stop offset="40%" stop-color="#242424"/>
+      <stop offset="100%" stop-color="#161616"/>
+    </linearGradient>
+    <linearGradient id="visorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2C2C2C"/>
+      <stop offset="100%" stop-color="#121212"/>
+    </linearGradient>
+    <filter id="capShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="20" stdDeviation="26" flood-color="#202020" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#capBg)"/>
+
+  <!-- Drop Shadow on table -->
+  <ellipse cx="400" cy="460" rx="220" ry="38" fill="#202020" opacity="0.15" filter="blur(16px)"/>
+
+  <g filter="url(#capShadow)">
+    <!-- CURVED VISOR (PEAK) -->
+    <path d="M220,380 C230,470 570,470 580,380 C540,435 260,435 220,380 Z" fill="url(#visorGrad)"/>
+    <!-- Visor Stitching Lines -->
+    <path d="M245,395 C285,440 515,440 555,395" fill="none" stroke="#4A4A4A" stroke-width="2" stroke-dasharray="5,4"/>
+    <path d="M255,405 C295,445 505,445 545,405" fill="none" stroke="#4A4A4A" stroke-width="2" stroke-dasharray="5,4"/>
+    <path d="M265,415 C305,450 495,450 535,415" fill="none" stroke="#4A4A4A" stroke-width="2" stroke-dasharray="5,4"/>
+
+    <!-- MAIN 6-PANEL CROWN DOME -->
+    <path d="M240,380 C230,220 310,130 400,125 C490,130 570,220 560,380 C510,395 290,395 240,380 Z" fill="url(#charcoalTwill)"/>
+    
+    <!-- Panel Seam Stitching -->
+    <!-- Center seam -->
+    <path d="M400,125 L400,385" stroke="#181818" stroke-width="2.5"/>
+    <path d="M400,125 L400,385" stroke="#484848" stroke-width="1" stroke-dasharray="4,3"/>
+    
+    <!-- Left panel seam -->
+    <path d="M400,125 Q320,240 270,380" stroke="#181818" stroke-width="2"/>
+    <!-- Right panel seam -->
+    <path d="M400,125 Q480,240 530,380" stroke="#181818" stroke-width="2"/>
+
+    <!-- Embroidered Ventilation Eyelets -->
+    <circle cx="340" cy="200" r="5" fill="#181818" stroke="#4A4A4A" stroke-width="2"/>
+    <circle cx="460" cy="200" r="5" fill="#181818" stroke="#4A4A4A" stroke-width="2"/>
+
+    <!-- Top Button (Squatchee) -->
+    <ellipse cx="400" cy="125" rx="14" ry="9" fill="#1A1A1A" stroke="#333" stroke-width="1.5"/>
+
+    <!-- 3D HIGH DENSITY LOGO EMBROIDERY (Front Crown) -->
+    <g transform="translate(400, 290)">
+      <!-- Embroidered Drop Shadow -->
+      <text x="-8" y="2" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="28" fill="#0A0A0A" letter-spacing="-0.8" text-anchor="middle">gezenbiri</text>
+      <!-- Main Embroidered Stitches in Light Oyster White -->
+      <text x="-8" y="0" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="28" fill="#EDE9DF" letter-spacing="-0.8" text-anchor="middle">gezenbiri</text>
+      
+      <!-- Action Coral 3D Embroidered System Dot -->
+      <ellipse cx="56" cy="-5" rx="4.2" ry="4.35" fill="#FF4D3D" stroke="#CC3022" stroke-width="1"/>
+    </g>
+  </g>
+
+  <!-- Technical Spec Tag Floating Pill -->
+  <g transform="translate(40, 520)">
+    <rect width="230" height="46" rx="10" fill="#FFFFFF" filter="url(#capShadow)"/>
+    <text x="16" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="11" fill="#202020">YIKANMIŞ KANVAS ŞAPKA</text>
+    <text x="16" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="10" fill="#FF4D3D">6 Panel · 3D Mikro Nakış</text>
+  </g>
+</svg>

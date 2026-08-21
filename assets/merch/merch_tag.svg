@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2EDE4"/>
+      <stop offset="100%" stop-color="#DDD6C7"/>
+    </linearGradient>
+    <linearGradient id="saddleLeather" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C27D42"/>
+      <stop offset="40%" stop-color="#A56430"/>
+      <stop offset="100%" stop-color="#7D4419"/>
+    </linearGradient>
+    <linearGradient id="brassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2B867"/>
+      <stop offset="50%" stop-color="#FFDE8A"/>
+      <stop offset="100%" stop-color="#A87F35"/>
+    </linearGradient>
+    <filter id="leatherShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="8" dy="18" stdDeviation="22" flood-color="#202020" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bgLight)"/>
+
+  <g filter="url(#leatherShadow)" transform="translate(300, 70)">
+    <!-- LEATHER HANGING STRAP -->
+    <path d="M100,-20 L100,100" stroke="#8A4E20" stroke-width="18" stroke-linecap="round"/>
+    <path d="M100,-20 L100,100" stroke="#66340F" stroke-width="2" stroke-dasharray="4,3"/>
+    
+    <!-- BRASS BUCKLE -->
+    <rect x="86" y="20" width="28" height="22" rx="4" fill="none" stroke="url(#brassGrad)" stroke-width="5"/>
+    <line x1="100" y1="20" x2="100" y2="42" stroke="#684D1C" stroke-width="3"/>
+
+    <!-- MAIN LEATHER TAG BODY -->
+    <path d="M30,90 L170,90 C186,90 196,102 194,118 L180,420 C178,432 168,440 156,440 L44,440 C32,440 22,432 20,420 L6,118 C4,102 14,90 30,90 Z" fill="url(#saddleLeather)"/>
+
+    <!-- Perimeter Artisan Saddle Stitching -->
+    <path d="M34,98 L166,98 L152,432 L48,432 Z" fill="none" stroke="#E6BF95" stroke-width="2" stroke-dasharray="6,4" opacity="0.85"/>
+
+    <!-- Reinforced Brass Eyelet Hole -->
+    <circle cx="100" cy="115" r="10" fill="url(#brassGrad)"/>
+    <circle cx="100" cy="115" r="5" fill="#3D200A"/>
+
+    <!-- LASER ENGRAVED / HOT FOIL gb. MONOGRAM -->
+    <g transform="translate(100, 260)">
+      <!-- Deboss Shadow -->
+      <text x="-4" y="2" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="48" fill="#381804" letter-spacing="-1.5" text-anchor="middle">gb</text>
+      <!-- Main Hot Brand Gold/Caramel -->
+      <text x="-4" y="0" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="48" fill="#52270B" letter-spacing="-1.5" text-anchor="middle">gb</text>
+      <!-- Action Coral Debossed Dot -->
+      <ellipse cx="32" cy="-8" rx="6.8" ry="7.0" fill="#FF4D3D"/>
+
+      <text x="0" y="44" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="8.5" fill="#52270B" letter-spacing="2" text-anchor="middle">GENUINE LEATHER</text>
+    </g>
+  </g>
+
+  <!-- Technical Spec Tag Floating Pill -->
+  <g transform="translate(40, 520)">
+    <rect width="230" height="46" rx="10" fill="#FFFFFF" filter="url(#leatherShadow)"/>
+    <text x="16" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="11" fill="#202020">DERİ BAGAJ ETİKETİ</text>
+    <text x="16" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="10" fill="#FF4D3D">2.2 mm Deri · Pirinç Toka</text>
+  </g>
+</svg>

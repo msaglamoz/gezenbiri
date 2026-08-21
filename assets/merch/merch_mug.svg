@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="woodBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFE9DE"/>
+      <stop offset="100%" stop-color="#DFD6C5"/>
+    </linearGradient>
+    <linearGradient id="mugBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D9D5CD"/>
+      <stop offset="18%" stop-color="#FFFFFF"/>
+      <stop offset="65%" stop-color="#F7F6F2"/>
+      <stop offset="100%" stop-color="#C5BFB3"/>
+    </linearGradient>
+    <linearGradient id="rimGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#111111"/>
+      <stop offset="50%" stop-color="#3A3A3A"/>
+      <stop offset="100%" stop-color="#151515"/>
+    </linearGradient>
+    <linearGradient id="handleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E8E4DA"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#BFB9AB"/>
+    </linearGradient>
+    <filter id="mugShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="14" dy="24" stdDeviation="28" flood-color="#202020" flood-opacity="0.18"/>
+      <feDropShadow dx="4" dy="8" stdDeviation="10" flood-color="#202020" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#woodBg)"/>
+
+  <!-- Surface Shadow -->
+  <ellipse cx="400" cy="460" rx="190" ry="34" fill="#202020" opacity="0.15" filter="blur(16px)"/>
+  <ellipse cx="400" cy="455" rx="140" ry="20" fill="#202020" opacity="0.22" filter="blur(8px)"/>
+
+  <!-- MUG HANDLE -->
+  <g filter="url(#mugShadow)">
+    <path d="M490,240 C585,240 600,380 490,390" fill="none" stroke="url(#handleGrad)" stroke-width="32" stroke-linecap="round"/>
+    <path d="M490,240 C585,240 600,380 490,390" fill="none" stroke="#202020" stroke-width="2" opacity="0.1"/>
+  </g>
+
+  <!-- MUG MAIN CYLINDER BODY -->
+  <g filter="url(#mugShadow)">
+    <!-- Main Cylinder -->
+    <path d="M260,190 L540,190 L520,440 C518,458 502,468 480,468 L320,468 C298,468 282,458 280,440 Z" fill="url(#mugBody)"/>
+    
+    <!-- Bottom Rim Curve -->
+    <ellipse cx="400" cy="455" rx="100" ry="12" fill="#B5AEA0" opacity="0.4"/>
+
+    <!-- ENAMEL BLACK TOP RIM (Rolled Steel Edge) -->
+    <ellipse cx="400" cy="190" rx="140" ry="20" fill="url(#rimGrad)"/>
+    <ellipse cx="400" cy="190" rx="134" ry="15" fill="#EAE5D8"/>
+    <ellipse cx="400" cy="190" rx="128" ry="13" fill="#2A2A2A" opacity="0.85"/>
+
+    <!-- Glossy Reflection Highlight -->
+    <path d="M305,215 L325,215 L315,445 L298,440 Z" fill="#FFFFFF" opacity="0.55" filter="blur(2px)"/>
+
+    <!-- OFFICIAL gezenbiri BRAND LOGO (Center Baked Print) -->
+    <g transform="translate(400, 325)">
+      <!-- Main Wordmark -->
+      <text x="-10" y="0" font-family="'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif" font-weight="900" font-size="34" fill="#202020" letter-spacing="-1.2" text-anchor="middle">gezenbiri</text>
+      <!-- Action Coral System Dot (%3 vertical stretch: 5.1px x 5.25px) -->
+      <ellipse cx="64" cy="-6" rx="5.1" ry="5.25" fill="#FF4D3D"/>
+
+      <!-- 800°C Enamel Quality Seal -->
+      <text x="0" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="9" fill="#807A6E" letter-spacing="2.2" text-transform="uppercase" text-anchor="middle">350 ML · 800°C ENAMEL STEEL</text>
+    </g>
+  </g>
+
+  <!-- Technical Spec Tag Floating Pill -->
+  <g transform="translate(40, 520)">
+    <rect width="220" height="46" rx="10" fill="#FFFFFF" filter="url(#mugShadow)"/>
+    <text x="16" y="20" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="11" fill="#202020">EMAYE KAMP KUPASI</text>
+    <text x="16" y="36" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="10" fill="#FF4D3D">350 ml Çelik · 800°C Fırınlı</text>
+  </g>
+</svg>
