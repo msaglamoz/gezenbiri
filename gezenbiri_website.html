@@ -3,378 +3,599 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gezenbiri — Bir yere gidelim.</title>
-    <meta name="description" content="Kültürel workshoplar, yerel deneyimler, yeni insanlar ve arada bir küçük kaçamaklar. Gezenbiri topluluğuna katıl.">
-    <meta name="keywords" content="gezenbiri, seyahat, workshop, seramik atölyesi, şarap tadımı, alaçatı, çeşme, urla, gezi">
+    <title>gezenbiri — Bir yere gidelim. | Seyahat, Deneyim & Topluluk Portalı</title>
+    <meta name="description" content="Alaçatı, Çeşme, Ilıca ve Urla rotaları; Kapadokya vadi kaçamakları, seramik ve doğal şarap workshopları ve 5.000+ üyelik samimi gezgin topluluğu.">
+    <meta name="keywords" content="gezenbiri, seyahat, hafta sonu kaçamağı, alaçatı, çeşme, urla, kapadokya, workshop, gezi topluluğu, spontane gezi">
     <meta name="theme-color" content="#F6F3ED">
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="gezenbiri — Bir yere gidelim.">
-    <meta property="og:description" content="Kültürel workshoplar, yerel deneyimler, yeni insanlar ve arada bir küçük kaçamaklar.">
-    <meta property="og:image" content="assets/v2/hero_pottery.jpg">
+    <meta property="og:description" content="Gitmeye değer yerler. Tanışmaya değer insanlar. Arada bir gitmek lazım.">
+    <meta property="og:image" content="assets/alacati.jpg">
 
-    <!-- Favicon -->
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="gezenbiri — Bir yere gidelim.">
+    <meta name="twitter:description" content="Alaçatı, Çeşme, Urla ve Kapadokya kaçamakları.">
+    <meta name="twitter:image" content="assets/alacati.jpg">
+
+    <!-- Favicon: Standardized Vector Ellipse Geometry -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Cellipse cx='25' cy='10' rx='3' ry='3.09' fill='%23FF4D3D'/%3E%3C/svg%3E">
 
-    <!-- Google Fonts: Plus Jakarta Sans (300-900) & Instrument Serif -->
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "gezenbiri",
+          "url": "https://gezenbiri.com.tr",
+          "logo": "https://gezenbiri.com.tr/assets/alacati.jpg",
+          "slogan": "Bir yere gidelim.",
+          "sameAs": [
+            "https://instagram.com/gezenbiri"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "name": "gezenbiri",
+          "url": "https://gezenbiri.com.tr",
+          "description": "Spontane rotalar, yerel deneyimler ve gezgin topluluğu platformu."
+        }
+      ]
+    }
+    </script>
+
+    <!-- Fonts: Plus Jakarta Sans & Instrument Serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="brand.css">
-
+    
     <style>
         :root {
-            --bg-canvas: #F6F3ED;
-            --bg-canvas-subtle: #EDE8DF;
-            --bg-white: #FFFFFF;
+            --bg-cream: #F6F3ED;
+            --white: #FFFFFF;
             --charcoal: #202020;
-            --text-lead: #333333;
-            --text-muted: #6B6B6B;
-            --text-light: #8E8E8E;
+            --text-dark: #202020;
+            --text-muted: #555555;
+            --text-light: #777777;
             --coral: #FF4D3D;
-            --coral-hover: #E03E2F;
-            --coral-soft: rgba(255, 77, 61, 0.12);
-            --sage: #A8B89A;
-            --sage-soft: rgba(168, 184, 154, 0.20);
-            --sky: #A9D5E8;
-            --sky-soft: rgba(169, 213, 232, 0.22);
+            --coral-hover: #E83F2F;
+            --sage-green: #A8B89A;
+            --sage-card: #8FA281;
+            --sky-blue: #A9D5E8;
             --sand-card: #D8CCBC;
-            --border-card: #E2DDD5;
-            --border-subtle: rgba(32, 32, 32, 0.08);
-            --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.04);
-            --shadow-hover: 0 12px 36px rgba(0, 0, 0, 0.08);
-            --radius-card: 16px;
-            --radius-btn: 8px;
+            --border-light: rgba(32, 32, 32, 0.08);
+            --border-card: rgba(32, 32, 32, 0.1);
+            --card-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            --card-shadow-hover: 0 16px 36px rgba(0,0,0,0.09);
+            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--font-sans);
-            background-color: var(--bg-canvas);
-            color: var(--charcoal);
+            font-family: var(--font-main);
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
             font-size: 14.5px;
             overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
         .container {
             width: 100%;
-            max-width: 1180px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 28px;
+            padding: 0 24px;
         }
 
-        /* ================= 1. HEADER & NAVBAR ================= */
-        .site-header {
-            background-color: var(--bg-canvas);
+        /* 1. NAVBAR */
+        .navbar {
+            background-color: rgba(246, 243, 237, 0.94);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 20px 0;
-            border-bottom: 1px solid transparent;
-            transition: background-color var(--gb-motion-fast), padding var(--gb-motion-fast), border-color var(--gb-motion-fast), box-shadow var(--gb-motion-fast);
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 0;
+            transition: all 0.2s ease;
         }
 
-        .site-header.scrolled {
-            background-color: rgba(248, 246, 242, 0.96);
-            backdrop-filter: blur(12px);
-            border-bottom-color: var(--border-card);
-            padding: 14px 0;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.03);
-        }
-
-        .nav-wrap {
+        .nav-inner {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
 
         .brand-logo {
-            font-size: 26px;
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -1.2px;
             color: var(--charcoal);
-            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: baseline;
         }
 
-        .nav-menu {
+        .nav-links {
             display: flex;
+            gap: 26px;
             align-items: center;
             list-style: none;
-            gap: 34px;
         }
 
-        .nav-item a {
-            font-size: 14px;
-            font-weight: 500;
+        .nav-links a {
+            text-decoration: none;
             color: var(--charcoal);
+            font-size: 13.5px;
+            font-weight: 700;
             position: relative;
             padding: 6px 0;
             transition: color 0.2s ease;
         }
 
-        .nav-item a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: var(--coral);
         }
 
-        .nav-item.active a {
-            font-weight: 600;
-            color: var(--charcoal);
-        }
-
-        .nav-item.active a::after {
+        .nav-links a.active::after {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 2.5px;
+            height: 2px;
             background-color: var(--coral);
             border-radius: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .btn-hub-link {
             font-size: 12px;
             font-weight: 800;
-            color: #555555;
+            color: #666;
             text-decoration: none;
             padding: 8px 14px;
-            background: var(--bg-white);
-            border: 1px solid var(--border-card);
+            background: var(--white);
+            border: 1px solid var(--border-light);
             border-radius: 100px;
             transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
         }
 
         .btn-hub-link:hover {
             color: var(--charcoal);
             border-color: #BBB;
-            background: #FAF8F5;
         }
 
-        .btn-header-cta {
+        .btn-nav-cta {
             background-color: var(--coral);
-            color: #FFFFFF;
-            font-size: 13.5px;
-            font-weight: 700;
+            color: var(--white);
             padding: 10px 22px;
-            border-radius: var(--radius-btn);
+            border-radius: 100px;
+            font-size: 13.5px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(255, 77, 61, 0.25);
-            display: inline-block;
+            box-shadow: 0 6px 16px rgba(255, 77, 61, 0.25);
         }
 
-        .btn-header-cta:hover {
+        .btn-nav-cta:hover {
             background-color: var(--coral-hover);
             transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(255, 77, 61, 0.35);
         }
 
-        .btn-mobile-toggle {
+        /* Mobile Hamburger Button */
+        .hamburger-btn {
             display: none;
             background: none;
             border: none;
             cursor: pointer;
-            padding: 4px;
+            padding: 6px;
             color: var(--charcoal);
         }
 
-        /* Mobile Drawer */
-        .mobile-menu-drawer {
+        .mobile-drawer {
             display: none;
             flex-direction: column;
-            background: #FFFFFF;
-            padding: 20px 28px;
-            border-bottom: 1px solid var(--border-card);
+            background: var(--white);
+            border-bottom: 1px solid var(--border-light);
+            padding: 20px 24px;
             gap: 14px;
         }
 
-        .mobile-menu-drawer.active {
+        .mobile-drawer.active {
             display: flex;
         }
 
-        .mobile-menu-drawer a {
+        .mobile-drawer a {
+            text-decoration: none;
+            color: var(--charcoal);
             font-size: 15px;
-            font-weight: 600;
+            font-weight: 700;
             padding: 8px 0;
-            border-bottom: 1px dashed var(--border-card);
+            border-bottom: 1px dashed #EEE;
         }
 
-        /* ================= 2. HERO SECTION ================= */
-        .hero-section {
-            padding: 34px 0 54px 0;
-        }
-
-        .hero-grid {
+        /* 2. HERO SECTION */
+        .hero {
+            padding: 48px 0 56px 0;
             display: grid;
-            grid-template-columns: 1.05fr 1.2fr;
-            gap: 48px;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 44px;
             align-items: center;
         }
 
         .hero-title {
-            font-size: 58px;
-            font-weight: 800;
-            letter-spacing: -2.2px;
-            line-height: 1.08;
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1.05;
             color: var(--charcoal);
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
-        .hero-lead {
-            font-size: 17px;
-            font-weight: 500;
-            color: var(--text-lead);
-            line-height: 1.45;
-            margin-bottom: 16px;
-            max-width: 480px;
+        .hero-title span.coral-dot {
+            color: var(--coral);
+            display: inline-block;
         }
 
-        .hero-manifesto-text {
-            font-style: italic;
-            font-size: 13.5px;
+        .hero-sub {
+            font-size: 16.5px;
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.55;
             margin-bottom: 30px;
-            max-width: 470px;
+            max-width: 460px;
+            font-weight: 500;
         }
 
-        .hero-btn-row {
+        .hero-actions {
             display: flex;
-            align-items: center;
             gap: 14px;
+            align-items: center;
             margin-bottom: 34px;
             flex-wrap: wrap;
         }
 
-        .btn-primary-solid {
+        .btn-primary {
             background-color: var(--coral);
-            color: #FFFFFF;
-            font-size: 14px;
-            font-weight: 700;
-            padding: 13px 26px;
-            border-radius: var(--radius-btn);
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 14px rgba(255, 77, 61, 0.25);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-size: 14.5px;
+            font-weight: 800;
+            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 8px 20px rgba(255, 77, 61, 0.25);
+            transition: all 0.2s ease;
         }
 
-        .btn-primary-solid:hover {
+        .btn-primary:hover {
             background-color: var(--coral-hover);
             transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(255, 77, 61, 0.35);
         }
 
-        .btn-secondary-outline {
-            background-color: transparent;
-            color: var(--coral);
-            border: 1.5px solid rgba(255, 77, 61, 0.6);
-            font-size: 14px;
+        .btn-secondary {
+            background-color: var(--white);
+            color: var(--charcoal);
+            padding: 14px 26px;
+            border-radius: 100px;
+            font-size: 14.5px;
             font-weight: 700;
-            padding: 12px 24px;
-            border-radius: var(--radius-btn);
-            transition: all 0.2s ease;
+            text-decoration: none;
+            border: 1px solid var(--border-light);
             display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: all 0.2s ease;
         }
 
-        .btn-secondary-outline:hover {
-            background-color: var(--coral-soft);
-            border-color: var(--coral);
+        .btn-secondary:hover {
+            border-color: #BBB;
         }
 
-        .hero-community-proof {
+        .community-social-proof {
             display: flex;
             align-items: center;
             gap: 14px;
         }
 
-        .hero-avatar-stack {
+        .avatar-group {
             display: flex;
+        }
+
+        .avatar-group span {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--bg-cream);
+            margin-left: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 800;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .avatar-group span:first-child { margin-left: 0; }
+
+        .proof-text {
+            font-size: 12.5px;
+            line-height: 1.35;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .proof-text strong {
+            color: var(--charcoal);
+            display: block;
+            font-size: 13.5px;
+        }
+
+        /* HERO COLLAGE - HIGH IMPACT 3-BOX EDITORIAL */
+        .hero-collage {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 16px;
+            position: relative;
+            height: 440px;
+        }
+
+        .collage-card-main {
+            height: 100%;
+            border-radius: 24px;
+            border: 1px solid var(--border-card);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .collage-card-main:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 50px rgba(255, 77, 61, 0.22);
+            border-color: var(--coral);
+        }
+
+        .collage-img-layer {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 0;
+        }
+
+        .collage-card-main:hover .collage-img-layer,
+        .side-sub-card:hover .collage-img-layer {
+            transform: scale(1.06);
+        }
+
+        .collage-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15,15,15,0.35) 0%, rgba(15,15,15,0.12) 35%, rgba(10,10,10,0.92) 100%);
+            z-index: 1;
+            transition: background 0.3s ease;
+        }
+
+        .collage-top-bar {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .hero-avatar-img {
-            height: 32px;
-            width: auto;
+        .collage-badge {
+            background: rgba(32, 32, 32, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: var(--white);
+            font-size: 10.5px;
+            font-weight: 800;
+            padding: 5px 12px;
             border-radius: 100px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .hero-proof-info {
+        .collage-date-tag {
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 900;
+            background: var(--coral);
+            padding: 4px 10px;
+            border-radius: 100px;
+            letter-spacing: 0.5px;
+        }
+
+        .collage-bottom-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .collage-dest-label {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .collage-card-title {
+            font-size: 24px;
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.8px;
+            color: var(--white);
+            margin-bottom: 14px;
+        }
+
+        .collage-card-title em {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--bg-cream);
+        }
+
+        .collage-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collage-price-pill {
+            background: rgba(246, 243, 237, 0.95);
+            color: var(--charcoal);
+            font-size: 12px;
+            font-weight: 900;
+            padding: 6px 14px;
+            border-radius: 100px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .collage-cta-text {
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .collage-card-main:hover .collage-cta-text,
+        .side-sub-card:hover .collage-cta-text {
+            transform: translateX(3px);
+            color: var(--coral);
+        }
+
+        /* Right Side Column (2 Balanced Sub-Cards) */
+        .collage-card-side {
+            height: 100%;
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            gap: 14px;
         }
 
-        .hero-proof-count {
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--charcoal);
-        }
-
-        .hero-proof-loc {
-            font-size: 11.5px;
-            color: var(--text-muted);
-        }
-
-        .hero-image-wrap {
+        .side-sub-card {
+            flex: 1;
+            border-radius: 20px;
+            border: 1px solid var(--border-card);
+            padding: 16px 18px;
             position: relative;
-            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
-            background: #E8E3DA;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
-        .hero-main-img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-            border-radius: 18px;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        .side-sub-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 36px rgba(255, 77, 61, 0.18);
+            border-color: var(--coral);
         }
 
-        .hero-image-wrap:hover .hero-main-img {
-            transform: scale(1.02);
+        .side-sub-card .side-bottom-info {
+            position: relative;
+            z-index: 2;
         }
 
-        /* ================= 3. SECTION: BU ARALAR NELER VAR? ================= */
-        .section-categories {
-            padding: 44px 0 54px 0;
+        .side-sub-card .side-info-dest {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: -0.4px;
+            line-height: 1.15;
         }
 
-        .section-title {
-            font-size: 23px;
-            font-weight: 800;
-            letter-spacing: -0.6px;
-            color: var(--charcoal);
+        .side-sub-card .side-info-sub {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.85);
+            margin-top: 2px;
+            margin-bottom: 8px;
+        }
+
+        .side-sub-card .side-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 6px;
+        }
+
+        .side-price-pill {
+            font-size: 11.5px;
+            font-weight: 900;
+            color: var(--white);
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        /* 3. BU ARALAR NELER VAR? (4 KATEGORİ) */
+        .section-block {
+            padding: 32px 0 44px 0;
+        }
+
+        .section-head-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 22px;
+        }
+
+        .section-heading-lg {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.8px;
+            color: var(--charcoal);
+        }
+
+        .link-see-all {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--coral);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .link-see-all:hover {
+            color: var(--coral-hover);
         }
 
         .categories-grid {
@@ -383,688 +604,496 @@
             gap: 16px;
         }
 
-        .category-card {
-            background-color: var(--bg-white);
+        .cat-card {
+            height: 240px;
+            border-radius: 20px;
             border: 1px solid var(--border-card);
-            border-radius: var(--radius-card);
-            padding: 24px 22px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
-            min-height: 240px;
-            box-shadow: var(--shadow-subtle);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
+            text-decoration: none;
+            color: var(--white);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
         }
 
-        .category-card:hover {
+        .cat-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(255, 77, 61, 0.4);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.14);
         }
 
-        .category-card-top {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        .cat-card-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+            z-index: 0;
         }
 
-        .category-card-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .cat-card:hover .cat-card-bg {
+            transform: scale(1.08);
         }
 
-        .cat-icon-wrap {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+        .cat-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.78) 100%);
+            z-index: 1;
         }
 
-        .cat-card-title {
-            font-size: 16.5px;
+        .cat-card-top, .cat-card-bottom {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cat-tag {
+            font-size: 10px;
             font-weight: 800;
-            color: var(--charcoal);
-            letter-spacing: -0.3px;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(4px);
+            padding: 3px 8px;
+            border-radius: 100px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .cat-item-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            margin-top: 6px;
-            padding-left: 2px;
+        .cat-title {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: -0.4px;
+            margin-bottom: 4px;
+            line-height: 1.2;
         }
 
-        .cat-item-list li {
-            font-size: 12.5px;
-            color: #4A4A4A;
-            line-height: 1.4;
-            font-weight: 500;
-            transition: color 0.15s ease;
+        .cat-count {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            font-weight: 600;
         }
 
-        .category-card:hover .cat-item-list li {
-            color: var(--charcoal);
-        }
-
-        .cat-card-bottom {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 18px;
-        }
-
-        .circle-arrow-btn {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 1px solid var(--border-card);
-            background-color: var(--bg-white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555555;
-            font-size: 14px;
-            font-weight: 700;
-            transition: all 0.2s ease;
-        }
-
-        .category-card:hover .circle-arrow-btn {
-            background-color: var(--coral);
-            border-color: var(--coral);
-            color: #FFFFFF;
-            transform: translateX(3px);
-        }
-
-        /* ================= 4. SECTION: ÖNE ÇIKAN WORKSHOPLAR ================= */
-        .section-workshops {
-            padding: 44px 0 54px 0;
-        }
-
-        .section-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 22px;
-        }
-
-        .link-see-all {
-            font-size: 13.5px;
-            font-weight: 700;
-            color: var(--coral);
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            transition: transform 0.2s ease;
-        }
-
-        .link-see-all:hover {
-            transform: translateX(3px);
-            color: var(--coral-hover);
-        }
-
-        .workshops-grid {
+        /* 4. WORKSHOPS SECTION */
+        .workshops-3col-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
         }
 
-        .workshop-card {
-            background-color: var(--bg-white);
+        .ws-card {
+            background: var(--white);
+            border-radius: 20px;
             border: 1px solid var(--border-card);
-            border-radius: var(--radius-card);
             overflow: hidden;
-            box-shadow: var(--shadow-subtle);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
             cursor: pointer;
         }
 
-        .workshop-card:hover {
+        .ws-card:hover {
             transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(255, 77, 61, 0.4);
+            box-shadow: 0 14px 32px rgba(0,0,0,0.08);
+            border-color: #DDD;
         }
 
-        .ws-thumb-wrap {
+        .ws-img-box {
+            height: 180px;
             position: relative;
-            width: 100%;
-            height: 124px;
-            background-color: #ECE7DF;
-            overflow: hidden;
+            background-size: cover;
+            background-position: center;
         }
 
-        .ws-thumb-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .workshop-card:hover .ws-thumb-img {
-            transform: scale(1.05);
+        .ws-date-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(246, 243, 237, 0.95);
+            backdrop-filter: blur(4px);
+            color: var(--charcoal);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 100px;
         }
 
         .ws-body {
-            padding: 16px 16px 14px 16px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
+            flex: 1;
             justify-content: space-between;
-            flex-grow: 1;
-            gap: 8px;
         }
 
-        .ws-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 8px;
-        }
-
-        .ws-title-meta {
-            font-size: 13.5px;
-            font-weight: 700;
-            color: var(--charcoal);
-            line-height: 1.35;
-        }
-
-        .ws-price {
-            font-size: 13.5px;
-            font-weight: 800;
-            color: var(--coral);
-            white-space: nowrap;
-        }
-
-        .ws-desc {
-            font-style: italic;
-            font-size: 11.5px;
-            color: var(--text-muted);
-            line-height: 1.45;
-            margin: 4px 0 10px 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .ws-footer-link {
-            font-size: 12.5px;
-            font-weight: 800;
-            color: var(--coral);
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            transition: transform 0.2s ease;
-        }
-
-        .workshop-card:hover .ws-footer-link {
-            transform: translateX(3px);
-        }
-
-        /* ================= 5. SECTION: ARADA BİR KÜÇÜK KAÇAMAKLAR ================= */
-        .section-escapes {
-            padding: 44px 0 54px 0;
-        }
-
-        .section-title-wrap {
-            margin-bottom: 22px;
-        }
-
-        .section-subtitle {
-            font-size: 13.5px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .escapes-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .escape-card {
-            background-color: var(--bg-white);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-card);
-            overflow: hidden;
-            display: flex;
-            align-items: stretch;
-            box-shadow: var(--shadow-subtle);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-            cursor: pointer;
-            height: 104px;
-        }
-
-        .escape-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(255, 77, 61, 0.4);
-        }
-
-        .escape-thumb {
-            width: 140px;
-            height: 100%;
-            flex-shrink: 0;
-            overflow: hidden;
-            background-color: #ECE7DF;
-        }
-
-        .escape-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .escape-card:hover .escape-thumb img {
-            transform: scale(1.06);
-        }
-
-        .escape-info {
-            padding: 12px 14px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            flex-grow: 1;
-        }
-
-        .escape-title {
-            font-size: 13.5px;
-            font-weight: 800;
-            color: var(--charcoal);
-            line-height: 1.25;
-        }
-
-        .escape-date {
-            font-size: 11.5px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        .escape-bottom-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 6px;
-        }
-
-        .escape-price {
-            font-size: 13.5px;
-            font-weight: 800;
-            color: var(--charcoal);
-        }
-
-        .escape-card:hover .circle-arrow-btn {
-            background-color: var(--coral);
-            border-color: var(--coral);
-            color: #FFFFFF;
-            transform: translateX(2px);
-        }
-
-        /* ================= 6. SECTION: AYNI YERDE BULUŞAN İNSANLAR ================= */
-        .section-community {
-            padding: 44px 0 54px 0;
-        }
-
-        .community-master-grid {
-            display: grid;
-            grid-template-columns: 1.15fr 1fr 1fr 1fr 1.05fr;
-            gap: 16px;
-            align-items: stretch;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .community-master-grid::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
-        }
-
-        .comm-info-col {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 10px 4px 10px 0;
-        }
-
-        .comm-title {
-            font-size: 21px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--charcoal);
-            line-height: 1.2;
-            margin-bottom: 18px;
-        }
-
-        .comm-points {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .comm-points li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 12.5px;
-            color: var(--charcoal);
-            font-weight: 500;
-        }
-
-        .comm-points-icon {
-            width: 18px;
-            height: 18px;
-            opacity: 0.7;
-            flex-shrink: 0;
-        }
-
-        .comm-manifesto-sub {
-            font-style: italic;
-            font-size: 11.5px;
-            color: var(--text-muted);
-            line-height: 1.45;
-            margin-top: 14px;
-        }
-
-        /* Testimonial Cards */
-        .testimonial-card {
-            background-color: var(--bg-white);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-card);
-            padding: 18px 16px 14px 16px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: var(--shadow-subtle);
-            transition: all 0.25s ease;
-            position: relative;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(255, 77, 61, 0.4);
-        }
-
-        .test-avatar-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .test-avatar-img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1.5px solid var(--border-card);
-        }
-
-        .test-quote {
-            font-size: 11.5px;
-            color: #444444;
-            line-height: 1.5;
-            margin-bottom: 14px;
-            font-weight: 500;
-        }
-
-        .test-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-top: auto;
-        }
-
-        .test-author-name {
-            font-size: 12.5px;
-            font-weight: 800;
-            color: var(--charcoal);
-        }
-
-        .test-author-loc {
+        .ws-cat {
             font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        .btn-heart-like {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #AAA;
-            font-size: 15px;
-            transition: all 0.2s ease;
-            padding: 2px;
-        }
-
-        .btn-heart-like:hover, .btn-heart-like.liked {
-            color: var(--coral);
-            transform: scale(1.15);
-        }
-
-        /* Community Join CTA Card */
-        .comm-join-card {
-            background-color: var(--sand-card);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-card);
-            padding: 22px 18px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: var(--shadow-subtle);
-            transition: all 0.25s ease;
-            text-decoration: none;
-        }
-
-        .comm-join-card:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(30, 30, 30, 0.2);
-        }
-
-        .comm-join-title {
-            font-size: 15px;
             font-weight: 800;
-            color: var(--charcoal);
-            margin-bottom: 12px;
-        }
-
-        .comm-join-avatars {
-            height: 26px;
-            width: auto;
-            border-radius: 100px;
+            color: var(--coral);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 6px;
         }
 
-        .comm-join-count {
+        .ws-title {
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: -0.4px;
+            color: var(--charcoal);
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .ws-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .ws-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-light);
+            padding-top: 14px;
+        }
+
+        .ws-price {
+            font-size: 15px;
+            font-weight: 900;
+            color: var(--charcoal);
+        }
+
+        .ws-btn-join {
+            background: var(--bg-cream);
+            color: var(--charcoal);
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 100px;
+            border: 1px solid var(--border-light);
+            transition: all 0.2s ease;
+        }
+
+        .ws-card:hover .ws-btn-join {
+            background: var(--coral);
+            color: var(--white);
+            border-color: var(--coral);
+        }
+
+        /* 5. GEZİLER & ROTALAR (CAROUSEL & CARDS) */
+        .trips-carousel-wrap {
+            position: relative;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 14px;
+            margin: 0 -24px;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .trips-carousel-wrap::-webkit-scrollbar {
+            display: none;
+        }
+
+        .trips-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+        }
+
+        .trip-item-card {
+            width: 320px;
+            height: 420px;
+            border-radius: 24px;
+            border: 1px solid var(--border-card);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 22px;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
+
+        .trip-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.16);
+        }
+
+        .trip-item-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s ease;
+            z-index: 0;
+        }
+
+        .trip-item-card:hover .trip-item-bg {
+            transform: scale(1.08);
+        }
+
+        .trip-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%);
+            z-index: 1;
+        }
+
+        .trip-item-top, .trip-item-bottom {
+            position: relative;
+            z-index: 2;
+        }
+
+        .trip-item-badge {
+            background: rgba(255,255,255,0.9);
+            color: var(--charcoal);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+
+        .trip-item-title {
+            font-size: 22px;
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: -0.6px;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+
+        .trip-item-sub {
+            font-size: 13px;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .trip-item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 12px;
+        }
+
+        .trip-item-price {
+            font-size: 16px;
+            font-weight: 900;
+            color: var(--white);
+        }
+
+        .trip-item-cta {
+            background: var(--coral);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 14px;
+            border-radius: 100px;
+        }
+
+        /* 6. TOPLULUK & YORUMLAR */
+        .community-box {
+            background: var(--white);
+            border-radius: 28px;
+            border: 1px solid var(--border-card);
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .comm-title {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.2;
             color: var(--charcoal);
             margin-bottom: 14px;
         }
 
-        .comm-join-action {
+        .comm-desc {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .comm-btn {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 13.5px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .comm-btn:hover {
+            background: #000;
+            transform: translateY(-2px);
+        }
+
+        .testimonials-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .testi-card {
+            background: var(--bg-cream);
+            border-radius: 18px;
+            padding: 18px 20px;
+            border: 1px solid var(--border-light);
+        }
+
+        .testi-quote {
+            font-size: 13.5px;
+            color: var(--charcoal);
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .testi-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .testi-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .testi-meta h6 {
             font-size: 12.5px;
             font-weight: 800;
             color: var(--charcoal);
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            transition: transform 0.2s ease;
         }
 
-        .comm-join-card:hover .comm-join-action {
-            transform: translateX(3px);
-            color: var(--coral);
+        .testi-meta span {
+            font-size: 11px;
+            color: #888;
         }
 
-        /* ================= 7. SECTION: MANIFESTO BANNER ================= */
-        .section-manifesto-banner {
-            margin: 44px 0 54px 0;
-            background-color: var(--bg-canvas-subtle);
-            border-top: 1px solid var(--border-card);
-            border-bottom: 1px solid var(--border-card);
-            padding: 34px 0;
-        }
-
-        .manifesto-banner-inner {
+        /* 7. MANIFESTO STRIP BANNER */
+        .manifesto-strip-banner {
+            background: #EAE6DC;
+            border-radius: 24px;
+            padding: 24px 32px;
             display: grid;
-            grid-template-columns: 1.15fr 1.8fr 0.75fr;
-            gap: 36px;
+            grid-template-columns: 100px 1fr 140px;
+            gap: 28px;
             align-items: center;
+            border: 1px solid rgba(32,32,32,0.06);
+            margin: 20px 0;
         }
 
-        .manifesto-photo-wrap {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        .manifesto-photo-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 18px;
+            background-image: url('assets/alacati.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(0,0,0,0.1);
         }
 
-        .manifesto-photo-wrap img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
-
-        .manifesto-center-text {
-            position: relative;
-            padding-left: 36px;
-        }
-
-        .manifesto-quote-mark {
-            position: absolute;
-            left: 0;
-            top: -12px;
-            font-family: var(--font-serif);
-            font-size: 64px;
-            color: var(--sage);
-            line-height: 1;
-            opacity: 0.85;
-        }
-
-        .manifesto-body-lines {
-            font-size: 15.5px;
-            line-height: 1.65;
+        .manifesto-copy-main {
+            font-size: 17px;
+            font-weight: 900;
             color: var(--charcoal);
-            font-weight: 500;
+            letter-spacing: -0.4px;
+            line-height: 1.35;
+            margin-bottom: 6px;
         }
 
-        .manifesto-body-lines span.highlight {
-            font-weight: 700;
+        .manifesto-copy-sub {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.45;
         }
 
-        .manifesto-art-wrap {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0.85;
-        }
-
-        .manifesto-art-img {
-            max-width: 110px;
-            height: auto;
-        }
-
-        /* ================= 8. SECTION: FOOTER ================= */
-        .site-footer {
-            background-color: var(--bg-canvas);
-            padding: 56px 0 34px 0;
+        /* 8. FOOTER */
+        .footer {
+            background: #EFECE4;
+            border-top: 1px solid var(--border-light);
+            padding: 56px 0 32px 0;
+            margin-top: 40px;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 1.3fr 1fr 1fr 1fr 1.4fr;
-            gap: 36px;
-            margin-bottom: 48px;
+            grid-template-columns: 1.4fr 1fr 1.2fr 1fr 1.2fr;
+            gap: 32px;
+            margin-bottom: 40px;
         }
 
-        .footer-brand-col {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .footer-logo {
+        .f-logo {
             font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -1px;
             color: var(--charcoal);
+            margin-bottom: 8px;
+            display: inline-flex;
+            align-items: baseline;
         }
 
-        .footer-slogan {
+        .f-slogan-block {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.45;
+            margin-bottom: 14px;
+        }
+
+        .f-slogan-block strong {
+            display: block;
+            color: var(--charcoal);
             font-size: 13.5px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .footer-instagram-box {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 4px;
-        }
-
-        .ig-icon-badge {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #FFFFFF;
-            flex-shrink: 0;
-        }
-
-        .ig-text-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
-        }
-
-        .ig-label {
-            font-size: 11px;
-            color: var(--text-muted);
-        }
-
-        .ig-handle {
-            font-size: 12.5px;
-            font-weight: 700;
-            color: var(--charcoal);
-            transition: color 0.2s ease;
-        }
-
-        .ig-handle:hover {
-            color: var(--coral);
         }
 
         .footer-col-title {
             font-size: 13.5px;
             font-weight: 800;
             color: var(--charcoal);
-            margin-bottom: 16px;
-            letter-spacing: -0.2px;
+            letter-spacing: 0.2px;
+            margin-bottom: 14px;
+            text-transform: uppercase;
         }
 
         .footer-links-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 9px;
         }
 
         .footer-links-list a {
-            font-size: 12.5px;
+            text-decoration: none;
             color: var(--text-muted);
-            font-weight: 500;
+            font-size: 13px;
+            font-weight: 600;
             transition: color 0.2s ease;
         }
 
@@ -1072,81 +1101,75 @@
             color: var(--coral);
         }
 
+        .footer-domains-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(32, 32, 32, 0.05);
+            padding: 5px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
         .newsletter-desc {
-            font-size: 12px;
+            font-size: 12.5px;
             color: var(--text-muted);
-            line-height: 1.45;
-            margin-bottom: 14px;
+            line-height: 1.4;
+            margin-bottom: 12px;
         }
 
         .newsletter-form-row {
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }
 
-        .newsletter-input {
-            flex-grow: 1;
-            background-color: var(--bg-white);
-            border: 1px solid var(--border-card);
-            border-radius: var(--radius-btn);
-            padding: 10px 12px;
+        .newsletter-input-box {
+            flex: 1;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            padding: 10px 14px;
+            border-radius: 100px;
             font-size: 12.5px;
-            font-family: var(--font-sans);
-            color: var(--charcoal);
             outline: none;
-            transition: border-color 0.2s ease;
+            font-family: inherit;
         }
 
-        .newsletter-input:focus {
-            border-color: var(--coral);
-        }
-
-        .newsletter-btn {
-            background-color: var(--coral);
-            color: #FFFFFF;
+        .newsletter-submit-btn {
+            background: var(--coral);
+            color: var(--white);
             border: none;
-            font-family: var(--font-sans);
-            font-size: 12.5px;
-            font-weight: 700;
             padding: 10px 16px;
-            border-radius: var(--radius-btn);
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 12.5px;
             cursor: pointer;
             transition: background 0.2s ease;
-            white-space: nowrap;
         }
 
-        .newsletter-btn:hover {
-            background-color: var(--coral-hover);
+        .newsletter-submit-btn:hover {
+            background: var(--coral-hover);
         }
 
         .footer-bottom-bar {
-            border-top: 1px solid var(--border-card);
+            border-top: 1px solid var(--border-light);
             padding-top: 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 11.5px;
-            color: var(--text-light);
-            font-weight: 500;
-            flex-wrap: wrap;
-            gap: 12px;
+            font-size: 12.5px;
+            color: #888;
+            font-weight: 600;
         }
 
-        .footer-legal-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-legal-links a:hover {
-            color: var(--charcoal);
-        }
-
-        /* ================= 9. INTERACTIVE MODAL & TOAST ================= */
-        .modal-overlay {
+        /* MODALS (ACCESSIBLE WCAG AA & KEYBOARD FOCUS TRAP) */
+        .modal-backdrop {
             position: fixed;
             inset: 0;
-            background-color: rgba(20, 20, 20, 0.65);
-            backdrop-filter: blur(6px);
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(8px);
             z-index: 99999;
             display: none;
             align-items: center;
@@ -1154,997 +1177,809 @@
             padding: 20px;
         }
 
-        .modal-overlay.active {
+        .modal-backdrop.active {
             display: flex;
         }
 
-        .modal-card {
-            background-color: #FFFFFF;
-            border-radius: 20px;
-            max-width: 540px;
+        .modal-box {
+            background: var(--white);
+            border-radius: 24px;
             width: 100%;
-            padding: 30px;
+            max-width: 480px;
+            padding: 28px;
             position: relative;
-            box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
             animation: modalFadeUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes modalFadeUp {
-            from { transform: translateY(20px) scale(0.96); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
+            from { opacity: 0; transform: translateY(16px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        .modal-close-btn {
+        .modal-close {
             position: absolute;
             top: 20px;
             right: 20px;
-            background: var(--bg-canvas);
-            border: 1px solid var(--border-card);
+            background: #F0EDE6;
+            border: none;
             width: 32px;
             height: 32px;
             border-radius: 50%;
+            cursor: pointer;
+            font-weight: 800;
+            font-size: 13px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
-            cursor: pointer;
             color: var(--charcoal);
-            transition: all 0.2s ease;
+            transition: background 0.2s ease;
         }
 
-        .modal-close-btn:hover {
-            background: var(--coral);
-            color: #FFFFFF;
+        .modal-close:hover {
+            background: #E2DDD4;
         }
 
-        .modal-tag {
+        .modal-header-tag {
             font-size: 11px;
             font-weight: 800;
-            color: var(--coral);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
+            color: var(--coral);
             margin-bottom: 6px;
         }
 
         .modal-title {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -0.8px;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.6px;
             color: var(--charcoal);
             margin-bottom: 12px;
+            line-height: 1.2;
         }
 
-        .modal-meta-row {
+        .modal-meta-bar {
             display: flex;
-            gap: 16px;
+            gap: 12px;
+            background: var(--bg-cream);
+            padding: 10px 14px;
+            border-radius: 12px;
             font-size: 12.5px;
-            color: var(--text-muted);
-            margin-bottom: 18px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid var(--border-card);
+            font-weight: 700;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
         }
 
-        .modal-desc {
-            font-size: 13.5px;
-            color: #444;
-            line-height: 1.6;
-            margin-bottom: 24px;
-        }
-
-        .modal-booking-form {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .modal-input {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 8px;
-            border: 1px solid var(--border-card);
-            font-family: var(--font-sans);
-            font-size: 13px;
-            outline: none;
-        }
-
-        .modal-input:focus {
-            border-color: var(--coral);
-        }
-
-        .modal-submit-btn {
-            background-color: var(--coral);
-            color: #FFFFFF;
-            border: none;
-            padding: 13px;
-            border-radius: 8px;
-            font-size: 14px;
+        .modal-section-title {
+            font-size: 11px;
             font-weight: 800;
-            cursor: pointer;
-            transition: background 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+            margin-bottom: 6px;
         }
 
-        .modal-submit-btn:hover {
-            background-color: var(--coral-hover);
-        }
-
-        /* Toast notification */
-        .toast-notification {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            background-color: var(--charcoal);
-            color: #FFFFFF;
-            padding: 14px 22px;
-            border-radius: 10px;
-            font-size: 13px;
+        .modal-included-box {
+            background: #F8F7F4;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+            margin-bottom: 20px;
             font-weight: 600;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            z-index: 100000;
+        }
+
+        .btn-modal-wa {
+            width: 100%;
+            background: #25D366;
+            color: #FFF;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 100px;
+            font-weight: 800;
+            font-size: 13.5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-modal-wa:hover {
+            background: #1EBE5D;
+            transform: translateY(-1px);
+        }
+
+        /* TOAST */
+        .toast-notify {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 999999;
             display: none;
-            animation: toastPop 0.3s ease;
+            align-items: center;
+            gap: 8px;
         }
 
-        .toast-notification.active {
-            display: block;
-        }
-
-        @keyframes toastPop {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* ================= 10. RESPONSIVE BREAKPOINTS ================= */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
-            }
-            .hero-title {
-                font-size: 46px;
-            }
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .workshops-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .escapes-grid {
-                grid-template-columns: 1fr;
-            }
-            .community-master-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .comm-info-col {
-                grid-column: span 2;
-            }
-            .manifesto-banner-inner {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-            .manifesto-photo-wrap {
-                max-width: 480px;
-            }
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .hero { grid-template-columns: 1fr; gap: 36px; }
+            .workshops-3col-grid { grid-template-columns: repeat(2, 1fr); }
+            .categories-grid { grid-template-columns: repeat(2, 1fr); }
+            .community-grid { grid-template-columns: 1fr; }
+            .manifesto-strip-banner { grid-template-columns: 1fr; gap: 16px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .nav-menu, .btn-header-cta {
-                display: none;
-            }
-            .btn-mobile-toggle {
-                display: block;
-            }
-            .hero-title {
-                font-size: 38px;
-                letter-spacing: -1.5px;
-            }
-            .categories-grid, .workshops-grid {
-                grid-template-columns: 1fr;
-            }
-            .community-master-grid {
-                grid-template-columns: 1fr;
-            }
-            .comm-info-col {
-                grid-column: span 1;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 28px;
-            }
-            .footer-bottom-bar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            .container { padding: 0 16px; }
+            .nav-links, .btn-hub-link { display: none; }
+            .hamburger-btn { display: block; }
+            .hero-title { font-size: 44px; letter-spacing: -2px; }
+            .hero-collage { grid-template-columns: 1fr; height: auto; }
+            .collage-card-main { height: 320px; }
+            .collage-card-side { flex-direction: row; }
+            .side-sub-card { height: 180px; }
+            .workshops-3col-grid { grid-template-columns: 1fr; }
+            .categories-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom-bar { flex-direction: column; gap: 10px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. HEADER & NAVBAR -->
-    <header class="site-header" id="navbar">
-        <div class="container">
-            <div class="nav-wrap">
-                <a href="gezenbiri_website.html" class="brand-logo">gezenbiri<span class="brand-system-dot"></span></a>
-                
-                <ul class="nav-menu">
-                    <li class="nav-item active"><a href="gezenbiri_website.html">Ana Sayfa</a></li>
-                    <li class="nav-item"><a href="#workshops">Atölyeler</a></li>
-                    <li class="nav-item"><a href="#categories">Deneyimler</a></li>
-                    <li class="nav-item"><a href="#escapes">Geziler &amp; Rotalar</a></li>
-                    <li class="nav-item"><a href="#community">Topluluk</a></li>
-                    <li class="nav-item"><a href="#manifesto">Hakkımızda</a></li>
-                </ul>
+    <!-- 1. NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-inner">
+            <a href="gezenbiri_website.html" class="brand-logo">gezenbiri<span class="brand-system-dot"></span></a>
 
-                <div class="header-actions">
-                    <a href="index.html" class="btn-hub-link">⚡ Brand Hub</a>
-                    <a href="#workshops" class="btn-header-cta">Etkinlikleri Keşfet</a>
-                    <button class="btn-mobile-toggle" id="mobileToggle" aria-label="Menüyü Aç">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                    </button>
-                </div>
+            <ul class="nav-links">
+                <li><a href="gezenbiri_website.html" class="active">Ana Sayfa</a></li>
+                <li><a href="#geziler">Geziler</a></li>
+                <li><a href="#deneyimler">Deneyimler</a></li>
+                <li><a href="#workshoplar">Workshoplar</a></li>
+                <li><a href="#topluluk">Topluluk</a></li>
+                <li><a href="#manifesto">Hakkımızda</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="index.html" class="btn-hub-link">⚡ Brand Hub</a>
+                <a href="#geziler" class="btn-nav-cta">
+                    <span>Etkinlikleri Keşfet</span>
+                    <span>→</span>
+                </a>
+                <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Menüyü Aç">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
             </div>
         </div>
 
         <!-- Mobile Drawer -->
-        <div class="mobile-menu-drawer" id="mobileDrawer">
-            <a href="index.html" style="color: var(--charcoal); font-weight: 800;">⚡ Brand System Hub</a>
-            <a href="gezenbiri_website.html" class="active">Ana Sayfa</a>
-            <a href="#workshops" onclick="toggleMobileMenu()">Workshoplar</a>
-            <a href="#categories" onclick="toggleMobileMenu()">Deneyimler</a>
-            <a href="#escapes" onclick="toggleMobileMenu()">Geziler &amp; Rotalar</a>
-            <a href="#community" onclick="toggleMobileMenu()">Topluluk</a>
+        <div class="mobile-drawer" id="mobileDrawer">
+            <a href="index.html" style="color:var(--coral); font-weight:800;">⚡ Brand System Hub</a>
+            <a href="gezenbiri_website.html" onclick="toggleMobileMenu()">Ana Sayfa</a>
+            <a href="#geziler" onclick="toggleMobileMenu()">Geziler</a>
+            <a href="#deneyimler" onclick="toggleMobileMenu()">Deneyimler</a>
+            <a href="#workshoplar" onclick="toggleMobileMenu()">Workshoplar</a>
+            <a href="#topluluk" onclick="toggleMobileMenu()">Topluluk</a>
             <a href="#manifesto" onclick="toggleMobileMenu()">Hakkımızda</a>
             <a href="brand-guidelines.html">Marka Kılavuzu</a>
             <a href="trip-cards.html">Seyahat Kartları</a>
             <a href="instagram-suite.html">Instagram Paketi</a>
-            <a href="#workshops" onclick="toggleMobileMenu()" style="color: var(--coral); font-weight: 800;">Etkinlikleri Keşfet →</a>
         </div>
-    </header>
+    </nav>
 
     <!-- 2. HERO SECTION -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="hero-grid">
+    <section class="container hero">
+        <div>
+            <h1 class="hero-title">
+                Bir yere<br>gidelim.
+            </h1>
+            <p class="hero-sub">
+                Geziler, yerel deneyimler, workshoplar ve yeni insanlarla dolu spontane kaçamaklar.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#geziler" class="btn-primary">Gezileri Gör →</a>
+                <a href="#workshoplar" class="btn-secondary">Deneyimleri Keşfet →</a>
+            </div>
+
+            <div class="community-social-proof">
+                <div class="avatar-group">
+                    <span style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80');"></span>
+                    <span style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80');"></span>
+                    <span style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80');"></span>
+                    <span style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80');"></span>
+                </div>
+                <div class="proof-text">
+                    Topluluğumuza katılan<br>
+                    <strong>5.000+ gezgin</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- HERO COLLAGE - 3-BOX HARMONY -->
+        <div class="hero-collage">
+            
+            <!-- 1. Ana Büyük Kart (Kapadokya) -->
+            <div class="collage-card-main" onclick="openTripModal('Kapadokya Vadi Kaçamağı', '17 - 19 Ekim', '₺3.600', 'Cave Butik Otel', 'Balon seyri, Kızılçukur vadi yürüyüşü ve sıcak şarap eşliğinde otantik anlar.', 'Ulaşım, 2 Gece Butik Cave Otel, Kahvaltı, Vadi Transferi')">
+                <div class="collage-img-layer" style="background-image: url('assets/kapadokya.jpg');"></div>
+                <div class="collage-overlay"></div>
+                <div class="collage-top-bar">
+                    <span class="collage-badge">gb · ÖNE ÇIKAN</span>
+                    <span class="collage-date-tag" id="heroKapDate">17 EKİ</span>
+                </div>
+                <div class="collage-bottom-content">
+                    <span class="collage-dest-label">Kapadokya</span>
+                    <h3 class="collage-card-title">Vadide gün doğumu &amp;<br><em>sıcak şarap.</em></h3>
+                    <div class="collage-card-footer">
+                        <span class="collage-price-pill" id="heroKapPrice">₺3.600 · 2 Gece</span>
+                        <span class="collage-cta-text">İncele →</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2 & 3. Sağ Yan Sütun (Alaçatı + Urla) -->
+            <div class="collage-card-side">
                 
-                <!-- Left Column -->
-                <div class="hero-content">
-                    <h1 class="hero-title">Bir yere gidelim.</h1>
-                    
-                    <p class="hero-lead">
-                        Kültürel workshoplar, yerel deneyimler, yeni insanlar ve arada bir küçük kaçamaklar.
+                <!-- 2. Alaçatı Hafta Sonu -->
+                <div class="side-sub-card" onclick="openTripModal('Alaçatı Hafta Sonu Kaçamağı', '24 - 25 Ağustos', '₺2.950', 'Taş Konak Butik', 'Taş sokaklar, antika pazarı, butik kahveciler ve akşam zeytinyağlı Ege sofrası.', 'Ulaşım, 1 Gece Taş Konak, Serpme Kahvaltı, Rehber')">
+                    <div class="collage-img-layer" style="background-image: url('assets/alacati.jpg');"></div>
+                    <div class="collage-overlay"></div>
+                    <div class="collage-top-bar">
+                        <span class="collage-badge" style="font-size:9.5px; padding:3px 10px;">HAFTA SONU</span>
+                        <span class="collage-date-tag" style="font-size:10px; padding:3px 8px;" id="heroAlaDate">24 AĞU</span>
+                    </div>
+                    <div class="side-bottom-info">
+                        <div class="side-info-dest">Alaçatı</div>
+                        <div class="side-info-sub">Taş sokaklar &amp; iyi kahve</div>
+                        <div class="side-card-footer">
+                            <span class="side-price-pill" id="heroAlaPrice">₺2.950</span>
+                            <span class="collage-cta-text">İncele →</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Urla Bağ Rotası -->
+                <div class="side-sub-card" onclick="openTripModal('Urla Bağ & Gastronomi Rotası', '14 - 15 Eylül', '₺2.850', 'Bağ Evi Butik', 'Bağ rotaları, sanat sokağı, zeytinyağı tadımı ve yerel lezzet sofraları.', 'Ulaşım, 1 Gece Konaklama, Bağ Gezisi, Kahvaltı')">
+                    <div class="collage-img-layer" style="background-image: url('assets/v2/hero_pottery.jpg');"></div>
+                    <div class="collage-overlay"></div>
+                    <div class="collage-top-bar">
+                        <span class="collage-badge" style="font-size:9.5px; padding:3px 10px;">BAĞ ROTASI</span>
+                        <span class="collage-date-tag" style="font-size:10px; padding:3px 8px;" id="heroUrlaDate">14 EYL</span>
+                    </div>
+                    <div class="side-bottom-info">
+                        <div class="side-info-dest">Urla</div>
+                        <div class="side-info-sub">Bağlar &amp; yerel sofralar</div>
+                        <div class="side-card-footer">
+                            <span class="side-price-pill" id="heroUrlaPrice">₺2.850</span>
+                            <span class="collage-cta-text">İncele →</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. BU ARALAR NELER VAR? (4 KATEGORİ) -->
+    <section class="container section-block" id="deneyimler">
+        <div class="section-head-row">
+            <h2 class="section-heading-lg">Bu aralar neler var?</h2>
+            <a href="#geziler" class="link-see-all">Tümünü Gör →</a>
+        </div>
+
+        <div class="categories-grid">
+            <!-- 1: Geziler -->
+            <a href="#geziler" class="cat-card">
+                <div class="cat-card-bg" style="background-image: url('assets/alacati.jpg');"></div>
+                <div class="cat-card-overlay"></div>
+                <div class="cat-card-top">
+                    <span class="cat-tag">01 · ROTA</span>
+                </div>
+                <div class="cat-card-bottom">
+                    <div class="cat-title">Hafta Sonu Gezileri</div>
+                    <div class="cat-count">8 aktif rota</div>
+                </div>
+            </a>
+
+            <!-- 2: Workshoplar -->
+            <a href="#workshoplar" class="cat-card">
+                <div class="cat-card-bg" style="background-image: url('assets/v2/hero_pottery.jpg');"></div>
+                <div class="cat-card-overlay"></div>
+                <div class="cat-card-top">
+                    <span class="cat-tag">02 · ATÖLYE</span>
+                </div>
+                <div class="cat-card-bottom">
+                    <div class="cat-title">Yaratıcı Workshoplar</div>
+                    <div class="cat-count">4 atölye</div>
+                </div>
+            </a>
+
+            <!-- 3: Kaçamaklar -->
+            <a href="#geziler" class="cat-card">
+                <div class="cat-card-bg" style="background-image: url('assets/kapadokya.jpg');"></div>
+                <div class="cat-card-overlay"></div>
+                <div class="cat-card-top">
+                    <span class="cat-tag">03 · DOĞA</span>
+                </div>
+                <div class="cat-card-bottom">
+                    <div class="cat-title">Vadi Kaçamakları</div>
+                    <div class="cat-count">Butik konaklama</div>
+                </div>
+            </a>
+
+            <!-- 4: Topluluk Sofraları -->
+            <a href="#topluluk" class="cat-card">
+                <div class="cat-card-bg" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="cat-card-overlay"></div>
+                <div class="cat-card-top">
+                    <span class="cat-tag">04 · TOPLULUK</span>
+                </div>
+                <div class="cat-card-bottom">
+                    <div class="cat-title">Uzun Masalar</div>
+                    <div class="cat-count">Buluşmalar</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 4. WORKSHOPS SECTION -->
+    <section class="container section-block" id="workshoplar">
+        <div class="section-head-row">
+            <h2 class="section-heading-lg">Öne Çıkan Workshoplar</h2>
+            <a href="#geziler" class="link-see-all">Tüm Atölyeleri İncele →</a>
+        </div>
+
+        <div class="workshops-3col-grid" id="workshopsGrid">
+            <!-- Dynamically hydrated from data/events.js -->
+        </div>
+    </section>
+
+    <!-- 5. GEZİLER & ROTALAR (CAROUSEL) -->
+    <section class="container section-block" id="geziler">
+        <div class="section-head-row">
+            <h2 class="section-heading-lg">Yaklaşan Kaçamaklar &amp; Geziler</h2>
+            <a href="trip-cards.html" class="link-see-all">Seyahat Kartları Galerisi →</a>
+        </div>
+
+        <div class="trips-carousel-wrap">
+            <div class="trips-track" id="tripsTrack">
+                <!-- Dynamically hydrated from data/events.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TOPLULUK & YORUMLAR -->
+    <section class="container section-block" id="topluluk">
+        <div class="community-box">
+            <div class="community-grid">
+                <div>
+                    <h3 class="comm-title">Yeni insanlarla<br>aynı masada.</h3>
+                    <p class="comm-desc">
+                        gezenbiri; sadece bir gezi topluluğu değil, birlikte bir şeyler üretmek, sofraları paylaşmak ve yeni yol arkadaşları bulmak isteyenlerin buluşma noktasıdır.
                     </p>
-                    
-                    <p class="hero-manifesto-text">
-                        Gezenbiri; birlikte bir şeyler öğrenmek, üretmek, tanışmak ve bazen de bir yerlere gitmek isteyen insanlar için.
-                    </p>
+                    <a href="javascript:void(0)" onclick="openCommunityModal()" class="comm-btn">Topluluğa Katıl →</a>
+                </div>
 
-                    <div class="hero-btn-row">
-                        <a href="#workshops" class="btn-primary-solid">Workshopları Gör</a>
-                        <a href="#escapes" class="btn-secondary-outline">Yaklaşan Etkinlikler</a>
+                <div class="testimonials-stack">
+                    <div class="testi-card">
+                        <p class="testi-quote">“Tek başıma katıldığım ilk kaçamakta harika insanlarla tanıştım. Artık her ay bir rotadayız.”</p>
+                        <div class="testi-author">
+                            <div class="testi-avatar" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80');"></div>
+                            <div class="testi-meta">
+                                <h6>Selin D.</h6>
+                                <span>İstanbul</span>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="hero-community-proof">
-                        <div class="hero-avatar-stack">
-                            <img src="assets/v2/hero_avatars.jpg" alt="Üyeler" class="hero-avatar-img">
+                    <div class="testi-card">
+                        <p class="testi-quote">“Urla'daki şarap tadımında tanıştığımız arkadaşlarla artık kaçamaklarımızı birlikte planlıyoruz.”</p>
+                        <div class="testi-author">
+                            <div class="testi-avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80');"></div>
+                            <div class="testi-meta">
+                                <h6>Mert K.</h6>
+                                <span>Ankara</span>
+                            </div>
                         </div>
-                        <div class="hero-proof-info">
-                            <span class="hero-proof-count">3.200+ üye</span>
-                            <span class="hero-proof-loc">Alaçatı, Çeşme, Urla ve çevresi</span>
+                    </div>
+
+                    <div class="testi-card">
+                        <p class="testi-quote">“Seramik atölyesi tam da aradığım yerdi. Hem öğrendim hem de inanılmaz keyifli insanlarla tanıştım.”</p>
+                        <div class="testi-author">
+                            <div class="testi-avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80');"></div>
+                            <div class="testi-meta">
+                                <h6>İpek A.</h6>
+                                <span>İzmir</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Right Column -->
-                <div class="hero-media">
-                    <div class="hero-image-wrap">
-                        <img src="assets/v2/hero_pottery.jpg" alt="Gezenbiri Seramik Workshopu" class="hero-main-img">
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 3. BU ARALAR NELER VAR? (KATEGORİ KARTLARI) -->
-    <section class="section-categories" id="categories">
-        <div class="container">
-            <h2 class="section-title">Bu aralar neler var?</h2>
-
-            <div class="categories-grid">
-                
-                <!-- 01: Workshoplar -->
-                <div class="category-card" onclick="openDetailsModal('Workshoplar', 'Seramik, Doğal Şarap Tadımı, Fotoğraf Yürüyüşü ve Ege Mutfağı atölyeleriyle yeni beceriler kazanıp samimi ortamlarda tanışıyoruz.')">
-                    <div class="category-card-top">
-                        <div class="category-card-header">
-                            <div class="cat-icon-wrap">
-                                <!-- Ceramic Vase Icon -->
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7D8F72" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M8 3h8l1 4H7l1-4z"/>
-                                    <path d="M7 7c-2.5 3-2.5 7 0 10 1.5 1.8 3.5 3 5 3s3.5-1.2 5-3c2.5-3 2.5-7 0-10"/>
-                                    <line x1="9" y1="13" x2="15" y2="13"/>
-                                </svg>
-                            </div>
-                            <h3 class="cat-card-title">Workshoplar</h3>
-                        </div>
-                        <ul class="cat-item-list">
-                            <li>Seramik</li>
-                            <li>Doğal şarap tadımı</li>
-                            <li>Fotoğraf yürüyüşü</li>
-                            <li>Yaratıcı yazarlık</li>
-                            <li>Ege mutfağı atölyesi</li>
-                        </ul>
-                    </div>
-                    <div class="cat-card-bottom">
-                        <div class="circle-arrow-btn">→</div>
-                    </div>
+    <!-- 7. MANIFESTO STRIP BANNER -->
+    <section class="container" style="padding-top: 10px; padding-bottom: 20px;">
+        <div class="manifesto-strip-banner" id="manifesto">
+            <div class="manifesto-photo-box"></div>
+            <div class="manifesto-text-box">
+                <div class="manifesto-copy-main">
+                    Bazen bir hafta sonu kaçamağı, bazen bir workshop,<br>
+                    bazen de yeni bir masa yeter.
                 </div>
-
-                <!-- 02: Yerel Deneyimler -->
-                <div class="category-card" onclick="openDetailsModal('Yerel Deneyimler', 'Urla bağ rotaları, yerel üretici pazarları, sakin koylarda gün batımı sohbetleri ve özel kahve tadımları.')">
-                    <div class="category-card-top">
-                        <div class="category-card-header">
-                            <div class="cat-icon-wrap">
-                                <!-- Botanical Sprout Icon -->
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5A99A8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 22V10"/>
-                                    <path d="M12 10c0-4.5 3.5-8 8-8 0 4.5-3.5 8-8 8z"/>
-                                    <path d="M12 14c0-3.5-2.5-6-6-6 0 3.5 2.5 6 6 6z"/>
-                                </svg>
-                            </div>
-                            <h3 class="cat-card-title">Yerel Deneyimler</h3>
-                        </div>
-                        <ul class="cat-item-list">
-                            <li>Bağ rotası</li>
-                            <li>Pazar gezisi</li>
-                            <li>Gün batımı buluşması</li>
-                            <li>Kahve rotası</li>
-                        </ul>
-                    </div>
-                    <div class="cat-card-bottom">
-                        <div class="circle-arrow-btn">→</div>
-                    </div>
-                </div>
-
-                <!-- 03: Topluluk Etkinlikleri -->
-                <div class="category-card" onclick="openDetailsModal('Topluluk Etkinlikleri', 'Yeni insanlarla tanışmak, ortak uzun masalarda yemek yemek ve samimi akşam sohbetlerine katılmak için düzenli buluşmalar.')">
-                    <div class="category-card-top">
-                        <div class="category-card-header">
-                            <div class="cat-icon-wrap">
-                                <!-- 2 People Icon -->
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF4D3D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="9" cy="7" r="4"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                </svg>
-                            </div>
-                            <h3 class="cat-card-title">Topluluk Etkinlikleri</h3>
-                        </div>
-                        <ul class="cat-item-list">
-                            <li>ortak masa akşamı</li>
-                            <li>yeni insanlarla tanışma buluşması</li>
-                            <li>küçük grup akşamları</li>
-                        </ul>
-                    </div>
-                    <div class="cat-card-bottom">
-                        <div class="circle-arrow-btn">→</div>
-                    </div>
-                </div>
-
-                <!-- 04: Geziler -->
-                <div class="category-card" onclick="openDetailsModal('Geziler & Kaçamaklar', 'Hafta sonu spontane Alaçatı, Çeşme ve Ilıca rotaları. Plan yapmadan, küçük gruplarla keşif.')">
-                    <div class="category-card-top">
-                        <div class="category-card-header">
-                            <div class="cat-icon-wrap">
-                                <!-- Luggage Icon -->
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#777777" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="6" width="18" height="15" rx="3"/>
-                                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-                                    <line x1="10" y1="11" x2="10" y2="16"/>
-                                    <line x1="14" y1="11" x2="14" y2="16"/>
-                                </svg>
-                            </div>
-                            <h3 class="cat-card-title">Geziler</h3>
-                        </div>
-                        <ul class="cat-item-list">
-                            <li>Alaçatı hafta sonu</li>
-                            <li>Çeşme günübirlik</li>
-                            <li>Ilıca kaçamağı</li>
-                        </ul>
-                    </div>
-                    <div class="cat-card-bottom">
-                        <div class="circle-arrow-btn">→</div>
-                    </div>
-                </div>
-
+                <p class="manifesto-copy-sub">
+                    <strong>gezenbiri;</strong> bir yere gitmek, bir şey deneyimlemek ve<br>
+                    yeni insanlarla buluşmak isteyenler için.
+                </p>
             </div>
-        </div>
-    </section>
-
-    <!-- 4. ÖNE ÇIKAN WORKSHOPLAR -->
-    <section class="section-workshops" id="workshops">
-        <div class="container">
-            <div class="section-header-flex">
-                <h2 class="section-title" style="margin-bottom: 0;">Öne çıkan workshoplar</h2>
-                <a href="#workshops" class="link-see-all">Tüm workshopları gör →</a>
-            </div>
-
-            <div class="workshops-grid">
-                
-                <!-- Workshop 1: Seramik -->
-                <div class="workshop-card" onclick="openBookingModal('Seramik Atölyesi', 'Alaçatı — 24 Ağu', '850 TL', 'Toprağa dokun, kendi objeni üret. Başlangıç dostu, tüm malzemeler dahil.')">
-                    <div class="ws-thumb-wrap">
-                        <img src="assets/v2/workshop_seramik.jpg" alt="Seramik Atölyesi" class="ws-thumb-img">
-                    </div>
-                    <div class="ws-body">
-                        <div>
-                            <div class="ws-header-row">
-                                <span class="ws-title-meta">Seramik Atölyesi — Alaçatı — 24 Ağu</span>
-                                <span class="ws-price">850 TL</span>
-                            </div>
-                            <p class="ws-desc">Toprağa dokun, kendi objeni üret. Başlangıç dostu, tüm malzemeler dahil.</p>
-                        </div>
-                        <span class="ws-footer-link">İncele →</span>
-                    </div>
-                </div>
-
-                <!-- Workshop 2: Şarap Tadımı -->
-                <div class="workshop-card" onclick="openBookingModal('Doğal Şarap Tadımı', 'Urla — 31 Ağu', '950 TL', 'Yerel üreticilerden doğal şaraplar, sohbet ve küçük tabaklarla tadım.')">
-                    <div class="ws-thumb-wrap">
-                        <img src="assets/v2/workshop_sarap.jpg" alt="Doğal Şarap Tadımı" class="ws-thumb-img">
-                    </div>
-                    <div class="ws-body">
-                        <div>
-                            <div class="ws-header-row">
-                                <span class="ws-title-meta">Doğal Şarap Tadımı — Urla — 31 Ağu</span>
-                                <span class="ws-price">950 TL</span>
-                            </div>
-                            <p class="ws-desc">Yerel üreticilerden doğal şaraplar, sohbet ve küçük tabaklarla tadım.</p>
-                        </div>
-                        <span class="ws-footer-link">İncele →</span>
-                    </div>
-                </div>
-
-                <!-- Workshop 3: Fotoğraf Yürüyüşü -->
-                <div class="workshop-card" onclick="openBookingModal('Fotoğraf Yürüyüşü', 'Çeşme — 7 Eyl', '750 TL', 'Işık, kompozisyon ve hikâye. Birlikte yürüyor, birlikte çekiyoruz.')">
-                    <div class="ws-thumb-wrap">
-                        <img src="assets/v2/workshop_fotograf.jpg" alt="Fotoğraf Yürüyüşü" class="ws-thumb-img">
-                    </div>
-                    <div class="ws-body">
-                        <div>
-                            <div class="ws-header-row">
-                                <span class="ws-title-meta">Fotoğraf Yürüyüşü — Çeşme — 7 Eyl</span>
-                                <span class="ws-price">750 TL</span>
-                            </div>
-                            <p class="ws-desc">Işık, kompozisyon ve hikâye. Birlikte yürüyor, birlikte çekiyoruz.</p>
-                        </div>
-                        <span class="ws-footer-link">İncele →</span>
-                    </div>
-                </div>
-
-                <!-- Workshop 4: Ege Sofrası -->
-                <div class="workshop-card" onclick="openBookingModal('Ege Sofrası Workshopu', 'Ilıca — 14 Eyl', '900 TL', 'Mevsimlik Ege lezzetleri, tarifler ve paylaşım dolu bir masa.')">
-                    <div class="ws-thumb-wrap">
-                        <img src="assets/v2/workshop_ege.jpg" alt="Ege Sofrası Workshopu" class="ws-thumb-img">
-                    </div>
-                    <div class="ws-body">
-                        <div>
-                            <div class="ws-header-row">
-                                <span class="ws-title-meta">Ege Sofrası Workshopu — Ilıca — 14 Eyl</span>
-                                <span class="ws-price">900 TL</span>
-                            </div>
-                            <p class="ws-desc">Mevsimlik Ege lezzetleri, tarifler ve paylaşım dolu bir masa.</p>
-                        </div>
-                        <span class="ws-footer-link">İncele →</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. ARADA BİR KÜÇÜK KAÇAMAKLAR -->
-    <section class="section-escapes" id="escapes">
-        <div class="container">
-            <div class="section-title-wrap">
-                <h2 class="section-title" style="margin-bottom: 2px;">Arada bir küçük kaçamaklar</h2>
-                <p class="section-subtitle">Bazen de biraz yola çıkıyoruz.</p>
-            </div>
-
-            <div class="escapes-grid">
-                
-                <!-- Escape 1: Alaçatı -->
-                <div class="escape-card" onclick="openBookingModal('Alaçatı Hafta Sonu', '23–24 Ağu', '1.950 TL', 'Taş sokaklar, butik otel konaklaması, yerel tasarım dükkanları ve akşam yemeği.')">
-                    <div class="escape-thumb">
-                        <img src="assets/v2/escape_alacati.jpg" alt="Alaçatı Hafta Sonu">
-                    </div>
-                    <div class="escape-info">
-                        <div>
-                            <h3 class="escape-title">Alaçatı Hafta Sonu</h3>
-                            <span class="escape-date">23–24 Ağu</span>
-                        </div>
-                        <div class="escape-bottom-row">
-                            <span class="escape-price">1.950 TL</span>
-                            <div class="circle-arrow-btn">→</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Escape 2: Çeşme -->
-                <div class="escape-card" onclick="openBookingModal('Çeşme Gün Batımı Kaçamağı', '6 Eyl', '1.750 TL', 'Sakin koylarda yüzme molası, gün batımında tekne turu ve şarap eşleşmesi.')">
-                    <div class="escape-thumb">
-                        <img src="assets/v2/escape_cesme.jpg" alt="Çeşme Gün Batımı Kaçamağı">
-                    </div>
-                    <div class="escape-info">
-                        <div>
-                            <h3 class="escape-title">Çeşme Gün Batımı Kaçamağı</h3>
-                            <span class="escape-date">6 Eyl</span>
-                        </div>
-                        <div class="escape-bottom-row">
-                            <span class="escape-price">1.750 TL</span>
-                            <div class="circle-arrow-btn">→</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Escape 3: Ilıca -->
-                <div class="escape-card" onclick="openBookingModal('Ilıca Pazar Günü', '14 Eyl', '950 TL', 'Turkuaz sularda kumsal günü, yerel Ege kahvaltısı ve sahil boyu yürüyüş.')">
-                    <div class="escape-thumb">
-                        <img src="assets/v2/escape_ilica.jpg" alt="Ilıca Pazar Günü">
-                    </div>
-                    <div class="escape-info">
-                        <div>
-                            <h3 class="escape-title">Ilıca Pazar Günü</h3>
-                            <span class="escape-date">14 Eyl</span>
-                        </div>
-                        <div class="escape-bottom-row">
-                            <span class="escape-price">950 TL</span>
-                            <div class="circle-arrow-btn">→</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. AYNI YERDE BULUŞAN İNSANLAR (TOPLULUK & YORUMLAR) -->
-    <section class="section-community" id="community">
-        <div class="container">
-            <div class="community-master-grid">
-                
-                <!-- Left Info Block -->
-                <div class="comm-info-col">
-                    <div>
-                        <h2 class="comm-title">Aynı yerde buluşan insanlar</h2>
-                        <ul class="comm-points">
-                            <li>
-                                <svg class="comm-points-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                                <span>Yeni insanlarla tanış.</span>
-                            </li>
-                            <li>
-                                <svg class="comm-points-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
-                                <span>Aynı masada buluş.</span>
-                            </li>
-                            <li>
-                                <svg class="comm-points-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="2"></circle><path d="M10 22v-6.5l-2-2.5 1.5-3.5L12 11l2.5-1.5 1.5 3.5-2 2.5V22"></path></svg>
-                                <span>Birlikte öğren, birlikte dolaş.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <p class="comm-manifesto-sub">Bazen bir workshop, bazen bir gün batımı yeter.</p>
-                </div>
-
-                <!-- Testimonial 1: Selin A. -->
-                <div class="testimonial-card">
-                    <div>
-                        <div class="test-avatar-row">
-                            <img src="assets/v2/avatar_selin.jpg" alt="Selin A." class="test-avatar-img">
-                        </div>
-                        <p class="test-quote">“Seramik atölyesinde tanıştığımız arkadaş grubuyla şimdi her ay farklı bir şey keşfediyoruz.”</p>
-                    </div>
-                    <div class="test-footer">
-                        <div>
-                            <span class="test-author-name">Selin A.</span>
-                            <span class="test-author-loc">Alaçatı</span>
-                        </div>
-                        <button class="btn-heart-like" onclick="toggleHeart(this)" aria-label="Beğen">♡</button>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2: Can B. -->
-                <div class="testimonial-card">
-                    <div>
-                        <div class="test-avatar-row">
-                            <img src="assets/v2/avatar_can.jpg" alt="Can B." class="test-avatar-img">
-                        </div>
-                        <p class="test-quote">“Urla’daki şarap tadımı harikaydı. Hem öğrendik hem çok güzel insanlarla tanıştık.”</p>
-                    </div>
-                    <div class="test-footer">
-                        <div>
-                            <span class="test-author-name">Can B.</span>
-                            <span class="test-author-loc">İzmir</span>
-                        </div>
-                        <button class="btn-heart-like" onclick="toggleHeart(this)" aria-label="Beğen">♡</button>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3: İrem T. -->
-                <div class="testimonial-card">
-                    <div>
-                        <div class="test-avatar-row">
-                            <img src="assets/v2/avatar_irem.jpg" alt="İrem T." class="test-avatar-img">
-                        </div>
-                        <p class="test-quote">“Fotoğraf yürüyüşleri sayesinde bölgeyi bambaşka bir gözle görmeye başladım.”</p>
-                    </div>
-                    <div class="test-footer">
-                        <div>
-                            <span class="test-author-name">İrem T.</span>
-                            <span class="test-author-loc">Çeşme</span>
-                        </div>
-                        <button class="btn-heart-like" onclick="toggleHeart(this)" aria-label="Beğen">♡</button>
-                    </div>
-                </div>
-
-                <!-- Community Join CTA Card -->
-                <a href="#community" class="comm-join-card" onclick="openDetailsModal('Topluluk Üyeliği', 'Gezenbiri topluluğuna katılarak WhatsApp ve özel etkinlik gruplarımıza dahil olabilir, öncelikli rezervasyon haklarından yararlanabilirsin.')">
-                    <div>
-                        <h3 class="comm-join-title">Topluluğumuza katıl</h3>
-                        <img src="assets/v2/community_avatars.jpg" alt="Topluluk Üyeleri" class="comm-join-avatars">
-                        <div class="comm-join-count">3.200+ üye</div>
-                    </div>
-                    <div class="comm-join-action">
-                        <span>Topluluğu Keşfet</span>
-                        <span>→</span>
-                    </div>
-                </a>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. MANIFESTO BANNER -->
-    <section class="section-manifesto-banner" id="manifesto">
-        <div class="container">
-            <div class="manifesto-banner-inner">
-                
-                <!-- Left Photo -->
-                <div class="manifesto-photo-wrap">
-                    <img src="assets/v2/manifesto_dinner.jpg" alt="Masada buluşan insanlar">
-                </div>
-
-                <!-- Center Quote -->
-                <div class="manifesto-center-text">
-                    <div class="manifesto-quote-mark">“</div>
-                    <p class="manifesto-body-lines">
-                        Herkes gezgin değil.<br>
-                        Olmak zorunda da değil.<br>
-                        Bazen insan sadece evden çıkmak, yeni bir şey öğrenmek,<br>
-                        güzel bir masaya oturmak ve birkaç yeni insanla tanışmak ister.<br>
-                        <span class="highlight">Gezenbiri tam da bunun için var.</span>
-                    </p>
-                </div>
-
-                <!-- Right Botanical Art -->
-                <div class="manifesto-art-wrap">
-                    <img src="assets/v2/botanical_art.jpg" alt="Zarif Botanik Çizim" class="manifesto-art-img">
-                </div>
-
+            <div class="manifesto-illustration-box">
+                <svg width="150" height="135" viewBox="0 0 170 145" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M35 145 V45 C35 18 57 0 85 0 C113 0 135 18 135 45 V145 Z" fill="#DDE8EC"/>
+                    <path d="M85 58 V34" stroke="#687B85" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M85 45 C78 41 75 35 77 29" stroke="#687B85" stroke-width="1.6" stroke-linecap="round"/>
+                    <path d="M85 39 C92 35 95 29 93 23" stroke="#687B85" stroke-width="1.6" stroke-linecap="round"/>
+                    <ellipse cx="85" cy="62" rx="5.5" ry="6.5" stroke="#687B85" stroke-width="1.8" fill="#F6F3ED"/>
+                    <ellipse cx="85" cy="74" rx="26" ry="5" stroke="#687B85" stroke-width="1.8" fill="#F6F3ED"/>
+                    <path d="M85 79 V135" stroke="#687B85" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M68 135 H102" stroke="#687B85" stroke-width="2" stroke-linecap="round"/>
+                </svg>
             </div>
         </div>
     </section>
 
     <!-- 8. FOOTER -->
-    <footer class="site-footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 
                 <!-- Col 1: Brand -->
-                <div class="footer-brand-col">
-                    <span class="footer-logo">gezenbiri<span class="brand-system-dot"></span></span>
-                    <span class="footer-slogan">Bir yere gidelim.</span>
-                    <div style="font-size: 11.5px; font-weight: 700; color: var(--coral); margin-bottom: 12px;">
-                        gezenbiri.com.tr · gezenbiri.co
+                <div>
+                    <div class="f-logo">gezenbiri<span class="brand-system-dot"></span></div>
+                    <div class="f-slogan-block">
+                        <strong>Bir yere gidelim.</strong>
+                        Gitmeye değer yerler.<br>
+                        Tanışmaya değer insanlar.
                     </div>
-                    
-                    <a href="https://instagram.com/gezenbiri" target="_blank" rel="noopener noreferrer" class="footer-instagram-box">
-                        <div class="ig-icon-badge">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </div>
-                        <div class="ig-text-meta">
-                            <span class="ig-label">Instagram'da bizi takip et</span>
-                            <span class="ig-handle">@gezenbiri</span>
-                        </div>
-                    </a>
+                    <div class="footer-domains-pill">
+                        <span>🌐 gezenbiri.com.tr · gezenbiri.co</span>
+                    </div>
+                    <div style="margin-top:8px;">
+                        <a href="https://instagram.com/gezenbiri" target="_blank" style="color:var(--coral); font-weight:800; font-size:12.5px; text-decoration:none;">@gezenbiri Instagram →</a>
+                    </div>
                 </div>
 
                 <!-- Col 2: Keşfet -->
                 <div>
-                    <h4 class="footer-col-title">Keşfet</h4>
+                    <h5 class="footer-col-title">Keşfet</h5>
                     <ul class="footer-links-list">
-                        <li><a href="#workshops">Workshoplar</a></li>
-                        <li><a href="#categories">Yerel Deneyimler</a></li>
-                        <li><a href="#escapes">Hafta Sonu Gezileri</a></li>
-                        <li><a href="trip-cards.html">Seyahat Kartları Galerisi</a></li>
-                        <li><a href="#workshops">Yaklaşan Etkinlikler</a></li>
+                        <li><a href="#geziler">Geziler</a></li>
+                        <li><a href="#deneyimler">Deneyimler</a></li>
+                        <li><a href="#workshoplar">Workshoplar</a></li>
+                        <li><a href="trip-cards.html">Seyahat Kartları</a></li>
+                        <li><a href="#topluluk">Topluluk Buluşmaları</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 3: Topluluk & Destek -->
+                <!-- Col 3: Destek & Topluluk -->
                 <div>
-                    <h4 class="footer-col-title">Topluluk</h4>
+                    <h5 class="footer-col-title">Topluluk</h5>
                     <ul class="footer-links-list">
-                        <li><a href="#community">Topluluk Buluşmaları</a></li>
-                        <li><a href="#community">Üye Deneyimleri</a></li>
+                        <li><a href="#topluluk">Topluluk Katılım</a></li>
                         <li><a href="#manifesto">Manifesto</a></li>
-                        <li><a href="mailto:selam@gezenbiri.com.tr">İletişim (selam@gezenbiri.com.tr)</a></li>
-                        <li><a href="https://instagram.com/gezenbiri" target="_blank" rel="noopener noreferrer">Instagram (@gezenbiri)</a></li>
+                        <li><a href="mailto:selam@gezenbiri.com.tr">selam@gezenbiri.com.tr</a></li>
+                        <li><a href="https://instagram.com/gezenbiri" target="_blank">Instagram Kanalı</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 4: Marka & Tasarım Sistemi -->
+                <!-- Col 4: Tasarım & Ekosistem -->
                 <div>
-                    <h4 class="footer-col-title">Tasarım &amp; Ekosistem</h4>
+                    <h5 class="footer-col-title">Ekosistem</h5>
                     <ul class="footer-links-list">
-                        <li><a href="index.html" style="color:var(--coral); font-weight:700;">⚡ Brand System Hub</a></li>
-                        <li><a href="brand-guidelines.html">Marka Kılavuzu (15 Modül)</a></li>
+                        <li><a href="index.html">⚡ Brand Hub</a></li>
+                        <li><a href="brand-guidelines.html">Marka Kılavuzu</a></li>
                         <li><a href="system-dot.html">System Dot Standartları</a></li>
                         <li><a href="trip-cards.html">Seyahat Kartları</a></li>
-                        <li><a href="instagram-suite.html">Instagram Master Suite</a></li>
+                        <li><a href="instagram-suite.html">Instagram Paketi</a></li>
+                        <li><a href="archive/gezenbiri_website_v2.html">Eski Web Sitesi (V2)</a></li>
                     </ul>
                 </div>
 
-                <!-- Col 5: Bülten -->
+                <!-- Col 5: Bültenimize Katıl -->
                 <div>
-                    <h4 class="footer-col-title">Bültenimize katıl</h4>
-                    <p class="newsletter-desc">Etkinliklerden ve yeni rotalardan ilk sen haberdar ol.</p>
+                    <h5 class="footer-col-title">Bültenimize Katıl</h5>
+                    <p class="newsletter-desc">Yeni rotalardan ve kontenjanlardan ilk sen haberdar ol.</p>
                     <form class="newsletter-form-row" onsubmit="handleNewsletter(event)">
-                        <input type="email" id="nlEmail" class="newsletter-input" placeholder="E-posta adresin" required>
-                        <button type="submit" class="newsletter-btn">Abone Ol</button>
+                        <input type="email" placeholder="E-posta adresin" class="newsletter-input-box" required id="newsletterEmail">
+                        <button type="submit" class="newsletter-submit-btn">Abone Ol →</button>
                     </form>
                 </div>
 
             </div>
 
-            <!-- Bottom Legal Bar -->
+            <!-- Footer Bottom Copyright Bar -->
             <div class="footer-bottom-bar">
-                <span>Türkiye’de ve bazen biraz daha uzakta.</span>
                 <span>© 2026 gezenbiri.com.tr · gezenbiri.co · Tüm hakları saklıdır.</span>
-                <div class="footer-legal-links">
-                    <a href="index.html" style="color:var(--coral); font-weight:700;">⚡ Brand Hub</a>
-                    <a href="#" onclick="showToast('Kullanım Koşulları'); return false;">Kullanım Koşulları</a>
-                    <a href="#" onclick="showToast('Gizlilik Politikası'); return false;">Gizlilik Politikası</a>
-                </div>
-            </div>
-
-            <!-- Demo Disclaimer Footnote -->
-            <div class="gb-prototype-disclaimer">
-                Bu sayfadaki etkinlikler, rotalar, fiyatlar, kullanıcı yorumları ve topluluk verileri marka deneyim prototipi örnekleridir.
+                <span>Alaçatı · Çeşme · Urla · Kapadokya · Bozcaada · Türkiye 🧡</span>
             </div>
         </div>
     </footer>
 
-    <!-- INTERACTIVE DETAIL & BOOKING MODAL -->
-    <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="closeModalOnOverlay(event)">
-        <div class="modal-card">
-            <button class="modal-close-btn" onclick="closeModal()" aria-label="Kapat">×</button>
-            <div class="modal-tag" id="modalTag">WORKSHOP KAYDI</div>
-            <h3 class="modal-title" id="modalTitle">Seramik Atölyesi</h3>
-            <div class="modal-meta-row">
-                <span id="modalMeta">Alaçatı — 21 Ağu</span>
-                <span id="modalPrice" style="color: var(--coral); font-weight: 800;">850 TL</span>
+    <!-- Standard Prototype Disclaimer Banner -->
+    <div class="gb-prototype-disclaimer">
+        <span>⚡ Canlı Web Sitesi (Master) · gezenbiri Resmi Portalı · Marka Ekosistemi &amp; Standartlar: <a href="index.html" style="color:var(--coral); font-weight:800; text-decoration:none;">Brand Hub'a Dön →</a></span>
+    </div>
+
+    <!-- INTERACTIVE ROTA & REZERVASYON MODAL (WCAG AA) -->
+    <div class="modal-backdrop" id="tripModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="closeModalOutside(event, 'tripModal')">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('tripModal')" aria-label="Kapat">✕</button>
+            <div class="modal-header-tag">gezenbiri · Etkinlik Detayı</div>
+            <h3 class="modal-title" id="modalTitle">Rota Başlığı</h3>
+            <div class="modal-meta-bar">
+                <span id="modalDate">📅 Tarih</span>
+                <span id="modalStay">🏨 Konaklama</span>
+                <span id="modalPrice" style="color:var(--coral); font-weight:900;">₺0</span>
             </div>
-            <p class="modal-desc" id="modalDesc">Toprağa dokun, kendi objeni üret. Başlangıç dostu, tüm malzemeler dahil.</p>
             
-            <form class="modal-booking-form" onsubmit="handleBookingSubmit(event)">
-                <input type="text" class="modal-input" placeholder="Adınız Soyadınız" required>
-                <input type="tel" class="modal-input" placeholder="Telefon Numaranız (05XX...)" required>
-                <input type="email" class="modal-input" placeholder="E-posta Adresiniz" required>
-                <button type="submit" class="modal-submit-btn">Yerinizi Ayırın</button>
-            </form>
+            <div class="modal-section-title">Deneyim Özeti</div>
+            <p id="modalDesc" style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:16px;">Özet</p>
+
+            <div class="modal-section-title">Dahil Olan Hizmetler</div>
+            <div class="modal-included-box" id="modalIncluded">
+                ✓ Ulaşım &nbsp; ✓ Butik Konaklama &nbsp; ✓ Kahvaltı &nbsp; ✓ Rehberlik
+            </div>
+
+            <div class="modal-actions">
+                <a href="#" id="modalWaBtn" target="_blank" class="btn-modal-wa">
+                    <span>💬 WhatsApp ile Yerini Ayır</span>
+                </a>
+            </div>
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION -->
-    <div class="toast-notification" id="toastBox" role="status" aria-live="polite">İşlem başarıyla gerçekleştirildi.</div>
+    <!-- COMMUNITY MODAL (WCAG AA) -->
+    <div class="modal-backdrop" id="communityModal" role="dialog" aria-modal="true" aria-labelledby="commModalTitle" onclick="closeModalOutside(event, 'communityModal')">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeModal('communityModal')" aria-label="Kapat">✕</button>
+            <div class="modal-header-tag">gezenbiri · Topluluk Kapısı</div>
+            <h3 class="modal-title" id="commModalTitle">Aramıza Katıl</h3>
+            <p style="font-size:13.5px; color:#555; line-height:1.6; margin-bottom:20px;">
+                Yol arkadaşlığı kurmak, hafta sonu spontane rotalarını önceden öğrenmek ve sofralarda buluşmak için topluluk kanallarımıza katılabilirsin.
+            </p>
+            
+            <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px;">
+                <a href="https://chat.whatsapp.com/" target="_blank" class="btn-modal-wa" style="text-align:center;">
+                    💬 WhatsApp Gezgin Topluluğu'na Katıl
+                </a>
+                <a href="https://t.me/gezenbiri" target="_blank" style="background:#0088cc; color:#FFF; text-decoration:none; padding:14px 20px; border-radius:100px; font-weight:800; font-size:13.5px; display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+                    ✈️ Telegram Duyuru Kanalı
+                </a>
+            </div>
+        </div>
+    </div>
 
-    <!-- CENTRAL EVENT DATA & JAVASCRIPT LOGIC -->
+    <!-- TOAST -->
+    <div class="toast-notify" id="toastBox">
+        <span>✓</span>
+        <span id="toastMsg">İşlem başarılı!</span>
+    </div>
+
+    <!-- Central Data Source -->
     <script src="data/events.js"></script>
+
     <script>
-        // Header scroll styling
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 20) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Mobile drawer toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const mobileDrawer = document.getElementById('mobileDrawer');
-        mobileToggle.addEventListener('click', () => {
-            mobileDrawer.classList.toggle('active');
-        });
-
-        // Focus Management for Accessibility
+        // State tracking for Accessibility Focus Restore
         let lastFocusedElement = null;
 
-        function openBookingModal(title, meta, price, desc, triggerEl) {
-            lastFocusedElement = triggerEl || document.activeElement;
-            document.getElementById('modalTag').innerText = "REZERVASYON & KAYIT";
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalMeta').innerText = meta;
-            document.getElementById('modalPrice').innerText = price;
-            document.getElementById('modalDesc').innerText = desc;
-            const modal = document.getElementById('bookingModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            const closeBtn = modal.querySelector('.modal-close-btn');
-            if (closeBtn) closeBtn.focus();
+        // Mobile Drawer Toggle
+        function toggleMobileMenu() {
+            const drawer = document.getElementById('mobileDrawer');
+            drawer.classList.toggle('active');
         }
 
-        function openDetailsModal(title, desc, triggerEl) {
-            lastFocusedElement = triggerEl || document.activeElement;
-            document.getElementById('modalTag').innerText = "DENEYİM DETAYI";
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalMeta').innerText = "Gezenbiri Topluluk Deneyimleri";
-            document.getElementById('modalPrice').innerText = "Ön Kayıt";
-            document.getElementById('modalDesc').innerText = desc;
-            const modal = document.getElementById('bookingModal');
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-            const closeBtn = modal.querySelector('.modal-close-btn');
-            if (closeBtn) closeBtn.focus();
-        }
+        // Render All Dynamic Events from data/events.js
+        function renderAllEventsFromData() {
+            if (typeof GezenbiriData === 'undefined') return;
 
-        function closeModal() {
-            const modal = document.getElementById('bookingModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
-                lastFocusedElement.focus();
+            const workshops = GezenbiriData.getWorkshops();
+            const trips = GezenbiriData.getTrips();
+
+            // 1. Render Hero Meta Tags if available
+            const kapadokya = trips.find(t => t.id === 'kapadokya') || trips[0];
+            const alacati = trips.find(t => t.id === 'alacati') || trips[1];
+            const urla = trips.find(t => t.id === 'urla') || trips[2];
+
+            if (kapadokya) {
+                const elD = document.getElementById('heroKapDate');
+                const elP = document.getElementById('heroKapPrice');
+                if (elD) elD.textContent = `${kapadokya.startMeta.day} ${kapadokya.startMeta.month.slice(0,3).toUpperCase()}`;
+                if (elP) elP.textContent = `${kapadokya.price} · 2 Gece`;
+            }
+            if (alacati) {
+                const elD = document.getElementById('heroAlaDate');
+                const elP = document.getElementById('heroAlaPrice');
+                if (elD) elD.textContent = `${alacati.startMeta.day} ${alacati.startMeta.month.slice(0,3).toUpperCase()}`;
+                if (elP) elP.textContent = alacati.price;
+            }
+            if (urla) {
+                const elD = document.getElementById('heroUrlaDate');
+                const elP = document.getElementById('heroUrlaPrice');
+                if (elD) elD.textContent = `${urla.startMeta.day} ${urla.startMeta.month.slice(0,3).toUpperCase()}`;
+                if (elP) elP.textContent = urla.price;
+            }
+
+            // 2. Render Workshops Grid
+            const wsGrid = document.getElementById('workshopsGrid');
+            if (wsGrid) {
+                wsGrid.innerHTML = workshops.slice(0, 3).map(w => {
+                    const dateFormatted = GezenbiriData.formatDateTurkish(w.startDate);
+                    const safeTitle = w.title.replace(/'/g, "\\'");
+                    const safeDesc = w.description.replace(/'/g, "\\'");
+                    const safeInc = (w.included || []).join(' · ').replace(/'/g, "\\'");
+                    return `
+                        <div class="ws-card" onclick="openTripModal('${safeTitle}', '${dateFormatted}', '${w.price}', 'Atölye Mekanı', '${safeDesc}', '${safeInc}')">
+                            <div class="ws-img-box" style="background-image: url('${w.image}');">
+                                <span class="ws-date-badge">${dateFormatted} · ${w.startMeta.dayName}</span>
+                            </div>
+                            <div class="ws-body">
+                                <div>
+                                    <div class="ws-cat">${w.category} · ${w.location}</div>
+                                    <h4 class="ws-title">${w.title}</h4>
+                                    <p class="ws-desc">${w.description}</p>
+                                </div>
+                                <div class="ws-footer">
+                                    <span class="ws-price">${w.price}</span>
+                                    <span class="ws-btn-join">Yerinizi Ayırın →</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // 3. Render Trips Track Carousel
+            const tripsTrack = document.getElementById('tripsTrack');
+            if (tripsTrack) {
+                tripsTrack.innerHTML = trips.map(t => {
+                    const dateFormatted = GezenbiriData.formatDateTurkish(t.startDate, t.endDate);
+                    const safeTitle = t.title.replace(/'/g, "\\'");
+                    const safeDesc = t.description.replace(/'/g, "\\'");
+                    const safeInc = (t.included || []).join(' · ').replace(/'/g, "\\'");
+                    return `
+                        <div class="trip-item-card" onclick="openTripModal('${safeTitle}', '${dateFormatted}', '${t.price}', 'Butik Otel', '${safeDesc}', '${safeInc}')">
+                            <div class="trip-item-bg" style="background-image: url('${t.image}');"></div>
+                            <div class="trip-item-overlay"></div>
+                            <div class="trip-item-top">
+                                <span class="trip-item-badge">${dateFormatted}</span>
+                            </div>
+                            <div class="trip-item-bottom">
+                                <h3 class="trip-item-title">${t.title}</h3>
+                                <p class="trip-item-sub">${t.description.slice(0, 75)}...</p>
+                                <div class="trip-item-footer">
+                                    <span class="trip-item-price">${t.price}</span>
+                                    <span class="trip-item-cta">İncele →</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
             }
         }
 
-        function closeModalOnOverlay(e) {
-            if (e.target.id === 'bookingModal') {
-                closeModal();
+        // Initialize Dynamic Hydration on Load
+        document.addEventListener('DOMContentLoaded', renderAllEventsFromData);
+
+        // Trip Modal Logic with Accessible Focus Management
+        function openTripModal(title, date, price, stay, desc, included) {
+            lastFocusedElement = document.activeElement;
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalDate').textContent = '📅 ' + date;
+            document.getElementById('modalStay').textContent = '🏨 ' + stay;
+            document.getElementById('modalPrice').textContent = price;
+            document.getElementById('modalDesc').textContent = desc;
+            document.getElementById('modalIncluded').textContent = included;
+
+            const waMsg = encodeURIComponent(`Merhaba gezenbiri! "${title}" (${date}) için yerimi ayırtmak istiyorum.`);
+            document.getElementById('modalWaBtn').href = `https://wa.me/905000000000?text=${waMsg}`;
+
+            const modal = document.getElementById('tripModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            const closeBtn = modal.querySelector('.modal-close');
+            if (closeBtn) closeBtn.focus();
+        }
+
+        function openCommunityModal() {
+            lastFocusedElement = document.activeElement;
+            const modal = document.getElementById('communityModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            const closeBtn = modal.querySelector('.modal-close');
+            if (closeBtn) closeBtn.focus();
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                if (lastFocusedElement) {
+                    lastFocusedElement.focus();
+                }
             }
         }
 
-        // Accessibility: Keyboard Focus Trap & ESC key to close modal
-        window.addEventListener('keydown', (e) => {
-            const modal = document.getElementById('bookingModal');
-            if (!modal || !modal.classList.contains('active')) return;
+        function closeModalOutside(e, modalId) {
+            if (e.target.id === modalId) {
+                closeModal(modalId);
+            }
+        }
+
+        // Keyboard Navigation (ESC to Close & Tab Focus Trap)
+        document.addEventListener('keydown', function(e) {
+            const activeModal = document.querySelector('.modal-backdrop.active');
+            if (!activeModal) return;
 
             if (e.key === 'Escape') {
-                closeModal();
+                closeModal(activeModal.id);
                 return;
             }
 
             if (e.key === 'Tab') {
-                const focusables = Array.from(modal.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+                const focusables = activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                 if (focusables.length === 0) return;
-
-                const firstEl = focusables[0];
-                const lastEl = focusables[focusables.length - 1];
+                
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
 
                 if (e.shiftKey) {
-                    if (document.activeElement === firstEl || !modal.contains(document.activeElement)) {
+                    if (document.activeElement === first) {
                         e.preventDefault();
-                        lastEl.focus();
+                        last.focus();
                     }
                 } else {
-                    if (document.activeElement === lastEl || !modal.contains(document.activeElement)) {
+                    if (document.activeElement === last) {
                         e.preventDefault();
-                        firstEl.focus();
+                        first.focus();
                     }
                 }
             }
         });
 
-        // Heart like toggle
-        function toggleHeart(btn) {
-            btn.classList.toggle('liked');
-            if (btn.classList.contains('liked')) {
-                btn.innerHTML = '❤️';
-                showToast("Deneyim yorumunu beğendiniz!");
-            } else {
-                btn.innerHTML = '♡';
-            }
-        }
-
-        // Newsletter form
+        // Newsletter Handler
         function handleNewsletter(e) {
             e.preventDefault();
-            const email = document.getElementById('nlEmail').value;
-            showToast("Bültenimize kaydoldunuz (" + email + "). Aramıza hoş geldiniz!");
-            document.getElementById('nlEmail').value = '';
+            const emailInput = document.getElementById('newsletterEmail');
+            if (emailInput && emailInput.value) {
+                showToast('Aramıza hoş geldin! İlk rota bildirimini yakında alacaksın.');
+                emailInput.value = '';
+            }
         }
 
-        // Booking form
-        function handleBookingSubmit(e) {
-            e.preventDefault();
-            closeModal();
-            showToast("Rezervasyon talebiniz alındı! En kısa sürede WhatsApp ile iletişime geçeceğiz.");
-        }
-
-        // Toast feedback
         function showToast(msg) {
             const toast = document.getElementById('toastBox');
-            toast.innerText = msg;
-            toast.classList.add('active');
+            const msgEl = document.getElementById('toastMsg');
+            if (msgEl) msgEl.innerText = msg;
+            toast.style.display = 'flex';
             setTimeout(() => {
-                toast.classList.remove('active');
-            }, 3500);
+                toast.style.display = 'none';
+            }, 3000);
         }
-
-        // Dynamic event rendering from GezenbiriData (Single Source of Truth)
-        function renderAllEventsFromData() {
-            if (typeof GezenbiriData === 'undefined') return;
-
-            // 1. Render Workshops
-            const wsContainer = document.querySelector('.workshops-grid');
-            if (wsContainer) {
-                const workshops = GezenbiriData.getWorkshops();
-                if (workshops && workshops.length > 0) {
-                    wsContainer.innerHTML = workshops.map(ws => `
-                        <div class="workshop-card" onclick="openBookingModal('${ws.title.replace(/'/g, "\\'")}', '${ws.location} — ${ws.startMeta.shortFormatted}', '${ws.price}', '${ws.description.replace(/'/g, "\\'")}', this)" tabindex="0" role="button" aria-label="${ws.title} kaydı">
-                            <div class="ws-thumb-wrap">
-                                <img src="${ws.image}" alt="${ws.title}" class="ws-thumb-img">
-                            </div>
-                            <div class="ws-body">
-                                <div>
-                                    <div class="ws-header-row">
-                                        <span class="ws-title-meta">${ws.title} — ${ws.location} — ${ws.startMeta.shortFormatted}</span>
-                                        <span class="ws-price">${ws.price}</span>
-                                    </div>
-                                    <p class="ws-desc">${ws.description}</p>
-                                </div>
-                                <span class="ws-footer-link">İncele →</span>
-                            </div>
-                        </div>
-                    `).join('');
-                }
-            }
-
-            // 2. Render Escapes
-            const escapeContainer = document.querySelector('.escapes-grid');
-            if (escapeContainer) {
-                const trips = GezenbiriData.getTrips();
-                if (trips && trips.length > 0) {
-                    escapeContainer.innerHTML = trips.slice(0, 3).map(trip => `
-                        <div class="escape-card" onclick="openBookingModal('${trip.title.replace(/'/g, "\\'")}', '${trip.location} — ${trip.startMeta.shortFormatted}', '${trip.price}', '${trip.description.replace(/'/g, "\\'")}', this)" tabindex="0" role="button" aria-label="${trip.title} detayları">
-                            <div class="escape-thumb">
-                                <img src="${trip.image}" alt="${trip.title}">
-                            </div>
-                            <div class="escape-info">
-                                <div>
-                                    <h3 class="escape-title">${trip.title}</h3>
-                                    <span class="escape-date">${trip.startMeta.shortFormatted}</span>
-                                </div>
-                                <div class="escape-bottom-row">
-                                    <span class="escape-price">${trip.price}</span>
-                                    <div class="circle-arrow-btn">→</div>
-                                </div>
-                            </div>
-                        </div>
-                    `).join('');
-                }
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            renderAllEventsFromData();
-        });
     </script>
+
 </body>
 </html>
