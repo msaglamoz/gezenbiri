@@ -93,6 +93,98 @@
             line-height: 1.6;
         }
 
+        /* REALISTIC HERO FLAT LAY BANNER */
+        .merch-hero-banner {
+            width: 100%;
+            height: 320px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-card);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: flex-end;
+            padding: 32px;
+        }
+
+        .merch-hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('assets/merch/merch_flatlay_hero.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .merch-hero-banner:hover .merch-hero-bg {
+            transform: scale(1.03);
+        }
+
+        .merch-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(20,20,20,0.92) 0%, rgba(20,20,20,0.4) 60%, rgba(20,20,20,0.1) 100%);
+            z-index: 1;
+        }
+
+        .merch-hero-content {
+            position: relative;
+            z-index: 2;
+            color: #FFFFFF;
+            max-width: 700px;
+        }
+
+        .merch-hero-tag {
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--coral);
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        .merch-hero-title {
+            font-size: clamp(24px, 3.2vw, 32px);
+            font-weight: 900;
+            letter-spacing: -0.8px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .merch-hero-title em {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            color: #F6F3ED;
+        }
+
+        .merch-hero-p {
+            font-size: 13.5px;
+            color: rgba(255,255,255,0.85);
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .merch-hero-badges {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .merch-hero-badge {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #F6F3ED;
+            display: flex;
+            align-items: center;
+        }
+
         /* SECTION HEADERS */
         .section-header-block {
             border-bottom: 1px solid var(--border-card);
@@ -118,7 +210,7 @@
             font-weight: 700;
         }
 
-        /* MERCHANDISE 3D / VECTOR MOCKUP GRID */
+        /* MERCHANDISE REALISTIC PHOTOGRAPHIC GRID */
         .merch-products-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -142,248 +234,69 @@
             border-color: rgba(255, 77, 61, 0.35);
         }
 
-        /* MOCKUP STAGE */
+        /* REALISTIC PHOTOGRAPHIC STAGE */
         .merch-stage {
             height: 240px;
-            background: #EFECE6;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            padding: 20px;
-        }
-
-        /* 1. TOTE BAG MOCKUP */
-        .mockup-tote {
-            width: 140px;
-            height: 165px;
-            background: #EDE8DE;
-            border-radius: 4px 4px 12px 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12), inset 0 0 15px rgba(0,0,0,0.04);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(0,0,0,0.08);
-        }
-
-        .mockup-tote-straps {
-            position: absolute;
-            top: -36px;
-            width: 60px;
-            height: 40px;
-            border: 5px solid #D8D2C5;
-            border-bottom: none;
-            border-radius: 12px 12px 0 0;
-        }
-
-        .mockup-tote-slogan {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 900;
-            font-size: 14px;
-            color: #202020;
-            line-height: 1.15;
-            text-align: center;
-            letter-spacing: -0.5px;
-        }
-
-        .mockup-tote-tag {
-            position: absolute;
-            left: -8px;
-            top: 20px;
             background: #202020;
-            color: #F6F3ED;
-            font-size: 7.5px;
-            font-weight: 900;
-            padding: 2px 4px;
-            border-radius: 2px;
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
         }
 
-        /* 2. ENAMEL MUG MOCKUP */
-        .mockup-mug {
-            width: 110px;
-            height: 95px;
-            background: #FFFFFF;
-            border-radius: 6px 6px 16px 16px;
-            border: 1px solid #D0D0D0;
-            border-top: 4px solid #202020;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1), inset 0 -6px 12px rgba(0,0,0,0.04);
-        }
-
-        .mockup-mug-handle {
+        .merch-stage-photo {
             position: absolute;
-            right: -24px;
-            top: 16px;
-            width: 28px;
-            height: 52px;
-            border: 5px solid #E0E0E0;
-            border-left: none;
-            border-radius: 0 14px 14px 0;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .mockup-mug-logo {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 900;
-            font-size: 13px;
-            color: #202020;
-            letter-spacing: -0.4px;
-            display: flex;
-            align-items: center;
+        .merch-card:hover .merch-stage-photo {
+            transform: scale(1.05);
         }
 
-        /* 3. VINTAGE CAP MOCKUP */
-        .mockup-cap {
-            width: 140px;
-            height: 95px;
-            background: #2B2B2B;
-            border-radius: 50% 50% 12px 12px / 80% 80% 12px 12px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 24px rgba(0,0,0,0.2), inset 0 2px 8px rgba(255,255,255,0.1);
-        }
-
-        .mockup-cap-visor {
+        .merch-stage-overlay {
             position: absolute;
-            bottom: -14px;
-            width: 120px;
-            height: 26px;
-            background: #222222;
-            border-radius: 0 0 50% 50%;
-            border-bottom: 2px solid #181818;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.45) 100%);
+            z-index: 1;
         }
 
-        .mockup-cap-embroidery {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 900;
-            font-size: 11px;
-            color: #EAEAEA;
-            letter-spacing: -0.3px;
-            position: relative;
-            z-index: 2;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+        .merch-brand-badge-box {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
             display: flex;
-            align-items: center;
-        }
-
-        /* 4. NOTEBOOK MOCKUP */
-        .mockup-notebook {
-            width: 115px;
-            height: 155px;
-            background: var(--coral);
-            border-radius: 3px 10px 10px 3px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
             justify-content: space-between;
-            padding: 16px 14px;
-            box-shadow: -4px 0 6px rgba(0,0,0,0.15), 6px 10px 24px rgba(255,77,61,0.25);
-            border-left: 6px solid #D6392A;
-        }
-
-        .mockup-notebook-band {
-            position: absolute;
-            right: 18px;
-            top: 0;
-            bottom: 0;
-            width: 7px;
-            background: rgba(0,0,0,0.15);
-        }
-
-        .mockup-notebook-emboss {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 900;
-            font-size: 12px;
-            color: #A3281C;
-            letter-spacing: -0.4px;
-            display: flex;
             align-items: center;
+            z-index: 2;
         }
 
-        /* 5. LUGGAGE TAG MOCKUP */
-        .mockup-tag {
-            width: 85px;
-            height: 145px;
-            background: #B87B4C;
-            border-radius: 12px 12px 6px 6px;
-            box-shadow: 0 8px 22px rgba(0,0,0,0.14);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 1px dashed rgba(255,255,255,0.3);
-        }
-
-        .mockup-tag-hole {
-            position: absolute;
-            top: 10px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #EFECE6;
-            border: 2px solid #8F5B32;
-        }
-
-        .mockup-tag-strap {
-            position: absolute;
-            top: -24px;
-            width: 8px;
-            height: 36px;
-            background: #8F5B32;
-            border-radius: 4px;
-        }
-
-        .mockup-tag-logo {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 900;
-            font-size: 20px;
-            color: #523118;
-            letter-spacing: -0.8px;
-            display: flex;
-            align-items: center;
-        }
-
-        /* 6. VINYL STICKERS MOCKUP */
-        .mockup-stickers-wrap {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .mockup-sticker-circle {
-            width: 68px;
-            height: 68px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-        }
-
-        .mockup-sticker-circle.dark {
-            background: #202020;
+        .merch-brand-tag {
+            background: rgba(32,32,32,0.85);
+            backdrop-filter: blur(8px);
             color: #F6F3ED;
-            font-size: 22px;
-            font-weight: 900;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255,255,255,0.12);
         }
 
-        .mockup-sticker-circle.cream {
-            background: #F6F3ED;
+        .merch-brand-mark-pill {
+            background: #FFFFFF;
             color: #202020;
-            font-size: 11px;
+            font-size: 11.5px;
             font-weight: 900;
-            border: 1px solid rgba(0,0,0,0.08);
+            padding: 4px 10px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
         }
 
         /* MERCH CARD BODY */
@@ -487,12 +400,13 @@
         @media (max-width: 600px) {
             .merch-products-grid { grid-template-columns: 1fr; }
             .pantone-grid { grid-template-columns: 1fr; }
+            .merch-hero-banner { height: auto; padding: 24px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 10. STANDARDIZED MASTER TOP NAVIGATION -->
+    <!-- STANDARDIZED MASTER TOP NAVIGATION -->
     <div class="top-brand-nav">
         <a href="index.html" class="btn-nav-back">
             <span>←</span>
@@ -517,15 +431,33 @@
             <div class="merch-tag">gezenbiri · Fiziksel Varlıklar &amp; Üretim Standartları</div>
             <h1 class="merch-title">Merchandise &amp; <span>Fiziksel Marka Kiti</span></h1>
             <p class="merch-desc">
-                Yolculuk eşyaları, etkinlik donanımları ve yaşam tarzı koleksiyonu için %100 marka geometrisine ve Action Coral System Dot kuralına uygun teknik üretim standartları.
+                Yolculuk eşyaları, etkinlik donanımları ve yaşam tarzı koleksiyonu için %100 marka geometrisine ve Action Coral System Dot kuralına uygun gerçek stüdyo fotoğrafçılığı ve teknik üretim standartları.
             </p>
         </header>
+
+        <!-- REALISTIC HERO FLAT LAY BANNER -->
+        <div class="merch-hero-banner">
+            <div class="merch-hero-bg"></div>
+            <div class="merch-hero-overlay"></div>
+            <div class="merch-hero-content">
+                <span class="merch-hero-tag">Fiziksel Üretim &amp; Yaşam Tarzı Koleksiyonu</span>
+                <h2 class="merch-hero-title">Gerçek Malzemeler, <em>Ödünsüz İşçilik.</em></h2>
+                <p class="merch-hero-p">
+                    320 gr/m² ham pamuk gabardin, 800°C fırınlanmış çelik emaye, 6 panelli yıkanmış pamuk ve bitkisel tabaklanmış deri ile tasarlanan resmi gezenbiri yol eşyaları.
+                </p>
+                <div class="merch-hero-badges">
+                    <span class="merch-hero-badge">gezenbiri<span class="brand-system-dot"></span></span>
+                    <span class="merch-hero-badge">gb<span class="brand-system-dot"></span></span>
+                    <span class="merch-hero-badge">“Bir yere gidelim.”</span>
+                </div>
+            </div>
+        </div>
 
         <!-- SECTION 01: 6 RESMİ MERCH ÜRÜNÜ -->
         <section>
             <div class="section-header-block">
-                <h2 class="section-header-title">01 · Resmi Ürün Koleksiyonu &amp; Mockup Standartları</h2>
-                <span class="section-header-sub">%100 Kurumsal Wordmark &amp; System Dot Kuralları</span>
+                <h2 class="section-header-title">01 · Resmi Ürün Koleksiyonu &amp; Gerçek Ürün Fotoğrafları</h2>
+                <span class="section-header-sub">%100 Kurumsal Wordmark &amp; System Dot Standartları</span>
             </div>
 
             <div class="merch-products-grid">
@@ -533,10 +465,11 @@
                 <!-- 1. TOTE BAG -->
                 <div class="merch-card">
                     <div class="merch-stage">
-                        <div class="mockup-tote">
-                            <div class="mockup-tote-straps"></div>
-                            <div class="mockup-tote-tag">gezenbiri<span class="brand-system-dot"></span></div>
-                            <div class="mockup-tote-slogan">Bir yere<br>gidelim.</div>
+                        <div class="merch-stage-photo" style="background-image: url('assets/merch/merch_tote.jpg');"></div>
+                        <div class="merch-stage-overlay"></div>
+                        <div class="merch-brand-badge-box">
+                            <span class="merch-brand-tag">“Bir yere gidelim.”</span>
+                            <div class="merch-brand-mark-pill">gezenbiri<span class="brand-system-dot" style="font-size:11.5px;"></span></div>
                         </div>
                     </div>
                     <div class="merch-body">
@@ -558,9 +491,11 @@
                 <!-- 2. ENAMEL MUG -->
                 <div class="merch-card">
                     <div class="merch-stage">
-                        <div class="mockup-mug">
-                            <div class="mockup-mug-handle"></div>
-                            <div class="mockup-mug-logo">gezenbiri<span class="brand-system-dot" style="font-size:13px;"></span></div>
+                        <div class="merch-stage-photo" style="background-image: url('assets/merch/merch_mug.jpg');"></div>
+                        <div class="merch-stage-overlay"></div>
+                        <div class="merch-brand-badge-box">
+                            <span class="merch-brand-tag">350 ml Kamp Kupası</span>
+                            <div class="merch-brand-mark-pill">gezenbiri<span class="brand-system-dot" style="font-size:11.5px;"></span></div>
                         </div>
                     </div>
                     <div class="merch-body">
@@ -582,9 +517,11 @@
                 <!-- 3. VINTAGE WASHED CAP -->
                 <div class="merch-card">
                     <div class="merch-stage">
-                        <div class="mockup-cap">
-                            <div class="mockup-cap-visor"></div>
-                            <div class="mockup-cap-embroidery">gezenbiri<span class="brand-system-dot" style="font-size:11px;"></span></div>
+                        <div class="merch-stage-photo" style="background-image: url('assets/merch/merch_cap.jpg');"></div>
+                        <div class="merch-stage-overlay"></div>
+                        <div class="merch-brand-badge-box">
+                            <span class="merch-brand-tag">3D Kabartma Nakış</span>
+                            <div class="merch-brand-mark-pill">gezenbiri<span class="brand-system-dot" style="font-size:11.5px;"></span></div>
                         </div>
                     </div>
                     <div class="merch-body">
@@ -606,10 +543,11 @@
                 <!-- 4. TRAVEL NOTEBOOK -->
                 <div class="merch-card">
                     <div class="merch-stage">
-                        <div class="mockup-notebook">
-                            <div class="mockup-notebook-band"></div>
-                            <div></div>
-                            <div class="mockup-notebook-emboss">gezenbiri<span class="brand-system-dot" style="background-color:#A3281C; font-size:12px;"></span></div>
+                        <div class="merch-stage-photo" style="background-image: url('assets/merch/merch_notebook.jpg');"></div>
+                        <div class="merch-stage-overlay"></div>
+                        <div class="merch-brand-badge-box">
+                            <span class="merch-brand-tag">Kör Gofre Cilt</span>
+                            <div class="merch-brand-mark-pill">gezenbiri<span class="brand-system-dot" style="font-size:11.5px;"></span></div>
                         </div>
                     </div>
                     <div class="merch-body">
@@ -631,10 +569,11 @@
                 <!-- 5. LUGGAGE TAG -->
                 <div class="merch-card">
                     <div class="merch-stage">
-                        <div class="mockup-tag">
-                            <div class="mockup-tag-strap"></div>
-                            <div class="mockup-tag-hole"></div>
-                            <div class="mockup-tag-logo">gb<span class="brand-system-dot" style="background-color:#523118; font-size:20px;"></span></div>
+                        <div class="merch-stage-photo" style="background-image: url('assets/merch/merch_tag.jpg');"></div>
+                        <div class="merch-stage-overlay"></div>
+                        <div class="merch-brand-badge-box">
+                            <span class="merch-brand-tag">Hakiki Deri &amp; Pirinç</span>
+                            <div class="merch-brand-mark-pill">gb<span class="brand-system-dot" style="font-size:11.5px;"></span></div>
                         </div>
                     </div>
                     <div class="merch-body">
@@ -656,9 +595,11 @@
                 <!-- 6. VINYL STICKERS -->
                 <div class="merch-card">
                     <div class="merch-stage">
-                        <div class="mockup-stickers-wrap">
-                            <div class="mockup-sticker-circle dark">gb<span class="brand-system-dot" style="font-size:22px;"></span></div>
-                            <div class="mockup-sticker-circle cream">gezenbiri<span class="brand-system-dot" style="font-size:11px;"></span></div>
+                        <div class="merch-stage-photo" style="background-image: url('assets/merch/merch_stickers.jpg');"></div>
+                        <div class="merch-stage-overlay"></div>
+                        <div class="merch-brand-badge-box">
+                            <span class="merch-brand-tag">Dış Mekan Mat Vinil</span>
+                            <div class="merch-brand-mark-pill">gb<span class="brand-system-dot" style="font-size:11.5px;"></span></div>
                         </div>
                     </div>
                     <div class="merch-body">
@@ -748,7 +689,7 @@
 
     <!-- DEMO DISCLAIMER FOOTNOTE -->
     <div class="gb-prototype-disclaimer">
-        Bu sayfadaki fiziksel ürün çizimleri, Pantone kodları ve malzeme standartları gezenbiri kurumsal marka sistemi üretim prototipi örnekleridir.
+        Bu sayfadaki fiziksel ürün fotoğrafları, Pantone kodları ve malzeme standartları gezenbiri kurumsal marka sistemi üretim prototipi örnekleridir.
     </div>
 
 </body>
