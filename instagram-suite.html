@@ -215,7 +215,7 @@
         .ig-ui-avatar {
             width: 100%;
             height: 100%;
-            background-color: #F6F3ED;
+            background-color: #202020;
             border-radius: 50%;
             border: 2px solid var(--white);
             display: flex;
@@ -223,9 +223,9 @@
             justify-content: center;
             font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 900;
-            font-size: 11px;
-            color: #202020;
-            letter-spacing: -0.6px;
+            font-size: 26px;
+            letter-spacing: -1px;
+            color: #F6F3ED;
             text-align: center;
             box-shadow: inset 0 0 0 1px rgba(32,32,32,0.08);
             transition: all 0.25s ease;
@@ -1160,7 +1160,7 @@
                     
                     <div class="ig-ui-header">
                         <div class="ig-ui-avatar-wrap">
-                            <div class="ig-ui-avatar" id="liveMockupAvatar" style="background:#F6F3ED; color:#202020; font-family:'Plus Jakarta Sans', sans-serif; font-weight:900; font-size:12px; display:inline-flex; align-items:center; justify-content:center;">gezenbiri<span class="brand-system-dot" style="font-size:12px;"></span></div>
+                            <div class="ig-ui-avatar" id="liveMockupAvatar" style="background:#202020; color:#F6F3ED; font-family:'Plus Jakarta Sans', sans-serif; font-weight:900; font-size:26px; letter-spacing:-1px; display:inline-flex; align-items:center; justify-content:center;">gb<span class="brand-system-dot" style="font-size:26px;"></span></div>
                         </div>
                         <div class="ig-ui-stats">
                             <div><strong>142</strong><span>gönderi</span></div>
@@ -2305,6 +2305,54 @@
                     cap6.innerHTML = `<strong>gezenbiri</strong> Bu ${wsSeramik.startMeta.dayName.toLowerCase()} Alaçatı'da çömlek tornasındayız. Kendi tasarımını fırınla ve alıp götür. #workshop #seramik`;
                 }
             }
+        // Live Mockup Avatar Switcher
+        function setLiveMockupAvatar(bg, color, text, mode) {
+            const avatar = document.getElementById('liveMockupAvatar');
+            if (!avatar) return;
+            avatar.style.backgroundColor = bg;
+            avatar.style.color = color;
+            
+            if (mode === 'app-icon') {
+                avatar.style.fontSize = "0";
+                avatar.innerHTML = `<div style="width:28px; height:29px; background:#FF4D3D; border-radius:50%; transform:scaleY(1.03);"></div>`;
+            } else if (mode === 'serif') {
+                avatar.style.fontFamily = "'Instrument Serif', Georgia, serif";
+                avatar.style.fontStyle = "italic";
+                avatar.style.fontSize = "30px";
+                avatar.style.letterSpacing = "-1px";
+                avatar.innerHTML = `gb<span class="brand-system-dot" style="font-size:30px;"></span>`;
+            } else if (mode === 'mono') {
+                avatar.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+                avatar.style.fontStyle = "normal";
+                avatar.style.fontSize = "26px";
+                avatar.style.letterSpacing = "-1px";
+                const dotBg = bg === '#FF4D3D' ? '#F6F3ED' : '#FF4D3D';
+                avatar.innerHTML = `gb<span class="brand-system-dot" style="font-size:26px; background-color:${dotBg};"></span>`;
+            } else {
+                // wordmark
+                avatar.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+                avatar.style.fontStyle = "normal";
+                avatar.style.fontSize = "11.5px";
+                avatar.style.letterSpacing = "-0.5px";
+                avatar.innerHTML = `gezenbiri<span class="brand-system-dot" style="font-size:11.5px;"></span>`;
+            }
+        }
+
+        // Copy Caption Helper
+        function copyCaptionText(capId, btn) {
+            const el = document.getElementById(capId);
+            if (!el) return;
+            navigator.clipboard.writeText(el.innerText).then(() => {
+                const orig = btn.textContent;
+                btn.textContent = 'Kopyalandı ✓';
+                btn.style.background = 'var(--coral)';
+                btn.style.color = '#FFF';
+                setTimeout(() => {
+                    btn.textContent = orig;
+                    btn.style.background = '';
+                    btn.style.color = '';
+                }, 2000);
+            });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
