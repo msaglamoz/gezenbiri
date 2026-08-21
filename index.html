@@ -142,6 +142,22 @@
             grid-template-columns: repeat(3, 1fr);
         }
 
+        .tools-grid.grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        @media (max-width: 1100px) {
+            .tools-grid.grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .tools-grid.grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .tool-card {
             background-color: var(--gb-white);
             border-radius: var(--gb-radius-lg);
@@ -535,7 +551,7 @@
             02 · BRAND LAB &amp; DENEYSEL UYGULAMA ALANLARI
         </div>
 
-        <div class="tools-grid grid-3">
+        <div class="tools-grid grid-4">
 
             <!-- 03: Editorial Trip Cards -->
             <a href="trip-cards.html" class="tool-card">
@@ -568,16 +584,31 @@
             </a>
 
             <!-- 05: Morphing Icon Motion Lab -->
-            <a href="icon-morph-motion.html" class="tool-card" style="border: 2px solid rgba(255, 77, 61, 0.3);">
+            <a href="icon-morph-motion.html" class="tool-card">
                 <div>
-                    <div class="tool-num" style="color:var(--gb-coral);">Lab 03 · Kinetic Glyphs</div>
-                    <h2 class="tool-title">Morphing İkon &amp; Kanca Motion Lab</h2>
+                    <div class="tool-num">Lab 03 · Kinetic Glyphs</div>
+                    <h2 class="tool-title">Morphing İkon Motion Lab</h2>
                     <p class="tool-desc">
                         8'i 1 arada Morphing Glif motoru, hız kontrolü (0.5x/1x/2x), Story (9:16), Post (1:1) ve tipografik kanca animasyonları.
                     </p>
                 </div>
                 <div class="tool-action">
-                    <span style="color:var(--gb-coral); font-weight:900;">Motion Lab'ı Aç</span>
+                    <span>Motion Lab'ı Aç</span>
+                    <div class="tool-arrow">→</div>
+                </div>
+            </a>
+
+            <!-- 06: Traveler Packing & Prep Guide -->
+            <a href="packing-guide.html" class="tool-card" style="border: 2px solid rgba(255, 77, 61, 0.35);">
+                <div>
+                    <div class="tool-num" style="color:var(--gb-coral);">Lab 04 · Traveler Prep</div>
+                    <h2 class="tool-title">Gezgin Yol &amp; Bavul Rehberi</h2>
+                    <p class="tool-desc">
+                        Hafta sonu kaçamakları için interaktif bavul kontrol listesi, hava durumu danışmanı, buluşma lojistiği ve WhatsApp paylaşımı.
+                    </p>
+                </div>
+                <div class="tool-action">
+                    <span style="color:var(--gb-coral); font-weight:900;">Rehberi Aç</span>
                     <div class="tool-arrow" style="background:var(--gb-coral); color:var(--gb-white);">→</div>
                 </div>
             </a>

@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gezenbiri — Gezgin Yol &amp; Bavul Rehberi | İnteraktif Hazırlık Portalı</title>
+    <meta name="description" content="gezenbiri rotalarına katılacak gezginler için interaktif bavul kontrol listesi, hava durumu tavsiyeleri, buluşma koordinasyonu ve seyahat rehberi.">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="theme-color" content="#F6F3ED">
+
+    <!-- Favicon: Standardized Vector Ellipse Geometry -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Cellipse cx='25' cy='10' rx='3' ry='3.09' fill='%23FF4D3D'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Instrument Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="brand.css">
+
+    <style>
+        :root {
+            --bg-page: var(--gb-cream);
+            --charcoal: var(--gb-charcoal);
+            --coral: var(--gb-coral);
+            --sage: var(--gb-sage);
+            --sky: var(--gb-sky);
+            --sand: var(--gb-sand);
+            --white: var(--gb-white);
+            --border-card: var(--gb-border);
+            --border-light: rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--charcoal);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 24px 20px 60px 20px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .guide-container {
+            max-width: var(--gb-container-max);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        /* HEADER HERO */
+        .guide-header {
+            text-align: center;
+            padding: 24px 0 10px 0;
+        }
+
+        .guide-tag {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--coral);
+            margin-bottom: 8px;
+        }
+
+        .guide-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(32px, 4.5vw, 44px);
+            font-weight: 900;
+            color: var(--charcoal);
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .guide-title span {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--coral);
+        }
+
+        .guide-desc {
+            font-size: 14.5px;
+            color: #666;
+            max-width: 660px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* DESTINATION SELECTOR PILLS */
+        .dest-pills-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 8px 0;
+        }
+
+        .btn-dest-pill {
+            background: var(--white);
+            color: var(--charcoal);
+            border: 1px solid var(--border-card);
+            border-radius: var(--gb-radius-pill);
+            padding: 9px 18px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all var(--gb-motion-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+
+        .btn-dest-pill:hover {
+            border-color: var(--coral);
+            transform: translateY(-2px);
+        }
+
+        .btn-dest-pill.active {
+            background: var(--charcoal);
+            color: var(--white);
+            border-color: var(--charcoal);
+            box-shadow: 0 4px 14px rgba(32,32,32,0.18);
+        }
+
+        .btn-dest-pill.active .pill-dot {
+            background: var(--coral);
+        }
+
+        .pill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #CCC;
+            display: inline-block;
+            transition: background var(--gb-motion-fast);
+        }
+
+        /* MAIN 2-COLUMN GRID (Checklist + Advisory Sidebar) */
+        .guide-grid-layout {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        /* CHECKLIST CARD */
+        .checklist-card {
+            background: var(--white);
+            border-radius: 24px;
+            border: 1px solid var(--border-card);
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .checklist-head-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .checklist-title-group h2 {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--charcoal);
+            letter-spacing: -0.5px;
+        }
+
+        .checklist-title-group p {
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* PROGRESS RING / BAR */
+        .progress-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-page);
+            padding: 8px 16px;
+            border-radius: 100px;
+            border: 1px solid var(--border-card);
+        }
+
+        .progress-bar-bg {
+            width: 100px;
+            height: 8px;
+            background: rgba(0,0,0,0.08);
+            border-radius: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--coral);
+            width: 0%;
+            transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 100px;
+        }
+
+        .progress-text {
+            font-size: 12px;
+            font-weight: 900;
+            color: var(--charcoal);
+            min-width: 65px;
+            text-align: right;
+        }
+
+        /* CHECKLIST CATEGORIES */
+        .chk-category-block {
+            margin-bottom: 22px;
+        }
+
+        .chk-category-title {
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--coral);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .chk-items-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .chk-item-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: #FAFAFA;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all var(--gb-motion-fast);
+            user-select: none;
+        }
+
+        .chk-item-row:hover {
+            background: var(--bg-page);
+            border-color: var(--border-card);
+        }
+
+        .chk-item-row.checked {
+            background: #F1F6EE;
+            border-color: #C3DFC0;
+        }
+
+        .chk-item-row.checked .item-text {
+            text-decoration: line-through;
+            color: #777;
+        }
+
+        .chk-left-flex {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chk-custom-box {
+            width: 18px;
+            height: 18px;
+            border-radius: 6px;
+            border: 2px solid #BBB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FFF;
+            transition: all var(--gb-motion-fast);
+            flex-shrink: 0;
+        }
+
+        .chk-item-row.checked .chk-custom-box {
+            background: var(--coral);
+            border-color: var(--coral);
+        }
+
+        .chk-custom-box::after {
+            content: "✓";
+            color: #FFF;
+            font-size: 11px;
+            font-weight: 900;
+            display: none;
+        }
+
+        .chk-item-row.checked .chk-custom-box::after {
+            display: block;
+        }
+
+        .item-text {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .item-badge-opt {
+            font-size: 10.5px;
+            font-weight: 700;
+            color: #888;
+            background: rgba(0,0,0,0.04);
+            padding: 2px 8px;
+            border-radius: 100px;
+        }
+
+        /* ADD CUSTOM ITEM ROW */
+        .add-custom-row {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--border-light);
+        }
+
+        .input-custom-item {
+            flex: 1;
+            padding: 9px 14px;
+            border-radius: 100px;
+            border: 1px solid var(--border-card);
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+            background: #FAFAFA;
+        }
+
+        .input-custom-item:focus {
+            background: #FFF;
+            border-color: var(--coral);
+        }
+
+        .btn-add-item {
+            background: var(--charcoal);
+            color: #FFF;
+            border: none;
+            border-radius: 100px;
+            padding: 9px 18px;
+            font-size: 12.5px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background var(--gb-motion-fast);
+        }
+
+        .btn-add-item:hover {
+            background: var(--coral);
+        }
+
+        /* ACTION BUTTONS TOOLBAR */
+        .checklist-actions-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border-light);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn-action-tool {
+            background: var(--bg-page);
+            color: var(--charcoal);
+            border: 1px solid var(--border-card);
+            border-radius: 100px;
+            padding: 7px 14px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all var(--gb-motion-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-action-tool:hover {
+            background: var(--charcoal);
+            color: #FFF;
+            border-color: var(--charcoal);
+        }
+
+        .btn-action-tool.primary {
+            background: var(--coral);
+            color: #FFF;
+            border-color: var(--coral);
+        }
+
+        .btn-action-tool.primary:hover {
+            background: #E83F2F;
+        }
+
+        /* SIDEBAR ADVISORY & LOGISTICS */
+        .sidebar-col {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-card-widget {
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px solid var(--border-card);
+            padding: 22px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+        }
+
+        .widget-tag {
+            font-size: 10.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--coral);
+            margin-bottom: 6px;
+        }
+
+        .widget-title {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--charcoal);
+            letter-spacing: -0.3px;
+            margin-bottom: 10px;
+        }
+
+        .weather-status-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-page);
+            padding: 12px 16px;
+            border-radius: 14px;
+            margin-bottom: 12px;
+        }
+
+        .weather-temp {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--charcoal);
+        }
+
+        .weather-desc {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .advice-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 12.5px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .advice-bullets li {
+            position: relative;
+            padding-left: 18px;
+        }
+
+        .advice-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 4px;
+            color: var(--coral);
+            font-weight: 900;
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        /* TIMELINE CARD */
+        .timeline-step-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .timeline-step-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-time-badge {
+            background: var(--charcoal);
+            color: var(--white);
+            font-size: 10.5px;
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 6px;
+            height: fit-content;
+            white-space: nowrap;
+        }
+
+        .step-info h4 {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+            margin-bottom: 2px;
+        }
+
+        .step-info p {
+            font-size: 11.5px;
+            color: #777;
+            line-height: 1.35;
+        }
+
+        /* MANIFESTO BOTTOM BANNER */
+        .guide-manifesto-strip {
+            background: var(--charcoal);
+            color: var(--bg-page);
+            border-radius: 20px;
+            padding: 24px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .manifesto-strip-text h3 {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 4px;
+            color: #FFF;
+        }
+
+        .manifesto-strip-text p {
+            font-size: 13px;
+            color: rgba(246, 243, 237, 0.8);
+        }
+
+        .btn-wa-coord {
+            background: var(--coral);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 800;
+            padding: 10px 20px;
+            border-radius: 100px;
+            transition: background var(--gb-motion-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .btn-wa-coord:hover {
+            background: #E83F2F;
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { background: #FFF; padding: 0; color: #000; }
+            .top-brand-nav, .checklist-actions-bar, .add-custom-row, .btn-dest-pill, .btn-wa-coord { display: none !important; }
+            .checklist-card, .info-card-widget { border: 1px solid #CCC; box-shadow: none; }
+            .guide-grid-layout { grid-template-columns: 1fr; }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .guide-grid-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 10. STANDARDIZED MASTER TOP NAVIGATION -->
+    <div class="top-brand-nav">
+        <a href="index.html" class="btn-nav-back">
+            <span>←</span>
+            <span>Brand System Hub</span>
+        </a>
+        <div class="quick-nav-links">
+            <a href="brand-guidelines.html">Marka Kılavuzu</a>
+            <a href="system-dot.html">System Dot</a>
+            <a href="icon-morph-motion.html">Motion Lab</a>
+            <a href="trip-cards.html">Seyahat Kartları</a>
+            <a href="instagram-suite.html">Instagram Paketi</a>
+            <a href="packing-guide.html" class="active">Yol &amp; Bavul Rehberi</a>
+            <a href="gezenbiri_website.html" style="color:var(--coral); font-weight:800;">Web Sitesi ↗</a>
+        </div>
+    </div>
+
+    <div class="guide-container">
+
+        <!-- HEADER HERO -->
+        <header class="guide-header">
+            <div class="guide-tag">gezenbiri · Yolculuk Öncesi Rehber Modülü</div>
+            <h1 class="guide-title">Gezgin Yol &amp; <span>Bavul Rehberi</span></h1>
+            <p class="guide-desc">
+                Hafta sonu kaçamakları, atölyeler ve yerel rotalar için interaktif bavul kontrol listesi, hava durumu tavsiyeleri ve buluşma koordinasyon rehberi.
+            </p>
+        </header>
+
+        <!-- DESTINATION SELECTOR PILLS -->
+        <div class="dest-pills-row" id="destPills">
+            <button class="btn-dest-pill active" onclick="switchDestination('alacati', this)">
+                <span class="pill-dot"></span>
+                <span>Alaçatı Hafta Sonu</span>
+            </button>
+            <button class="btn-dest-pill" onclick="switchDestination('urla', this)">
+                <span class="pill-dot"></span>
+                <span>Urla Bağ Rotası</span>
+            </button>
+            <button class="btn-dest-pill" onclick="switchDestination('kapadokya', this)">
+                <span class="pill-dot"></span>
+                <span>Kapadokya Vadileri</span>
+            </button>
+            <button class="btn-dest-pill" onclick="switchDestination('cesme', this)">
+                <span class="pill-dot"></span>
+                <span>Çeşme &amp; Ilıca</span>
+            </button>
+            <button class="btn-dest-pill" onclick="switchDestination('bozcaada', this)">
+                <span class="pill-dot"></span>
+                <span>Bozcaada Rüzgarı</span>
+            </button>
+            <button class="btn-dest-pill" onclick="switchDestination('kas', this)">
+                <span class="pill-dot"></span>
+                <span>Kaş Likya Yolu</span>
+            </button>
+        </div>
+
+        <!-- 2-COLUMN MAIN GRID -->
+        <main class="guide-grid-layout">
+            
+            <!-- LEFT: INTERACTIVE CHECKLIST -->
+            <div class="checklist-card">
+                <div class="checklist-head-row">
+                    <div class="checklist-title-group">
+                        <h2 id="currentDestTitle">Alaçatı Bavul Kontrol Listesi</h2>
+                        <p>Eşyalarını hazırladıkça tıkla, hazırlık oranını takip et.</p>
+                    </div>
+                    <div class="progress-box">
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-text" id="progressText">%0 Hazır</span>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 1: GİYSİ & AYAKKABI -->
+                <div class="chk-category-block">
+                    <div class="chk-category-title">
+                        <span>Giysi &amp; Ayakkabı</span>
+                    </div>
+                    <div class="chk-items-list" id="cat-clothing">
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Rahat yürüyüş ayakkabısı (Taş sokaklar için düz taban)</span>
+                            </div>
+                            <span class="item-badge-opt">Zorunlu</span>
+                        </div>
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Hafif keten gömlek / tişört (Gündüz ferahlığı)</span>
+                            </div>
+                            <span class="item-badge-opt">Önerilen</span>
+                        </div>
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Akşam rüzgarlığı / İnce hırka (Ege esintisi)</span>
+                            </div>
+                            <span class="item-badge-opt">Önemli</span>
+                        </div>
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Şapka ve güneş gözlüğü</span>
+                            </div>
+                            <span class="item-badge-opt">Zorunlu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 2: TEKNOLOJİ & FOTOĞRAF -->
+                <div class="chk-category-block">
+                    <div class="chk-category-title">
+                        <span>Teknoloji &amp; Fotoğraf</span>
+                    </div>
+                    <div class="chk-items-list" id="cat-tech">
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Yedek Powerbank (10.000 mAh+)</span>
+                            </div>
+                            <span class="item-badge-opt">Zorunlu</span>
+                        </div>
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Telefon şarj kablosu &amp; adaptör</span>
+                            </div>
+                            <span class="item-badge-opt">Zorunlu</span>
+                        </div>
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Fotoğraf makinesi &amp; boş hafıza kartı</span>
+                            </div>
+                            <span class="item-badge-opt">İsteğe Bağlı</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 3: KİŞİSEL BAKIM & SAĞLIK -->
+                <div class="chk-category-block">
+                    <div class="chk-category-title">
+                        <span>Kişisel Bakım &amp; Sağlık</span>
+                    </div>
+                    <div class="chk-items-list" id="cat-care">
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Güneş koruyucu krem (SPF 50+)</span>
+                            </div>
+                            <span class="item-badge-opt">Zorunlu</span>
+                        </div>
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Kişisel ilaçlar &amp; minik ilk yardım kiti</span>
+                            </div>
+                            <span class="item-badge-opt">Önemli</span>
+                        </div>
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Yeniden doldurulabilir su matarası</span>
+                            </div>
+                            <span class="item-badge-opt">Ekolojik</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY 4: gezenbiri Özel Eşyaları -->
+                <div class="chk-category-block">
+                    <div class="chk-category-title">
+                        <span>gezenbiri Varlıkları</span>
+                    </div>
+                    <div class="chk-items-list" id="cat-brand">
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Ham bez çanta (“Bir yere gidelim.” tote bag)</span>
+                            </div>
+                            <span class="item-badge-opt">İmza</span>
+                        </div>
+                        <div class="chk-item-row" onclick="toggleCheckItem(this)">
+                            <div class="chk-left-flex">
+                                <div class="chk-custom-box"></div>
+                                <span class="item-text">Seyahat not defteri &amp; anı kalemi</span>
+                            </div>
+                            <span class="item-badge-opt">Önerilen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADD CUSTOM ITEM INPUT -->
+                <div class="add-custom-row">
+                    <input type="text" id="customItemInput" class="input-custom-item" placeholder="Kendi özel eşyanı ekle (Örn: Kulaklık, Kitap)..." onkeydown="if(event.key==='Enter') addCustomItem()">
+                    <button class="btn-add-item" onclick="addCustomItem()">+ Ekle</button>
+                </div>
+
+                <!-- ACTIONS BAR -->
+                <div class="checklist-actions-bar">
+                    <div style="display:flex; gap:8px;">
+                        <button class="btn-action-tool" onclick="selectAllItems()">Tümünü Seç</button>
+                        <button class="btn-action-tool" onclick="resetAllItems()">Sıfırla</button>
+                    </div>
+                    <div style="display:flex; gap:8px;">
+                        <button class="btn-action-tool" onclick="window.print()">Yazdır / PDF</button>
+                        <button class="btn-action-tool primary" id="btnWaCopy" onclick="copyWhatsAppChecklist(this)">WhatsApp'a Kopyala →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: SIDEBAR ADVISORY & LOGISTICS -->
+            <aside class="sidebar-col">
+                
+                <!-- WIDGET 1: HAVA DURUMU & GİYİM TAVSİYESİ -->
+                <div class="info-card-widget">
+                    <div class="widget-tag">İklim &amp; Giyim Danışmanı</div>
+                    <h3 class="widget-title" id="weatherWidgetTitle">Alaçatı Hava Durumu</h3>
+                    
+                    <div class="weather-status-box">
+                        <div>
+                            <div class="weather-temp" id="weatherWidgetTemp">28°C</div>
+                            <div class="weather-desc" id="weatherWidgetDesc">Güneşli · Hafif Ege İmbatı</div>
+                        </div>
+                        <div style="font-size:11.5px; font-weight:800; color:var(--coral); text-align:right;">
+                            Akşam: <span id="weatherWidgetNight">21°C</span>
+                        </div>
+                    </div>
+
+                    <ul class="advice-bullets" id="weatherWidgetAdvice">
+                        <li>Gündüzleri güneş yoğun, taş sokaklarda ısı yansıması olabilir.</li>
+                        <li>Saat 18:00'den sonra meşhur Alaçatı rüzgarı başlar; ince hırka şart.</li>
+                        <li>Arnavut kaldırımları nedeniyle topuklu veya sert tabanlı ayakkabı önerilmez.</li>
+                    </ul>
+                </div>
+
+                <!-- WIDGET 2: BULUŞMA & LOJİSTİK KOORDİNASYONU -->
+                <div class="info-card-widget">
+                    <div class="widget-tag">Lojistik &amp; Koordinasyon</div>
+                    <h3 class="widget-title">Buluşma Noktası</h3>
+                    
+                    <div style="background:var(--bg-page); padding:12px; border-radius:12px; margin-bottom:12px; font-size:12.5px;">
+                        <div style="font-weight:900; color:var(--charcoal); margin-bottom:2px;" id="pickupLocationTitle">İzmir Adnan Menderes Havalimanı / İç Hatlar Çıkışı</div>
+                        <div style="color:#777;" id="pickupLocationTime">Cumartesi Sabahı · 09:30 Karşılama</div>
+                    </div>
+
+                    <ul class="advice-bullets">
+                        <li>Özel klimalı gezenbiri transfer aracı ile otele geçilecektir.</li>
+                        <li>WhatsApp grubundan anlık canlı konum paylaşılacaktır.</li>
+                        <li>Erken gelenler için havalimanı buluşma noktasında karşılama hostumuz hazırdır.</li>
+                    </ul>
+                </div>
+
+                <!-- WIDGET 3: 2 GÜNLÜK ROTA AKIŞI (TIMELINE) -->
+                <div class="info-card-widget">
+                    <div class="widget-tag">Hafta Sonu Akışı</div>
+                    <h3 class="widget-title">Kompakt Program</h3>
+
+                    <div class="timeline-step-row">
+                        <span class="step-time-badge">09:30</span>
+                        <div class="step-info">
+                            <h4>Buluşma &amp; Tanışma Kahvesi</h4>
+                            <p>Ekip toplanması ve otele transfer.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step-row">
+                        <span class="step-time-badge">14:00</span>
+                        <div class="step-info">
+                            <h4 id="timelineWsTitle">Yerel Atölye &amp; Keşif</h4>
+                            <p>Rehber eşliğinde taş sokaklar ve yerel üreticiler.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step-row">
+                        <span class="step-time-badge">19:30</span>
+                        <div class="step-info">
+                            <h4>Gün Batımı Topluluk Sofrası</h4>
+                            <p>Yerel lezzetler ve derin muhabbet.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-step-row">
+                        <span class="step-time-badge">Paz 17:00</span>
+                        <div class="step-info">
+                            <h4>Kapanış &amp; Dönüş</h4>
+                            <p>Vedalaşma ve transfer aracına biniş.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+
+        </main>
+
+        <!-- MANIFESTO STRIP -->
+        <div class="guide-manifesto-strip">
+            <div class="manifesto-strip-text">
+                <h3>Soruların mı var? Koordinatör hattına yaz.</h3>
+                <p>Bavul hazırlığı, özel diyet talepleri veya transfer detayları için ekip her an yanınızda.</p>
+            </div>
+            <a href="https://wa.me/905000000000?text=Merhaba%20gezenbiri!%20Yolculuk%20%C3%B6ncesi%20bavul%20ve%20rota%20hakk%C4%B1nda%20dan%C4%B1%C5%9Fmak%20istiyorum." class="btn-wa-coord" target="_blank" rel="noopener">
+                <span>WhatsApp Koordinatör Hattı</span>
+                <span>→</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- SCRIPT LOGIC -->
+    <script src="data/events.js"></script>
+    <script>
+        const destinationData = {
+            alacati: {
+                title: "Alaçatı Bavul Kontrol Listesi",
+                weatherTitle: "Alaçatı Hava Durumu",
+                temp: "28°C",
+                nightTemp: "21°C",
+                desc: "Güneşli · Hafif Ege İmbatı",
+                advice: [
+                    "Gündüzleri güneş yoğun, taş sokaklarda ısı yansıması olabilir.",
+                    "Saat 18:00'den sonra meşhur Alaçatı rüzgarı başlar; ince hırka şart.",
+                    "Arnavut kaldırımları nedeniyle topuklu veya sert tabanlı ayakkabı önerilmez."
+                ],
+                pickupTitle: "İzmir Havalimanı / İç Hatlar Çıkışı",
+                pickupTime: "Cumartesi Sabahı · 09:30 Karşılama",
+                wsTitle: "Taş Konak Seramik Atölyesi"
+            },
+            urla: {
+                title: "Urla Bağ Rotası Bavul Listesi",
+                weatherTitle: "Urla Hava Durumu",
+                temp: "27°C",
+                nightTemp: "19°C",
+                desc: "Parçalı Bulutlu · Tatlı Esinti",
+                advice: [
+                    "Bağ yürüyüşleri için toprağa uygun spor ayakkabı tercih edin.",
+                    "Güneş koruması için geniş kenarlı hasır şapka tavsiye edilir.",
+                    "Akşam bağ evi yemeği için hafif şık 'smart casual' giyim uygundur."
+                ],
+                pickupTitle: "Fahrettin Altay Aktarma Merkezi & Havalimanı",
+                pickupTime: "Cumartesi Sabahı · 10:00 Karşılama",
+                wsTitle: "Doğal Şarap & Gastronomi Tadımı"
+            },
+            kapadokya: {
+                title: "Kapadokya Vadileri Bavul Listesi",
+                weatherTitle: "Kapadokya Hava Durumu",
+                temp: "24°C",
+                nightTemp: "13°C",
+                desc: "Karasal İklim · Sabahları Serin",
+                advice: [
+                    "Balon gün doğumu için sabah 05:00'te polar veya kalın ceket gerekir.",
+                    "Vadi yürüyüşleri için kaymayan trekking/spor ayakkabısı zorunludur.",
+                    "Karasal iklim nedeniyle dudak nemlendiricisi ve krem mutlaka alın."
+                ],
+                pickupTitle: "Nevşehir / Kayseri Havalimanı Çıkışı",
+                pickupTime: "Cuma Akşamı · 19:00 Karşılama",
+                wsTitle: "Avanos Çömlek & Vadi Keşfi"
+            },
+            cesme: {
+                title: "Çeşme & Ilıca Bavul Listesi",
+                weatherTitle: "Çeşme Hava Durumu",
+                temp: "30°C",
+                nightTemp: "23°C",
+                desc: "Sıcak & Deniz Meltemi",
+                advice: [
+                    "Plaj ve koy molaları için mayo/şort ve hızlı kuruyan havlu unutmayın.",
+                    "Yüksek koruma faktörlü (SPF 50+) güneş kremi çantanızda olsun.",
+                    "Deniz ayakkabısı koylarda çok rahat ettirir."
+                ],
+                pickupTitle: "İzmir Adnan Menderes Havalimanı",
+                pickupTime: "Cumartesi Sabahı · 09:00 Karşılama",
+                wsTitle: "Fotoğraf Yürüyüşü & Sahil Rotası"
+            },
+            bozcaada: {
+                title: "Bozcaada Rüzgarı Bavul Listesi",
+                weatherTitle: "Bozcaada Hava Durumu",
+                temp: "25°C",
+                nightTemp: "18°C",
+                desc: "Rüzgarlı & Temiz Ada Havası",
+                advice: [
+                    "Ada sürekli esintilidir, rüzgar geçirmeyen ceket / hırka şarttır.",
+                    "Bisiklet kiralayacaksanız rahat şort ve sırt çantası önerilir.",
+                    "Polente Feneri gün batımı için oturmalık mini örtü çok işe yarar."
+                ],
+                pickupTitle: "Geyikli Feribot İskelesi Buluşması",
+                pickupTime: "Cumartesi Sabahı · 10:30 Feribotu",
+                wsTitle: "Ada Bağları & Sanat Atölyeleri"
+            },
+            kas: {
+                title: "Kaş Likya Yolu Bavul Listesi",
+                weatherTitle: "Kaş Hava Durumu",
+                temp: "31°C",
+                nightTemp: "24°C",
+                desc: "Akdeniz Güneşi & Sıcak",
+                advice: [
+                    "Antik yol yürüyüşleri için bileği saran yürüyüş botu/ayakkabısı şarttır.",
+                    "Şnorkel veya deniz gözlüğü Akdeniz sularında harika anlar sunar.",
+                    "En az 1.5 lt su taşıyabileceğiniz hafif bir sırt çantası edinin."
+                ],
+                pickupTitle: "Dalaman Havalimanı Karşılama",
+                pickupTime: "Cumartesi Sabahı · 09:00",
+                wsTitle: "Likya Patikaları & Tekne Molası"
+            }
+        };
+
+        function updateProgress() {
+            const allRows = document.querySelectorAll('.chk-item-row');
+            const checkedRows = document.querySelectorAll('.chk-item-row.checked');
+            const total = allRows.length;
+            const checked = checkedRows.length;
+            const pct = total === 0 ? 0 : Math.round((checked / total) * 100);
+
+            const fill = document.getElementById('progressFill');
+            const text = document.getElementById('progressText');
+            if (fill) fill.style.width = pct + '%';
+            if (text) text.textContent = `%${pct} Hazır`;
+        }
+
+        function toggleCheckItem(row) {
+            row.classList.toggle('checked');
+            updateProgress();
+        }
+
+        function selectAllItems() {
+            document.querySelectorAll('.chk-item-row').forEach(r => r.classList.add('checked'));
+            updateProgress();
+        }
+
+        function resetAllItems() {
+            document.querySelectorAll('.chk-item-row').forEach(r => r.classList.remove('checked'));
+            updateProgress();
+        }
+
+        function addCustomItem() {
+            const input = document.getElementById('customItemInput');
+            const val = input.value.trim();
+            if (!val) return;
+
+            const targetList = document.getElementById('cat-brand');
+            const newRow = document.createElement('div');
+            newRow.className = 'chk-item-row checked';
+            newRow.onclick = function() { toggleCheckItem(this); };
+            newRow.innerHTML = `
+                <div class="chk-left-flex">
+                    <div class="chk-custom-box"></div>
+                    <span class="item-text">${val}</span>
+                </div>
+                <span class="item-badge-opt">Kişisel</span>
+            `;
+            targetList.appendChild(newRow);
+            input.value = '';
+            updateProgress();
+        }
+
+        function switchDestination(key, btn) {
+            document.querySelectorAll('.btn-dest-pill').forEach(p => p.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+
+            const data = destinationData[key] || destinationData.alacati;
+            document.getElementById('currentDestTitle').textContent = data.title;
+            document.getElementById('weatherWidgetTitle').textContent = data.weatherTitle;
+            document.getElementById('weatherWidgetTemp').textContent = data.temp;
+            document.getElementById('weatherWidgetNight').textContent = data.nightTemp;
+            document.getElementById('weatherWidgetDesc').textContent = data.desc;
+            document.getElementById('pickupLocationTitle').textContent = data.pickupTitle;
+            document.getElementById('pickupLocationTime').textContent = data.pickupTime;
+            document.getElementById('timelineWsTitle').textContent = data.wsTitle;
+
+            const ul = document.getElementById('weatherWidgetAdvice');
+            ul.innerHTML = data.advice.map(adv => `<li>${adv}</li>`).join('');
+
+            resetAllItems();
+        }
+
+        function copyWhatsAppChecklist(btn) {
+            const destTitle = document.getElementById('currentDestTitle').textContent;
+            const items = [];
+            document.querySelectorAll('.chk-item-row').forEach(r => {
+                const text = r.querySelector('.item-text').textContent;
+                const isDone = r.classList.contains('checked') ? '[✓]' : '[ ]';
+                items.push(`${isDone} ${text}`);
+            });
+
+            const shareText = `*gezenbiri · ${destTitle}*\n\n${items.join('\n')}\n\ngezenbiri.com.tr · “Bir yere gidelim.”`;
+
+            navigator.clipboard.writeText(shareText).then(() => {
+                const orig = btn.textContent;
+                btn.textContent = 'Kopyalandı ✓';
+                setTimeout(() => {
+                    btn.textContent = orig;
+                }, 2500);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+        });
+    </script>
+
+    <!-- DEMO DISCLAIMER FOOTNOTE -->
+    <div class="gb-prototype-disclaimer">
+        Bu sayfadaki bavul kontrol listeleri, hava durumu tavsiyeleri ve buluşma lojistikleri gezenbiri seyahat deneyim prototipi örnekleridir.
+    </div>
+
+</body>
+</html>
