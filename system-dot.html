@@ -685,10 +685,10 @@
             vertical-align: baseline;
         }
 
-        /* Kural 6 Visual - Triad UI */
-        .triad-ui-row {
+        /* Kural 6 Visual - 4 Pillars UI */
+        .tetrad-ui-row, .triad-ui-row {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 6px;
         }
 
@@ -790,6 +790,187 @@
             border: 1px solid var(--border);
         }
 
+        /* 00. FELSEFE & ANLAM KATMANLARI STYLES */
+        .philosophy-master-card {
+            width: 100%;
+            max-width: 1100px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 36px 38px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.04);
+            margin-bottom: 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .philosophy-manifesto-row {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 36px;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 28px;
+        }
+
+        .philosophy-quote-box h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.8px;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+            line-height: 1.25;
+        }
+
+        .philosophy-quote-box h3 em {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--coral);
+        }
+
+        .philosophy-quote-box p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .wordmark-anatomy-box {
+            background: var(--cream);
+            border-radius: 16px;
+            padding: 20px 24px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .anatomy-title {
+            font-size: 10.5px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #777;
+        }
+
+        .anatomy-wordmark-row {
+            display: flex;
+            align-items: baseline;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 38px;
+            letter-spacing: -1.6px;
+            color: var(--charcoal);
+            line-height: 1;
+        }
+
+        .logo-display-clean {
+            display: inline-flex;
+            align-items: baseline;
+            color: var(--charcoal);
+            user-select: none;
+        }
+
+        .anatomy-expl-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            font-size: 11px;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            padding-top: 10px;
+        }
+
+        .anatomy-expl-item strong {
+            display: block;
+            color: var(--charcoal);
+            font-size: 11.5px;
+            margin-bottom: 2px;
+        }
+
+        .anatomy-expl-item span {
+            color: #666;
+            line-height: 1.35;
+            display: block;
+        }
+
+        /* 4 Sütunlu Kartlar Grid */
+        .philosophy-pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .pillar-card {
+            background: #FAF8F5;
+            border-radius: 14px;
+            padding: 20px 18px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--coral);
+            box-shadow: 0 8px 24px rgba(255,77,61,0.1);
+        }
+
+        .pillar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pillar-num {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: 1px;
+        }
+
+        .pillar-badge {
+            background: rgba(32,32,32,0.06);
+            color: var(--charcoal);
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .pillar-title {
+            font-size: 16px;
+            font-weight: 900;
+            color: var(--charcoal);
+            letter-spacing: -0.4px;
+            margin: 0;
+        }
+
+        .pillar-desc {
+            font-size: 12px;
+            color: #555;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .pillar-footer-ui {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            font-size: 11.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         /* Responsive Breakpoints */
         @media (max-width: 1140px) {
             .workspace-grid, .rules-8-grid {
@@ -800,19 +981,28 @@
                 grid-template-columns: repeat(2, 1fr);
                 max-width: 530px;
             }
+            .philosophy-manifesto-row {
+                grid-template-columns: 1fr;
+            }
+            .philosophy-pillars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 580px) {
             .capture-area, .presentation-card, .rule-card {
                 width: 100%;
             }
-            .workspace-grid, .icons-8-grid, .rules-8-grid {
+            .workspace-grid, .icons-8-grid, .rules-8-grid, .philosophy-pillars-grid {
                 grid-template-columns: 1fr;
                 width: 100%;
             }
             .logo-wrapper {
                 font-size: 64px;
                 letter-spacing: -3px;
+            }
+            .anatomy-expl-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -840,11 +1030,128 @@
     <!-- Header -->
     <div class="header">
         <h1>MARKA DAVRANIŞI: SYSTEM DOT</h1>
-        <p>Logodaki oranlı daire artık "Sadece bir nokta" değil; Aksiyonun, Tamamlanmanın ve Planın sembolü. %3 dikey esnetilmiş özel form, 0.12em master wordmark matrisi ve UI bileşen rehberi.</p>
+        <p>Logodaki oranlı daire artık "Sadece bir nokta" değil; Aksiyonun, Tamamlanmanın, Hedef Koordinatın ve Yola Çıkan "biri"nin (İnsan &amp; Özne) sembolü. %3 dikey esnetilmiş özel form, 0.12em master wordmark matrisi ve UI bileşen rehberi.</p>
     </div>
 
     <!-- Master Batch ZIP Exporter Button -->
     <button id="downloadBtn" class="btn-download-all">Tüm Brand Sistemini İndir (ZIP)</button>
+
+    <!-- 00. SYSTEM DOT FELSEFESİ & 4 ANLAM KATMANI -->
+    <div class="section-title">
+        <span>00. SYSTEM DOT FELSEFESİ &amp; ANLAM KATMANLARI</span>
+        <span style="font-size:12px; font-weight:700; color:var(--coral);">Dörtlü Anlam Mimarisi</span>
+    </div>
+
+    <div class="philosophy-master-card">
+        <!-- Üst Manifesto & Tipografik Anatomi Satırı -->
+        <div class="philosophy-manifesto-row">
+            <div class="philosophy-quote-box">
+                <h3>“Logodaki nokta salt bir grafik değil; <em>gitmeye karar veren o ‘biri’dir.</em>”</h3>
+                <p>
+                    gezenbiri görsel kimliğinde Action Coral (#FF4D3D) nokta, sıradan bir tipografik süsleme değildir. 
+                    Toplu turizm kalabalığı yerine o masaya oturan, o rotada gün batımını izleyen <strong>bireyin (insan öznesinin)</strong>, 
+                    ertelenmeyen <strong>kararın</strong>, haritadaki <strong>koordinatın</strong> ve hayatı başlatan <strong>aksiyonun</strong> yaşayan sembolüdür.
+                </p>
+            </div>
+            <div class="wordmark-anatomy-box">
+                <span class="anatomy-title">Tipografik Anatomi &amp; System Dot Kenetlenmesi</span>
+                <div class="anatomy-wordmark-row">
+                    <div class="logo-display-clean">gezenbiri<span class="system-dot"></span></div>
+                </div>
+                <div class="anatomy-expl-grid">
+                    <div class="anatomy-expl-item">
+                        <strong>1. gezen</strong>
+                        <span>Hareket, keşif ve yolda olma hali.</span>
+                    </div>
+                    <div class="anatomy-expl-item">
+                        <strong style="color:var(--coral);">2. biri</strong>
+                        <span>Özne, birey, sen, aramızdan biri.</span>
+                    </div>
+                    <div class="anatomy-expl-item">
+                        <strong style="color:var(--coral);">3. System Dot</strong>
+                        <span>O insanın ayak izi &amp; eylem noktası.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 Sütunlu Anlam Kartları -->
+        <div class="philosophy-pillars-grid">
+            
+            <!-- Sütun 1: Aksiyon -->
+            <div class="pillar-card">
+                <div>
+                    <div class="pillar-header">
+                        <span class="pillar-num">SÜTUN 01</span>
+                        <span class="pillar-badge">CTA &amp; Eylem</span>
+                    </div>
+                    <h4 class="pillar-title" style="margin: 8px 0 6px 0;">1. Aksiyon Kıvılcımı</h4>
+                    <p class="pillar-desc">
+                        <em>“Bir yere gidelim.”</em> çağrısının kıvılcımı. Düşünceden eyleme geçişi ateşleyen dinamik itici güç.
+                    </p>
+                </div>
+                <div class="pillar-footer-ui">
+                    <span>Aksiyon Butonu</span>
+                    <span style="display:inline-flex; align-items:baseline;">Keşfet<span class="system-dot" style="font-size:10px;"></span></span>
+                </div>
+            </div>
+
+            <!-- Sütun 2: Hedef Koordinat -->
+            <div class="pillar-card">
+                <div>
+                    <div class="pillar-header">
+                        <span class="pillar-num">SÜTUN 02</span>
+                        <span class="pillar-badge">Harita &amp; Durak</span>
+                    </div>
+                    <h4 class="pillar-title" style="margin: 8px 0 6px 0;">2. Hedef Koordinat</h4>
+                    <p class="pillar-desc">
+                        Haritada işaretlenen o özel nokta. Varılan koy, toplanılan seramik atölyesi, kadehin kalktığı bağ sofrası.
+                    </p>
+                </div>
+                <div class="pillar-footer-ui">
+                    <span>Harita Pini</span>
+                    <span style="color:var(--coral);">📍 [•] Varış</span>
+                </div>
+            </div>
+
+            <!-- Sütun 3: Karar & Netlik -->
+            <div class="pillar-card">
+                <div>
+                    <div class="pillar-header">
+                        <span class="pillar-num">SÜTUN 03</span>
+                        <span class="pillar-badge">Mühür &amp; Son Nokta</span>
+                    </div>
+                    <h4 class="pillar-title" style="margin: 8px 0 6px 0;">3. Karar Mührü</h4>
+                    <p class="pillar-desc">
+                        Kararsızlığı ve bahaneleri bitiren son nokta. <em>“Cuma çıkıyoruz, pazar dönüyoruz.”</em> netliği.
+                    </p>
+                </div>
+                <div class="pillar-footer-ui">
+                    <span>Başlık Mührü</span>
+                    <span style="color:var(--charcoal); display:inline-flex; align-items:baseline;">Alaçatı<span class="system-dot" style="font-size:10px;"></span></span>
+                </div>
+            </div>
+
+            <!-- Sütun 4: Özne / İnsan ("biri") -->
+            <div class="pillar-card" style="background:#FFF9F7; border-color:rgba(255,77,61,0.25);">
+                <div>
+                    <div class="pillar-header">
+                        <span class="pillar-num">SÜTUN 04</span>
+                        <span class="pillar-badge" style="background:rgba(255,77,61,0.12); color:var(--coral);">Özne &amp; İnsan</span>
+                    </div>
+                    <h4 class="pillar-title" style="margin: 8px 0 6px 0; color:var(--charcoal);">4. Özne ("biri")</h4>
+                    <p class="pillar-desc">
+                        Yola çıkan o 1 gezgin, masadaki o 1 insan. Kitleler içinde kaybolmayan, aramızdan biri; bizzat sen.
+                    </p>
+                </div>
+                <div class="pillar-footer-ui" style="background:#FFF; border-color:rgba(255,77,61,0.3);">
+                    <span>Birey &amp; Yolcu</span>
+                    <span style="color:var(--coral); font-weight:900; display:inline-flex; align-items:baseline;">biri<span class="system-dot" style="font-size:10px;"></span></span>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <!-- 1. RENK PALETİ (65-20-10 KURALI & 7 TON) -->
     <div class="section-title">
@@ -1429,41 +1736,47 @@
             </div>
         </div>
 
-        <!-- Kural 6: 3 CANLI UI ÖRNEĞİ -->
+        <!-- Kural 6: 4 ANLAMSAL SÜTUN -->
         <div class="rule-card">
             <div class="rule-header-row">
                 <span class="rule-number">KURAL 06</span>
                 <span class="rule-badge-status">DAVRANIŞ KODU</span>
             </div>
-            <h4 class="rule-title">Üçlü Anlamsal Çerçeve</h4>
+            <h4 class="rule-title">Dörtlü Anlamsal Çerçeve</h4>
             <p class="rule-text">
-                Nokta tek amaçlı değildir; butonda <em>tetikleyici</em>, başlıkta <em>kesin karar</em>, haritada <em>hedef koordinat</em> rolü üstlenir.
+                Nokta tek amaçlı değildir; butonda <em>tetikleyici</em>, başlıkta <em>kesin karar</em>, haritada <em>hedef koordinat</em>, logoda ise yola çıkan <strong>"biri" (insan/özne)</strong> rolünü üstlenir.
             </p>
             <div class="rule-visual-lab">
-                <div class="triad-ui-row">
+                <div class="tetrad-ui-row">
                     <div class="triad-item-box">
-                        <span class="triad-tag">1. Aksiyon (CTA)</span>
-                        <div style="background:#202020; color:#FFF; padding:4px 8px; border-radius:100px; font-size:9.5px; font-weight:800; display:inline-flex; align-items:center; gap:4px;">
-                            Keşfet <span style="width:4px; height:4.2px; background:var(--coral); border-radius:50%;"></span>
+                        <span class="triad-tag">1. Aksiyon</span>
+                        <div style="background:#202020; color:#FFF; padding:4px 6px; border-radius:100px; font-size:9px; font-weight:800; display:inline-flex; align-items:center; gap:3px;">
+                            Keşfet <span style="width:3.5px; height:3.6px; background:var(--coral); border-radius:50%;"></span>
                         </div>
                     </div>
                     <div class="triad-item-box">
                         <span class="triad-tag">2. Karar Mührü</span>
-                        <div style="font-size:11px; font-weight:900; color:var(--charcoal);">
-                            Alaçatı<span style="width:4px; height:4.2px; background:var(--coral); border-radius:50%; display:inline-block; margin-left:1px;"></span>
+                        <div style="font-size:10px; font-weight:900; color:var(--charcoal);">
+                            Alaçatı<span style="width:3.5px; height:3.6px; background:var(--coral); border-radius:50%; display:inline-block; margin-left:1px;"></span>
                         </div>
                     </div>
                     <div class="triad-item-box">
                         <span class="triad-tag">3. Koordinat</span>
-                        <div style="display:inline-flex; align-items:center; gap:3px; font-size:10px; font-weight:800; color:var(--coral);">
+                        <div style="display:inline-flex; align-items:center; gap:2px; font-size:9.5px; font-weight:800; color:var(--coral);">
                             <span>📍 [•] Hedef</span>
+                        </div>
+                    </div>
+                    <div class="triad-item-box">
+                        <span class="triad-tag">4. Özne ("biri")</span>
+                        <div style="font-size:10px; font-weight:900; color:var(--charcoal); display:inline-flex; align-items:baseline;">
+                            biri<span style="width:3.5px; height:3.6px; background:var(--coral); border-radius:50%; display:inline-block; margin-left:1px;"></span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="rule-specimen-pill">
-                <span>Rol: Aksiyon · Karar · Koordinat</span>
-                <span style="color:var(--coral);">✓ Anlamsal Bütünlük</span>
+                <span>Rol: Aksiyon · Karar · Koordinat · Özne ("biri")</span>
+                <span style="color:var(--coral);">✓ 4 Temel Sütun</span>
             </div>
         </div>
 
@@ -1594,5 +1907,10 @@
             }
         });
     </script>
+    <!-- Master Prototype Disclaimer & Credits -->
+    <div class="gb-prototype-disclaimer" style="margin-top: 50px; text-align: center; font-size: 11.5px; color: #888; border-top: 1px solid var(--border); padding-top: 20px; width: 100%; max-width: 1100px;">
+        gezenbiri.com.tr · System Dot Standartları &amp; İkonografi Sistemi · Marka Yaratıcısı &amp; Tasarım Direktörü: <strong>Mahir Sağlamöz</strong> (<a href="https://github.com/msaglamoz" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline;">@msaglamoz</a>)
+    </div>
+
 </body>
 </html>

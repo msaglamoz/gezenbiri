@@ -1,7 +1,9 @@
 # gezenbiri
 
 > **“Bir yere gidelim.”**  
-> Gitmeye değer yerler. Tanışmaya değer insanlar.
+> Gitmeye değer yerler. Tanışmaya değer insanlar.  
+> 
+> **Tasarım & Marka Yaratıcısı:** [**Mahir Sağlamöz**](https://github.com/msaglamoz) ([@msaglamoz](https://github.com/msaglamoz))
 
 `gezenbiri`; insanları yaratıcı atölyeler, yerel sofralar, kültürel buluşmalar ve özenle kürate edilmiş butik geziler & kaçamaklar etrafında bir araya getiren modern bir deneyim ve topluluk markasıdır.
 
@@ -303,8 +305,16 @@ Projenin tasarım evrimi ve önceki alternatif konseptleri `/archive` dizininde 
 
 ---
 
-## 14. Lisans ve Kullanım Notu
+## 14. Yaratıcı & Marka Direktörü (Creator & Brand Architecture)
+
+* **Marka Yaratıcısı & Tasarım Direktörü:** [**Mahir Sağlamöz**](https://github.com/msaglamoz) ([@msaglamoz](https://github.com/msaglamoz))
+* **GitHub Repository:** [github.com/msaglamoz/gezenbiri](https://github.com/msaglamoz/gezenbiri)
+* **İletişim:** `selam@gezenbiri.com.tr` · [gezenbiri.com.tr](https://gezenbiri.com.tr)
+
+---
+
+## 15. Lisans ve Kullanım Notu
 
 Bu repository içindeki tüm görsel, tipografik ve metinsel marka varlıkları **gezenbiri** topluluk projesine aittir.
 
-* © 2026 **gezenbiri** (`gezenbiri.com.tr` · `gezenbiri.co`). Tüm hakları saklıdır.
+* © 2026 **gezenbiri** (`gezenbiri.com.tr` · `gezenbiri.co`). Tasarım ve marka mimarisi: **Mahir Sağlamöz**. Tüm hakları saklıdır.
