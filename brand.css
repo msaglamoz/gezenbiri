@@ -114,30 +114,36 @@
 
 .gb-logo,
 .brand-logo,
-.statement-logo {
+.statement-logo,
+.hero-logo,
+.logo-wrapper,
+.footer-logo,
+.story-logo-suite,
+.poster-wordmark,
+.wordmark-display {
     font-family: var(--font-sans);
     font-weight: var(--gb-weight-logo) !important;
-    letter-spacing: -0.04em;
-    display: inline-flex;
-    align-items: baseline;
-    color: var(--gb-charcoal);
-    line-height: 1;
+    letter-spacing: -0.04em !important;
+    display: inline-flex !important;
+    align-items: baseline !important;
+    line-height: 0.9 !important;
     text-transform: lowercase !important;
     text-decoration: none;
+    user-select: none;
 }
 
 .gb-system-dot,
 .brand-system-dot,
 .system-dot {
-    display: inline-block;
+    display: inline-block !important;
     width: 0.15em !important;
     height: 0.15em !important; /* Fixed: exactly equal base to avoid double-stretch */
     background-color: var(--gb-coral);
-    border-radius: 50%;
+    border-radius: 50% !important;
     margin-left: 0.12em !important; /* Master 0.12em gap standard */
     transform: scaleY(1.03) !important; /* Master 103% optical stretch */
-    flex-shrink: 0;
-    vertical-align: baseline;
+    flex-shrink: 0 !important;
+    vertical-align: baseline !important;
 }
 
 /* Live Dot for active/real-time state indication */
