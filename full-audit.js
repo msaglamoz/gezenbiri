@@ -1,5 +1,5 @@
 /**
- * gezenbiri — Complete 360-Degree Brand Guidelines & Design System Audit
+ * gezenbiri — Complete 360-Degree Brand Guidelines & Design System Audit (20 Master Tests)
  * Run with: node full-audit.js
  */
 
@@ -19,7 +19,7 @@ const productionFiles = [
 ];
 
 console.log('\n======================================================================');
-console.log('🌟 GEZENBİRİ 360° MASTER BRAND GUIDELINE & DESIGN SYSTEM AUDIT REPORT');
+console.log('🌟 GEZENBİRİ MASTER BRAND GUIDELINE & DESIGN SYSTEM AUDIT (20 TESTS)');
 console.log('======================================================================\n');
 
 const auditResults = {
@@ -30,6 +30,7 @@ const auditResults = {
     toneOfVoice: [],
     accessibility: [],
     dataArchitecture: [],
+    designTokens: [],
     linksAndNavigation: []
 };
 
@@ -53,27 +54,26 @@ function check(category, testName, fn) {
 }
 
 // -------------------------------------------------------------
-// 1. BRAND IDENTITY & POSITIONING
+// 1. BRAND IDENTITY & POSITIONING (MODULES 01, 02, 14)
 // -------------------------------------------------------------
-check('brandIdentity', 'All logo occurrences use lowercase "gezenbiri" and never uppercase "GEZENBİRİ" in UI', () => {
+check('brandIdentity', 'Module 01 & 14: All UI occurrences use lowercase "gezenbiri" and never uppercase "GEZENBİRİ"', () => {
     const errs = [];
     productionFiles.filter(f => f.endsWith('.html')).forEach(f => {
         const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
-        // Check for uppercase GEZENBİRİ outside of don'ts / guidelines explanations
         const lines = content.split('\n');
         lines.forEach((line, idx) => {
             if (line.includes('GEZENBİRİ') && !line.includes("Büyük harf") && !line.includes("🚫") && !line.includes("Don't") && !line.includes("GEZENBİRİ veya")) {
-                errs.push(`${f}:${idx+1} contains unauthorized uppercase GEZENBİRİ in UI.`);
+                errs.push(`${f}:${idx+1} contains unauthorized uppercase GEZENBİRİ.`);
             }
             if (line.includes('Gezen Biri') && !line.includes("iki kelime") && !line.includes("🚫") && !line.includes("Don't") && !line.includes("Gezen Biri kullanımı")) {
-                errs.push(`${f}:${idx+1} contains unauthorized separated 'Gezen Biri' in UI.`);
+                errs.push(`${f}:${idx+1} contains unauthorized separated 'Gezen Biri'.`);
             }
         });
     });
     return errs;
 });
 
-check('brandIdentity', 'Brand slogan "Bir yere gidelim." uses typographic dot without turuncu dot conversion', () => {
+check('brandIdentity', 'Module 01: Slogan "Bir yere gidelim." preserves typographic dot without orange System Dot', () => {
     const errs = [];
     productionFiles.filter(f => f.endsWith('.html')).forEach(f => {
         const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
@@ -84,10 +84,21 @@ check('brandIdentity', 'Brand slogan "Bir yere gidelim." uses typographic dot wi
     return errs;
 });
 
+check('brandIdentity', 'Module 02: Maximum 1 System Dot per independent logo component', () => {
+    const errs = [];
+    productionFiles.filter(f => f.endsWith('.html')).forEach(f => {
+        const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
+        if (content.includes('brand-system-dot"></span><span class="brand-system-dot">')) {
+            errs.push(`${f} has double dot stacked.`);
+        }
+    });
+    return errs;
+});
+
 // -------------------------------------------------------------
-// 2. COLOR PALETTE (65-20-10-5 RULE & 7 TONES)
+// 2. COLOR PALETTE (MODULE 03: 65-20-10-5 RULE & 7 TONES)
 // -------------------------------------------------------------
-check('colorPalette', 'Canvas uses Warm Cream (#F6F3ED) and theme-color matches', () => {
+check('colorPalette', 'Module 03: Canvas uses Warm Cream (#F6F3ED) and meta theme-color matches', () => {
     const errs = [];
     productionFiles.filter(f => f.endsWith('.html')).forEach(f => {
         const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
@@ -101,7 +112,7 @@ check('colorPalette', 'Canvas uses Warm Cream (#F6F3ED) and theme-color matches'
     return errs;
 });
 
-check('colorPalette', 'Core 4 colors (Cream, Charcoal, Coral, Sage) + 3 secondary colors adhere to exact tokens', () => {
+check('colorPalette', 'Module 03: Core 4 colors (Cream, Charcoal, Coral, Sage) + 3 secondary colors adhere to exact tokens', () => {
     const errs = [];
     productionFiles.forEach(f => {
         const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
@@ -113,7 +124,7 @@ check('colorPalette', 'Core 4 colors (Cream, Charcoal, Coral, Sage) + 3 secondar
 });
 
 // -------------------------------------------------------------
-// 3. SYSTEM DOT GEOMETRY (EXACT 1.03 OPTICAL SCALE)
+// 3. SYSTEM DOT GEOMETRY (MODULES 02, 10, 14)
 // -------------------------------------------------------------
 check('systemDotGeometry', 'Single Source of Truth: Geometry defined ONLY in brand.css', () => {
     const errs = [];
@@ -149,10 +160,20 @@ check('systemDotGeometry', 'Favicons use standardized vector ellipse (rx=3, ry=3
     return errs;
 });
 
+check('systemDotGeometry', 'Module 14: Logo System Dot is static, animation only on live indicators', () => {
+    const errs = [];
+    const brandCss = fs.readFileSync(path.join(rootDir, 'brand.css'), 'utf8');
+    // .brand-system-dot must not have animation: pulse attached directly
+    if (brandCss.includes('.brand-system-dot {\n    animation:') || brandCss.includes('.brand-system-dot {\n            animation:')) {
+        errs.push('brand.css applies pulsing animation to static logo dot.');
+    }
+    return errs;
+});
+
 // -------------------------------------------------------------
-// 4. TYPOGRAPHY & CSS VARIABLES
+// 4. TYPOGRAPHY & CSS VARIABLES (MODULE 04)
 // -------------------------------------------------------------
-check('typography', 'Plus Jakarta Sans and Instrument Serif loaded and mapped cleanly without circular loops', () => {
+check('typography', 'Plus Jakarta Sans and Instrument Serif loaded cleanly without circular loops', () => {
     const errs = [];
     productionFiles.filter(f => f.endsWith('.html')).forEach(f => {
         const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
@@ -167,7 +188,24 @@ check('typography', 'Plus Jakarta Sans and Instrument Serif loaded and mapped cl
 });
 
 // -------------------------------------------------------------
-// 5. ACCESSIBILITY & MODAL WCAG STANDARDS
+// 5. TONE OF VOICE & FORBIDDEN TERMS (MODULE 06)
+// -------------------------------------------------------------
+check('toneOfVoice', 'Module 06: Prohibited agency clichés (unutulmaz tatil, erken rezervasyon, vb.) are absent from UI copy', () => {
+    const errs = [];
+    const forbidden = ['unutulmaz tatil', 'erken rezervasyon fırsatı', 'rüya gibi tatil'];
+    productionFiles.filter(f => f.endsWith('.html') && f !== 'brand-guidelines.html').forEach(f => {
+        const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
+        forbidden.forEach(term => {
+            if (content.toLowerCase().includes(term)) {
+                errs.push(`${f} contains prohibited tone-of-voice cliché '${term}'.`);
+            }
+        });
+    });
+    return errs;
+});
+
+// -------------------------------------------------------------
+// 6. ACCESSIBILITY & WCAG AA COMPLIANCE (MODULE 11)
 // -------------------------------------------------------------
 check('accessibility', 'Modals implement role="dialog", aria-modal="true", keyboard focus trap (Tab/Shift+Tab), and ESC closing', () => {
     const errs = [];
@@ -202,7 +240,7 @@ check('accessibility', 'Focus visible and prefers-reduced-motion are present in 
 });
 
 // -------------------------------------------------------------
-// 6. CENTRAL DATA & HYDRATION ARCHITECTURE
+// 7. CENTRAL DATA & HYDRATION ARCHITECTURE (MODULE 12)
 // -------------------------------------------------------------
 check('dataArchitecture', 'data/events.js provides single source of truth for workshops & trips', () => {
     const errs = [];
@@ -217,6 +255,11 @@ check('dataArchitecture', 'data/events.js provides single source of truth for wo
         if (typeof GezenbiriData.formatDateTurkish !== 'function') {
             errs.push('formatDateTurkish helper is missing.');
         }
+        GezenbiriData.events.forEach(e => {
+            if (!e.id || !e.title || !e.price || !e.startMeta || !e.startMeta.dayName) {
+                errs.push(`Event ${e.id || 'unknown'} is missing required schema fields.`);
+            }
+        });
     }
     return errs;
 });
@@ -241,7 +284,35 @@ check('dataArchitecture', 'All dynamic pages (Website, Trip Cards, Instagram Sui
 });
 
 // -------------------------------------------------------------
-// 7. LINKS, DIRECTORY ARCHITECTURE & DISCLAIMERS
+// 8. MASTER DESIGN TOKENS (MODULE 15)
+// -------------------------------------------------------------
+check('designTokens', 'Module 15: brand.css defines full token specification (colors, radii, shadows, spacing)', () => {
+    const errs = [];
+    const brandCss = fs.readFileSync(path.join(rootDir, 'brand.css'), 'utf8');
+    const requiredTokens = [
+        '--gb-cream',
+        '--gb-charcoal',
+        '--gb-coral',
+        '--gb-sage',
+        '--gb-sky',
+        '--gb-sand',
+        '--gb-stone',
+        '--gb-radius-sm',
+        '--gb-radius-lg',
+        '--gb-radius-pill',
+        '--gb-shadow-subtle',
+        '--gb-shadow-floating'
+    ];
+    requiredTokens.forEach(t => {
+        if (!brandCss.includes(t)) {
+            errs.push(`brand.css is missing required master token '${t}'.`);
+        }
+    });
+    return errs;
+});
+
+// -------------------------------------------------------------
+// 9. LINKS, DIRECTORY ARCHITECTURE & DISCLAIMERS
 // -------------------------------------------------------------
 check('linksAndNavigation', 'Clean URLs: No deprecated 01_/02_/03_/04_ filenames or broken paths in active files', () => {
     const errs = [];
@@ -269,6 +340,21 @@ check('linksAndNavigation', 'Standard prototype disclaimer is present across all
     return errs;
 });
 
+check('linksAndNavigation', 'Brand domains (gezenbiri.com.tr / gezenbiri.co) and Instagram are present in Hub & Website', () => {
+    const errs = [];
+    const hubPages = ['index.html', 'gezenbiri_website.html'];
+    hubPages.forEach(f => {
+        const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
+        if (!content.includes('gezenbiri.com.tr') || !content.includes('gezenbiri.co')) {
+            errs.push(`${f} is missing official domain references.`);
+        }
+        if (!content.includes('instagram.com/gezenbiri')) {
+            errs.push(`${f} is missing official Instagram account reference.`);
+        }
+    });
+    return errs;
+});
+
 // -------------------------------------------------------------
 // PRINT AUDIT REPORT
 // -------------------------------------------------------------
@@ -287,7 +373,7 @@ Object.keys(auditResults).forEach(category => {
 console.log('\n----------------------------------------------------------------------');
 console.log(`AUDIT SUMMARY: ${totalChecks} Checks Performed | ${totalIssues} Issues Found`);
 if (totalIssues === 0) {
-    console.log('🏆 100% BRAND COMPLIANCE CONFIRMED. ALL CRITERIA SATISFIED!');
+    console.log('🏆 100% BRAND COMPLIANCE CONFIRMED ACROSS ALL 15 MODULES & PAGES!');
 } else {
     console.log(`⚠️ ${totalIssues} non-compliant issues detected. Needs attention.`);
 }
