@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gezenbiri — Adaptif Morphing İkon Motion Sistemi | Story & Post Animasyon Laboratuvarı</title>
+    <meta name="description" content="gezenbiri Adaptif Morphing İkon Sistemi: Story (9:16) ve Post (1:1) boyutlarında 8 glif için CSS motion animasyonları, renk varyasyonları ve interaktif laboratuvar.">
+    <meta name="theme-color" content="#F6F3ED">
+
+    <!-- Favicon: Standardized Vector Ellipse Geometry -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Cellipse cx='25' cy='10' rx='3' ry='3.09' fill='%23FF4D3D'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="brand.css">
+
+    <style>
+        :root {
+            --bg-cream: #F6F3ED;
+            --white: #FFFFFF;
+            --charcoal: #202020;
+            --coral: #FF4D3D;
+            --coral-hover: #E83F2F;
+            --sage: #A8B89A;
+            --sky: #A9D5E8;
+            --sand: #D8CCBC;
+            --stone: #D9D6D1;
+            --border: rgba(32, 32, 32, 0.08);
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-cream);
+            color: var(--charcoal);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Top Bar & Navigation */
+        .top-nav {
+            background: rgba(246, 243, 237, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-wordmark {
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--charcoal);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: baseline;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            font-size: 12.5px;
+            font-weight: 800;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 100px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn-hub {
+            background: var(--white);
+            color: var(--charcoal);
+            border: 1px solid var(--border);
+        }
+
+        .nav-btn-hub:hover {
+            border-color: #999;
+        }
+
+        .nav-btn-doc {
+            background: var(--coral);
+            color: var(--white);
+        }
+
+        .nav-btn-doc:hover {
+            background: var(--coral-hover);
+        }
+
+        /* Page Hero & Lab Header */
+        .lab-hero {
+            padding: 40px 0 30px 0;
+            text-align: center;
+        }
+
+        .lab-badge {
+            background: rgba(255, 77, 61, 0.1);
+            color: var(--coral);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 5px 14px;
+            border-radius: 100px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .lab-title {
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .lab-lead {
+            font-size: 16px;
+            color: #555;
+            max-width: 680px;
+            margin: 0 auto 28px auto;
+            line-height: 1.55;
+        }
+
+        /* Control Panel */
+        .control-panel {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 8px 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .ctrl-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ctrl-label {
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ctrl-btn {
+            background: var(--bg-cream);
+            border: 1px solid var(--border);
+            color: var(--charcoal);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .ctrl-btn:hover, .ctrl-btn.active {
+            background: var(--charcoal);
+            color: var(--white);
+            border-color: var(--charcoal);
+        }
+
+        /* Section Headings */
+        .section-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 48px 0 20px 0;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        .sec-title {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.6px;
+            color: var(--charcoal);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sec-tag {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--coral);
+            background: rgba(255,77,61,0.08);
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .sec-sub {
+            font-size: 12.5px;
+            color: #777;
+            font-weight: 600;
+        }
+
+        /* 1. SEAMLESS MORPHING MASTER SHOWCASE */
+        .master-morph-banner {
+            background: var(--charcoal);
+            border-radius: 28px;
+            padding: 40px;
+            color: var(--white);
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+        }
+
+        .stage-box {
+            width: 320px;
+            height: 320px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stage-icon-svg {
+            width: 140px;
+            height: 140px;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+        }
+
+        .stage-badge-name {
+            margin-top: 20px;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--coral);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .master-info-col h3 {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 14px;
+        }
+
+        .master-info-col p {
+            font-size: 14.5px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .timeline-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .t-step {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #AAA;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+        }
+
+        .t-step:hover, .t-step.active {
+            background: var(--coral);
+            color: var(--white);
+            border-color: var(--coral);
+            transform: translateY(-2px);
+        }
+
+        /* 2. STORY ANIMATION GRID (9:16 RATIO) */
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .story-card-frame {
+            height: 480px;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
+
+        .story-card-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+        }
+
+        .story-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .story-logo {
+            font-size: 16px;
+            font-weight: 900;
+            letter-spacing: -0.6px;
+            display: inline-flex;
+            align-items: baseline;
+        }
+
+        .story-tag {
+            font-size: 9.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 4px 8px;
+            border-radius: 100px;
+        }
+
+        .story-center-stage {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .story-icon-box {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .story-title {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -0.6px;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .story-sub {
+            font-size: 12px;
+            line-height: 1.45;
+            font-weight: 500;
+            opacity: 0.85;
+        }
+
+        .story-bottom {
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding-top: 12px;
+            font-size: 11.5px;
+            font-weight: 800;
+        }
+
+        /* 3. POST / FEED ANIMATION GRID (1:1 RATIO) */
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .post-card-frame {
+            height: 320px;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .post-card-frame:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 36px rgba(0,0,0,0.1);
+        }
+
+        .post-icon-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .post-title {
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: -0.4px;
+            line-height: 1.2;
+            margin-bottom: 4px;
+        }
+
+        .post-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* ================= CSS MOTION ANIMATIONS ================= */
+
+        /* Animation 1: Pin Drop & Pulse */
+        @keyframes animPinPulse {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.05); }
+        }
+
+        @keyframes animDotLand {
+            0% { transform: translateY(-16px) scale(0); opacity: 0; }
+            40% { transform: translateY(0) scale(1.2); opacity: 1; }
+            60% { transform: translateY(-3px) scale(0.95); }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        .motion-pin {
+            animation: animPinPulse 3s ease-in-out infinite;
+        }
+
+        .motion-pin-dot {
+            animation: animDotLand 3s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+            transform-origin: center;
+        }
+
+        /* Animation 2: Wine Glass & Droplet Fill */
+        @keyframes animWineDrop {
+            0% { transform: translateY(-24px); opacity: 0; }
+            30% { transform: translateY(0); opacity: 1; }
+            50% { transform: translateY(0) scale(1.3); }
+            70% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes animGlassSway {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-4deg); }
+            75% { transform: rotate(4deg); }
+        }
+
+        .motion-glass {
+            animation: animGlassSway 4s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+
+        .motion-wine-dot {
+            animation: animWineDrop 4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+            transform-origin: center;
+        }
+
+        /* Animation 3: Compass Rotate & Coordinate Anchor */
+        @keyframes animCompassNeedle {
+            0% { transform: rotate(0deg); }
+            35% { transform: rotate(190deg); }
+            55% { transform: rotate(170deg); }
+            75% { transform: rotate(185deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes animCenterPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+        }
+
+        .motion-compass-needle {
+            animation: animCompassNeedle 6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+            transform-origin: 16px 16px;
+        }
+
+        .motion-compass-dot {
+            animation: animCenterPulse 2s ease-in-out infinite;
+            transform-origin: 16px 16px;
+        }
+
+        /* Animation 4: Steam Ember Rise (Coffee) */
+        @keyframes animSteamRise {
+            0% { transform: translateY(4px) scale(0.6); opacity: 0; }
+            40% { opacity: 1; transform: translateY(-2px) scale(1.1); }
+            80% { transform: translateY(-10px) scale(0.9); opacity: 0.8; }
+            100% { transform: translateY(-16px) scale(0.4); opacity: 0; }
+        }
+
+        .motion-steam-dot {
+            animation: animSteamRise 2.5s ease-out infinite;
+            transform-origin: center;
+        }
+
+        /* Animation 5: Ticket Stamp Impact */
+        @keyframes animStampImpact {
+            0%, 100% { transform: scale(1); }
+            10% { transform: scale(1.4) rotate(6deg); }
+            20% { transform: scale(0.9) rotate(-3deg); }
+            30% { transform: scale(1) rotate(0deg); }
+        }
+
+        .motion-ticket-stamp {
+            animation: animStampImpact 3.5s ease infinite;
+            transform-origin: center;
+        }
+
+        /* Animation 6: Camera Focus & Shutter Blink */
+        @keyframes animCameraShutter {
+            0%, 85%, 100% { transform: scale(1); opacity: 1; }
+            90% { transform: scale(0.2); opacity: 0; }
+            95% { transform: scale(1.3); opacity: 1; }
+        }
+
+        .motion-camera-dot {
+            animation: animCameraShutter 3s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        /* Animation 7: Community Connection Bridge */
+        @keyframes animConnectBridge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.35); filter: drop-shadow(0 0 4px #FF4D3D); }
+        }
+
+        .motion-comm-dot {
+            animation: animConnectBridge 2.4s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .master-morph-banner { grid-template-columns: 1fr; text-align: center; }
+            .stage-box { margin: 0 auto; }
+            .story-grid { grid-template-columns: repeat(2, 1fr); }
+            .post-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .story-grid { grid-template-columns: 1fr; }
+            .post-grid { grid-template-columns: 1fr; }
+            .lab-title { font-size: 30px; }
+            .timeline-steps { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="top-nav">
+        <div class="container nav-flex">
+            <a href="index.html" class="brand-wordmark">gezenbiri<span class="brand-system-dot"></span></a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-btn nav-btn-hub">⚡ Brand Hub</a>
+                <a href="system-dot.html" class="nav-btn nav-btn-hub">System Dot Portalı</a>
+                <a href="brand-guidelines.html" class="nav-btn nav-btn-doc">Marka Kılavuzu</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Lab Header -->
+    <header class="container lab-hero">
+        <span class="lab-badge">Motion Lab · Yeni Modül Prototipi</span>
+        <h1 class="lab-title">Adaptif Morphing İkon Motion Sistemi</h1>
+        <p class="lab-lead">
+            System Dot'un 8 glife dönüşüm dinamikleri, <strong>Story (9:16)</strong> ve <strong>Post (1:1)</strong> formatlarında yaşayan SVG/CSS animasyonlarıyla test ediliyor.
+        </p>
+
+        <!-- Interactive Control Bar -->
+        <div class="control-panel">
+            <div class="ctrl-group">
+                <span class="ctrl-label">Hız:</span>
+                <button class="ctrl-btn active" onclick="setSpeed(1, this)">1x Normal</button>
+                <button class="ctrl-btn" onclick="setSpeed(0.5, this)">0.5x Ağır Çekim</button>
+                <button class="ctrl-btn" onclick="setSpeed(2, this)">2x Hızlı</button>
+            </div>
+            <div class="ctrl-group">
+                <span class="ctrl-label">Durum:</span>
+                <button class="ctrl-btn" id="playPauseBtn" onclick="toggleMotionState(this)">⏸ Duraklat</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- 1. SEAMLESS INTERACTIVE 8-IN-1 MASTER MORPH STAGE -->
+        <section class="master-morph-banner">
+            <div class="stage-box">
+                <div id="masterStageSvg">
+                    <!-- Dynamic SVG Rendered via JS -->
+                    <svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 28C16 28 25 19.5 25 13A9 9 0 1 0 7 13C7 19.5 16 28 16 28Z" class="motion-pin"/>
+                        <ellipse cx="16" cy="13" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none" class="motion-pin-dot"/>
+                    </svg>
+                </div>
+                <span class="stage-badge-name" id="stageBadge">01. Konum &amp; Rota</span>
+            </div>
+
+            <div class="master-info-col">
+                <span style="font-size:11px; font-weight:800; color:var(--coral); letter-spacing:1px; text-transform:uppercase;">Nükleer Çapa Akışı</span>
+                <h3>System Dot Glifler Arasında Yaşar</h3>
+                <p>
+                    System Dot, logodaki yerinden ayrılarak haritada <strong>koordinata</strong>, kadehte <strong>lezzet damlasına</strong>, pusulada <strong>kuzey merkezine</strong> ve bilette <strong>onay mührüne</strong> dönüşür. Aşağıdaki adımlarla her bir glifin hareket davranışını manuel olarak inceleyebilirsiniz:
+                </p>
+
+                <div class="timeline-steps">
+                    <button class="t-step active" onclick="switchStageGlyph(0, this)">01. Konum</button>
+                    <button class="t-step" onclick="switchStageGlyph(1, this)">02. Takvim</button>
+                    <button class="t-step" onclick="switchStageGlyph(2, this)">03. Kamera</button>
+                    <button class="t-step" onclick="switchStageGlyph(3, this)">04. Kahve</button>
+                    <button class="t-step" onclick="switchStageGlyph(4, this)">05. Kadeh</button>
+                    <button class="t-step" onclick="switchStageGlyph(5, this)">06. Pusula</button>
+                    <button class="t-step" onclick="switchStageGlyph(6, this)">07. Topluluk</button>
+                    <button class="t-step" onclick="switchStageGlyph(7, this)">08. Bilet</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. STORY BOYUTU (9:16) MOTION VİTRİNİ -->
+        <section>
+            <div class="section-header-row">
+                <div class="sec-title">
+                    <span>Story Animasyon Seti (9:16)</span>
+                    <span class="sec-tag">Instagram &amp; TikTok</span>
+                </div>
+                <span class="sec-sub">1080 x 1920 Dikey Tipografik &amp; İkonik Akış</span>
+            </div>
+
+            <div class="story-grid">
+                
+                <!-- Story 01: Warm Cream - Konum & Rota -->
+                <div class="story-card-frame" style="background: var(--bg-cream); color: var(--charcoal);">
+                    <div class="story-top">
+                        <span class="story-logo">gezenbiri<span class="brand-system-dot"></span></span>
+                        <span class="story-tag" style="background: rgba(32,32,32,0.06); color: var(--charcoal);">HAFTA SONU</span>
+                    </div>
+                    <div class="story-center-stage">
+                        <div class="story-icon-box">
+                            <svg viewBox="0 0 32 32" width="76" height="76" fill="none" stroke="var(--charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M16 28C16 28 25 19.5 25 13A9 9 0 1 0 7 13C7 19.5 16 28 16 28Z" class="motion-pin"/>
+                                <ellipse cx="16" cy="13" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none" class="motion-pin-dot"/>
+                            </svg>
+                        </div>
+                        <h4 class="story-title">Alaçatı'ya<br>gidiyoruz.</h4>
+                        <p class="story-sub">Taş sokaklar, butik kahve ve spontane rotalar.</p>
+                    </div>
+                    <div class="story-bottom">
+                        <span>📅 24 - 25 AĞU</span>
+                        <span style="color: var(--coral);">Kaydır →</span>
+                    </div>
+                </div>
+
+                <!-- Story 02: Deep Charcoal - Kadeh & Tadım -->
+                <div class="story-card-frame" style="background: var(--charcoal); color: var(--white);">
+                    <div class="story-top">
+                        <span class="story-logo" style="color:var(--white);">gezenbiri<span class="brand-system-dot"></span></span>
+                        <span class="story-tag" style="background: rgba(255,255,255,0.1); color: var(--coral);">GASTRONOMİ</span>
+                    </div>
+                    <div class="story-center-stage">
+                        <div class="story-icon-box">
+                            <svg viewBox="0 0 32 32" width="76" height="76" fill="none" stroke="var(--white)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="motion-glass">
+                                <path d="M8 5H24C24 13 19 17 16 17C13 17 8 13 8 5Z"/>
+                                <line x1="16" y1="17" x2="16" y2="27"/>
+                                <line x1="11" y1="27" x2="21" y2="27"/>
+                                <ellipse cx="16" cy="12" rx="3.2" ry="3.3" fill="#FF4D3D" stroke="none" class="motion-wine-dot"/>
+                            </svg>
+                        </div>
+                        <h4 class="story-title">Urla Doğal<br>Şarap Tadımı.</h4>
+                        <p class="story-sub">Yerel üreticilerle tadım ve bağ sohbetleri.</p>
+                    </div>
+                    <div class="story-bottom" style="border-color: rgba(255,255,255,0.15);">
+                        <span>🍷 31 AĞUSTOS</span>
+                        <span style="color: var(--coral);">Yerinizi Ayırın →</span>
+                    </div>
+                </div>
+
+                <!-- Story 03: Action Coral - Pusula & Keşif -->
+                <div class="story-card-frame" style="background: var(--coral); color: var(--white);">
+                    <div class="story-top">
+                        <span class="story-logo" style="color:var(--white);">gezenbiri<span class="brand-system-dot" style="background:#F6F3ED;"></span></span>
+                        <span class="story-tag" style="background: rgba(255,255,255,0.2); color: var(--white);">SPONTANE</span>
+                    </div>
+                    <div class="story-center-stage">
+                        <div class="story-icon-box">
+                            <svg viewBox="0 0 32 32" width="76" height="76" fill="none" stroke="var(--white)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="16" cy="16" r="12"/>
+                                <g class="motion-compass-needle">
+                                    <polygon points="16,8 19,16 16,15 13,16" fill="#FFFFFF"/>
+                                    <polygon points="16,24 19,16 16,17 13,16" fill="none" stroke="#FFFFFF"/>
+                                </g>
+                                <ellipse cx="16" cy="16" rx="2.8" ry="2.9" fill="#F6F3ED" stroke="none" class="motion-compass-dot"/>
+                            </svg>
+                        </div>
+                        <h4 class="story-title">Plan Yok.<br>İstikamet Var.</h4>
+                        <p class="story-sub">Kapadokya vadilerinde gün doğumu yürüyüşü.</p>
+                    </div>
+                    <div class="story-bottom" style="border-color: rgba(255,255,255,0.25);">
+                        <span>🎈 17 - 19 EKİM</span>
+                        <span style="color: #FFE4E0;">Detaylar →</span>
+                    </div>
+                </div>
+
+                <!-- Story 04: Sage Green - Topluluk & Bilet -->
+                <div class="story-card-frame" style="background: var(--sage); color: var(--white);">
+                    <div class="story-top">
+                        <span class="story-logo" style="color:var(--white);">gezenbiri<span class="brand-system-dot"></span></span>
+                        <span class="story-tag" style="background: rgba(255,255,255,0.2); color: #202020;">TOPLULUK</span>
+                    </div>
+                    <div class="story-center-stage">
+                        <div class="story-icon-box">
+                            <svg viewBox="0 0 32 32" width="76" height="76" fill="none" stroke="var(--white)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 25V23C6 20.8 7.8 19 10 19H14C16.2 19 18 20.8 18 23V25"/>
+                                <circle cx="12" cy="13" r="4"/>
+                                <path d="M19 19.3C20.8 19.8 22 21.3 22 23V25"/>
+                                <circle cx="21" cy="12" r="3"/>
+                                <ellipse cx="17" cy="16" rx="2.6" ry="2.7" fill="#FF4D3D" stroke="none" class="motion-comm-dot"/>
+                            </svg>
+                        </div>
+                        <h4 class="story-title">Aynı Masada<br>Buluşuyoruz.</h4>
+                        <p class="story-sub">Tek başına gel, yeni yol arkadaşlarıyla dön.</p>
+                    </div>
+                    <div class="story-bottom" style="border-color: rgba(255,255,255,0.2);">
+                        <span>💬 5.000+ ÜYE</span>
+                        <span style="color: #202020; font-weight:900;">Aramıza Katıl →</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. POST / FEED BOYUTU (1:1) MOTION VİTRİNİ -->
+        <section>
+            <div class="section-header-row">
+                <div class="sec-title">
+                    <span>Post &amp; Feed Animasyon Seti (1:1)</span>
+                    <span class="sec-tag">Kare Gönderi</span>
+                </div>
+                <span class="sec-sub">1080 x 1080 Kare Tipografik Odak</span>
+            </div>
+
+            <div class="post-grid">
+                
+                <!-- Post 01: Warm Cream - Kahve & Mola -->
+                <div class="post-card-frame" style="background: var(--bg-cream); color: var(--charcoal);">
+                    <div class="post-meta-row">
+                        <span style="font-size:11px; font-weight:800; color:var(--coral);">#gezenbiriMola</span>
+                        <span style="font-size:10.5px; color:#888;">04 / GLİF</span>
+                    </div>
+                    <div class="post-icon-center">
+                        <svg viewBox="0 0 32 32" width="68" height="68" fill="none" stroke="var(--charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 11H23V20C23 23.3 20.3 26 17 26H11C7.7 26 5 23.3 5 20V11Z"/>
+                            <path d="M23 14H25C26.7 14 28 15.3 28 17C28 18.7 26.7 20 25 20H23"/>
+                            <path d="M3 29H25"/>
+                            <ellipse cx="14" cy="6" rx="2.5" ry="2.6" fill="#FF4D3D" stroke="none" class="motion-steam-dot"/>
+                            <path d="M10 8C10 7 11 6 11 5"/>
+                            <path d="M18 8C18 7 17 6 17 5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h5 class="post-title">Küçük bir kahve molası.</h5>
+                        <p style="font-size:11.5px; color:#666;">Sokak aralarında spontane sohbetler.</p>
+                    </div>
+                </div>
+
+                <!-- Post 02: Deep Charcoal - Kamera & An -->
+                <div class="post-card-frame" style="background: var(--charcoal); color: var(--white);">
+                    <div class="post-meta-row">
+                        <span style="font-size:11px; font-weight:800; color:var(--coral);">#gezenbiriFotoğraf</span>
+                        <span style="font-size:10.5px; color:#888;">03 / GLİF</span>
+                    </div>
+                    <div class="post-icon-center">
+                        <svg viewBox="0 0 32 32" width="68" height="68" fill="none" stroke="var(--white)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 10H10L12 7H20L22 10H26C27.1 10 28 10.9 28 12V24C28 25.1 27.1 26 26 26H6C4.9 26 4 25.1 4 24V12C4 10.9 4.9 10 6 10Z"/>
+                            <circle cx="16" cy="18" r="6"/>
+                            <ellipse cx="16" cy="18" rx="3.2" ry="3.3" fill="#FF4D3D" stroke="none" class="motion-camera-dot"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h5 class="post-title">Gözün gördüğü an.</h5>
+                        <p style="font-size:11.5px; color:#AAA;">Çeşme sokaklarında ışık ve kompozisyon.</p>
+                    </div>
+                </div>
+
+                <!-- Post 03: Action Coral - Bilet & Onay -->
+                <div class="post-card-frame" style="background: var(--coral); color: var(--white);">
+                    <div class="post-meta-row">
+                        <span style="font-size:11px; font-weight:800; color:#FFE4E0;">#gezenbiriBilet</span>
+                        <span style="font-size:10.5px; color:#FFE4E0;">08 / GLİF</span>
+                    </div>
+                    <div class="post-icon-center">
+                        <svg viewBox="0 0 32 32" width="68" height="68" fill="none" stroke="var(--white)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="motion-ticket-stamp">
+                            <path d="M5 9C5 7.9 5.9 7 7 7H25C26.1 7 27 7.9 27 9V14C25.5 14 24.5 15 24.5 16C24.5 17 25.5 18 27 18V23C27 24.1 26.1 25 25 25H7C5.9 25 5 24.1 5 23V18C6.5 18 7.5 17 7.5 16C7.5 15 6.5 14 5 14V9Z"/>
+                            <line x1="12" y1="8" x2="12" y2="24" stroke-dasharray="2 2"/>
+                            <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#F6F3ED" stroke="none"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h5 class="post-title">Biletin hazır.</h5>
+                        <p style="font-size:11.5px; color:#FFE4E0;">Kontenjan onaylandı, çantaları hazırla.</p>
+                    </div>
+                </div>
+
+                <!-- Post 04: Sand Beige - Takvim & Tarih -->
+                <div class="post-card-frame" style="background: var(--sand); color: var(--charcoal);">
+                    <div class="post-meta-row">
+                        <span style="font-size:11px; font-weight:800; color:var(--coral);">#gezenbiriTarih</span>
+                        <span style="font-size:10.5px; color:#666;">02 / GLİF</span>
+                    </div>
+                    <div class="post-icon-center">
+                        <svg viewBox="0 0 32 32" width="68" height="68" fill="none" stroke="var(--charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="5" y="6" width="22" height="21" rx="4"/>
+                            <line x1="16" y1="3" x2="16" y2="7"/>
+                            <line x1="10" y1="3" x2="10" y2="7"/>
+                            <line x1="22" y1="3" x2="22" y2="7"/>
+                            <line x1="5" y1="12" x2="27" y2="12"/>
+                            <circle cx="10" cy="17" r="1.5" fill="#202020"/>
+                            <circle cx="16" cy="17" r="1.5" fill="#202020"/>
+                            <circle cx="22" cy="17" r="1.5" fill="#202020"/>
+                            <circle cx="10" cy="22" r="1.5" fill="#202020"/>
+                            <ellipse cx="16" cy="22" rx="2.8" ry="2.9" fill="#FF4D3D" stroke="none" class="motion-pin-dot"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h5 class="post-title">Bu cumartesi yoldayız.</h5>
+                        <p style="font-size:11.5px; color:#555;">Takvimde işaretli gün geldi.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Standard Prototype Disclaimer Banner -->
+    <div class="gb-prototype-disclaimer">
+        <span>⚡ Prototip Laboratuvarı · Adaptif Morphing İkon Motion Sistemi · Geri Bildirim &amp; Kılavuz: <a href="index.html" style="color:var(--coral); font-weight:800; text-decoration:none;">Brand Hub'a Dön →</a></span>
+    </div>
+
+    <!-- Script for Dynamic Morph Stage & Speed Controller -->
+    <script>
+        const glyphsData = [
+            {
+                name: '01. Konum & Rota',
+                svg: `<svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 28C16 28 25 19.5 25 13A9 9 0 1 0 7 13C7 19.5 16 28 16 28Z" class="motion-pin"/>
+                        <ellipse cx="16" cy="13" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none" class="motion-pin-dot"/>
+                      </svg>`
+            },
+            {
+                name: '02. Takvim & Tarih',
+                svg: `<svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="6" width="22" height="21" rx="4"/>
+                        <line x1="16" y1="3" x2="16" y2="7"/>
+                        <line x1="10" y1="3" x2="10" y2="7"/>
+                        <line x1="22" y1="3" x2="22" y2="7"/>
+                        <line x1="5" y1="12" x2="27" y2="12"/>
+                        <circle cx="10" cy="17" r="1.5" fill="#FFFFFF"/>
+                        <circle cx="16" cy="17" r="1.5" fill="#FFFFFF"/>
+                        <circle cx="22" cy="17" r="1.5" fill="#FFFFFF"/>
+                        <circle cx="10" cy="22" r="1.5" fill="#FFFFFF"/>
+                        <ellipse cx="16" cy="22" rx="2.8" ry="2.9" fill="#FF4D3D" stroke="none" class="motion-pin-dot"/>
+                      </svg>`
+            },
+            {
+                name: '03. Kamera & An',
+                svg: `<svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 10H10L12 7H20L22 10H26C27.1 10 28 10.9 28 12V24C28 25.1 27.1 26 26 26H6C4.9 26 4 25.1 4 24V12C4 10.9 4.9 10 6 10Z"/>
+                        <circle cx="16" cy="18" r="6"/>
+                        <ellipse cx="16" cy="18" rx="3.2" ry="3.3" fill="#FF4D3D" stroke="none" class="motion-camera-dot"/>
+                      </svg>`
+            },
+            {
+                name: '04. Kahve & Mola',
+                svg: `<svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 11H23V20C23 23.3 20.3 26 17 26H11C7.7 26 5 23.3 5 20V11Z"/>
+                        <path d="M23 14H25C26.7 14 28 15.3 28 17C28 18.7 26.7 20 25 20H23"/>
+                        <path d="M3 29H25"/>
+                        <ellipse cx="14" cy="6" rx="2.5" ry="2.6" fill="#FF4D3D" stroke="none" class="motion-steam-dot"/>
+                        <path d="M10 8C10 7 11 6 11 5"/>
+                        <path d="M18 8C18 7 17 6 17 5"/>
+                      </svg>`
+            },
+            {
+                name: '05. Kadeh & Tadım',
+                svg: `<svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="motion-glass">
+                        <path d="M8 5H24C24 13 19 17 16 17C13 17 8 13 8 5Z"/>
+                        <line x1="16" y1="17" x2="16" y2="27"/>
+                        <line x1="11" y1="27" x2="21" y2="27"/>
+                        <ellipse cx="16" cy="12" rx="3.2" ry="3.3" fill="#FF4D3D" stroke="none" class="motion-wine-dot"/>
+                      </svg>`
+            },
+            {
+                name: '06. Pusula & Yön',
+                svg: `<svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="16" cy="16" r="12"/>
+                        <g class="motion-compass-needle">
+                            <polygon points="16,8 19,16 16,15 13,16" fill="#FFFFFF"/>
+                            <polygon points="16,24 19,16 16,17 13,16" fill="none" stroke="#FFFFFF"/>
+                        </g>
+                        <ellipse cx="16" cy="16" rx="2.8" ry="2.9" fill="#FF4D3D" stroke="none" class="motion-compass-dot"/>
+                      </svg>`
+            },
+            {
+                name: '07. Topluluk & İnsan',
+                svg: `<svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 25V23C6 20.8 7.8 19 10 19H14C16.2 19 18 20.8 18 23V25"/>
+                        <circle cx="12" cy="13" r="4"/>
+                        <path d="M19 19.3C20.8 19.8 22 21.3 22 23V25"/>
+                        <circle cx="21" cy="12" r="3"/>
+                        <ellipse cx="17" cy="16" rx="2.6" ry="2.7" fill="#FF4D3D" stroke="none" class="motion-comm-dot"/>
+                      </svg>`
+            },
+            {
+                name: '08. Bilet & Rezervasyon',
+                svg: `<svg class="stage-icon-svg" viewBox="0 0 32 32" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="motion-ticket-stamp">
+                        <path d="M5 9C5 7.9 5.9 7 7 7H25C26.1 7 27 7.9 27 9V14C25.5 14 24.5 15 24.5 16C24.5 17 25.5 18 27 18V23C27 24.1 26.1 25 25 25H7C5.9 25 5 24.1 5 23V18C6.5 18 7.5 17 7.5 16C7.5 15 6.5 14 5 14V9Z"/>
+                        <line x1="12" y1="8" x2="12" y2="24" stroke-dasharray="2 2"/>
+                        <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                      </svg>`
+            }
+        ];
+
+        function switchStageGlyph(index, btn) {
+            document.querySelectorAll('.t-step').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const stageSvg = document.getElementById('masterStageSvg');
+            const stageBadge = document.getElementById('stageBadge');
+            
+            if (glyphsData[index]) {
+                stageSvg.innerHTML = glyphsData[index].svg;
+                stageBadge.textContent = glyphsData[index].name;
+            }
+        }
+
+        // Speed Controller
+        function setSpeed(speed, btn) {
+            document.querySelectorAll('.control-panel .ctrl-btn').forEach(b => {
+                if (b.innerText.includes('x')) b.classList.remove('active');
+            });
+            btn.classList.add('active');
+            
+            const styleId = 'dynamic-speed-style';
+            let styleTag = document.getElementById(styleId);
+            if (!styleTag) {
+                styleTag = document.createElement('style');
+                styleTag.id = styleId;
+                document.head.appendChild(styleTag);
+            }
+            
+            styleTag.textContent = `
+                * {
+                    animation-duration: inherit !important;
+                }
+                .motion-pin, .motion-pin-dot, .motion-glass, .motion-wine-dot,
+                .motion-compass-needle, .motion-compass-dot, .motion-steam-dot,
+                .motion-ticket-stamp, .motion-camera-dot, .motion-comm-dot {
+                    animation-duration: ${1 / speed * 3}s !important;
+                }
+            `;
+        }
+
+        // Play/Pause State
+        let isPlaying = true;
+        function toggleMotionState(btn) {
+            isPlaying = !isPlaying;
+            const elements = document.querySelectorAll('.motion-pin, .motion-pin-dot, .motion-glass, .motion-wine-dot, .motion-compass-needle, .motion-compass-dot, .motion-steam-dot, .motion-ticket-stamp, .motion-camera-dot, .motion-comm-dot');
+            
+            elements.forEach(el => {
+                el.style.animationPlayState = isPlaying ? 'running' : 'paused';
+            });
+
+            btn.textContent = isPlaying ? '⏸ Duraklat' : '▶ Başlat';
+            btn.classList.toggle('active', !isPlaying);
+        }
+    </script>
+</body>
+</html>
