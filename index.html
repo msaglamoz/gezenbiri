@@ -306,6 +306,77 @@
             border-radius: var(--gb-radius-pill);
         }
 
+        /* 03. Brand Assets Grid */
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--gb-gutter-desktop);
+            margin-bottom: var(--gb-space-8);
+        }
+
+        .asset-card {
+            background-color: var(--gb-white);
+            border-radius: var(--gb-radius-lg);
+            padding: 28px 26px;
+            border: 1px solid var(--gb-border-subtle);
+            box-shadow: var(--gb-shadow-subtle);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--gb-charcoal);
+            transition: transform var(--gb-motion-fast), box-shadow var(--gb-motion-fast), border-color var(--gb-motion-fast);
+        }
+
+        .asset-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--gb-shadow-floating);
+            border-color: var(--gb-coral);
+        }
+
+        .asset-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gb-coral);
+            background: var(--gb-coral-soft);
+            padding: 4px 12px;
+            border-radius: var(--gb-radius-pill);
+            display: inline-block;
+            margin-bottom: var(--gb-space-3);
+            width: fit-content;
+        }
+
+        .asset-title {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--gb-charcoal);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .asset-desc {
+            font-size: 13.5px;
+            color: rgba(32,32,32,0.7);
+            line-height: 1.5;
+            margin-bottom: var(--gb-space-4);
+        }
+
+        .asset-link-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 14px;
+            border-top: 1px solid var(--gb-border-subtle);
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--gb-coral);
+        }
+
         /* Responsive Breakpoints */
         @media (max-width: 960px) {
             .hero {
@@ -325,6 +396,9 @@
                 grid-column: span 1;
             }
             .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            .assets-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -353,6 +427,10 @@
             }
             .tool-title {
                 font-size: 22px;
+            }
+            .asset-card {
+                padding: 22px 18px;
+                border-radius: 16px;
             }
         }
     </style>
@@ -485,9 +563,63 @@
 
         </div>
 
+        <!-- Section 03: Official Brand Assets & Digital Channels -->
+        <div style="margin-bottom: 16px; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #888;">
+            03 · RESMİ MARKA VARLIKLARI &amp; DİJİTAL KANALLAR
+        </div>
+
+        <div class="assets-grid">
+            
+            <!-- Asset 1: gezenbiri.com.tr -->
+            <a href="https://gezenbiri.com.tr" target="_blank" rel="noopener noreferrer" class="asset-card">
+                <div>
+                    <span class="asset-tag">🌐 Birincil Web Portalı</span>
+                    <h3 class="asset-title">gezenbiri.com.tr</h3>
+                    <p class="asset-desc">
+                        Resmi ana alan adı. Atölye kayıtları, topluluk deneyimleri ve butik seyahat rotalarının yayınlandığı birincil web portalı.
+                    </p>
+                </div>
+                <div class="asset-link-row">
+                    <span>gezenbiri.com.tr</span>
+                    <span>Ziyaret Et ↗</span>
+                </div>
+            </a>
+
+            <!-- Asset 2: gezenbiri.co -->
+            <a href="https://gezenbiri.co" target="_blank" rel="noopener noreferrer" class="asset-card">
+                <div>
+                    <span class="asset-tag">⚡ Kısa Link &amp; Yönlendirme</span>
+                    <h3 class="asset-title">gezenbiri.co</h3>
+                    <p class="asset-desc">
+                        Kompakt global alan adı. Sosyal medya bio bağlantıları, bülten kayıtları, QR kodlar ve hızlı erişim yönlendirmeleri için resmi kısa link.
+                    </p>
+                </div>
+                <div class="asset-link-row">
+                    <span>gezenbiri.co</span>
+                    <span>Ziyaret Et ↗</span>
+                </div>
+            </a>
+
+            <!-- Asset 3: @gezenbiri Instagram -->
+            <a href="https://instagram.com/gezenbiri" target="_blank" rel="noopener noreferrer" class="asset-card">
+                <div>
+                    <span class="asset-tag" style="background:rgba(168,184,154,0.25); color:#385233;">📸 Sosyal Medya &amp; Topluluk</span>
+                    <h3 class="asset-title">@gezenbiri</h3>
+                    <p class="asset-desc">
+                        Resmi Instagram hesabı. Anlık hikayeler, yaklaşan etkinlik duyuruları, katılımcı anları ve canlı topluluk etkileşimi.
+                    </p>
+                </div>
+                <div class="asset-link-row" style="color:#385233;">
+                    <span>instagram.com/gezenbiri</span>
+                    <span>Takip Et ↗</span>
+                </div>
+            </a>
+
+        </div>
+
         <!-- Master Disclaimer Footnote -->
         <div class="gb-prototype-disclaimer">
-            gezenbiri.com.tr · 2026 Marka &amp; Tasarım Ekosistemi · Swiss-Grid Modular Standard · Bu sayfadaki tüm uygulamalar tek veri kaynağından beslenmektedir.
+            Bu sayfadaki etkinlikler, rotalar, fiyatlar, kullanıcı yorumları ve topluluk verileri marka deneyim prototipi örnekleridir.
         </div>
 
     </div>

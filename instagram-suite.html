@@ -1918,7 +1918,7 @@
                             <span>🏷️</span>
                         </div>
                         <div class="post-caption-box" id="cap-6">
-                            <strong>gezenbiri</strong> Bu çarşamba Alaçatı'da çömlek tornasındayız. Kendi tasarımını fırınla ve alıp götür. #workshop #seramik
+                            <strong>gezenbiri</strong> Bu Cuma Alaçatı'da çömlek tornasındayız. Kendi tasarımını fırınla ve alıp götür. #workshop #seramik
                         </div>
                     </div>
                     <div class="post-meta-footer">
@@ -2282,7 +2282,7 @@
             // 2. Feed Posts Hydration
             const posts = document.querySelectorAll('.post-card-preview');
             if (posts.length >= 1 && tripKapadokya) {
-                // Post 1: Rota Duyuru
+                // Post 1: Rota Duyuru (Kapadokya)
                 const p1Date = posts[0].querySelector('.post-viewport span[style*="color:var(--coral)"]');
                 if (p1Date) p1Date.textContent = tripKapadokya.startMeta.shortFormatted;
                 const p1Price = posts[0].querySelector('.post-viewport div:last-child span:first-child');
@@ -2290,6 +2290,16 @@
                 const cap1 = document.getElementById('cap-1');
                 if (cap1) {
                     cap1.innerHTML = `<strong>gezenbiri</strong> ${tripKapadokya.startMeta.dayName} akşamı çıkıyoruz, ${tripKapadokya.endMeta.dayName.toLowerCase()} dönüyoruz. Vadide balon seyri ve sıcak şarap seni bekliyor. Geliyorsan yaz ↓ #gezenbiri #kapadokya`;
+                }
+            }
+
+            if (posts.length >= 6 && wsSeramik) {
+                // Post 6: Workshop (Seramik)
+                const p6Price = posts[5].querySelector('.post-viewport div:last-child span:first-child');
+                if (p6Price) p6Price.textContent = wsSeramik.price;
+                const cap6 = document.getElementById('cap-6');
+                if (cap6) {
+                    cap6.innerHTML = `<strong>gezenbiri</strong> Bu ${wsSeramik.startMeta.dayName.toLowerCase()} Alaçatı'da çömlek tornasındayız. Kendi tasarımını fırınla ve alıp götür. #workshop #seramik`;
                 }
             }
         }
