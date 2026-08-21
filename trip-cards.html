@@ -842,8 +842,8 @@
             <div class="modal-header-tag">gezenbiri · Rota Detayı</div>
             <h3 class="modal-title" id="modalTitle">Rota Başlığı</h3>
             <div class="modal-meta-bar">
-                <span id="modalDate">📅 Tarih</span>
-                <span id="modalStay">🏨 Konaklama</span>
+                <span id="modalDate">Tarih</span>
+                <span id="modalStay">Konaklama</span>
                 <span id="modalPrice" style="color:var(--coral); font-weight:900;">₺0</span>
             </div>
             
@@ -894,8 +894,8 @@
         function openRouteModal(title, date, price, stay, desc, included, triggerEl) {
             lastFocusedElement = triggerEl || document.activeElement;
             document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalDate').textContent = '📅 ' + date;
-            document.getElementById('modalStay').textContent = '🏨 ' + stay;
+            document.getElementById('modalDate').textContent = date;
+            document.getElementById('modalStay').textContent = stay;
             document.getElementById('modalPrice').textContent = price;
             document.getElementById('modalDesc').textContent = desc;
             document.getElementById('modalIncluded').textContent = included;

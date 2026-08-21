@@ -245,14 +245,14 @@ check('toneOfVoice', 'Module 06: Prohibited agency clichés (unutulmaz tatil, er
     return errs;
 });
 
-check('toneOfVoice', 'Module 14: Decorative/native emojis (🎈, 🍷, 🧡, 🏺, 🌸, etc.) are strictly prohibited in production UI templates', () => {
+check('toneOfVoice', 'Module 14: Decorative/native emojis (🎈, 🍷, 🧡, 🏺, 🌸, ⚡, ✨, 🌐, etc.) are strictly prohibited in production UI templates', () => {
     const errs = [];
-    const forbiddenEmojis = ['🎈', '🍷', '🧡', '🏺', '🌸'];
+    const forbiddenEmojis = ['🎈', '🍷', '🧡', '🏺', '🌸', '⚡', '✨', '🌐', '🚀', '🔥', '📅', '🏨', '🏖️', '✈️'];
     productionFiles.filter(f => f.endsWith('.html') && f !== 'brand-guidelines.html' && f !== 'system-dot.html').forEach(f => {
         const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
         forbiddenEmojis.forEach(emoji => {
             if (content.includes(emoji)) {
-                errs.push(`${f} contains prohibited decorative emoji '${emoji}'. Use brand SVG glyphs instead.`);
+                errs.push(`${f} contains prohibited decorative emoji '${emoji}'. Use brand SVG glyphs or clean typography instead.`);
             }
         });
     });
