@@ -15,7 +15,7 @@ Bu repository; markanın kimlik kılavuzunu, tasarım sistemini (`brand.css`), w
 
 gezenbiri, klasik bir turizm acentesi veya standart bir etkinlik takvimi değildir. Markanın temel felsefesi; **mekânın kendisinden çok, o mekânda birlikte yaşanan samimi deneyim ve kurulan sosyal bağın değerli olduğu** fikrine dayanır.
 
-* **Resmi Alan Adları:** `gezenbiri.com.tr` · `gezenbiri.co`
+* **Resmi Alan Adları:** `gezenbiri.com.tr` · `gezenbiri.tr` · `gezenbiri.co`
 * **İletişim:** `selam@gezenbiri.com.tr`
 * **Resmi Sosyal Kanal:** [@gezenbiri (Instagram)](https://instagram.com/gezenbiri)
 * **Yayın Modeli:** Tamamen statik HTML5, saf Vanilla CSS (`brand.css`) ve hafif Vanilla JavaScript. Dış derleyici, bundler veya runtime bağımlılığı gerektirmez; GitHub Pages ve tüm statik CDN platformlarıyla %100 uyumludur.
@@ -309,7 +309,7 @@ Projenin tasarım evrimi ve önceki alternatif konseptleri `/archive` dizininde 
 
 * **Marka Yaratıcısı & Tasarım Direktörü:** [**Mahir Sağlamöz**](https://github.com/msaglamoz) ([@msaglamoz](https://github.com/msaglamoz))
 * **GitHub Repository:** [github.com/msaglamoz/gezenbiri](https://github.com/msaglamoz/gezenbiri)
-* **İletişim:** `selam@gezenbiri.com.tr` · [gezenbiri.com.tr](https://gezenbiri.com.tr)
+* **İletişim & Portfolyo:** `selam@gezenbiri.com.tr` · [gezenbiri.com.tr](https://gezenbiri.com.tr) · [gezenbiri.tr](https://gezenbiri.tr)
 
 ---
 
@@ -317,4 +317,4 @@ Projenin tasarım evrimi ve önceki alternatif konseptleri `/archive` dizininde 
 
 Bu repository içindeki tüm görsel, tipografik ve metinsel marka varlıkları **gezenbiri** topluluk projesine aittir.
 
-* © 2026 **gezenbiri** (`gezenbiri.com.tr` · `gezenbiri.co`). Tasarım ve marka mimarisi: **Mahir Sağlamöz**. Tüm hakları saklıdır.
+* © 2026 **gezenbiri** (`gezenbiri.com.tr` · `gezenbiri.tr` · `gezenbiri.co`). Tasarım ve marka mimarisi: **Mahir Sağlamöz**. Tüm hakları saklıdır.
