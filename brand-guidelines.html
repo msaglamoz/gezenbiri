@@ -546,13 +546,82 @@
             width: 100%;
             height: 290px;
             border-radius: 12px;
-            background-image: url('assets/gezenbiri_merchandise_mockups.jpg');
-            background-size: cover;
-            background-position: center;
-            border: 1px solid rgba(0,0,0,0.06);
+            background: #EFECE6;
+            border: 1px solid rgba(0,0,0,0.08);
             position: relative;
             overflow: hidden;
             box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 16px;
+        }
+
+        .mini-stage-tote {
+            width: 115px;
+            height: 140px;
+            background: #F4EFE6;
+            border-radius: 3px 3px 10px 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        .mini-stage-tote-strap {
+            position: absolute;
+            top: -28px;
+            width: 50px;
+            height: 32px;
+            border: 4px solid #D8D2C5;
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+        }
+        .mini-stage-tote-txt {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 11.5px;
+            color: #202020;
+            line-height: 1.15;
+            text-align: center;
+            letter-spacing: -0.4px;
+        }
+        .mini-stage-mug {
+            width: 90px;
+            height: 80px;
+            background: #FFF;
+            border-radius: 4px 4px 14px 14px;
+            border: 1px solid #D0D0D0;
+            border-top: 3.5px solid #202020;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        }
+        .mini-stage-mug-handle {
+            position: absolute;
+            right: -20px;
+            top: 14px;
+            width: 22px;
+            height: 45px;
+            border: 4px solid #E0E0E0;
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+        }
+        .mini-stage-notebook {
+            width: 95px;
+            height: 130px;
+            background: var(--coral);
+            border-radius: 2px 8px 8px 2px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 12px 10px;
+            box-shadow: 0 8px 20px rgba(255,77,61,0.25);
+            border-left: 5px solid #D6392A;
         }
 
         .brand-apps-photo-badge {
@@ -839,6 +908,7 @@
             <a href="trip-cards.html">Seyahat Kartları</a>
             <a href="instagram-suite.html">Instagram Paketi</a>
             <a href="packing-guide.html">Yol &amp; Bavul Rehberi</a>
+            <a href="merch-guidelines.html">Merchandise Kiti</a>
             <a href="gezenbiri_website.html" style="color:var(--coral); font-weight:800;">Web Sitesi ↗</a>
         </div>
     </div>
@@ -1161,7 +1231,23 @@
                     <span class="section-tag">11 MARKA UYGULAMALARI &amp; MERCHANDISE</span>
                     <div class="brand-apps-visual-wrap">
                         <div class="brand-apps-photo-box">
-                            <div class="brand-apps-photo-badge">“Bir yere gidelim.” Koleksiyonu · Fiziksel Üretim Standartları</div>
+                            <!-- 1. Tote Bag -->
+                            <div class="mini-stage-tote">
+                                <div class="mini-stage-tote-strap"></div>
+                                <div class="mini-stage-tote-txt">Bir yere<br>gidelim.</div>
+                            </div>
+                            <!-- 2. Enamel Mug -->
+                            <div class="mini-stage-mug">
+                                <div class="mini-stage-mug-handle"></div>
+                                <span style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:900; font-size:10.5px; color:#202020; display:flex; align-items:center;">gezenbiri<span class="brand-system-dot" style="font-size:10.5px;"></span></span>
+                            </div>
+                            <!-- 3. Travel Notebook -->
+                            <div class="mini-stage-notebook">
+                                <div style="width:4px; height:100%; position:absolute; right:12px; top:0; background:rgba(0,0,0,0.15);"></div>
+                                <div></div>
+                                <span style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:900; font-size:9.5px; color:#9E2015; display:flex; align-items:center;">gezenbiri<span class="brand-system-dot" style="background-color:#9E2015; font-size:9.5px;"></span></span>
+                            </div>
+                            <div class="brand-apps-photo-badge">“Bir yere gidelim.” Koleksiyonu · <a href="merch-guidelines.html" style="color:var(--coral); font-weight:900; text-decoration:none;">Kılavuzu Aç ↗</a></div>
                         </div>
                         <div class="brand-app-tags-grid">
                             <div class="brand-app-tag-item">

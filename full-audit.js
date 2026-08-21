@@ -16,6 +16,7 @@ const productionFiles = [
     'instagram-suite.html',
     'icon-morph-motion.html',
     'packing-guide.html',
+    'merch-guidelines.html',
     'brand.css',
     'data/events.js'
 ];

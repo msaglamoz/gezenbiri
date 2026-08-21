@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gezenbiri — Merchandise &amp; Fiziksel Marka Uygulama Kılavuzu</title>
+    <meta name="description" content="gezenbiri fiziksel ürün standartları: Ham bez çanta, emaye kupa, yıkanmış şapka, seyahat defteri, Pantone ve serigrafi üretim yönergeleri.">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="theme-color" content="#F6F3ED">
+
+    <!-- Favicon: Standardized Vector Ellipse Geometry -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Cellipse cx='25' cy='10' rx='3' ry='3.09' fill='%23FF4D3D'/%3E%3C/svg%3E">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Instrument Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="brand.css">
+
+    <style>
+        :root {
+            --bg-page: var(--gb-cream);
+            --charcoal: var(--gb-charcoal);
+            --coral: var(--gb-coral);
+            --sage: var(--gb-sage);
+            --sand: var(--gb-sand);
+            --white: var(--gb-white);
+            --border-card: var(--gb-border);
+            --border-light: rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--charcoal);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 24px 20px 60px 20px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .merch-container {
+            max-width: var(--gb-container-max);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+        }
+
+        /* HEADER HERO */
+        .merch-header {
+            text-align: center;
+            padding: 24px 0 10px 0;
+        }
+
+        .merch-tag {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--coral);
+            margin-bottom: 8px;
+        }
+
+        .merch-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: clamp(32px, 4.5vw, 44px);
+            font-weight: 900;
+            color: var(--charcoal);
+            letter-spacing: -1.5px;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .merch-title span {
+            font-family: 'Instrument Serif', Georgia, serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--coral);
+        }
+
+        .merch-desc {
+            font-size: 14.5px;
+            color: #666;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* SECTION HEADERS */
+        .section-header-block {
+            border-bottom: 1px solid var(--border-card);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .section-header-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--charcoal);
+            letter-spacing: -0.5px;
+        }
+
+        .section-header-sub {
+            font-size: 12px;
+            color: #777;
+            font-weight: 700;
+        }
+
+        /* MERCHANDISE 3D / VECTOR MOCKUP GRID */
+        .merch-products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .merch-card {
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px solid var(--border-card);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+            transition: transform var(--gb-motion-fast), box-shadow var(--gb-motion-fast), border-color var(--gb-motion-fast);
+        }
+
+        .merch-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.08);
+            border-color: rgba(255, 77, 61, 0.35);
+        }
+
+        /* MOCKUP STAGE */
+        .merch-stage {
+            height: 240px;
+            background: #EFECE6;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* 1. TOTE BAG MOCKUP */
+        .mockup-tote {
+            width: 140px;
+            height: 165px;
+            background: #EDE8DE;
+            border-radius: 4px 4px 12px 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12), inset 0 0 15px rgba(0,0,0,0.04);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .mockup-tote-straps {
+            position: absolute;
+            top: -36px;
+            width: 60px;
+            height: 40px;
+            border: 5px solid #D8D2C5;
+            border-bottom: none;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .mockup-tote-slogan {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 14px;
+            color: #202020;
+            line-height: 1.15;
+            text-align: center;
+            letter-spacing: -0.5px;
+        }
+
+        .mockup-tote-tag {
+            position: absolute;
+            left: -8px;
+            top: 20px;
+            background: #202020;
+            color: #F6F3ED;
+            font-size: 7.5px;
+            font-weight: 900;
+            padding: 2px 4px;
+            border-radius: 2px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+        }
+
+        /* 2. ENAMEL MUG MOCKUP */
+        .mockup-mug {
+            width: 110px;
+            height: 95px;
+            background: #FFFFFF;
+            border-radius: 6px 6px 16px 16px;
+            border: 1px solid #D0D0D0;
+            border-top: 4px solid #202020;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1), inset 0 -6px 12px rgba(0,0,0,0.04);
+        }
+
+        .mockup-mug-handle {
+            position: absolute;
+            right: -24px;
+            top: 16px;
+            width: 28px;
+            height: 52px;
+            border: 5px solid #E0E0E0;
+            border-left: none;
+            border-radius: 0 14px 14px 0;
+        }
+
+        .mockup-mug-logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 13px;
+            color: #202020;
+            letter-spacing: -0.4px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 3. VINTAGE CAP MOCKUP */
+        .mockup-cap {
+            width: 140px;
+            height: 95px;
+            background: #2B2B2B;
+            border-radius: 50% 50% 12px 12px / 80% 80% 12px 12px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.2), inset 0 2px 8px rgba(255,255,255,0.1);
+        }
+
+        .mockup-cap-visor {
+            position: absolute;
+            bottom: -14px;
+            width: 120px;
+            height: 26px;
+            background: #222222;
+            border-radius: 0 0 50% 50%;
+            border-bottom: 2px solid #181818;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .mockup-cap-embroidery {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 11px;
+            color: #EAEAEA;
+            letter-spacing: -0.3px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+        }
+
+        /* 4. NOTEBOOK MOCKUP */
+        .mockup-notebook {
+            width: 115px;
+            height: 155px;
+            background: var(--coral);
+            border-radius: 3px 10px 10px 3px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px 14px;
+            box-shadow: -4px 0 6px rgba(0,0,0,0.15), 6px 10px 24px rgba(255,77,61,0.25);
+            border-left: 6px solid #D6392A;
+        }
+
+        .mockup-notebook-band {
+            position: absolute;
+            right: 18px;
+            top: 0;
+            bottom: 0;
+            width: 7px;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .mockup-notebook-emboss {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 12px;
+            color: #A3281C;
+            letter-spacing: -0.4px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 5. LUGGAGE TAG MOCKUP */
+        .mockup-tag {
+            width: 85px;
+            height: 145px;
+            background: #B87B4C;
+            border-radius: 12px 12px 6px 6px;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.14);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255,255,255,0.3);
+        }
+
+        .mockup-tag-hole {
+            position: absolute;
+            top: 10px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #EFECE6;
+            border: 2px solid #8F5B32;
+        }
+
+        .mockup-tag-strap {
+            position: absolute;
+            top: -24px;
+            width: 8px;
+            height: 36px;
+            background: #8F5B32;
+            border-radius: 4px;
+        }
+
+        .mockup-tag-logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 20px;
+            color: #523118;
+            letter-spacing: -0.8px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 6. VINYL STICKERS MOCKUP */
+        .mockup-stickers-wrap {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .mockup-sticker-circle {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+        }
+
+        .mockup-sticker-circle.dark {
+            background: #202020;
+            color: #F6F3ED;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .mockup-sticker-circle.cream {
+            background: #F6F3ED;
+            color: #202020;
+            font-size: 11px;
+            font-weight: 900;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+
+        /* MERCH CARD BODY */
+        .merch-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .merch-prod-num {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--coral);
+            margin-bottom: 4px;
+        }
+
+        .merch-prod-title {
+            font-size: 17px;
+            font-weight: 900;
+            color: var(--charcoal);
+            letter-spacing: -0.3px;
+            margin-bottom: 6px;
+        }
+
+        .merch-prod-desc {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.45;
+            margin-bottom: 16px;
+        }
+
+        .merch-specs-table {
+            background: var(--bg-page);
+            border-radius: 10px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 11.5px;
+        }
+
+        .merch-spec-row {
+            display: flex;
+            justify-content: space-between;
+            color: #555;
+        }
+
+        .merch-spec-row strong {
+            color: var(--charcoal);
+            font-weight: 800;
+        }
+
+        /* PANTONE PRODUCTION GRID */
+        .pantone-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .pantone-card {
+            background: var(--white);
+            border-radius: 14px;
+            border: 1px solid var(--border-card);
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .pantone-swatch {
+            height: 90px;
+        }
+
+        .pantone-info {
+            padding: 14px;
+            font-size: 12px;
+        }
+
+        .pantone-name {
+            font-weight: 900;
+            font-size: 14px;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+        }
+
+        .pantone-codes {
+            color: #666;
+            line-height: 1.4;
+            font-family: monospace;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .merch-products-grid { grid-template-columns: repeat(2, 1fr); }
+            .pantone-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .merch-products-grid { grid-template-columns: 1fr; }
+            .pantone-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 10. STANDARDIZED MASTER TOP NAVIGATION -->
+    <div class="top-brand-nav">
+        <a href="index.html" class="btn-nav-back">
+            <span>←</span>
+            <span>Brand System Hub</span>
+        </a>
+        <div class="quick-nav-links">
+            <a href="brand-guidelines.html">Marka Kılavuzu</a>
+            <a href="system-dot.html">System Dot</a>
+            <a href="icon-morph-motion.html">Motion Lab</a>
+            <a href="trip-cards.html">Seyahat Kartları</a>
+            <a href="instagram-suite.html">Instagram Paketi</a>
+            <a href="packing-guide.html">Yol &amp; Bavul Rehberi</a>
+            <a href="merch-guidelines.html" class="active">Merchandise Kiti</a>
+            <a href="gezenbiri_website.html" style="color:var(--coral); font-weight:800;">Web Sitesi ↗</a>
+        </div>
+    </div>
+
+    <div class="merch-container">
+
+        <!-- HEADER HERO -->
+        <header class="merch-header">
+            <div class="merch-tag">gezenbiri · Fiziksel Varlıklar &amp; Üretim Standartları</div>
+            <h1 class="merch-title">Merchandise &amp; <span>Fiziksel Marka Kiti</span></h1>
+            <p class="merch-desc">
+                Yolculuk eşyaları, etkinlik donanımları ve yaşam tarzı koleksiyonu için %100 marka geometrisine ve Action Coral System Dot kuralına uygun teknik üretim standartları.
+            </p>
+        </header>
+
+        <!-- SECTION 01: 6 RESMİ MERCH ÜRÜNÜ -->
+        <section>
+            <div class="section-header-block">
+                <h2 class="section-header-title">01 · Resmi Ürün Koleksiyonu &amp; Mockup Standartları</h2>
+                <span class="section-header-sub">%100 Kurumsal Wordmark &amp; System Dot Kuralları</span>
+            </div>
+
+            <div class="merch-products-grid">
+
+                <!-- 1. TOTE BAG -->
+                <div class="merch-card">
+                    <div class="merch-stage">
+                        <div class="mockup-tote">
+                            <div class="mockup-tote-straps"></div>
+                            <div class="mockup-tote-tag">gezenbiri<span class="brand-system-dot"></span></div>
+                            <div class="mockup-tote-slogan">Bir yere<br>gidelim.</div>
+                        </div>
+                    </div>
+                    <div class="merch-body">
+                        <div>
+                            <div class="merch-prod-num">Ürün 01 · Tekstil</div>
+                            <h3 class="merch-prod-title">Ham Bez Çanta (Tote Bag)</h3>
+                            <p class="merch-prod-desc">
+                                Ön yüzde standart tipografik siyah noktalı slogan, yan dikişte %3 Action Coral System Dot içeren dokuma siyah etiket.
+                            </p>
+                        </div>
+                        <div class="merch-specs-table">
+                            <div class="merch-spec-row"><span>Kumaş:</span> <strong>320 gr/m² %100 Ham Pamuk</strong></div>
+                            <div class="merch-spec-row"><span>Baskı:</span> <strong>Serigrafi (Pantone Black 6C)</strong></div>
+                            <div class="merch-spec-row"><span>Ebat:</span> <strong>38 x 42 cm · 65 cm Kulp</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. ENAMEL MUG -->
+                <div class="merch-card">
+                    <div class="merch-stage">
+                        <div class="mockup-mug">
+                            <div class="mockup-mug-handle"></div>
+                            <div class="mockup-mug-logo">gezenbiri<span class="brand-system-dot" style="font-size:13px;"></span></div>
+                        </div>
+                    </div>
+                    <div class="merch-body">
+                        <div>
+                            <div class="merch-prod-num">Ürün 02 · Kamp &amp; Sofra</div>
+                            <h3 class="merch-prod-title">Emaye Kamp Kupası</h3>
+                            <p class="merch-prod-desc">
+                                Ateşe dayanıklı çelik gövde, siyah paslanmaz çember ağız ve 800°C fırınlanmış tam kurumsal wordmark + Action Coral nokta.
+                            </p>
+                        </div>
+                        <div class="merch-specs-table">
+                            <div class="merch-spec-row"><span>Hacim:</span> <strong>350 ml Paslanmaz Çelik</strong></div>
+                            <div class="merch-spec-row"><span>Baskı:</span> <strong>800°C Fırınlı Seramik Transfer</strong></div>
+                            <div class="merch-spec-row"><span>Güvenlik:</span> <strong>BPA Free &amp; Gıda Uyumlu</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. VINTAGE WASHED CAP -->
+                <div class="merch-card">
+                    <div class="merch-stage">
+                        <div class="mockup-cap">
+                            <div class="mockup-cap-visor"></div>
+                            <div class="mockup-cap-embroidery">gezenbiri<span class="brand-system-dot" style="font-size:11px;"></span></div>
+                        </div>
+                    </div>
+                    <div class="merch-body">
+                        <div>
+                            <div class="merch-prod-num">Ürün 03 · Giyim &amp; Rota</div>
+                            <h3 class="merch-prod-title">Yıkanmış Kanvas Şapka</h3>
+                            <p class="merch-prod-desc">
+                                Antrasit eskitme yıkanmış pamuk kanvas, alında 3D kabartma iplik nakış logo ve turuncu iplik System Dot.
+                            </p>
+                        </div>
+                        <div class="merch-specs-table">
+                            <div class="merch-spec-row"><span>Malzeme:</span> <strong>6 Panel %100 Pamuklu Twill</strong></div>
+                            <div class="merch-spec-row"><span>Ayar:</span> <strong>Pirinç Metal Kilit &amp; Kemer</strong></div>
+                            <div class="merch-spec-row"><span>Uygulama:</span> <strong>Yüksek Yoğunluklu 3D Nakış</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. TRAVEL NOTEBOOK -->
+                <div class="merch-card">
+                    <div class="merch-stage">
+                        <div class="mockup-notebook">
+                            <div class="mockup-notebook-band"></div>
+                            <div></div>
+                            <div class="mockup-notebook-emboss">gezenbiri<span class="brand-system-dot" style="background-color:#A3281C; font-size:12px;"></span></div>
+                        </div>
+                    </div>
+                    <div class="merch-body">
+                        <div>
+                            <div class="merch-prod-num">Ürün 04 · Kırtasiye</div>
+                            <h3 class="merch-prod-title">Seyahat Not Defteri</h3>
+                            <p class="merch-prod-desc">
+                                Action Coral cilt rengi, ön kapakta derin kör gofre (emboss) logo ve fildişi sayfalar.
+                            </p>
+                        </div>
+                        <div class="merch-specs-table">
+                            <div class="merch-spec-row"><span>Sayfa:</span> <strong>192 Sayfa · 100 g/m² Fildişi</strong></div>
+                            <div class="merch-spec-row"><span>Kapak:</span> <strong>Vegan Deri · Kör Gofre</strong></div>
+                            <div class="merch-spec-row"><span>Özellik:</span> <strong>Genişleyen Arka Cep &amp; Lastik</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. LUGGAGE TAG -->
+                <div class="merch-card">
+                    <div class="merch-stage">
+                        <div class="mockup-tag">
+                            <div class="mockup-tag-strap"></div>
+                            <div class="mockup-tag-hole"></div>
+                            <div class="mockup-tag-logo">gb<span class="brand-system-dot" style="background-color:#523118; font-size:20px;"></span></div>
+                        </div>
+                    </div>
+                    <div class="merch-body">
+                        <div>
+                            <div class="merch-prod-num">Ürün 05 · Aksesuar</div>
+                            <h3 class="merch-prod-title">Deri Bagaj Etiketi</h3>
+                            <p class="merch-prod-desc">
+                                Bitkisel tabaklanmış hakiki/vegan deri, pirinç toka ve lazer kazıma resmi monogram damgası.
+                            </p>
+                        </div>
+                        <div class="merch-specs-table">
+                            <div class="merch-spec-row"><span>Deri:</span> <strong>2.2 mm Bitkisel Tabaklama</strong></div>
+                            <div class="merch-spec-row"><span>Toka:</span> <strong>Antik Pirinç Toka</strong></div>
+                            <div class="merch-spec-row"><span>Detay:</span> <strong>Gizlilik Korumalı İsim Kartı</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. VINYL STICKERS -->
+                <div class="merch-card">
+                    <div class="merch-stage">
+                        <div class="mockup-stickers-wrap">
+                            <div class="mockup-sticker-circle dark">gb<span class="brand-system-dot" style="font-size:22px;"></span></div>
+                            <div class="mockup-sticker-circle cream">gezenbiri<span class="brand-system-dot" style="font-size:11px;"></span></div>
+                        </div>
+                    </div>
+                    <div class="merch-body">
+                        <div>
+                            <div class="merch-prod-num">Ürün 06 · Koleksiyon</div>
+                            <h3 class="merch-prod-title">Mat Vinil Mühür Paketi</h3>
+                            <p class="merch-prod-desc">
+                                Bavul, termos ve araç camı için su geçirmez ve solmayan mat vinil mühür çıkartma seti.
+                            </p>
+                        </div>
+                        <div class="merch-specs-table">
+                            <div class="merch-spec-row"><span>Malzeme:</span> <strong>90µ Dış Mekan Mat Vinil</strong></div>
+                            <div class="merch-spec-row"><span>Dayanım:</span> <strong>Su, Yağmur &amp; UV Korumalı</strong></div>
+                            <div class="merch-spec-row"><span>Kesim:</span> <strong>Lazer Öpücük Kesim (Kiss Cut)</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 02: PANTONE & ÜRETİM RENK MATRİSİ -->
+        <section>
+            <div class="section-header-block">
+                <h2 class="section-header-title">02 · Üretim &amp; Baskı Renk Matrisi (Pantone / CMYK)</h2>
+                <span class="section-header-sub">Fiziksel Matbaa &amp; Tekstil Standartları</span>
+            </div>
+
+            <div class="pantone-grid">
+                
+                <!-- 01: Action Coral -->
+                <div class="pantone-card">
+                    <div class="pantone-swatch" style="background-color: var(--coral);"></div>
+                    <div class="pantone-info">
+                        <div class="pantone-name">Action Coral</div>
+                        <div class="pantone-codes">
+                            PANTONE 1788 C<br>
+                            CMYK: 0 / 85 / 75 / 0<br>
+                            HEX: #FF4D3D
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02: Dark Charcoal -->
+                <div class="pantone-card">
+                    <div class="pantone-swatch" style="background-color: var(--charcoal);"></div>
+                    <div class="pantone-info">
+                        <div class="pantone-name">Dark Charcoal</div>
+                        <div class="pantone-codes">
+                            PANTONE Black 6 C<br>
+                            CMYK: 70 / 65 / 60 / 75<br>
+                            HEX: #202020
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03: Warm Cream -->
+                <div class="pantone-card">
+                    <div class="pantone-swatch" style="background-color: var(--bg-page); border-bottom: 1px solid var(--border-card);"></div>
+                    <div class="pantone-info">
+                        <div class="pantone-name">Warm Cream</div>
+                        <div class="pantone-codes">
+                            PANTONE 7527 C<br>
+                            CMYK: 4 / 5 / 10 / 0<br>
+                            HEX: #F6F3ED
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 04: Sage Green -->
+                <div class="pantone-card">
+                    <div class="pantone-swatch" style="background-color: var(--sage);"></div>
+                    <div class="pantone-info">
+                        <div class="pantone-name">Sage Green</div>
+                        <div class="pantone-codes">
+                            PANTONE 5645 C<br>
+                            CMYK: 35 / 15 / 30 / 10<br>
+                            HEX: #A8B89A
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- DEMO DISCLAIMER FOOTNOTE -->
+    <div class="gb-prototype-disclaimer">
+        Bu sayfadaki fiziksel ürün çizimleri, Pantone kodları ve malzeme standartları gezenbiri kurumsal marka sistemi üretim prototipi örnekleridir.
+    </div>
+
+</body>
+</html>
