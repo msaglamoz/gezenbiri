@@ -287,8 +287,9 @@ Sisteme yeni bir sayfa, bileşen veya rota eklerken aşağıdaki kurallara kesin
 2. **System Dot Geometrisini Ezmeyin:** System Dot geometrisi (`0.15em`, `0.12em`, `scaleY(1.03)`) yalnızca [`brand.css`](file:///c:/Users/Mahir/Desktop/gezenbiri/brand.css) içinde tanımlıdır. Sayfa içi `<style>` bloğunda veya `style="..."` attribute'ünde yeniden tanımlanamaz.
 3. **Etkinlik Verisini Duplicate Etmeyin:** Yeni bir workshop veya rota ekleneceğinde, doğrudan [`data/events.js`](file:///c:/Users/Mahir/Desktop/gezenbiri/data/events.js) dosyasına eklenmeli ve sayfalar bu veriyi JS ile render etmelidir.
 4. **Marka İsmini Küçük Harf Tutun:** `gezenbiri` her zaman tek kelime ve küçük harftir.
-5. **Erişilebilirlik Standartlarını Koruyun:** Açılan tüm modallarda `role="dialog"`, `aria-modal="true"`, `Tab`/`Shift+Tab` odak tuzağı ve `ESC` tuşu dinleyicisi korunmalıdır.
-6. **Değişiklik Sonrası Testleri Çalıştırın:** Her commit öncesinde terminalde `npm test` komutu çalıştırılarak tüm testlerin yeşil (`PASS`) olduğu teyit edilmelidir.
+5. **Emojileri Kesinlikle Kullanmayın:** `🎈`, `🍷`, `🧡`, `🏺`, `🌸` benzeri native/dekoratif emojiler sistemin hiçbir yerinde kullanılmaz; ikonografi için yalnızca markanın kendi monoline SVG glifleri ve temiz tipografi kullanılır.
+6. **Erişilebilirlik Standartlarını Koruyun:** Açılan tüm modallarda `role="dialog"`, `aria-modal="true"`, `Tab`/`Shift+Tab` odak tuzağı ve `ESC` tuşu dinleyicisi korunmalıdır.
+7. **Değişiklik Sonrası Testleri Çalıştırın:** Her commit öncesinde terminalde `npm test` komutu çalıştırılarak tüm testlerin yeşil (`PASS`) olduğu teyit edilmelidir.
 
 ---
 
