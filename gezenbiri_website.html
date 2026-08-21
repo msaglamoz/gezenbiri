@@ -6,7 +6,7 @@
     <title>gezenbiri — Bir yere gidelim.</title>
     <meta name="description" content="Kültürel workshoplar, yerel deneyimler, yeni insanlar ve arada bir küçük kaçamaklar. Gezenbiri topluluğuna katıl.">
     <meta name="keywords" content="gezenbiri, seyahat, workshop, seramik atölyesi, şarap tadımı, alaçatı, çeşme, urla, gezi">
-    <meta name="theme-color" content="#F7F5F0">
+    <meta name="theme-color" content="#F6F3ED">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -15,7 +15,7 @@
     <meta property="og:image" content="assets/v2/hero_pottery.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3.2' fill='%23FF4D3D'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Cellipse cx='25' cy='10' rx='3' ry='3.09' fill='%23FF4D3D'/%3E%3C/svg%3E">
 
     <!-- Google Fonts: Plus Jakarta Sans (300-900) & Instrument Serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1952,13 +1952,13 @@
     </footer>
 
     <!-- INTERACTIVE DETAIL & BOOKING MODAL -->
-    <div class="modal-overlay" id="bookingModal" onclick="closeModalOnOverlay(event)">
+    <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" onclick="closeModalOnOverlay(event)">
         <div class="modal-card">
-            <button class="modal-close-btn" onclick="closeModal()">×</button>
+            <button class="modal-close-btn" onclick="closeModal()" aria-label="Kapat">×</button>
             <div class="modal-tag" id="modalTag">WORKSHOP KAYDI</div>
             <h3 class="modal-title" id="modalTitle">Seramik Atölyesi</h3>
             <div class="modal-meta-row">
-                <span id="modalMeta">Alaçatı — 24 Ağu</span>
+                <span id="modalMeta">Alaçatı — 21 Ağu</span>
                 <span id="modalPrice" style="color: var(--coral); font-weight: 800;">850 TL</span>
             </div>
             <p class="modal-desc" id="modalDesc">Toprağa dokun, kendi objeni üret. Başlangıç dostu, tüm malzemeler dahil.</p>
@@ -1973,9 +1973,10 @@
     </div>
 
     <!-- TOAST NOTIFICATION -->
-    <div class="toast-notification" id="toastBox">İşlem başarıyla gerçekleştirildi.</div>
+    <div class="toast-notification" id="toastBox" role="status" aria-live="polite">İşlem başarıyla gerçekleştirildi.</div>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- CENTRAL EVENT DATA & JAVASCRIPT LOGIC -->
+    <script src="data/events.js"></script>
     <script>
         // Header scroll styling
         window.addEventListener('scroll', () => {
@@ -1994,7 +1995,7 @@
             mobileDrawer.classList.toggle('active');
         });
 
-        // Modal triggers
+        // Modal triggers with accessibility
         function openBookingModal(title, meta, price, desc) {
             document.getElementById('modalTag').innerText = "REZERVASYON & KAYIT";
             document.getElementById('modalTitle').innerText = title;
@@ -2002,6 +2003,7 @@
             document.getElementById('modalPrice').innerText = price;
             document.getElementById('modalDesc').innerText = desc;
             document.getElementById('bookingModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function openDetailsModal(title, desc) {
@@ -2011,10 +2013,12 @@
             document.getElementById('modalPrice').innerText = "Ön Kayıt";
             document.getElementById('modalDesc').innerText = desc;
             document.getElementById('bookingModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             document.getElementById('bookingModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
 
         function closeModalOnOverlay(e) {
@@ -2022,6 +2026,13 @@
                 closeModal();
             }
         }
+
+        // Accessibility: ESC key to close modal
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('bookingModal').classList.contains('active')) {
+                closeModal();
+            }
+        });
 
         // Heart like toggle
         function toggleHeart(btn) {

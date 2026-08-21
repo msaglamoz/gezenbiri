@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#F6F3ED">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Ccircle cx='25' cy='10' r='3.2' fill='%23FF4D3D'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Cellipse cx='25' cy='10' rx='3' ry='3.09' fill='%23FF4D3D'/%3E%3C/svg%3E">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1343,6 +1343,78 @@
             </div>
         </div>
 
+        <div class="divider"></div>
+
+        <!-- 15 MASTER DESIGN TOKEN & SYSTEM SPECIFICATION TABLE -->
+        <div>
+            <span class="section-tag">15 GELİŞTİRİCİ MASTER TOKEN &amp; SPESİFİKASYON TABLOSU (TEK KAYNAK: BRAND.CSS)</span>
+            <div style="background:var(--white); border:1px solid var(--border-line); border-radius:16px; padding:24px; overflow-x:auto;">
+                <table style="width:100%; border-collapse:collapse; font-size:11.5px; text-align:left;">
+                    <thead>
+                        <tr style="border-bottom:2px solid var(--charcoal); font-weight:800; color:var(--charcoal);">
+                            <th style="padding:10px 8px;">Kategori</th>
+                            <th style="padding:10px 8px;">Token Adı</th>
+                            <th style="padding:10px 8px;">Resmi Değer / Standart</th>
+                            <th style="padding:10px 8px;">Kullanım Alanı &amp; Kural</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color:#444;">
+                        <tr style="border-bottom:1px solid #EEE;">
+                            <td style="padding:8px; font-weight:800; color:var(--charcoal);">Renk (Core)</td>
+                            <td style="padding:8px; font-family:monospace; color:var(--coral);">--gb-coral</td>
+                            <td style="padding:8px; font-weight:700;">#FF4D3D (10%)</td>
+                            <td style="padding:8px;">Action Coral: System Dot, CTA butonları, Live durumlar, mikro vurgu.</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #EEE;">
+                            <td style="padding:8px; font-weight:800; color:var(--charcoal);">Renk (Canvas)</td>
+                            <td style="padding:8px; font-family:monospace; color:var(--charcoal);">--gb-cream / --gb-charcoal</td>
+                            <td style="padding:8px; font-weight:700;">#F6F3ED (65%) / #202020 (20%)</td>
+                            <td style="padding:8px;">Warm Cream birincil zemin; Charcoal tipografi ve yüksek kontrastlı kartlar.</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #EEE;">
+                            <td style="padding:8px; font-weight:800; color:var(--charcoal);">System Dot</td>
+                            <td style="padding:8px; font-family:monospace; color:var(--coral);">.gb-system-dot</td>
+                            <td style="padding:8px; font-weight:700;">margin-left: 0.12em; scaleY(1.03);</td>
+                            <td style="padding:8px;">%103 dikey elips, ~2.5px optik nefes. Cümle noktası tipografiktir (Dot değildir).</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #EEE;">
+                            <td style="padding:8px; font-weight:800; color:var(--charcoal);">Tipografi</td>
+                            <td style="padding:8px; font-family:monospace; color:var(--charcoal);">--font-sans / --font-serif</td>
+                            <td style="padding:8px; font-weight:700;">Plus Jakarta Sans / Instrument Serif</td>
+                            <td style="padding:8px;">Logo: 900, Display: 800, Başlık: 700. Serif yalnızca editoryal alıntılarda geçerlidir.</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #EEE;">
+                            <td style="padding:8px; font-weight:800; color:var(--charcoal);">Spacing</td>
+                            <td style="padding:8px; font-family:monospace;">--gb-space-*</td>
+                            <td style="padding:8px; font-weight:700;">4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 px</td>
+                            <td style="padding:8px;">Rastgele 14px, 18px, 26px kullanılmaz; standart spacing tokenları uygulanır.</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid #EEE;">
+                            <td style="padding:8px; font-weight:800; color:var(--charcoal);">Radius</td>
+                            <td style="padding:8px; font-family:monospace;">--gb-radius-*</td>
+                            <td style="padding:8px; font-weight:700;">8px (sm) · 16px (md) · 24px (lg) · 999px (pill)</td>
+                            <td style="padding:8px;">Kontroller 8px, standart kartlar 16px, büyük modal/hero 24px, rozetler pill.</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px; font-weight:800; color:var(--charcoal);">Erişilebilirlik</td>
+                            <td style="padding:8px; font-family:monospace;">:focus-visible / reduced-motion</td>
+                            <td style="padding:8px; font-weight:700;">WCAG AA 4.5:1 / 44×44px Touch</td>
+                            <td style="padding:8px;">2.5px Coral outline, reduced-motion desteği, modal aria-modal="true" ve ESC tuşu.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
+
+    <!-- CENTRAL EVENT DATA -->
+    <script src="data/events.js"></script>
+
+    <!-- PROTOTYPE DISCLAIMER -->
+    <div class="gb-prototype-disclaimer">
+        gezenbiri.com.tr · Master Brand Guideline 2.1 Standardı · Tüm marka varlıkları tek kaynaktan (brand.css &amp; data/events.js) yönetilmektedir.
+    </div>
+
 </body>
 </html>
