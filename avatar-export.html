@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gezenbiri — Instagram Avatar HTML Exporter</title>
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="theme-color" content="#F6F3ED">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Cellipse cx='25' cy='10' rx='3' ry='3.09' fill='%23FF4D3D'/%3E%3C/svg%3E">
+
+    <!-- Fonts: Plus Jakarta Sans & Instrument Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="brand.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--gb-cream);
+            color: var(--gb-charcoal);
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 960px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gb-coral);
+            background: var(--gb-coral-soft);
+            padding: 6px 16px;
+            border-radius: var(--gb-radius-pill);
+            margin-bottom: 12px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: var(--gb-weight-logo);
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 15px;
+            color: #666;
+        }
+
+        .export-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .export-card {
+            background-color: var(--gb-white);
+            border: 1px solid var(--gb-border);
+            border-radius: var(--gb-radius-lg);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: var(--gb-shadow-subtle);
+            transition: transform var(--gb-motion-fast), box-shadow var(--gb-motion-fast);
+        }
+
+        .export-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--gb-shadow-floating);
+        }
+
+        /* Avatar Container Simulation */
+        .avatar-circle-wrapper {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            user-select: none;
+            overflow: hidden;
+        }
+
+        .avatar-dark {
+            background-color: #202020;
+            color: #F6F3ED;
+        }
+
+        .avatar-cream {
+            background-color: #F6F3ED;
+            color: #202020;
+            border: 2px solid var(--gb-border);
+        }
+
+        .avatar-text-block {
+            display: inline-flex;
+            align-items: baseline;
+            font-family: var(--font-sans);
+            font-weight: 900;
+            font-size: 80px;
+            letter-spacing: -4px;
+            line-height: 1;
+        }
+
+        .avatar-dot {
+            display: inline-block;
+            width: 0.15em;
+            height: 0.15em;
+            background-color: var(--gb-coral);
+            border-radius: 50%;
+            margin-left: 0.12em;
+            transform: scaleY(1.03);
+            vertical-align: baseline;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: var(--gb-weight-heading);
+            color: var(--gb-charcoal);
+            margin-bottom: 6px;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .download-btn {
+            background-color: var(--gb-coral);
+            color: var(--gb-white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: var(--gb-radius-pill);
+            font-family: var(--font-sans);
+            font-size: 14px;
+            font-weight: var(--gb-weight-heading);
+            cursor: pointer;
+            transition: all var(--gb-motion-fast);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(255, 77, 61, 0.25);
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background-color: var(--gb-coral-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(255, 77, 61, 0.35);
+        }
+
+        .download-btn-secondary {
+            background-color: var(--gb-charcoal);
+            box-shadow: none;
+        }
+
+        .download-btn-secondary:hover {
+            background-color: #000000;
+        }
+
+        /* Phone Simulation Area */
+        .simulation-box {
+            background-color: var(--gb-white);
+            border: 1px solid var(--gb-border);
+            border-radius: var(--gb-radius-lg);
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: var(--gb-shadow-subtle);
+        }
+
+        .sim-title {
+            font-size: 16px;
+            font-weight: var(--gb-weight-heading);
+            margin-bottom: 20px;
+        }
+
+        .phone-profile-preview {
+            width: 320px;
+            background: #FFFFFF;
+            border: 1px solid #E5E5E5;
+            border-radius: 24px;
+            padding: 20px 16px;
+            box-shadow: var(--gb-shadow-floating);
+            text-align: left;
+        }
+
+        .sim-top-row {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 14px;
+        }
+
+        .sim-avatar-wrap {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background-color: #202020;
+            color: #F6F3ED;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-sans);
+            font-weight: 900;
+            font-size: 28px;
+            letter-spacing: -1.5px;
+            flex-shrink: 0;
+        }
+
+        .sim-avatar-dot {
+            display: inline-block;
+            width: 4px;
+            height: 4.12px;
+            background-color: #FF4D3D;
+            border-radius: 50%;
+            margin-left: 2px;
+            transform: scaleY(1.03);
+        }
+
+        .sim-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .sim-stats div strong {
+            display: block;
+            font-weight: 800;
+            color: #202020;
+        }
+
+        .sim-stats div span {
+            color: #777;
+            font-size: 10.5px;
+        }
+
+        .sim-bio-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: #202020;
+            margin-bottom: 2px;
+        }
+
+        .sim-bio-text {
+            font-size: 11.5px;
+            color: #333;
+            line-height: 1.45;
+            white-space: pre-line;
+            margin-bottom: 12px;
+        }
+
+        .sim-bio-link {
+            color: #00376B;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 11.5px;
+        }
+
+        /* Hidden Master Canvas for Crisp 1080x1080 Generation */
+        canvas {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .export-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <span class="header-tag">RESMİ INSTAGRAM AVATAR DIŞA AKTARICI</span>
+            <h1>gezenbiri<span class="system-dot"></span> Avatar İndirme Stüdyosu</h1>
+            <p>HTML5 Canvas motoruyla piksel kusursuzluğunda, 1080×1080 px yüksek çözünürlüklü Instagram profil fotoğraflarını anında indirin.</p>
+        </div>
+
+        <div class="export-grid">
+            <!-- 1. Dark Charcoal Avatar (Primary) -->
+            <div class="export-card">
+                <div class="avatar-circle-wrapper avatar-dark">
+                    <span class="avatar-text-block">gb<span class="avatar-dot"></span></span>
+                </div>
+                <h3 class="card-title">Koyu Kömür (#202020)</h3>
+                <p class="card-desc">Önerilen birincil resmi avatar. Koyu zemin üzerinde krem monogram ve mercan System Dot.</p>
+                <button type="button" class="download-btn" onclick="exportAvatar('dark')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>1080×1080 PNG İndir</span>
+                </button>
+            </div>
+
+            <!-- 2. Warm Cream Avatar (Alternative) -->
+            <div class="export-card">
+                <div class="avatar-circle-wrapper avatar-cream">
+                    <span class="avatar-text-block">gb<span class="avatar-dot"></span></span>
+                </div>
+                <h3 class="card-title">Sıcak Krem (#F6F3ED)</h3>
+                <p class="card-desc">Alternatif aydınlık avatar. Sıcak krem zemin üzerinde kömür monogram ve mercan System Dot.</p>
+                <button type="button" class="download-btn download-btn-secondary" onclick="exportAvatar('cream')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>1080×1080 PNG İndir</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Live Instagram Profile Simulation -->
+        <div class="simulation-box">
+            <div class="sim-title">📱 Instagram Canlı Profil Önizlemesi</div>
+            <div class="phone-profile-preview">
+                <div class="sim-top-row">
+                    <div class="sim-avatar-wrap" id="simAvatar">
+                        <span>gb<span class="sim-avatar-dot"></span></span>
+                    </div>
+                    <div class="sim-stats">
+                        <div><strong>0</strong><span>gönderi</span></div>
+                        <div><strong>1.2K</strong><span>takipçi</span></div>
+                        <div><strong>42</strong><span>takip</span></div>
+                    </div>
+                </div>
+                <div class="sim-bio-title">gezenbiri</div>
+                <div class="sim-bio-text">“Bir yere gidelim.”
+Gitmeye değer yerler. Tanışmaya değer insanlar.
+Çok yakında.</div>
+                <a href="https://gezenbiri.com.tr" class="sim-bio-link">🔗 gezenbiri.com.tr</a>
+            </div>
+        </div>
+
+        <div class="gb-prototype-disclaimer" style="margin-top: 36px;">
+            gezenbiri® marka ve deneyim konsepti prototip tasarımıdır.
+        </div>
+    </div>
+
+    <!-- Hidden Rendering Canvas -->
+    <canvas id="renderCanvas" width="1080" height="1080"></canvas>
+
+    <script>
+        // Ensure fonts are loaded before canvas rendering
+        document.fonts.ready.then(() => {
+            console.log('Fonts loaded successfully for canvas export.');
+        });
+
+        function exportAvatar(type) {
+            const canvas = document.getElementById('renderCanvas');
+            const ctx = canvas.getContext('2d');
+            const size = 1080;
+
+            // Clear
+            ctx.clearRect(0, 0, size, size);
+
+            const isDark = type === 'dark';
+            const bgColor = isDark ? '#202020' : '#F6F3ED';
+            const textColor = isDark ? '#F6F3ED' : '#202020';
+            const dotColor = '#FF4D3D';
+
+            // 1. Draw Background
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, size, size);
+
+            // 2. Set Font
+            ctx.fillStyle = textColor;
+            ctx.font = '900 440px "Plus Jakarta Sans", sans-serif';
+            ctx.textBaseline = 'alphabetic';
+
+            // Measure Text
+            const text = 'gb';
+            const textMetrics = ctx.measureText(text);
+            const textWidth = textMetrics.width;
+
+            // Precise optical centering
+            // 'g' has descender, 'b' has ascender. 
+            // Optical center for Plus Jakarta Sans 900 at 440px
+            const centerX = size / 2;
+            const centerY = size / 2;
+
+            // Text positioning
+            const textX = centerX - (textWidth / 2) - 15;
+            const textY = centerY + 140; // baseline
+
+            ctx.fillText(text, textX, textY);
+
+            // 3. Draw Master System Dot (Exact 1.03 scale ratio)
+            // System dot is placed directly beside letter 'b'
+            const dotRadiusX = 35;
+            const dotRadiusY = dotRadiusX * 1.03; // 1.03 optical vertical stretch
+            const dotX = textX + textWidth + 36;
+            const dotY = textY - 210;
+
+            ctx.beginPath();
+            ctx.fillStyle = dotColor;
+            ctx.ellipse(dotX, dotY, dotRadiusX, dotRadiusY, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            // 4. Trigger Download
+            const link = document.createElement('a');
+            link.download = `gezenbiri-instagram-avatar-${type}-1080x1080.png`;
+            link.href = canvas.toDataURL('image/png', 1.0);
+            link.click();
+        }
+    </script>
+</body>
+</html>

@@ -17,6 +17,7 @@ const productionFiles = [
     'icon-morph-motion.html',
     'packing-guide.html',
     'merch-guidelines.html',
+    'coming-soon.html',
     'brand.css',
     'data/events.js'
 ];
