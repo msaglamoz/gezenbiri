@@ -153,55 +153,157 @@
             font-weight: 600;
         }
 
-        /* 1. PHONE PROFILE SIMULATION */
+        /* 1. ULTRA-REALISTIC PHONE PROFILE SIMULATION */
         .phone-showcase-row {
             background: var(--white);
             border-radius: 28px;
             border: 1px solid var(--border);
             padding: 36px;
             display: grid;
-            grid-template-columns: 360px 1fr;
-            gap: 40px;
-            align-items: center;
+            grid-template-columns: 350px 1fr;
+            gap: 48px;
+            align-items: start;
             box-shadow: 0 10px 40px rgba(0,0,0,0.04);
         }
 
         .phone-mockup-frame {
-            width: 330px;
+            width: 340px;
             background: var(--white);
-            border-radius: 40px;
-            border: 10px solid var(--charcoal);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-            padding: 20px 14px;
+            border-radius: 46px;
+            border: 11px solid #1c1c1e;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.18), 0 6px 20px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.15);
             position: relative;
             overflow: hidden;
             margin: 0 auto;
+            user-select: none;
         }
 
-        .phone-top-notch {
-            width: 110px;
-            height: 18px;
-            background: var(--charcoal);
-            border-radius: 0 0 12px 12px;
-            margin: -20px auto 14px auto;
+        /* Status Bar & Dynamic Island */
+        .phone-status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 18px 6px 18px;
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #1c1c1e;
+            background: var(--white);
+            position: relative;
+            z-index: 10;
+        }
+
+        .phone-time {
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: -0.2px;
+        }
+
+        .phone-dynamic-island {
+            width: 86px;
+            height: 22px;
+            background: #000;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 7px;
+            gap: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .phone-island-lens {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #0f1523;
+            border: 1px solid #1a2236;
+            box-shadow: inset 0 0 2px #000;
+        }
+
+        .phone-island-sensor {
+            width: 4.5px;
+            height: 4.5px;
+            border-radius: 50%;
+            background: #080c14;
+        }
+
+        .phone-status-icons {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Instagram Top Navigation Bar */
+        .ig-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 14px 10px 14px;
+            background: var(--white);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .ig-top-username {
+            font-size: 14.5px;
+            font-weight: 900;
+            letter-spacing: -0.4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--charcoal);
+            cursor: pointer;
+        }
+
+        .ig-top-actions {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            color: var(--charcoal);
+        }
+
+        .ig-top-action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--charcoal);
+            padding: 2px;
+            transition: transform 0.15s ease;
+        }
+
+        .ig-top-action-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Profile Body */
+        .ig-profile-body {
+            padding: 10px 14px 0 14px;
         }
 
         .ig-ui-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .ig-ui-avatar-wrap {
-            width: 72px;
-            height: 72px;
+            width: 74px;
+            height: 74px;
             border-radius: 50%;
             padding: 2.5px;
             background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .ig-ui-avatar-wrap:hover {
+            transform: scale(1.04);
         }
 
         .ig-ui-avatar {
@@ -225,20 +327,23 @@
 
         .ig-ui-stats {
             display: flex;
-            gap: 16px;
+            gap: 18px;
             text-align: center;
+            margin-right: 8px;
         }
 
         .ig-ui-stats div strong {
             display: block;
-            font-size: 14px;
+            font-size: 14.5px;
             font-weight: 800;
             color: var(--charcoal);
+            letter-spacing: -0.3px;
         }
 
         .ig-ui-stats div span {
             font-size: 10.5px;
-            color: #777;
+            color: #666;
+            font-weight: 500;
         }
 
         .ig-ui-bio {
@@ -248,34 +353,116 @@
             margin-bottom: 12px;
         }
 
-        .ig-ui-bio strong { font-weight: 800; display: block; font-size: 12px; }
-        .ig-ui-bio span.tag { color: #888; font-weight: 600; }
+        .ig-ui-bio strong {
+            font-weight: 900;
+            display: block;
+            font-size: 12.5px;
+            letter-spacing: -0.2px;
+        }
 
+        .ig-ui-bio span.category-badge {
+            display: inline-block;
+            font-size: 9.5px;
+            font-weight: 700;
+            color: #777;
+            background: rgba(0,0,0,0.04);
+            padding: 1px 6px;
+            border-radius: 4px;
+            margin: 2px 0 4px 0;
+        }
+
+        .ig-ui-bio-manifesto {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 12.5px;
+            color: var(--charcoal);
+            margin: 2px 0;
+        }
+
+        .ig-ui-mutual-followers {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 6px;
+            font-size: 10px;
+            color: #666;
+        }
+
+        .ig-ui-mutual-avatars {
+            display: flex;
+            margin-right: -2px;
+        }
+
+        .ig-ui-mutual-avatar {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 1.5px solid var(--white);
+            margin-left: -5px;
+            object-fit: cover;
+        }
+
+        .ig-ui-mutual-avatar:first-child {
+            margin-left: 0;
+        }
+
+        /* Action Buttons */
         .ig-ui-buttons {
             display: flex;
-            gap: 6px;
-            margin-bottom: 16px;
+            gap: 5px;
+            margin-bottom: 12px;
         }
 
         .ig-ui-btn {
-            flex: 1;
             background: #EFEFEF;
             border: none;
-            padding: 6px;
-            border-radius: 6px;
+            padding: 6.5px 10px;
+            border-radius: 7px;
             font-size: 11px;
             font-weight: 700;
             color: var(--charcoal);
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
         }
 
+        .ig-ui-btn:hover {
+            background: #E2E2E2;
+        }
+
+        .ig-ui-btn.primary {
+            flex: 1;
+            background: var(--charcoal);
+            color: var(--white);
+            font-weight: 800;
+        }
+
+        .ig-ui-btn.primary:hover {
+            background: #333;
+        }
+
+        .ig-ui-btn.secondary {
+            flex: 1;
+        }
+
+        .ig-ui-btn.icon-only {
+            padding: 6.5px 8px;
+        }
+
+        /* Highlights */
         .ig-ui-highlights {
             display: flex;
             gap: 10px;
             overflow-x: auto;
-            padding-bottom: 12px;
-            margin-bottom: 12px;
-            border-bottom: 1px solid #F0ECE4;
+            padding-bottom: 10px;
+            margin-bottom: 8px;
+            scrollbar-width: none;
+        }
+
+        .ig-ui-highlights::-webkit-scrollbar {
+            display: none;
         }
 
         .ig-ui-hl-item {
@@ -284,17 +471,24 @@
             align-items: center;
             gap: 4px;
             flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.15s ease;
+        }
+
+        .ig-ui-hl-item:hover {
+            transform: translateY(-2px);
         }
 
         .ig-ui-hl-circle {
-            width: 52px;
-            height: 52px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             border: 1px solid #DCD6CC;
             padding: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: var(--white);
         }
 
         .ig-ui-hl-inner {
@@ -304,19 +498,46 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 22px;
         }
 
         .ig-ui-hl-item span {
-            font-size: 9.5px;
+            font-size: 9px;
             font-weight: 700;
-            color: #555;
+            color: #444;
             text-transform: lowercase;
         }
 
+        /* Profile Tabs */
+        .ig-ui-tabs {
+            display: flex;
+            border-top: 1px solid #EDEDED;
+            margin-top: 4px;
+        }
+
+        .ig-ui-tab {
+            flex: 1;
+            padding: 9px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            cursor: pointer;
+            border-bottom: 1.5px solid transparent;
+            transition: all 0.15s ease;
+        }
+
+        .ig-ui-tab.active {
+            color: var(--charcoal);
+            border-bottom-color: var(--charcoal);
+        }
+
+        /* 3x3 Photo Grid */
         .ig-ui-grid-3x3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
+            gap: 1.5px;
+            background: #EDEDED;
         }
 
         .ig-ui-thumb {
@@ -324,20 +545,121 @@
             background-color: var(--sand);
             background-size: cover;
             background-position: center;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
         }
 
+        .ig-ui-thumb-badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            color: #FFF;
+            filter: drop-shadow(0 1px 2px rgba(0,0,0,0.6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .ig-ui-thumb-hover {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.38);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #FFF;
+            font-size: 10.5px;
+            font-weight: 800;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 3;
+        }
+
+        .ig-ui-thumb:hover .ig-ui-thumb-hover {
+            opacity: 1;
+        }
+
+        .phone-home-indicator {
+            width: 110px;
+            height: 4px;
+            background: #202020;
+            border-radius: 100px;
+            margin: 8px auto 6px auto;
+            opacity: 0.5;
+        }
+
+        /* Side Info Column */
         .phone-info-col h3 {
             font-size: 24px;
             font-weight: 900;
             letter-spacing: -0.8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .phone-info-col p {
             color: #555;
-            font-size: 14.5px;
+            font-size: 14px;
             line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .live-avatar-switcher-box {
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
             margin-bottom: 20px;
+        }
+
+        .live-avatar-switcher-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--charcoal);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .live-avatar-pills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .btn-avatar-quick-pick {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 7px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--charcoal);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            text-align: left;
+        }
+
+        .btn-avatar-quick-pick:hover {
+            border-color: var(--coral);
+            background: #FFF;
+            transform: translateY(-1px);
+        }
+
+        .btn-avatar-quick-pick .swatch-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.15);
+            flex-shrink: 0;
         }
 
         .meta-bullet-list {
@@ -1119,90 +1441,261 @@
             </div>
 
             <div class="phone-showcase-row">
+                <!-- Phone Device Frame -->
                 <div class="phone-mockup-frame">
-                    <div class="phone-top-notch"></div>
-                    
-                    <div class="ig-ui-header">
-                        <div class="ig-ui-avatar-wrap">
-                            <div class="ig-ui-avatar" id="liveMockupAvatar" style="background:#202020; color:#F6F3ED; font-family:'Plus Jakarta Sans', sans-serif; font-weight:900; font-size:26px; letter-spacing:-1px; display:inline-flex; align-items:center; justify-content:center;">gb<span class="brand-system-dot"></span></div>
+                    <!-- iOS Status Bar & Dynamic Island -->
+                    <div class="phone-status-bar">
+                        <span class="phone-time">09:41</span>
+                        <div class="phone-dynamic-island">
+                            <span class="phone-island-sensor"></span>
+                            <span class="phone-island-lens"></span>
                         </div>
-                        <div class="ig-ui-stats">
-                            <div><strong>142</strong><span>gönderi</span></div>
-                            <div><strong>5.4K</strong><span>takipçi</span></div>
-                            <div><strong>180</strong><span>takip</span></div>
-                        </div>
-                    </div>
-
-                    <div class="ig-ui-bio">
-                        <strong>gezenbiri</strong>
-                        <span class="tag">Seyahat &amp; Deneyim Topluluğu</span><br>
-                        “Bir yere gidelim.”<br>
-                        Alaçatı · Çeşme · Urla · Kapadokya · Bozcaada<br>
-                        Yol arkadaşlığı &amp; hafta sonu kaçamakları ↓<br>
-                        <a href="gezenbiri_website.html" style="color:var(--coral); text-decoration:none; font-weight:800;">gezenbiri.com.tr</a>
-                    </div>
-
-                    <div class="ig-ui-buttons">
-                        <button class="ig-ui-btn">Takip Et</button>
-                        <button class="ig-ui-btn">Mesaj</button>
-                        <button class="ig-ui-btn">👤+</button>
-                    </div>
-
-                    <!-- Highlight bubbles in phone mockup with unified editorial typography -->
-                    <div class="ig-ui-highlights">
-                        <div class="ig-ui-hl-item">
-                            <div class="ig-ui-hl-circle">
-                                <div class="ig-ui-hl-inner" style="background:#202020; color:#F6F3ED; font-family:'Instrument Serif', serif; font-style:italic; font-size:26px;">a<span class="brand-system-dot"></span></div>
-                            </div>
-                            <span>alaçatı</span>
-                        </div>
-                        <div class="ig-ui-hl-item">
-                            <div class="ig-ui-hl-circle">
-                                <div class="ig-ui-hl-inner" style="background:#FF4D3D; color:#FFF; font-family:'Instrument Serif', serif; font-style:italic; font-size:26px;">ç<span class="brand-system-dot" style="background-color:var(--gb-cream);"></span></div>
-                            </div>
-                            <span>çeşme</span>
-                        </div>
-                        <div class="ig-ui-hl-item">
-                            <div class="ig-ui-hl-circle">
-                                <div class="ig-ui-hl-inner" style="background:#A8B89A; color:#202020; font-family:'Instrument Serif', serif; font-style:italic; font-size:26px;">u<span class="brand-system-dot"></span></div>
-                            </div>
-                            <span>urla</span>
-                        </div>
-                        <div class="ig-ui-hl-item">
-                            <div class="ig-ui-hl-circle">
-                                <div class="ig-ui-hl-inner" style="background:#202020; color:#F6F3ED; font-family:'Instrument Serif', serif; font-style:italic; font-size:26px;">k<span class="brand-system-dot"></span></div>
-                            </div>
-                            <span>kapadokya</span>
-                        </div>
-                        <div class="ig-ui-hl-item">
-                            <div class="ig-ui-hl-circle">
-                                <div class="ig-ui-hl-inner" style="background:#A9D5E8; color:#202020; font-family:'Instrument Serif', serif; font-style:italic; font-size:26px;">b<span class="brand-system-dot"></span></div>
-                            </div>
-                            <span>bozcaada</span>
+                        <div class="phone-status-icons">
+                            <!-- Cellular Signal -->
+                            <svg width="14" height="10" viewBox="0 0 14 10" fill="currentColor"><rect x="0" y="7" width="2" height="3" rx="0.5"/><rect x="4" y="5" width="2" height="5" rx="0.5"/><rect x="8" y="3" width="2" height="7" rx="0.5"/><rect x="12" y="0.5" width="2" height="9.5" rx="0.5"/></svg>
+                            <!-- 5G / Wifi -->
+                            <svg width="12" height="9" viewBox="0 0 12 9" fill="currentColor"><path d="M6 2C8.2 2 10.1 2.9 11.5 4.3L12 3.8C10.4 2.2 8.3 1.2 6 1.2C3.7 1.2 1.6 2.2 0 3.8L0.5 4.3C1.9 2.9 3.8 2 6 2ZM6 4.5C7.4 4.5 8.7 5.1 9.6 6L10.1 5.5C9 4.4 7.6 3.7 6 3.7C4.4 3.7 3 4.4 1.9 5.5L2.4 6C3.3 5.1 4.6 4.5 6 4.5ZM6 7C6.8 7 7.5 7.7 7.5 8.5C7.5 9.3 6.8 10 6 10C5.2 10 4.5 9.3 4.5 8.5C4.5 7.7 5.2 7 6 7Z"/></svg>
+                            <!-- Battery -->
+                            <svg width="18" height="9" viewBox="0 0 18 9" fill="none" stroke="currentColor" stroke-width="1"><rect x="0.5" y="0.5" width="15" height="8" rx="2.5"/><rect x="2" y="2" width="10" height="5" rx="1.5" fill="currentColor"/><path d="M16.5 3V6" stroke-linecap="round"/></svg>
                         </div>
                     </div>
 
-                    <!-- 3x3 Grid in phone mockup -->
-                    <div class="ig-ui-grid-3x3">
-                        <div class="ig-ui-thumb" style="background-image: url('assets/kapadokya.jpg');"></div>
-                        <div class="ig-ui-thumb" style="background-image: url('assets/alacati.jpg');"></div>
-                        <div class="ig-ui-thumb" style="background-image: url('assets/erciyes.jpg');"></div>
-                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=200&q=80');"></div>
-                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=200&q=80');"></div>
-                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=200&q=80');"></div>
-                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1598880940371-c756e015fea1?auto=format&fit=crop&w=200&q=80');"></div>
-                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=200&q=80');"></div>
-                        <div class="ig-ui-thumb" style="background-image: url('https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=200&q=80');"></div>
+                    <!-- Instagram Top Nav Bar -->
+                    <div class="ig-top-bar">
+                        <div class="ig-top-username">
+                            <svg width="11" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            <span>gezenbiri</span>
+                            <!-- Verified Badge -->
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--coral)"><path d="M12 2L15.09 5.26L19.5 5.5L19.74 9.91L23 13L19.74 16.09L19.5 20.5L15.09 20.74L12 24L8.91 20.74L4.5 20.5L4.26 16.09L1 13L4.26 9.91L4.5 5.5L8.91 5.26L12 2Z"/><path d="M8.5 12.5L11 15L15.5 10.5" stroke="#FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <svg width="9" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1L5 5L9 1"/></svg>
+                        </div>
+                        <div class="ig-top-actions">
+                            <!-- New Post (+) -->
+                            <button class="ig-top-action-btn" title="Yeni Gönderi" aria-label="Yeni Gönderi">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                            </button>
+                            <!-- Activity (Heart) -->
+                            <button class="ig-top-action-btn" title="Bildirimler" aria-label="Bildirimler">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            </button>
+                            <!-- Menu (Lines) -->
+                            <button class="ig-top-action-btn" title="Menü" aria-label="Menü">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Profile Body -->
+                    <div class="ig-profile-body">
+                        <div class="ig-ui-header">
+                            <div class="ig-ui-avatar-wrap" title="Canlı Avatar">
+                                <div class="ig-ui-avatar" id="liveMockupAvatar" style="background:#202020; color:#F6F3ED; font-family:'Plus Jakarta Sans', sans-serif; font-weight:900; font-size:26px; letter-spacing:-1px; display:inline-flex; align-items:center; justify-content:center;">gb<span class="brand-system-dot"></span></div>
+                            </div>
+                            <div class="ig-ui-stats">
+                                <div><strong>142</strong><span>gönderi</span></div>
+                                <div><strong>5.4K</strong><span>takipçi</span></div>
+                                <div><strong>180</strong><span>takip</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Bio Section -->
+                        <div class="ig-ui-bio">
+                            <strong>gezenbiri</strong>
+                            <span class="category-badge">Seyahat &amp; Deneyim Topluluğu</span>
+                            <div class="ig-ui-bio-manifesto">“Bir yere gidelim.”</div>
+                            <div>Alaçatı · Urla · Bozcaada · Kapadokya · Kaş</div>
+                            <div>Hafta sonu rotaları, yerel sofralar &amp; atölyeler ↓</div>
+                            <a href="gezenbiri_website.html" style="color:var(--coral); text-decoration:none; font-weight:800; display:inline-flex; align-items:center; gap:3px; margin-top:2px;">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                <span>gezenbiri.com.tr</span>
+                            </a>
+                            <!-- Mutual Followers -->
+                            <div class="ig-ui-mutual-followers">
+                                <div class="ig-ui-mutual-avatars">
+                                    <img src="assets/v2/avatar_irem.jpg" alt="İrem" class="ig-ui-mutual-avatar">
+                                    <img src="assets/v2/avatar_selin.jpg" alt="Selin" class="ig-ui-mutual-avatar">
+                                </div>
+                                <span><strong>@irem</strong>, <strong>@selin</strong> ve 42 kişi daha takip ediyor</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="ig-ui-buttons">
+                            <button class="ig-ui-btn primary">Takip Et</button>
+                            <button class="ig-ui-btn secondary">Mesaj</button>
+                            <button class="ig-ui-btn secondary">İletişim</button>
+                            <button class="ig-ui-btn icon-only" title="Benzer Hesaplar" aria-label="Benzer Hesaplar">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                            </button>
+                        </div>
+
+                        <!-- Highlight Stories Bar -->
+                        <div class="ig-ui-highlights">
+                            <div class="ig-ui-hl-item" onclick="showToast('Alaçatı Öne Çıkan Hikayeleri')">
+                                <div class="ig-ui-hl-circle">
+                                    <div class="ig-ui-hl-inner" style="background:#202020; color:#F6F3ED; font-family:'Instrument Serif', serif; font-style:italic;">a<span class="brand-system-dot"></span></div>
+                                </div>
+                                <span>alaçatı</span>
+                            </div>
+                            <div class="ig-ui-hl-item" onclick="showToast('Çeşme Öne Çıkan Hikayeleri')">
+                                <div class="ig-ui-hl-circle">
+                                    <div class="ig-ui-hl-inner" style="background:#FF4D3D; color:#FFF; font-family:'Instrument Serif', serif; font-style:italic;">ç<span class="brand-system-dot" style="background-color:var(--gb-cream);"></span></div>
+                                </div>
+                                <span>çeşme</span>
+                            </div>
+                            <div class="ig-ui-hl-item" onclick="showToast('Urla Öne Çıkan Hikayeleri')">
+                                <div class="ig-ui-hl-circle">
+                                    <div class="ig-ui-hl-inner" style="background:#A8B89A; color:#202020; font-family:'Instrument Serif', serif; font-style:italic;">u<span class="brand-system-dot"></span></div>
+                                </div>
+                                <span>urla</span>
+                            </div>
+                            <div class="ig-ui-hl-item" onclick="showToast('Kapadokya Öne Çıkan Hikayeleri')">
+                                <div class="ig-ui-hl-circle">
+                                    <div class="ig-ui-hl-inner" style="background:#202020; color:#F6F3ED; font-family:'Instrument Serif', serif; font-style:italic;">k<span class="brand-system-dot"></span></div>
+                                </div>
+                                <span>kapadokya</span>
+                            </div>
+                            <div class="ig-ui-hl-item" onclick="showToast('Bozcaada Öne Çıkan Hikayeleri')">
+                                <div class="ig-ui-hl-circle">
+                                    <div class="ig-ui-hl-inner" style="background:#A9D5E8; color:#202020; font-family:'Instrument Serif', serif; font-style:italic;">b<span class="brand-system-dot"></span></div>
+                                </div>
+                                <span>bozcaada</span>
+                            </div>
+                            <div class="ig-ui-hl-item" onclick="showToast('Sürpriz Rota Öne Çıkan Hikayeleri')">
+                                <div class="ig-ui-hl-circle">
+                                    <div class="ig-ui-hl-inner" style="background:#202020; color:var(--coral); font-family:'Instrument Serif', serif; font-style:normal;">✦</div>
+                                </div>
+                                <span>sürpriz</span>
+                            </div>
+                        </div>
+
+                        <!-- Profile Navigation Tabs -->
+                        <div class="ig-ui-tabs">
+                            <div class="ig-ui-tab active" title="Gönderiler" aria-label="Gönderiler">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                            </div>
+                            <div class="ig-ui-tab" title="Reels" aria-label="Reels">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"></polygon></svg>
+                            </div>
+                            <div class="ig-ui-tab" title="Etiketlenenler" aria-label="Etiketlenenler">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            </div>
+                        </div>
+
+                        <!-- 3x3 Photo Grid with Authentic Assets & Indicators -->
+                        <div class="ig-ui-grid-3x3">
+                            <!-- 1: Kapadokya (Carousel) -->
+                            <div class="ig-ui-thumb" style="background-image: url('assets/kapadokya.jpg');">
+                                <div class="ig-ui-thumb-badge">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="2.5"><rect x="6" y="2" width="16" height="16" rx="2"></rect><path d="M2 6v14a2 2 0 0 0 2 2h14"></path></svg>
+                                </div>
+                                <div class="ig-ui-thumb-hover"><span>1.8k</span><span>💬 94</span></div>
+                            </div>
+                            <!-- 2: Alaçatı (Pinned) -->
+                            <div class="ig-ui-thumb" style="background-image: url('assets/alacati.jpg');">
+                                <div class="ig-ui-thumb-badge">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFF"><path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
+                                </div>
+                                <div class="ig-ui-thumb-hover"><span>2.4k</span><span>💬 142</span></div>
+                            </div>
+                            <!-- 3: Erciyes -->
+                            <div class="ig-ui-thumb" style="background-image: url('assets/erciyes.jpg');">
+                                <div class="ig-ui-thumb-hover"><span>1.1k</span><span>💬 63</span></div>
+                            </div>
+                            <!-- 4: Çeşme (Reel) -->
+                            <div class="ig-ui-thumb" style="background-image: url('assets/v2/escape_cesme.jpg');">
+                                <div class="ig-ui-thumb-badge">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFF"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                                </div>
+                                <div class="ig-ui-thumb-hover"><span>3.2k</span><span>💬 210</span></div>
+                            </div>
+                            <!-- 5: Manifesto Dinner (Pinned) -->
+                            <div class="ig-ui-thumb" style="background-image: url('assets/v2/manifesto_dinner.jpg');">
+                                <div class="ig-ui-thumb-badge">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFF"><path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
+                                </div>
+                                <div class="ig-ui-thumb-hover"><span>4.1k</span><span>💬 380</span></div>
+                            </div>
+                            <!-- 6: Seramik Atölyesi (Carousel) -->
+                            <div class="ig-ui-thumb" style="background-image: url('assets/v2/workshop_seramik.jpg');">
+                                <div class="ig-ui-thumb-badge">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="2.5"><rect x="6" y="2" width="16" height="16" rx="2"></rect><path d="M2 6v14a2 2 0 0 0 2 2h14"></path></svg>
+                                </div>
+                                <div class="ig-ui-thumb-hover"><span>1.6k</span><span>💬 88</span></div>
+                            </div>
+                            <!-- 7: Şarap Tadımı -->
+                            <div class="ig-ui-thumb" style="background-image: url('assets/v2/workshop_sarap.jpg');">
+                                <div class="ig-ui-thumb-hover"><span>2.1k</span><span>💬 115</span></div>
+                            </div>
+                            <!-- 8: Fotoğrafçılık (Reel) -->
+                            <div class="ig-ui-thumb" style="background-image: url('assets/v2/workshop_fotograf.jpg');">
+                                <div class="ig-ui-thumb-badge">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFF"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg>
+                                </div>
+                                <div class="ig-ui-thumb-hover"><span>1.9k</span><span>💬 92</span></div>
+                            </div>
+                            <!-- 9: Ilıca Kaçamağı -->
+                            <div class="ig-ui-thumb" style="background-image: url('assets/v2/escape_ilica.jpg');">
+                                <div class="ig-ui-thumb-hover"><span>2.7k</span><span>💬 164</span></div>
+                            </div>
+                        </div>
+
+                        <!-- iPhone Home Bar -->
+                        <div class="phone-home-indicator"></div>
                     </div>
                 </div>
 
+                <!-- Side Info Column & Interactive Controller -->
                 <div class="phone-info-col">
                     <h3>Kusursuz Instagram Vitrini</h3>
                     <p>
-                        Markanın dijital dünyadaki ilk izlenimi olan profil sayfası; tipografik netlik, uyumlu renk paleti ve davetkar bir editoryal ses tonu ile yapılandırılmıştır.
+                        Markanın dijital dünyadaki ilk temas noktası olan profil sayfası; tipografik netlik, uyumlu renk paleti ve davetkar bir editoryal ses tonu ile yapılandırılmıştır.
                     </p>
+
+                    <!-- Quick Live Avatar Switcher Controller -->
+                    <div class="live-avatar-switcher-box">
+                        <div class="live-avatar-switcher-title">
+                            <span>Canlı Profil Avatarını Değiştir</span>
+                            <span style="font-size:10px; color:#888; font-weight:600; text-transform:none;">Tıkla &amp; Anında Gör</span>
+                        </div>
+                        <div class="live-avatar-pills-grid">
+                            <button class="btn-avatar-quick-pick" onclick="setLiveMockupAvatar('#F6F3ED', '#202020', 'gezenbiri', 'wordmark')">
+                                <span class="swatch-dot" style="background:#F6F3ED;"></span>
+                                <span>01. Krem Logo</span>
+                            </button>
+                            <button class="btn-avatar-quick-pick" onclick="setLiveMockupAvatar('#202020', '#F6F3ED', 'gb.', 'mono')">
+                                <span class="swatch-dot" style="background:#202020;"></span>
+                                <span>02. Koyu Monogram</span>
+                            </button>
+                            <button class="btn-avatar-quick-pick" onclick="setLiveMockupAvatar('#FF4D3D', '#FFFFFF', 'gb.', 'mono')">
+                                <span class="swatch-dot" style="background:#FF4D3D;"></span>
+                                <span>03. Su Mercanı</span>
+                            </button>
+                            <button class="btn-avatar-quick-pick" onclick="setLiveMockupAvatar('#A8B89A', '#202020', 'gb.', 'mono')">
+                                <span class="swatch-dot" style="background:#A8B89A;"></span>
+                                <span>04. Adaçayı Yeşili</span>
+                            </button>
+                            <button class="btn-avatar-quick-pick" onclick="setLiveMockupAvatar('#A9D5E8', '#202020', 'gb.', 'app-icon')">
+                                <span class="swatch-dot" style="background:#A9D5E8;"></span>
+                                <span>05. Gök Mavisi</span>
+                            </button>
+                            <button class="btn-avatar-quick-pick" onclick="setLiveMockupAvatar('#D8CCBC', '#202020', 'gb.', 'serif')">
+                                <span class="swatch-dot" style="background:#D8CCBC;"></span>
+                                <span>06. Editoryal Serif</span>
+                            </button>
+                            <button class="btn-avatar-quick-pick" onclick="setLiveMockupAvatar('#FFFFFF', '#202020', 'gb.', 'mono')">
+                                <span class="swatch-dot" style="background:#FFFFFF;"></span>
+                                <span>07. Saf Beyaz</span>
+                            </button>
+                            <button class="btn-avatar-quick-pick" onclick="setLiveMockupAvatar('#141414', '#F6F3ED', 'gb.', 'ring')">
+                                <span class="swatch-dot" style="background:#141414;"></span>
+                                <span>08. Gece &amp; Halka</span>
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="meta-bullet-list">
-                        <div class="meta-bullet-item"><span class="brand-system-dot"></span><span>1080x1080 px yüksek çözünürlüklü 4 avatar varyantı</span></div>
+                        <div class="meta-bullet-item"><span class="brand-system-dot"></span><span>1080x1080 px yüksek çözünürlüklü 8 avatar varyantı</span></div>
                         <div class="meta-bullet-item"><span class="brand-system-dot"></span><span>10 adet birbiriyle %100 uyumlu editoryal Highlight kapağı</span></div>
                         <div class="meta-bullet-item"><span class="brand-system-dot"></span><span>6 farklı formatta 9:16 Dikey Story koleksiyonu</span></div>
                         <div class="meta-bullet-item"><span class="brand-system-dot"></span><span>8 adet hazır feed post formatı &amp; tek tıkla metin kopyalama</span></div>
