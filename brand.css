@@ -140,6 +140,13 @@
     vertical-align: baseline;
 }
 
+/* Coral-background inversion: System Dot becomes cream to stay visible */
+.theme-coral .brand-system-dot,
+.theme-coral .gb-system-dot,
+.theme-coral .system-dot {
+    background-color: var(--gb-cream);
+}
+
 /* Live Dot for active/real-time state indication */
 .gb-live-dot,
 .live-badge-dot {
