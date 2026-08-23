@@ -380,15 +380,16 @@
             display: block;
             font-size: 12.5px;
             letter-spacing: -0.2px;
+            color: var(--charcoal);
         }
 
         .ig-ui-bio span.category-badge {
             display: inline-block;
             font-size: 9.5px;
-            font-weight: 700;
+            font-weight: 600;
             color: #777;
             background: rgba(0,0,0,0.04);
-            padding: 1px 6px;
+            padding: 1.5px 6px;
             border-radius: 4px;
             margin: 2px 0 4px 0;
         }
@@ -401,31 +402,71 @@
             margin: 2px 0;
         }
 
+        .ig-ui-bio-routes {
+            color: #444;
+            font-weight: 500;
+        }
+
+        .ig-ui-bio-desc {
+            color: #666;
+            margin-top: 1px;
+        }
+
+        .ig-ui-bio-link {
+            color: var(--coral);
+            text-decoration: none;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            margin-top: 3px;
+        }
+
+        .ig-ui-bio-link:hover {
+            text-decoration: underline;
+        }
+
         .ig-ui-mutual-followers {
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-top: 6px;
+            gap: 8px;
+            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px solid rgba(0,0,0,0.04);
             font-size: 10px;
             color: #666;
+            line-height: 1.35;
         }
 
         .ig-ui-mutual-avatars {
             display: flex;
-            margin-right: -2px;
+            flex-shrink: 0;
         }
 
         .ig-ui-mutual-avatar {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             border: 1.5px solid var(--white);
-            margin-left: -5px;
+            margin-left: -6px;
             object-fit: cover;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .ig-ui-mutual-avatar:first-child {
             margin-left: 0;
+        }
+
+        .ig-ui-mutual-text {
+            flex: 1;
+            color: #555;
+        }
+
+        .ig-ui-mutual-text strong {
+            display: inline;
+            font-weight: 700;
+            font-size: 10px;
+            color: var(--charcoal);
         }
 
         /* Action Buttons */
@@ -1536,9 +1577,9 @@
                                 <strong>gezenbiri</strong>
                                 <span class="category-badge">Seyahat &amp; Deneyim Topluluğu</span>
                                 <div class="ig-ui-bio-manifesto">“Bir yere gidelim.”</div>
-                                <div>Alaçatı · Urla · Bozcaada · Kapadokya · Kaş</div>
-                                <div>Hafta sonu rotaları, yerel sofralar &amp; atölyeler ↓</div>
-                                <a href="gezenbiri_website.html" style="color:var(--coral); text-decoration:none; font-weight:800; display:inline-flex; align-items:center; gap:3px; margin-top:2px;">
+                                <div class="ig-ui-bio-routes">Alaçatı · Urla · Bozcaada · Kapadokya · Kaş</div>
+                                <div class="ig-ui-bio-desc">Hafta sonu rotaları, yerel sofralar &amp; atölyeler ↓</div>
+                                <a href="gezenbiri_website.html" class="ig-ui-bio-link">
                                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                                     <span>gezenbiri.com.tr</span>
                                 </a>
@@ -1548,7 +1589,9 @@
                                         <img src="assets/v2/avatar_irem.jpg" alt="İrem" class="ig-ui-mutual-avatar">
                                         <img src="assets/v2/avatar_selin.jpg" alt="Selin" class="ig-ui-mutual-avatar">
                                     </div>
-                                    <span><strong>@irem</strong>, <strong>@selin</strong> ve 42 kişi daha takip ediyor</span>
+                                    <div class="ig-ui-mutual-text">
+                                        Takip edenler: <strong>irem</strong>, <strong>selin</strong> ve <strong>42 diğer kişi</strong>
+                                    </div>
                                 </div>
                             </div>
 
