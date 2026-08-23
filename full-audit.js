@@ -18,6 +18,7 @@ const productionFiles = [
     'packing-guide.html',
     'merch-guidelines.html',
     'coming-soon.html',
+    'whatsapp-ticket.html',
     'brand.css',
     'data/events.js'
 ];

@@ -142,6 +142,18 @@
             grid-template-columns: repeat(3, 1fr);
         }
 
+        @media (max-width: 992px) {
+            .tools-grid.grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .tools-grid.grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .tools-grid.grid-4 {
             grid-template-columns: repeat(4, 1fr);
         }
@@ -614,16 +626,31 @@
             </a>
 
             <!-- 07: Physical Merchandise Guidelines -->
-            <a href="merch-guidelines.html" class="tool-card" style="border: 2px solid rgba(255, 77, 61, 0.35);">
+            <a href="merch-guidelines.html" class="tool-card">
                 <div>
-                    <div class="tool-num" style="color:var(--gb-coral);">Lab 05 · Physical Identity</div>
+                    <div class="tool-num">Lab 05 · Physical Identity</div>
                     <h2 class="tool-title">Merchandise &amp; Ürün Kiti</h2>
                     <p class="tool-desc">
                         Ham bez çanta, emaye kupa, kanvas şapka, seyahat defteri ve deri etiketler için teknik üretim, Pantone ve serigrafi standartları.
                     </p>
                 </div>
                 <div class="tool-action">
-                    <span style="color:var(--gb-coral); font-weight:900;">Ürün Kitini Aç</span>
+                    <span>Ürün Kitini Aç</span>
+                    <div class="tool-arrow">→</div>
+                </div>
+            </a>
+
+            <!-- 08: WhatsApp Ticket & Confirmation Suite -->
+            <a href="whatsapp-ticket.html" class="tool-card" style="border: 2px solid rgba(255, 77, 61, 0.4); background: linear-gradient(135deg, #FFFFFF 0%, #FAF8F5 100%);">
+                <div>
+                    <div class="tool-num" style="color:var(--gb-coral);">Lab 06 · Customer Experience</div>
+                    <h2 class="tool-title">WhatsApp Bilet &amp; Onay Suite</h2>
+                    <p class="tool-desc">
+                        Satın alma sonrası müşteriye WhatsApp ile iletilen yüksek çözünürlüklü dijital bilet kartı, perfore QR stub'ı ve 4 aşamalı bildirim şablonları.
+                    </p>
+                </div>
+                <div class="tool-action">
+                    <span style="color:var(--gb-coral); font-weight:900;">Bilet Suite'ini Aç</span>
                     <div class="tool-arrow" style="background:var(--gb-coral); color:var(--gb-white);">→</div>
                 </div>
             </a>
