@@ -295,76 +295,248 @@
             margin-top: 2px;
         }
 
-        /* ROW 3: MARKA DİLİ & MARKA KİŞİLİĞİ / KELİME BULUTU */
+          /* ROW 3: MARKA SES TONU, EDİTORYAL DİL & KELİME BANKASI */
         .grid-row-3 {
             display: grid;
-            grid-template-columns: 1.4fr 1.6fr;
-            gap: 40px;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 36px;
             align-items: start;
         }
 
-        .voice-table-mini {
+        .voice-comparison-card {
+            background: var(--white);
+            border: 1px solid var(--border-line);
+            border-radius: 16px;
+            padding: 20px 22px;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            font-size: 11.5px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.02);
         }
 
         .voice-headers {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 16px;
             font-weight: 800;
             font-size: 11px;
-            border-bottom: 1px solid var(--border-line);
-            padding-bottom: 6px;
+            border-bottom: 1.5px solid var(--border-line);
+            padding-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .voice-headers .right { color: var(--coral); }
+        .voice-headers .wrong-head { color: #888; }
+        .voice-headers .correct-head { color: var(--charcoal); }
 
         .voice-item-pair {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            line-height: 1.4;
+            gap: 16px;
+            padding: 7px 0;
+            border-bottom: 1px dashed rgba(0,0,0,0.06);
+            font-size: 11px;
+            line-height: 1.45;
         }
 
-        .voice-item-pair .wrong { color: #888; }
-        .voice-item-pair .correct { font-weight: 700; color: var(--charcoal); }
+        .voice-item-pair:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
 
-        .personality-cloud-box {
-            background: var(--white);
-            border: 1px solid var(--border-line);
-            border-radius: 14px;
-            padding: 16px 20px;
+        .voice-item-pair .wrong {
+            color: #888;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .voice-item-pair .wrong::before {
+            content: "✕";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #AA4444;
+            font-weight: 900;
+            font-size: 10px;
+        }
+
+        .voice-item-pair .correct {
+            font-weight: 700;
+            color: var(--charcoal);
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .voice-item-pair .correct::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #4B7D50;
+            font-weight: 900;
+            font-size: 11px;
+        }
+
+        /* 4 İletişim Senaryosu Matrisi */
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 14px;
+            border-top: 1px solid var(--border-line);
+            padding-top: 14px;
+        }
+
+        .scenario-card {
+            background: var(--cream);
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 10px;
+            padding: 10px 12px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 4px;
         }
 
-        .personality-traits {
-            font-size: 11.5px;
+        .scenario-tag {
+            font-size: 9.5px;
             font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: var(--charcoal);
-            line-height: 1.6;
-            letter-spacing: 0.2px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .scenario-desc {
+            font-size: 10px;
+            color: #666;
+            line-height: 1.35;
+        }
+
+        .scenario-example {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 11.5px;
+            color: var(--charcoal);
+            line-height: 1.35;
+            margin-top: 2px;
+        }
+
+        /* Sağ Panel: Marka Kişiliği & Kelime Bankası */
+        .personality-panel {
+            background: var(--white);
+            border: 1px solid var(--border-line);
+            border-radius: 16px;
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.02);
         }
 
         .editorial-quote {
             font-family: var(--font-serif);
             font-style: italic;
-            font-size: 17px;
-            color: var(--coral);
+            font-size: 17.5px;
+            color: var(--charcoal);
+            line-height: 1.35;
+            border-left: 2.5px solid var(--coral);
+            padding-left: 12px;
+        }
+
+        /* 4 Ses Tonu Sütunu */
+        .pillars-grid-4 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .pillar-card {
+            background: var(--cream);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 8px;
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .pillar-title {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .pillar-sub {
+            font-size: 9.5px;
+            color: #666;
             line-height: 1.3;
         }
 
-        .keywords-strip {
-            font-size: 10.5px;
-            color: #666;
-            line-height: 1.6;
-            border-top: 1px dashed var(--border-line);
-            padding-top: 10px;
-            font-weight: 600;
+        /* Kelime Bankası (Lexicon) */
+        .lexicon-section {
+            border-top: 1px solid var(--border-line);
+            padding-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .lexicon-group-title {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lexicon-group-title.approved { color: #3E6F43; }
+        .lexicon-group-title.forbidden { color: #AA4444; }
+
+        .lexicon-tags-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .lexicon-tag {
+            font-size: 9.5px;
+            font-weight: 700;
+            padding: 3px 7px;
+            border-radius: 4px;
+            line-height: 1;
+        }
+
+        .lexicon-tag.approved {
+            background: #EDF3EB;
+            color: #2F5934;
+            border: 1px solid #D2E2CF;
+        }
+
+        .lexicon-tag.forbidden {
+            background: #FDF0F0;
+            color: #992828;
+            border: 1px solid #F3CECE;
+            text-decoration: line-through;
+            opacity: 0.85;
+        }
+
+        /* Editoryal Mekanik Kurallar */
+        .editorial-rules-box {
+            background: #FAF8F5;
+            border: 1px dashed var(--border-line);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 9.5px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .editorial-rules-box strong {
+            color: var(--charcoal);
         }
 
         /* ROW 4: FOTOĞRAFİ YÖNÜ & MARKA MİMARİSİ */
@@ -978,23 +1150,25 @@
 
         <div class="divider"></div>
 
-        <!-- 05 MARKA DİLİ & 06 MARKA KİŞİLİĞİ / KELİME BULUTU -->
+        <!-- 05 MARKA SES TONU & 06 MARKA KİŞİLİĞİ / KELİME BANKASI -->
         <div>
             <div class="grid-row-3">
-                <!-- 05 Marka Dili (5 Comparison Pairs) -->
+                <!-- 05 Marka Ses Tonu (Karşılaştırmalı Matris & 4 İletişim Senaryosu) -->
                 <div>
-                    <span class="section-tag">05 MARKA SES TONU (TONE OF VOICE)</span>
-                    <div class="voice-table-mini">
+                    <span class="section-tag">05 MARKA SES TONU &amp; KARŞILAŞTIRMALI DİL REHBERİ (TONE OF VOICE)</span>
+                    <div class="voice-comparison-card">
                         <div class="voice-headers">
-                            <div>Geleneksel Turizm Dili (Kullanılmaz)</div>
-                            <div class="right">gezenbiri Samimi Dili</div>
+                            <div class="wrong-head">Geleneksel Turizm Dili (Yasak)</div>
+                            <div class="correct-head">gezenbiri Samimi Dili (Onaylı)</div>
                         </div>
+                        
+                        <!-- 8 Comparison Pairs -->
                         <div class="voice-item-pair">
                             <div class="wrong">“2 gece 3 gün konaklamalı eşsiz Çeşme turumuz sizleri bekliyor.”</div>
                             <div class="correct">“Cuma akşamı çıkıyoruz. Pazar akşamı dönüyoruz. Arada biraz Çeşme.”</div>
                         </div>
                         <div class="voice-item-pair">
-                            <div class="wrong">“Kontenjanlarımız sınırlıdır.”</div>
+                            <div class="wrong">“Kontenjanlarımız sınırlıdır, acele edin!”</div>
                             <div class="correct">“Masada 6 kişilik yer kaldı.”</div>
                         </div>
                         <div class="voice-item-pair">
@@ -1002,28 +1176,125 @@
                             <div class="correct">“Geliyorsan yerini ayıralım.”</div>
                         </div>
                         <div class="voice-item-pair">
-                            <div class="wrong">“Profesyonel rehberlik hizmeti sunulmaktadır.”</div>
-                            <div class="correct">“Yolu bilen biri de geliyor.”</div>
+                            <div class="wrong">“Profesyonel kokartlı rehberlik hizmeti dahildir.”</div>
+                            <div class="correct">“Yolu bilen biri de bizimle geliyor.”</div>
                         </div>
                         <div class="voice-item-pair">
-                            <div class="wrong">“Unutulmaz bir tatil fırsatı!”</div>
+                            <div class="wrong">“5 yıldızlı ultra her şey dahil konaklama.”</div>
+                            <div class="correct">“Temiz bir taş oda, sessiz bir avlu, sabah taze ekmek kokusu.”</div>
+                        </div>
+                        <div class="voice-item-pair">
+                            <div class="wrong">“Unutulmaz bir rüya tatil fırsatı!”</div>
                             <div class="correct">“Bazen sadece evden çıkmak yeterlidir.”</div>
+                        </div>
+                        <div class="voice-item-pair">
+                            <div class="wrong">“Yoğun talep sebebiyle kontenjan dolmuştur.”</div>
+                            <div class="correct">“Bu seferlik masa doldu. Bir sonrakinde birlikteyiz.”</div>
+                        </div>
+                        <div class="voice-item-pair">
+                            <div class="wrong">“Hava muhalefeti sebebiyle operasyon iptaldir.”</div>
+                            <div class="correct">“Hava biraz sertleşti; yağmuru beklemek yerine haftaya erteliyoruz.”</div>
+                        </div>
+
+                        <!-- 4 İletişim Senaryosu Matrisi -->
+                        <div class="scenarios-grid">
+                            <div class="scenario-card">
+                                <span class="scenario-tag">📢 01. Rota &amp; Davet</span>
+                                <span class="scenario-desc">Baskısız, görsel betimlemeli ve merak uyandırıcı davet dili.</span>
+                                <span class="scenario-example">“Urla'da bağlar yaprak döküyor. Cumartesi kahvesi ve seramik için toplanıyoruz.”</span>
+                            </div>
+                            <div class="scenario-card">
+                                <span class="scenario-tag">💬 02. WhatsApp &amp; Sohbet</span>
+                                <span class="scenario-desc">Yoldaş, samimi, kısa ve çözüm odaklı topluluk iletişimi.</span>
+                                <span class="scenario-example">“Selam! Cuma 17:30'da iskeledeyiz. Yanına rahat bir hırka almayı unutma.”</span>
+                            </div>
+                            <div class="scenario-card">
+                                <span class="scenario-tag">📋 03. Lojistik &amp; Bilgi</span>
+                                <span class="scenario-desc">Şeffaf, net, abartısız ve operasyonel güvenilirlik odaklı.</span>
+                                <span class="scenario-example">“Rota 4 km patika yürüyüşü içerir. Araç transferi ve öğle atıştırmalıkları hazır.”</span>
+                            </div>
+                            <div class="scenario-card">
+                                <span class="scenario-tag">🌧️ 04. Aksaklık &amp; Kriz</span>
+                                <span class="scenario-desc">Bürokratik bahaneler yerine dürüst, sorumlu ve alternatifli yaklaşım.</span>
+                                <span class="scenario-example">“Rüzgar sert; sabah rotasını kıyıdaki zeytinliğe kaydırıyoruz, çaylar bizden.”</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 06 Marka Kişiliği & Kelime Bulutu -->
+                <!-- 06 Marka Kişiliği & Kelime Bankası (Lexicon) -->
                 <div>
-                    <span class="section-tag">06 MARKA KİŞİLİĞİ (5 ANA KARAKTER)</span>
-                    <div class="personality-cloud-box">
+                    <span class="section-tag">06 MARKA KİŞİLİĞİ &amp; KELİME BANKASI (LEXICON)</span>
+                    <div class="personality-panel">
                         <div class="editorial-quote">
                             “Mekan sadece bir sahne. Asıl hikaye birlikte yaşanan andır.”
                         </div>
-                        <div class="personality-traits">
-                            Spontane · Sıcak · Meraklı · Sade · Sosyal
+
+                        <!-- 4 Ses Tonu Sütunu -->
+                        <div class="pillars-grid-4">
+                            <div class="pillar-card">
+                                <span class="pillar-title">01. Spontane &amp; Hafif</span>
+                                <span class="pillar-sub">Ağırbaşlı ama kasıntı değil; akışa açık ve telaşsız.</span>
+                            </div>
+                            <div class="pillar-card">
+                                <span class="pillar-title">02. Sıcak &amp; Davetkar</span>
+                                <span class="pillar-sub">Acente heyecanı değil; kahveye çağıran dost dili.</span>
+                            </div>
+                            <div class="pillar-card">
+                                <span class="pillar-title">03. Mütevazı &amp; Dürüst</span>
+                                <span class="pillar-sub">Abartılı sıfatlar yok; durum neyse o samimiyet.</span>
+                            </div>
+                            <div class="pillar-card">
+                                <span class="pillar-title">04. Topluluk Odaklı</span>
+                                <span class="pillar-sub">Müşteri değil; masadaki yol arkadaşı ruhu.</span>
+                            </div>
                         </div>
-                        <div class="keywords-strip">
-                            yaratıcı atölye · uzun masa · hafta sonu kaçamağı · gün batımı · yol arkadaşlığı · yerel şarap tadımı · seramik masası · samimi sohbet · gerçek anlar
+
+                        <!-- Kelime Bankası (Lexicon) -->
+                        <div class="lexicon-section">
+                            <div>
+                                <div class="lexicon-group-title approved">
+                                    <span>✓ Teşvik Edilen Kelimeler (Yeşil Liste)</span>
+                                </div>
+                                <div class="lexicon-tags-wrap" style="margin-top:6px;">
+                                    <span class="lexicon-tag approved">kaçamak</span>
+                                    <span class="lexicon-tag approved">yerel sofra</span>
+                                    <span class="lexicon-tag approved">uzun masa</span>
+                                    <span class="lexicon-tag approved">yol arkadaşı</span>
+                                    <span class="lexicon-tag approved">sakin koy</span>
+                                    <span class="lexicon-tag approved">taş fırın</span>
+                                    <span class="lexicon-tag approved">spontane</span>
+                                    <span class="lexicon-tag approved">arada bir</span>
+                                    <span class="lexicon-tag approved">birlikte</span>
+                                    <span class="lexicon-tag approved">nefes almak</span>
+                                    <span class="lexicon-tag approved">zanaat</span>
+                                    <span class="lexicon-tag approved">bağbozumu</span>
+                                    <span class="lexicon-tag approved">gün batımı</span>
+                                </div>
+                            </div>
+
+                            <div style="margin-top:4px;">
+                                <div class="lexicon-group-title forbidden">
+                                    <span>✕ Kesinlikle Yasaklı Kelimeler (Kırmızı Liste)</span>
+                                </div>
+                                <div class="lexicon-tags-wrap" style="margin-top:6px;">
+                                    <span class="lexicon-tag forbidden">tur</span>
+                                    <span class="lexicon-tag forbidden">turizm acentesi</span>
+                                    <span class="lexicon-tag forbidden">müşteri</span>
+                                    <span class="lexicon-tag forbidden">paket tatil</span>
+                                    <span class="lexicon-tag forbidden">erken rezervasyon</span>
+                                    <span class="lexicon-tag forbidden">VIP</span>
+                                    <span class="lexicon-tag forbidden">lüks tatil</span>
+                                    <span class="lexicon-tag forbidden">unutulmaz fırsat</span>
+                                    <span class="lexicon-tag forbidden">dev indirim</span>
+                                    <span class="lexicon-tag forbidden">promosyon</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Editoryal Mekanik Kurallar -->
+                        <div class="editorial-rules-box">
+                            <strong>Editoryal Kural Özeti:</strong> Cümle sonlarında standart tipografik nokta; sıfır native emoji; Instrument Serif yalnızca italik editoryal alıntılarda; asla bağıran büyük harf yok.
                         </div>
                     </div>
                 </div>
