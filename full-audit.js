@@ -19,6 +19,7 @@ const productionFiles = [
     'merch-guidelines.html',
     'coming-soon.html',
     'whatsapp-ticket.html',
+    'sunum.html',
     'brand.css',
     'data/events.js'
 ];

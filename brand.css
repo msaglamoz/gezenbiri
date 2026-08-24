@@ -114,7 +114,8 @@
 
 .gb-logo,
 .brand-logo,
-.statement-logo {
+.statement-logo,
+.gb-wordmark {
     font-family: var(--font-sans);
     font-weight: var(--gb-weight-logo);
     letter-spacing: -0.04em;

@@ -15,6 +15,7 @@ const productionFiles = [
     'trip-cards.html',
     'instagram-suite.html',
     'whatsapp-ticket.html',
+    'sunum.html',
     'brand.css',
     'data/events.js'
 ];

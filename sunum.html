@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gezenbiri — İnteraktif Proje Sunumu &amp; Pitch Deck</title>
+    <meta name="description" content="gezenbiri; yaratıcı atölyeler, yerel sofralar ve butik rotalar etrafında kurulan çağdaş marka ekosistemi interaktif sunumu.">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="theme-color" content="#F6F3ED">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="gezenbiri — İnteraktif Proje Sunumu &amp; Pitch Deck">
+    <meta property="og:description" content="“Bir yere gidelim.” Yaratıcı atölyelerden butik kaçamaklara çağdaş marka ekosistemi sunumu.">
+    <meta property="og:image" content="assets/v2/manifesto_dinner.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Cellipse cx='25' cy='10' rx='3' ry='3.09' fill='%23FF4D3D'/%3E%3C/svg%3E">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="brand.css">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--gb-cream);
+            color: var(--gb-charcoal);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Progress Bar */
+        .presentation-progress-track {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(32, 32, 32, 0.08);
+            z-index: 1000;
+        }
+
+        .presentation-progress-fill {
+            height: 100%;
+            width: 10%;
+            background: var(--gb-coral);
+            transition: width 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Presentation Header / Bar */
+        .deck-header {
+            position: sticky;
+            top: 0;
+            background: rgba(246, 243, 237, 0.94);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--gb-border-subtle);
+            padding: 14px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 900;
+            gap: 16px;
+        }
+
+        .deck-brand-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .deck-back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gb-charcoal);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: var(--gb-radius-pill);
+            background: rgba(32, 32, 32, 0.05);
+            border: 1px solid var(--gb-border-subtle);
+            transition: all 0.2s ease;
+        }
+
+        .deck-back-btn:hover {
+            background: var(--gb-charcoal);
+            color: var(--gb-white);
+        }
+
+        .deck-status-pill {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: var(--gb-radius-pill);
+            background: rgba(255, 77, 61, 0.1);
+            color: var(--gb-coral);
+            border: 1px solid rgba(255, 77, 61, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .deck-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gb-coral);
+        }
+
+        .deck-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .deck-btn {
+            background: var(--gb-white);
+            border: 1px solid var(--gb-border-subtle);
+            color: var(--gb-charcoal);
+            font-family: var(--font-sans);
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 7px 14px;
+            border-radius: var(--gb-radius-pill);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            box-shadow: var(--gb-shadow-subtle);
+        }
+
+        .deck-btn:hover {
+            background: var(--gb-charcoal);
+            color: var(--gb-white);
+            border-color: var(--gb-charcoal);
+        }
+
+        .deck-btn.active {
+            background: var(--gb-coral);
+            color: var(--gb-white);
+            border-color: var(--gb-coral);
+        }
+
+        /* Slide Viewport */
+        .slide-viewport {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 24px;
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .slide-stage {
+            width: 100%;
+            background: var(--gb-white);
+            border: 1px solid var(--gb-border-subtle);
+            border-radius: var(--gb-radius-lg);
+            box-shadow: var(--gb-shadow-floating);
+            min-height: 680px;
+            padding: 56px 64px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Slide Transition Animations */
+        .slide-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .slide-content.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slide Top Breadcrumb / Tag */
+        .slide-top-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            border-bottom: 1px solid var(--gb-border-subtle);
+            padding-bottom: 16px;
+        }
+
+        .slide-index-tag {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--gb-coral);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .slide-category-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gb-stone);
+            color: #777;
+        }
+
+        /* Slide Heading Typography */
+        .slide-hero-title {
+            font-size: 44px;
+            font-weight: 900;
+            letter-spacing: -1.2px;
+            line-height: 1.15;
+            color: var(--gb-charcoal);
+            margin-bottom: 16px;
+        }
+
+        .slide-serif-quote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 32px;
+            line-height: 1.25;
+            color: var(--gb-coral);
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .slide-lead-p {
+            font-size: 17px;
+            line-height: 1.6;
+            color: #4a4a4a;
+            max-width: 820px;
+            margin-bottom: 28px;
+        }
+
+        /* Slide Grids & Components */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .grid-3col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .grid-4col {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .card-box {
+            background: var(--gb-cream);
+            border: 1px solid var(--gb-border-subtle);
+            border-radius: var(--gb-radius-md);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-box:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--gb-shadow-subtle);
+        }
+
+        .card-box.highlight {
+            background: #FFFFFF;
+            border: 2px solid var(--gb-charcoal);
+        }
+
+        .card-box.coral-accent {
+            background: #FFF5F4;
+            border-color: rgba(255, 77, 61, 0.25);
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--gb-charcoal);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            line-height: 1.55;
+            color: #555;
+        }
+
+        .card-tag {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--gb-coral);
+            align-self: flex-start;
+            padding: 3px 8px;
+            background: rgba(255, 77, 61, 0.08);
+            border-radius: 4px;
+        }
+
+        /* Visual Media Box */
+        .slide-media-wrap {
+            width: 100%;
+            height: 380px;
+            border-radius: var(--gb-radius-md);
+            overflow: hidden;
+            border: 1px solid var(--gb-border-subtle);
+            position: relative;
+        }
+
+        .slide-media-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .media-caption-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px 20px;
+            background: linear-gradient(0deg, rgba(32,32,32,0.85) 0%, rgba(32,32,32,0) 100%);
+            color: var(--gb-white);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* Anatomy & Architecture Diagram */
+        .anatomy-diagram {
+            background: var(--gb-cream);
+            border: 1px solid var(--gb-border-subtle);
+            border-radius: var(--gb-radius-md);
+            padding: 32px 28px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .anatomy-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .anatomy-term {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--gb-charcoal);
+            font-family: var(--font-sans);
+        }
+
+        .anatomy-badge {
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: var(--gb-radius-pill);
+            background: var(--gb-charcoal);
+            color: var(--gb-white);
+            text-transform: uppercase;
+        }
+
+        .anatomy-sub {
+            font-size: 12.5px;
+            color: #666;
+            font-weight: 600;
+            max-width: 160px;
+        }
+
+        .anatomy-plus {
+            font-size: 24px;
+            font-weight: 300;
+            color: #999;
+        }
+
+        /* Color Palette Swatches */
+        .palette-deck {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .swatch-item {
+            flex: 1;
+            height: 90px;
+            border-radius: var(--gb-radius-sm);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .swatch-name {
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .swatch-hex {
+            font-size: 10px;
+            font-family: monospace;
+            opacity: 0.85;
+        }
+
+        /* 8 Canonical SVG Icons Grid */
+        .icon-deck-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            width: 100%;
+            margin: 16px 0;
+        }
+
+        .icon-show-card {
+            background: var(--gb-cream);
+            border: 1px solid var(--gb-border-subtle);
+            border-radius: var(--gb-radius-md);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .icon-show-svg {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: var(--gb-charcoal);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+        }
+
+        .icon-show-info h4 {
+            font-size: 13.5px;
+            font-weight: 800;
+            color: var(--gb-charcoal);
+            margin-bottom: 2px;
+        }
+
+        .icon-show-info p {
+            font-size: 11px;
+            color: #666;
+        }
+
+        /* Slide Bottom Bar */
+        .slide-footer-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gb-border-subtle);
+            font-size: 13px;
+            color: #777;
+        }
+
+        .slide-footer-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .slide-footer-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+        }
+
+        /* Deck Navigation Controls */
+        .deck-nav-bar {
+            background: var(--gb-white);
+            border-top: 1px solid var(--gb-border-subtle);
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            bottom: 0;
+            z-index: 900;
+        }
+
+        .nav-btn-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-arrow-btn {
+            background: var(--gb-charcoal);
+            color: var(--gb-white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--gb-radius-pill);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-arrow-btn:hover:not(:disabled) {
+            background: var(--gb-coral);
+            transform: translateY(-1px);
+        }
+
+        .nav-arrow-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            background: #888;
+        }
+
+        .nav-arrow-btn.secondary {
+            background: var(--gb-cream);
+            color: var(--gb-charcoal);
+            border: 1px solid var(--gb-border-subtle);
+        }
+
+        .nav-arrow-btn.secondary:hover:not(:disabled) {
+            background: var(--gb-charcoal);
+            color: var(--gb-white);
+        }
+
+        .nav-slide-indicator {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--gb-charcoal);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-dots-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-dot-pill {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(32, 32, 32, 0.2);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: none;
+        }
+
+        .nav-dot-pill.active {
+            background: var(--gb-coral);
+            width: 24px;
+            border-radius: var(--gb-radius-pill);
+        }
+
+        /* Speaker Notes Panel / Drawer */
+        .speaker-notes-drawer {
+            position: fixed;
+            bottom: 60px;
+            right: 24px;
+            width: 380px;
+            max-width: calc(100vw - 48px);
+            background: rgba(32, 32, 32, 0.96);
+            backdrop-filter: blur(16px);
+            color: var(--gb-cream);
+            border-radius: var(--gb-radius-lg);
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.12);
+            z-index: 1050;
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .speaker-notes-drawer.open {
+            display: flex;
+        }
+
+        .speaker-notes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 10px;
+        }
+
+        .speaker-notes-title {
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: var(--gb-coral);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .speaker-notes-body {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #D9D6D1;
+            max-height: 240px;
+            overflow-y: auto;
+        }
+
+        .speaker-notes-close {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .speaker-notes-close:hover {
+            color: var(--gb-white);
+        }
+
+        /* Slide Overview Grid Modal */
+        .overview-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(32, 32, 32, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+        }
+
+        .overview-modal.open {
+            display: flex;
+        }
+
+        .overview-content {
+            background: var(--gb-cream);
+            border-radius: var(--gb-radius-lg);
+            width: 100%;
+            max-width: 1100px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            border: 1px solid var(--gb-border-subtle);
+        }
+
+        .overview-header {
+            padding: 24px 32px;
+            background: var(--gb-white);
+            border-bottom: 1px solid var(--gb-border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .overview-grid {
+            padding: 32px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            overflow-y: auto;
+        }
+
+        .overview-card {
+            background: var(--gb-white);
+            border: 1px solid var(--gb-border-subtle);
+            border-radius: var(--gb-radius-md);
+            padding: 16px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .overview-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--gb-coral);
+            box-shadow: var(--gb-shadow-subtle);
+        }
+
+        .overview-card.current {
+            border: 2px solid var(--gb-coral);
+            background: #FFF5F4;
+        }
+
+        .overview-card-num {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--gb-coral);
+        }
+
+        .overview-card-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--gb-charcoal);
+            line-height: 1.35;
+        }
+
+        /* Keyboard Help Overlay */
+        .shortcut-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            background: rgba(32,32,32,0.08);
+            border-radius: 4px;
+            font-size: 10px;
+            font-family: monospace;
+            font-weight: 700;
+            color: var(--gb-charcoal);
+            margin-left: 4px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 960px) {
+            .slide-stage {
+                padding: 36px 28px;
+                min-height: auto;
+            }
+            .slide-hero-title {
+                font-size: 32px;
+            }
+            .slide-serif-quote {
+                font-size: 24px;
+            }
+            .grid-2col, .grid-3col, .grid-4col, .icon-deck-grid {
+                grid-template-columns: 1fr;
+            }
+            .anatomy-diagram {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .deck-header {
+                padding: 10px 16px;
+            }
+            .deck-nav-bar {
+                padding: 12px 16px;
+            }
+            .palette-deck {
+                flex-wrap: wrap;
+            }
+            .swatch-item {
+                min-width: 45%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Progress Bar -->
+    <div class="presentation-progress-track" aria-hidden="true">
+        <div class="presentation-progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Presentation Header -->
+    <header class="deck-header">
+        <div class="deck-brand-wrap">
+            <a href="index.html" class="deck-back-btn" title="Ana Ekosistem Hub'a Dön">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span>Hub</span>
+            </a>
+            <a href="index.html" style="text-decoration:none; color:inherit; display:inline-flex; align-items:baseline;">
+                <span class="gb-wordmark" style="font-size: 22px;">gezenbiri<span class="system-dot" aria-hidden="true"></span></span>
+            </a>
+            <span class="deck-status-pill">
+                <span class="deck-status-dot"></span>
+                <span>Proje Sunumu &amp; Pitch Deck</span>
+            </span>
+        </div>
+
+        <div class="deck-actions">
+            <button class="deck-btn" id="btnNotesToggle" onclick="toggleSpeakerNotes()" title="Sunucu Notlarını Göster / Gizle (Kısayol: N)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                <span>Notlar <span class="shortcut-badge">N</span></span>
+            </button>
+            <button class="deck-btn" id="btnOverviewToggle" onclick="openOverviewModal()" title="Tüm Slaytları Görüntüle (Kısayol: O veya Tab)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                <span>Slaytlar <span class="shortcut-badge">O</span></span>
+            </button>
+            <button class="deck-btn" id="btnFullscreen" onclick="toggleFullscreen()" title="Tam Ekrana Geç (Kısayol: F)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+                <span>Tam Ekran <span class="shortcut-badge">F</span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Slide Viewport -->
+    <main class="slide-viewport">
+        <div class="slide-stage" id="slideStage">
+
+            <!-- SLIDE 01: Kapak & Manifesto -->
+            <article class="slide-content active" data-slide="1">
+                <div class="slide-top-meta">
+                    <div class="slide-index-tag">
+                        <span>Slayt 01 / 10</span>
+                        <span>·</span>
+                        <span>Marka Manifestosu &amp; Giriş</span>
+                    </div>
+                    <div class="slide-category-title">gezenbiri.com.tr · Resmi Pitch Deck</div>
+                </div>
+
+                <div class="slide-body">
+                    <div style="margin-bottom: 24px;">
+                        <span class="gb-wordmark" style="font-size: 64px; letter-spacing: -2.5px; line-height: 1;">gezenbiri<span class="system-dot" aria-hidden="true"></span></span>
+                    </div>
+                    <div class="slide-serif-quote">“Bir yere gidelim.”</div>
+                    <h1 class="slide-hero-title">Gitmeye değer yerler. Tanışmaya değer insanlar.</h1>
+                    <p class="slide-lead-p">
+                        gezenbiri; insanları yaratıcı atölyeler, yerel sofralar, kültürel buluşmalar ve özenle kürate edilmiş butik rotalar etrafında bir araya getiren modern bir sosyal keşif ve deneyim topluluğudur.
+                    </p>
+
+                    <div class="grid-3col" style="margin-top: 28px;">
+                        <div class="card-box coral-accent">
+                            <span class="card-tag">Konumlanma</span>
+                            <h3 class="card-title">Sosyal Deneyim</h3>
+                            <p class="card-desc">Klasik acente kalıplarından uzak, samimi bağlar kurduran mikro-kaçamaklar.</p>
+                        </div>
+                        <div class="card-box">
+                            <span class="card-tag">Tasarım</span>
+                            <h3 class="card-title">Editoryal Sade Duruş</h3>
+                            <p class="card-desc">Swiss-minimalist tipografi, Action Coral aksanı ve System Dot kimliği.</p>
+                        </div>
+                        <div class="card-box">
+                            <span class="card-tag">Mimari</span>
+                            <h3 class="card-title">Entegre Ekosistem</h3>
+                            <p class="card-desc">Web portalı, WhatsApp biletleri, rota kartları ve Instagram yayın paketi.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-meta">
+                    <div class="slide-footer-left">
+                        <span>Tasarım Direktörü &amp; Marka Yaratıcısı: <strong>Mahir Sağlamöz</strong></span>
+                    </div>
+                    <div class="slide-footer-right">
+                        <span>İlerlemek için <strong>Sağ Ok (→)</strong> veya <strong>Space</strong> tuşuna basın</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 02: Problem & Fırsat -->
+            <article class="slide-content" data-slide="2">
+                <div class="slide-top-meta">
+                    <div class="slide-index-tag">
+                        <span>Slayt 02 / 10</span>
+                        <span>·</span>
+                        <span>Pazar Analizi &amp; Problem Tanımı</span>
+                    </div>
+                    <div class="slide-category-title">Neden gezenbiri?</div>
+                </div>
+
+                <div class="slide-body">
+                    <h2 class="slide-hero-title">Seyahat ve sosyalleşme arasındaki kopukluk.</h2>
+                    <p class="slide-lead-p">
+                        Modern şehir insanı; standart turistik paketlerden sıkılmış, yalnızlaşmış ancak yeni insanlarla tanışabileceği güvenli, estetik ve samimi ortamlara ihtiyaç duymaktadır.
+                    </p>
+
+                    <div class="grid-2col">
+                        <div class="card-box" style="background: #FDF7F7; border-color: #EED7D7;">
+                            <span class="card-tag" style="background:rgba(0,0,0,0.06); color:#777;">Geleneksel Model</span>
+                            <h3 class="card-title" style="color:#A43E3E;">Klasik Turizm ve Turlar</h3>
+                            <ul style="padding-left: 20px; font-size: 14px; line-height: 1.7; color: #666; margin-top: 8px;">
+                                <li>40-50 kişilik kalabalık otobüs turları ve aceleci duraklar.</li>
+                                <li>Mekân odaklı, katılımcılar arası bağı önemsemeyen soğuk yaklaşım.</li>
+                                <li>Acente dili, yapay indirimler ve kalıplaşmış turistik rotalar.</li>
+                                <li>Tek başına katılanların kendini yabancı ve yalnız hissetmesi.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card-box highlight" style="background: #FFFFFF;">
+                            <span class="card-tag">gezenbiri Modeli</span>
+                            <h3 class="card-title" style="color:var(--gb-charcoal);">Kürate Edilmiş Deneyim Topluluğu</h3>
+                            <ul style="padding-left: 20px; font-size: 14px; line-height: 1.7; color: #444; margin-top: 8px;">
+                                <li>8-14 kişilik butik, samimi ve özenle seçilmiş grup dinamikleri.</li>
+                                <li>Mekândan çok, o mekânda paylaşılan sohbet ve deneyim odağı.</li>
+                                <li>Doğal Türkçe, editoryal sadelik ve sıcak topluluk daveti.</li>
+                                <li>İlk 10 dakikada herkesin grubun parçası olduğu kapsayıcı kültür.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-meta">
+                    <div class="slide-footer-left">
+                        <span>Felsefe: <em>“Mekân bir vesiledir; asıl değerli olan birlikte paylaşılan andır.”</em></span>
+                    </div>
+                    <div class="slide-footer-right">
+                        <span>Slayt 02 / 10</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 03: Marka Felsefesi & 5 Temel Karakter -->
+            <article class="slide-content" data-slide="3">
+                <div class="slide-top-meta">
+                    <div class="slide-index-tag">
+                        <span>Slayt 03 / 10</span>
+                        <span>·</span>
+                        <span>Karakter &amp; Ton İlkeleri</span>
+                    </div>
+                    <div class="slide-category-title">Marka DNA'sı</div>
+                </div>
+
+                <div class="slide-body">
+                    <h2 class="slide-hero-title">5 Temel Marka Karakteri.</h2>
+                    <p class="slide-lead-p">
+                        gezenbiri'nin her temas noktası, yayın metni ve deneyim kurgusu bu 5 sarsılmaz ilke üzerinden şekillenir:
+                    </p>
+
+                    <div class="grid-3col" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+                        <div class="card-box">
+                            <span class="card-tag">01</span>
+                            <h3 class="card-title">Spontane</h3>
+                            <p class="card-desc">Katı planlar yerine akışa ve anın sürprizlerine açık; hafif ve esnek.</p>
+                        </div>
+                        <div class="card-box">
+                            <span class="card-tag">02</span>
+                            <h3 class="card-title">Sıcak &amp; Samimi</h3>
+                            <p class="card-desc">Mesafeli kurumsal dil yerine birinci tekil/çoğul davetkar insan sesi.</p>
+                        </div>
+                        <div class="card-box">
+                            <span class="card-tag">03</span>
+                            <h3 class="card-title">Meraklı</h3>
+                            <p class="card-desc">Popüler klişeler yerine arka sokakları ve yerel üreticileri arayan bakış.</p>
+                        </div>
+                        <div class="card-box">
+                            <span class="card-tag">04</span>
+                            <h3 class="card-title">Sade &amp; Minimal</h3>
+                            <p class="card-desc">Gürültüden uzak, nefes alan tipografi ve editoryal estetik.</p>
+                        </div>
+                        <div class="card-box highlight">
+                            <span class="card-tag">05</span>
+                            <h3 class="card-title">Sosyal</h3>
+                            <p class="card-desc">Tek başına gelenin bile anında ait hissettiği kapsayıcı sofra kültürü.</p>
+                        </div>
+                    </div>
+
+                    <div class="card-box coral-accent" style="margin-top: 20px;">
+                        <div style="font-size: 13.5px; line-height: 1.6; color: #444;">
+                            <strong>Ses Tonu Kuralı:</strong> Acente klişeleri kullanılmaz. Doğal, samimi ve kısa cümleler tercih edilir.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-meta">
+                    <div class="slide-footer-left">
+                        <span>Manifesto: <em>“Arada bir gitmek lazım. Biz de sadece gezenbiriyiz.”</em></span>
+                    </div>
+                    <div class="slide-footer-right">
+                        <span>Slayt 03 / 10</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 04: Tasarım Sistemi & System Dot -->
+            <article class="slide-content" data-slide="4">
+                <div class="slide-top-meta">
+                    <div class="slide-index-tag">
+                        <span>Slayt 04 / 10</span>
+                        <span>·</span>
+                        <span>Görsel Kimlik &amp; Geometri</span>
+                    </div>
+                    <div class="slide-category-title">System Dot Mimarisi</div>
+                </div>
+
+                <div class="slide-body">
+                    <h2 class="slide-hero-title">Logodaki nokta sıradan bir grafik değildir.</h2>
+                    <p class="slide-lead-p">
+                        System Dot; gitmeye karar veren o <strong>“biri”</strong>dir. Aksiyon kıvılcımını, hedef koordinatı, karar mührünü ve insan varlığını temsil eder.
+                    </p>
+
+                    <!-- Live Canonical Wordmark Showcase -->
+                    <div style="background: var(--gb-cream); border: 1px solid var(--gb-border-subtle); border-radius: var(--gb-radius-md); padding: 24px 32px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+                        <div>
+                            <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--gb-coral); display: block; margin-bottom: 4px;">Kanonik Wordmark (Master 900)</span>
+                            <span class="gb-wordmark" style="font-size: 48px; letter-spacing: -2px;">gezenbiri<span class="system-dot" aria-hidden="true"></span></span>
+                        </div>
+                        <div style="font-size: 13px; color: #555; max-width: 440px; line-height: 1.55;">
+                            <strong>Kural:</strong> Her zaman küçük harf, tek kelime, Plus Jakarta Sans 900 ve %103 optik dikey esnetilmiş 0.15em System Dot.
+                        </div>
+                    </div>
+
+                    <!-- Wordmark Anatomy Breakdown -->
+                    <div class="anatomy-diagram">
+                        <div class="anatomy-node">
+                            <div class="anatomy-term">gezen</div>
+                            <span class="anatomy-badge">Eylem &amp; Hareket</span>
+                            <p class="anatomy-sub">Keşif, rota, yolculuk ve dinamizm.</p>
+                        </div>
+                        <div class="anatomy-plus">+</div>
+                        <div class="anatomy-node">
+                            <div class="anatomy-term">biri</div>
+                            <span class="anatomy-badge">Özne &amp; İnsan</span>
+                            <p class="anatomy-sub">Sen, biz, masadaki o yol arkadaşı.</p>
+                        </div>
+                        <div class="anatomy-plus">+</div>
+                        <div class="anatomy-node">
+                            <div class="anatomy-term" style="display:inline-flex; align-items:baseline;">
+                                <span class="gb-wordmark" style="font-size: 32px;"><span class="system-dot" style="font-size: 48px;"></span></span>
+                            </div>
+                            <span class="anatomy-badge" style="background:var(--gb-coral);">System Dot</span>
+                            <p class="anatomy-sub">Karar mührü, varış noktası ve ayak izi.</p>
+                        </div>
+                    </div>
+
+                    <!-- Color Swatches Bar -->
+                    <div class="palette-deck">
+                        <div class="swatch-item" style="background:#F6F3ED; color:#202020;">
+                            <span class="swatch-name">Warm Cream</span>
+                            <span class="swatch-hex">#F6F3ED (65%)</span>
+                        </div>
+                        <div class="swatch-item" style="background:#202020; color:#F6F3ED;">
+                            <span class="swatch-name">Dark Charcoal</span>
+                            <span class="swatch-hex">#202020 (20%)</span>
+                        </div>
+                        <div class="swatch-item" style="background:#FF4D3D; color:#FFFFFF;">
+                            <span class="swatch-name">Action Coral</span>
+                            <span class="swatch-hex">#FF4D3D (10%)</span>
+                        </div>
+                        <div class="swatch-item" style="background:#A8B89A; color:#202020;">
+                            <span class="swatch-name">Sage Green</span>
+                            <span class="swatch-hex">#A8B89A (5%)</span>
+                        </div>
+                        <div class="swatch-item" style="background:#A9D5E8; color:#202020;">
+                            <span class="swatch-name">Sky Blue</span>
+                            <span class="swatch-hex">#A9D5E8</span>
+                        </div>
+                        <div class="swatch-item" style="background:#D8CCBC; color:#202020;">
+                            <span class="swatch-name">Sand Beige</span>
+                            <span class="swatch-hex">#D8CCBC</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-meta">
+                    <div class="slide-footer-left">
+                        <span>Tipografi: <strong>Plus Jakarta Sans</strong> (900/800/700/500/400) + <strong>Instrument Serif</strong> (İtalik Vurgu)</span>
+                    </div>
+                    <div class="slide-footer-right">
+                        <span>Slayt 04 / 10</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 05: Kanonik İkonografi -->
+            <article class="slide-content" data-slide="5">
+                <div class="slide-top-meta">
+                    <div class="slide-index-tag">
+                        <span>Slayt 05 / 10</span>
+                        <span>·</span>
+                        <span>Piktogram Sistemi &amp; Sembolizm</span>
+                    </div>
+                    <div class="slide-category-title">Motion Lab İkon Ailesi</div>
+                </div>
+
+                <div class="slide-body">
+                    <h2 class="slide-hero-title">8 Kanonik Monoline Glyph.</h2>
+                    <p class="slide-lead-p">
+                        Emoji veya üçüncü parti ikon setleri yerine, çekirdeğinde System Dot taşıyan 1.8px monoline vektör piktogram ailesi kullanılır:
+                    </p>
+
+                    <div class="icon-deck-grid">
+                        <!-- Icon 1 -->
+                        <div class="icon-show-card">
+                            <div class="icon-show-svg">
+                                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 28C16 28 25 19.5 25 13A9 9 0 1 0 7 13C7 19.5 16 28 16 28Z"/>
+                                    <ellipse cx="16" cy="13" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <div class="icon-show-info">
+                                <h4>01. Konum &amp; Rota</h4>
+                                <p>Varış noktası ve rota imi.</p>
+                            </div>
+                        </div>
+
+                        <!-- Icon 2 -->
+                        <div class="icon-show-card">
+                            <div class="icon-show-svg">
+                                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="5" y="6" width="22" height="21" rx="4"/>
+                                    <line x1="16" y1="3" x2="16" y2="7"/>
+                                    <line x1="10" y1="3" x2="10" y2="7"/>
+                                    <line x1="22" y1="3" x2="22" y2="7"/>
+                                    <line x1="5" y1="12" x2="27" y2="12"/>
+                                    <circle cx="10" cy="17" r="1.5" fill="#FFFFFF"/>
+                                    <circle cx="16" cy="17" r="1.5" fill="#FFFFFF"/>
+                                    <circle cx="22" cy="17" r="1.5" fill="#FFFFFF"/>
+                                    <circle cx="10" cy="22" r="1.5" fill="#FFFFFF"/>
+                                    <ellipse cx="16" cy="22" rx="2.8" ry="2.9" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <div class="icon-show-info">
+                                <h4>02. Takvim &amp; Tarih</h4>
+                                <p>Buluşma günü ve planlama.</p>
+                            </div>
+                        </div>
+
+                        <!-- Icon 3 -->
+                        <div class="icon-show-card">
+                            <div class="icon-show-svg">
+                                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 10H10L12 7H20L22 10H26C27.1 10 28 10.9 28 12V24C28 25.1 27.1 26 26 26H6C4.9 26 4 25.1 4 24V12C4 10.9 4.9 10 6 10Z"/>
+                                    <circle cx="16" cy="18" r="6"/>
+                                    <ellipse cx="16" cy="18" rx="3.2" ry="3.3" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <div class="icon-show-info">
+                                <h4>03. Kamera &amp; An</h4>
+                                <p>Fotoğraf atölyesi ve anılar.</p>
+                            </div>
+                        </div>
+
+                        <!-- Icon 4 -->
+                        <div class="icon-show-card">
+                            <div class="icon-show-svg">
+                                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 11H23V20C23 23.3 20.3 26 17 26H11C7.7 26 5 23.3 5 20V11Z"/>
+                                    <path d="M23 14H25C26.7 14 28 15.3 28 17C28 18.7 26.7 20 25 20H23"/>
+                                    <path d="M3 29H25"/>
+                                    <ellipse cx="14" cy="6" rx="2.5" ry="2.6" fill="#FF4D3D" stroke="none"/>
+                                    <path d="M10 8C10 7 11 6 11 5"/>
+                                    <path d="M18 8C18 7 17 6 17 5"/>
+                                </svg>
+                            </div>
+                            <div class="icon-show-info">
+                                <h4>04. Kahve &amp; Mola</h4>
+                                <p>Sohbet arası ve kahve buluşması.</p>
+                            </div>
+                        </div>
+
+                        <!-- Icon 5 -->
+                        <div class="icon-show-card">
+                            <div class="icon-show-svg">
+                                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 5H24C24 13 19 17 16 17C13 17 8 13 8 5Z"/>
+                                    <line x1="16" y1="17" x2="16" y2="27"/>
+                                    <line x1="11" y1="27" x2="21" y2="27"/>
+                                    <ellipse cx="16" cy="12" rx="3.2" ry="3.3" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <div class="icon-show-info">
+                                <h4>05. Kadeh &amp; Tadım</h4>
+                                <p>Bağ bozumu ve sofra tadımları.</p>
+                            </div>
+                        </div>
+
+                        <!-- Icon 6 -->
+                        <div class="icon-show-card">
+                            <div class="icon-show-svg">
+                                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="16" cy="16" r="12"/>
+                                    <polygon points="16,8 19,16 16,15 13,16" fill="#FFFFFF"/>
+                                    <polygon points="16,24 19,16 16,17 13,16" fill="none" stroke="#FFFFFF"/>
+                                    <ellipse cx="16" cy="16" rx="2.8" ry="2.9" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <div class="icon-show-info">
+                                <h4>06. Pusula &amp; Yön</h4>
+                                <p>Keşif ve yeni rotalar.</p>
+                            </div>
+                        </div>
+
+                        <!-- Icon 7 -->
+                        <div class="icon-show-card">
+                            <div class="icon-show-svg">
+                                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 25V23C6 20.8 7.8 19 10 19H14C16.2 19 18 20.8 18 23V25"/>
+                                    <circle cx="12" cy="13" r="4"/>
+                                    <path d="M19 19.3C20.8 19.8 22 21.3 22 23V25"/>
+                                    <circle cx="21" cy="12" r="3"/>
+                                    <ellipse cx="17" cy="16" rx="2.6" ry="2.7" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <div class="icon-show-info">
+                                <h4>07. Topluluk &amp; İnsan</h4>
+                                <p>Birlikte deneyim ve dostluk.</p>
+                            </div>
+                        </div>
+
+                        <!-- Icon 8 -->
+                        <div class="icon-show-card">
+                            <div class="icon-show-svg">
+                                <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 9C5 7.9 5.9 7 7 7H25C26.1 7 27 7.9 27 9V14C25.5 14 24.5 15 24.5 16C24.5 17 25.5 18 27 18V23C27 24.1 26.1 25 25 25H7C5.9 25 5 24.1 5 23V18C6.5 18 7.5 17 7.5 16C7.5 15 6.5 14 5 14V9Z"/>
+                                    <line x1="12" y1="8" x2="12" y2="24" stroke-dasharray="2 2"/>
+                                    <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <div class="icon-show-info">
+                                <h4>08. Bilet &amp; Giriş</h4>
+                                <p>Dijital geçiş ve kayıt hakkı.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-meta">
+                    <div class="slide-footer-left">
+                        <span>Standart: Her ikon <strong>viewBox="0 0 32 32"</strong>, 1.8px stroke ve Action Coral System Dot içerir.</span>
+                    </div>
+                    <div class="slide-footer-right">
+                        <span>Slayt 05 / 10</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 06: Deneyim Mimarisi & Alt Kategoriler -->
+            <article class="slide-content" data-slide="6">
+                <div class="slide-top-meta">
+                    <div class="slide-index-tag">
+                        <span>Slayt 06 / 10</span>
+                        <span>·</span>
+                        <span>Ürün &amp; Deneyim Portföyü</span>
+                    </div>
+                    <div class="slide-category-title">Kategori Taksonomisi</div>
+                </div>
+
+                <div class="slide-body">
+                    <h2 class="slide-hero-title">Tek tip, yalın alt kategori mimarisi.</h2>
+                    <p class="slide-lead-p">
+                        Tüm alt deneyim kolları tek formülle adlandırılır ve merkezi <code style="background:rgba(0,0,0,0.06); padding:2px 6px; border-radius:4px;">data/events.js</code> veri omurgasından beslenir:
+                    </p>
+
+                    <div class="grid-4col">
+                        <!-- 01: gezenbiri atölye (Terracotta & Soft Coral) -->
+                        <div class="card-box" style="background: #FFF5F3; border: 1px solid rgba(255, 77, 61, 0.28);">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="card-tag" style="background: rgba(255, 77, 61, 0.14); color: var(--gb-coral);">Atölye</span>
+                                <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="var(--gb-charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 10H10L12 7H20L22 10H26C27.1 10 28 10.9 28 12V24C28 25.1 27.1 26 26 26H6C4.9 26 4 25.1 4 24V12C4 10.9 4.9 10 6 10Z"/>
+                                    <circle cx="16" cy="18" r="6"/>
+                                    <ellipse cx="16" cy="18" rx="3.2" ry="3.3" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <h3 class="card-title" style="color: var(--gb-charcoal); margin-top: 6px;">gezenbiri atölye</h3>
+                            <p class="card-desc" style="color: #554440;">Seramik, linol baskı, doğal koku ve gastronomi yaratıcı buluşmaları.</p>
+                        </div>
+
+                        <!-- 02: gezenbiri sofra (Rich Sand & Wine Warmth) -->
+                        <div class="card-box" style="background: #FAF3E8; border: 1px solid #E5D5C0;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="card-tag" style="background: #ECD9C2; color: #784A22;">Sofra</span>
+                                <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="var(--gb-charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 5H24C24 13 19 17 16 17C13 17 8 13 8 5Z"/>
+                                    <line x1="16" y1="17" x2="16" y2="27"/>
+                                    <line x1="11" y1="27" x2="21" y2="27"/>
+                                    <ellipse cx="16" cy="12" rx="3.2" ry="3.3" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <h3 class="card-title" style="color: var(--gb-charcoal); margin-top: 6px;">gezenbiri sofra</h3>
+                            <p class="card-desc" style="color: #5B4738;">Bağ evlerinde ve zeytinliklerde uzun masa yerel lezzet tadımları.</p>
+                        </div>
+
+                        <!-- 03: gezenbiri hafta sonu (Sage Green Nature) -->
+                        <div class="card-box" style="background: #F3F7F0; border: 1px solid rgba(168, 184, 154, 0.45);">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="card-tag" style="background: rgba(168, 184, 154, 0.28); color: #325526;">Hafta Sonu</span>
+                                <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="var(--gb-charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="5" y="6" width="22" height="21" rx="4"/>
+                                    <line x1="16" y1="3" x2="16" y2="7"/>
+                                    <line x1="10" y1="3" x2="10" y2="7"/>
+                                    <line x1="22" y1="3" x2="22" y2="7"/>
+                                    <line x1="5" y1="12" x2="27" y2="12"/>
+                                    <circle cx="10" cy="17" r="1.5" fill="var(--gb-charcoal)"/>
+                                    <circle cx="16" cy="17" r="1.5" fill="var(--gb-charcoal)"/>
+                                    <circle cx="22" cy="17" r="1.5" fill="var(--gb-charcoal)"/>
+                                    <circle cx="10" cy="22" r="1.5" fill="var(--gb-charcoal)"/>
+                                    <ellipse cx="16" cy="22" rx="2.8" ry="2.9" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <h3 class="card-title" style="color: var(--gb-charcoal); margin-top: 6px;">gezenbiri hafta sonu</h3>
+                            <p class="card-desc" style="color: #42523D;">Cuma çıkışlı, pazar dönüşlü yakın rota ve doğa kaçamakları.</p>
+                        </div>
+
+                        <!-- 04: gezenbiri rota (Sky Blue Coastal) -->
+                        <div class="card-box" style="background: #F0F8FD; border: 1px solid rgba(169, 213, 232, 0.55);">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="card-tag" style="background: rgba(169, 213, 232, 0.38); color: #165673;">Rota</span>
+                                <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="var(--gb-charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 28C16 28 25 19.5 25 13A9 9 0 1 0 7 13C7 19.5 16 28 16 28Z"/>
+                                    <ellipse cx="16" cy="13" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <h3 class="card-title" style="color: var(--gb-charcoal); margin-top: 6px;">gezenbiri rota</h3>
+                            <p class="card-desc" style="color: #38505C;">Alaçatı, Kapadokya, Bozcaada, Urla ve Kaş butik seyahatleri.</p>
+                        </div>
+
+                        <!-- 05: gezenbiri yerel (Olive Earth & Harvest) -->
+                        <div class="card-box" style="background: #F8F7EE; border: 1px solid #DCD8BE;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="card-tag" style="background: #EAE5C8; color: #535626;">Yerel</span>
+                                <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="var(--gb-charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="16" cy="16" r="12"/>
+                                    <polygon points="16,8 19,16 16,15 13,16" fill="var(--gb-charcoal)"/>
+                                    <polygon points="16,24 19,16 16,17 13,16" fill="none" stroke="var(--gb-charcoal)"/>
+                                    <ellipse cx="16" cy="16" rx="2.8" ry="2.9" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <h3 class="card-title" style="color: var(--gb-charcoal); margin-top: 6px;">gezenbiri yerel</h3>
+                            <p class="card-desc" style="color: #4D4E3A;">Zeytin hasadı, bağ bozumu, peynir üreticileriyle doğrudan temas.</p>
+                        </div>
+
+                        <!-- 06: gezenbiri sürpriz (Action Coral Highlight) -->
+                        <div class="card-box" style="background: #FFF1EE; border: 1.5px solid var(--gb-coral);">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="card-tag" style="background: var(--gb-coral); color: #FFFFFF;">Sürpriz</span>
+                                <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="var(--gb-coral)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 9C5 7.9 5.9 7 7 7H25C26.1 7 27 7.9 27 9V14C25.5 14 24.5 15 24.5 16C24.5 17 25.5 18 27 18V23C27 24.1 26.1 25 25 25H7C5.9 25 5 24.1 5 23V18C6.5 18 7.5 17 7.5 16C7.5 15 6.5 14 5 14V9Z"/>
+                                    <line x1="12" y1="8" x2="12" y2="24" stroke-dasharray="2 2"/>
+                                    <ellipse cx="20" cy="16" rx="3.5" ry="3.6" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <h3 class="card-title" style="color: var(--gb-coral); margin-top: 6px;">gezenbiri sürpriz</h3>
+                            <p class="card-desc" style="color: #553A35;">Rotası ve durakları son ana kadar gizli tutulan spontane yolculuklar.</p>
+                        </div>
+
+                        <!-- 07: gezenbiri buluşma (Warm Stone Beige & Coffee) -->
+                        <div class="card-box" style="background: #F6F4F0; border: 1px solid #DFDBD3;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="card-tag" style="background: #E5E1D7; color: #433E37;">Buluşma</span>
+                                <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="var(--gb-charcoal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M5 11H23V20C23 23.3 20.3 26 17 26H11C7.7 26 5 23.3 5 20V11Z"/>
+                                    <path d="M23 14H25C26.7 14 28 15.3 28 17C28 18.7 26.7 20 25 20H23"/>
+                                    <path d="M3 29H25"/>
+                                    <ellipse cx="14" cy="6" rx="2.5" ry="2.6" fill="#FF4D3D" stroke="none"/>
+                                    <path d="M10 8C10 7 11 6 11 5"/>
+                                    <path d="M18 8C18 7 17 6 17 5"/>
+                                </svg>
+                            </div>
+                            <h3 class="card-title" style="color: var(--gb-charcoal); margin-top: 6px;">gezenbiri buluşma</h3>
+                            <p class="card-desc" style="color: #4F4B44;">Şehir içi üçüncü nesil kahve sohbetleri ve sergi yürüyüşleri.</p>
+                        </div>
+
+                        <!-- 08: gezenbiri gece (Deep Night Charcoal) -->
+                        <div class="card-box" style="background: #202020; border: 1px solid #383838; color: #F6F3ED;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="card-tag" style="background: rgba(255, 255, 255, 0.16); color: #F6F3ED; border: 1px solid rgba(255,255,255,0.12);">Gece</span>
+                                <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="#F6F3ED" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 25V23C6 20.8 7.8 19 10 19H14C16.2 19 18 20.8 18 23V25"/>
+                                    <circle cx="12" cy="13" r="4"/>
+                                    <path d="M19 19.3C20.8 19.8 22 21.3 22 23V25"/>
+                                    <circle cx="21" cy="12" r="3"/>
+                                    <ellipse cx="17" cy="16" rx="2.6" ry="2.7" fill="#FF4D3D" stroke="none"/>
+                                </svg>
+                            </div>
+                            <h3 class="card-title" style="color: #FFFFFF; margin-top: 6px;">gezenbiri gece</h3>
+                            <p class="card-desc" style="color: #D9D6D1;">Açık hava film gösterimleri, akustik dinletiler ve kamp ateşi anları.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-meta">
+                    <div class="slide-footer-left">
+                        <span>Veri Mimarisi: <strong>data/events.js</strong> tüm web ve bilet bileşenlerinin tek doğruluk kaynağıdır.</span>
+                    </div>
+                    <div class="slide-footer-right">
+                        <span>Slayt 06 / 10</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 07: Entegre Dijital Ekosistem (Ürün Matrisi) -->
+            <article class="slide-content" data-slide="7">
+                <div class="slide-top-meta">
+                    <div class="slide-index-tag">
+                        <span>Slayt 07 / 10</span>
+                        <span>·</span>
+                        <span>Dijital Varlıklar &amp; Uygulamalar</span>
+                    </div>
+                    <div class="slide-category-title">Ekosistem Modülleri</div>
+                </div>
+
+                <div class="slide-body">
+                    <h2 class="slide-hero-title">6 Entegre Dijital Uygulama Modülü.</h2>
+                    <p class="slide-lead-p">
+                        Tasarım sisteminin canlı prototipleri, tüm kanallarda kusursuz bir kullanıcı deneyimi sunar:
+                    </p>
+
+                    <div class="grid-3col">
+                        <div class="card-box">
+                            <span class="card-tag">01 · Web</span>
+                            <h3 class="card-title">Web Portalı</h3>
+                            <p class="card-desc">Etkinlik filtreleme, kayıt akışları ve editoryal içerik portalı (<code>gezenbiri_website.html</code>).</p>
+                        </div>
+
+                        <div class="card-box">
+                            <span class="card-tag">02 · İnteraktif</span>
+                            <h3 class="card-title">Editoryal Rota Kartları</h3>
+                            <p class="card-desc">Her kaçamak ve atölye için program detaylarını, gün batımı saatlerini ve kontenjan durumunu sunan editoryal kart vitrini (<code>trip-cards.html</code>).</p>
+                        </div>
+
+                        <div class="card-box highlight">
+                            <span class="card-tag">03 · Mobil Pas</span>
+                            <h3 class="card-title">WhatsApp Dijital Bilet</h3>
+                            <p class="card-desc">Kayıt olan üyeye WhatsApp üzerinden iletilen QR kodlu, interaktif dijital bilet (<code>whatsapp-ticket.html</code>).</p>
+                        </div>
+
+                        <div class="card-box">
+                            <span class="card-tag">04 · Sosyal</span>
+                            <h3 class="card-title">Instagram Suite</h3>
+                            <p class="card-desc">9:16 Hikaye ve 1:1 Feed yayın şablonları, tipografik gridler (<code>instagram-suite.html</code>).</p>
+                        </div>
+
+                        <div class="card-box">
+                            <span class="card-tag">05 · Hazırlık</span>
+                            <h3 class="card-title">Bavul &amp; Rota Rehberi</h3>
+                            <p class="card-desc">Mevsime ve rotaya özel interaktif bavul kontrol listesi (<code>packing-guide.html</code>).</p>
+                        </div>
+
+                        <div class="card-box">
+                            <span class="card-tag">06 · Fiziksel</span>
+                            <h3 class="card-title">Merch &amp; Stüdyo Kılavuzu</h3>
+                            <p class="card-desc">Fiziksel ürün standartları, kanvas çanta, emaye kupa rehberi (<code>merch-guidelines.html</code>).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-meta">
+                    <div class="slide-footer-left">
+                        <span>Teknoloji: %100 Saf Vanilla HTML5/CSS3/JS, sıfır ağır bağımlılık, anında yüklenen statik mimari.</span>
+                    </div>
+                    <div class="slide-footer-right">
+                        <span>Slayt 07 / 10</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 08: İş Modeli & Gelir Akışları -->
+            <article class="slide-content" data-slide="8">
+                <div class="slide-top-meta">
+                    <div class="slide-index-tag">
+                        <span>Slayt 08 / 10</span>
+                        <span>·</span>
+                        <span>Sürdürülebilirlik &amp; Monetizasyon</span>
+                    </div>
+                    <div class="slide-category-title">İş Modeli</div>
+                </div>
+
+                <div class="slide-body">
+                    <h2 class="slide-hero-title">4 Ayaklı Gelir ve Büyüme Modeli.</h2>
+                    <p class="slide-lead-p">
+                        Topluluk güvenini koruyarak yüksek kâr marjlı butik deneyimler ve marka ortaklıklarıyla ölçeklenen iş modeli:
+                    </p>
+
+                    <div class="grid-2col">
+                        <div class="card-box highlight">
+                            <span class="card-tag">Birincil Gelir</span>
+                            <h3 class="card-title">1. Butik Deneyim &amp; Kaçamak Biletleri</h3>
+                            <p class="card-desc">
+                                8-14 kişilik limitli kontenjanlarla düzenlenen seramik atölyeleri, şarap tadımları ve hafta sonu kaçamak katılım ücretleri. Yüksek talep ve hızlı dolan kontenjan dinamiği.
+                            </p>
+                        </div>
+
+                        <div class="card-box">
+                            <span class="card-tag">Ortaklıklar</span>
+                            <h3 class="card-title">2. Yerel Üretici &amp; Marka İş Birlikleri</h3>
+                            <p class="card-desc">
+                                Butik bağ evleri, seramik fırınları, zeytinyağı üreticileri ve sponsor markalarla ortak düzenlenen özel editoryal deneyimler ve sponsorluk gelirleri.
+                            </p>
+                        </div>
+
+                        <div class="card-box">
+                            <span class="card-tag">Fiziksel Ürün</span>
+                            <h3 class="card-title">3. Fiziksel Merchandise &amp; Kapsül Koleksiyon</h3>
+                            <p class="card-desc">
+                                Organik kanvas bez çantalar, emaye seyahat kupaları, deri seyahat not defterleri ve sınırlı sayıda üretilen gezgin aksesuarları satışı.
+                            </p>
+                        </div>
+
+                        <div class="card-box coral-accent">
+                            <span class="card-tag">B2B &amp; Kurumsal</span>
+                            <h3 class="card-title">4. Kurumsal Kaçamak &amp; Özel Gruplar</h3>
+                            <p class="card-desc">
+                                Yenilikçi şirketlerin ekipleri için tasarlanan kapalı grup yaratıcı kaçamakları, şirket içi motivasyon atölyeleri ve özel rota yönetimi.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-meta">
+                    <div class="slide-footer-left">
+                        <span>Büyüme Dinamiği: Ağızdan ağıza yayılım ve #biryeregidelim topluluk sadakati.</span>
+                    </div>
+                    <div class="slide-footer-right">
+                        <span>Slayt 08 / 10</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 09: Yol Haritası (Roadmap) -->
+            <article class="slide-content" data-slide="9">
+                <div class="slide-top-meta">
+                    <div class="slide-index-tag">
+                        <span>Slayt 09 / 10</span>
+                        <span>·</span>
+                        <span>Stratejik Gelişim Planı</span>
+                    </div>
+                    <div class="slide-category-title">Roadmap (2026 - 2027)</div>
+                </div>
+
+                <div class="slide-body">
+                    <h2 class="slide-hero-title">Gelecek Yol Haritası ve Fazlar.</h2>
+                    <p class="slide-lead-p">
+                        Markanın dijital prototipten ulusal ve bölgesel bir topluluk hareketine dönüşüm aşamaları:
+                    </p>
+
+                    <div class="grid-3col">
+                        <div class="card-box highlight">
+                            <span class="card-tag" style="background:var(--gb-charcoal); color:#FFF;">Faz 1 · Mevcut Durum</span>
+                            <h3 class="card-title">Temel &amp; Tasarım Sistemi</h3>
+                            <ul style="padding-left: 18px; font-size: 13.5px; line-height: 1.6; color: #555; margin-top: 8px;">
+                                <li>Marka kimliği ve <code>brand.css</code> token mimarisi.</li>
+                                <li>Web portalı ve interaktif seyahat kartları.</li>
+                                <li>WhatsApp dijital bilet arayüzü prototipi.</li>
+                                <li>25 kuraldan oluşan otomatik marka linter'ı.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card-box coral-accent">
+                            <span class="card-tag">Faz 2 · Yakın Dönem</span>
+                            <h3 class="card-title">Mobil &amp; Topluluk Lansmanı</h3>
+                            <ul style="padding-left: 18px; font-size: 13.5px; line-height: 1.6; color: #444; margin-top: 8px;">
+                                <li>PWA tabanlı mobil deneyim ve WhatsApp bildirim botu.</li>
+                                <li>İstanbul, İzmir ve Çanakkale pilot atölye serileri.</li>
+                                <li>İlk kapsül merch koleksiyonu üretimi.</li>
+                                <li>Topluluk üyelik ve bekleme listesi genişlemesi.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card-box">
+                            <span class="card-tag">Faz 3 · Gelecek Vizyon</span>
+                            <h3 class="card-title">Bölgesel Büyüme &amp; Kürasyon</h3>
+                            <ul style="padding-left: 18px; font-size: 13.5px; line-height: 1.6; color: #555; margin-top: 8px;">
+                                <li>Akdeniz ve Ege genelinde yerel atölye ağı.</li>
+                                <li>Küratör topluluk liderleri sistemi.</li>
+                                <li>Yıllık "gezenbiri Büyük Buluşması" festivali.</li>
+                                <li>Seçili uluslararası butik rota açılımları.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-meta">
+                    <div class="slide-footer-left">
+                        <span>Hedef: Türkiye'nin en sevilen, en samimi çağdaş sosyal keşif topluluğu olmak.</span>
+                    </div>
+                    <div class="slide-footer-right">
+                        <span>Slayt 09 / 10</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SLIDE 10: Kapanış & İletişim -->
+            <article class="slide-content" data-slide="10">
+                <div class="slide-top-meta">
+                    <div class="slide-index-tag">
+                        <span>Slayt 10 / 10</span>
+                        <span>·</span>
+                        <span>Kapanış &amp; İletişim</span>
+                    </div>
+                    <div class="slide-category-title">Birlikte Yola Çıkalım</div>
+                </div>
+
+                <div class="slide-body">
+                    <div class="slide-serif-quote" style="font-size: 40px; margin-bottom: 12px;">“Arada bir gitmek lazım. Biz de sadece gezenbiriyiz.”</div>
+                    <h2 class="slide-hero-title" style="margin-bottom: 24px;">Teşekkürler.</h2>
+
+                    <div class="grid-2col" style="align-items: stretch;">
+                        <div class="card-box highlight">
+                            <span class="card-tag">Resmi Kanallar &amp; Erişim</span>
+                            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px; font-size: 14.5px;">
+                                <div>
+                                    <strong>Web Portalı:</strong> <a href="https://gezenbiri.com.tr" target="_blank" style="color:var(--gb-coral); text-decoration:none; font-weight:700;">gezenbiri.com.tr</a>
+                                </div>
+                                <div>
+                                    <strong>Ulusal Alan Adı:</strong> <a href="https://gezenbiri.tr" target="_blank" style="color:inherit; text-decoration:none; font-weight:700;">gezenbiri.tr</a>
+                                </div>
+                                <div>
+                                    <strong>Kısa Bağlantı:</strong> <a href="https://gezenbiri.co" target="_blank" style="color:inherit; text-decoration:none; font-weight:700;">gezenbiri.co</a>
+                                </div>
+                                <div>
+                                    <strong>Instagram:</strong> <a href="https://instagram.com/gezenbiri" target="_blank" style="color:inherit; text-decoration:none; font-weight:700;">@gezenbiri</a>
+                                </div>
+                                <div>
+                                    <strong>E-posta:</strong> <a href="mailto:selam@gezenbiri.com.tr" style="color:inherit; text-decoration:none; font-weight:700;">selam@gezenbiri.com.tr</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-box coral-accent">
+                            <span class="card-tag">Yaratıcı &amp; Tasarım Direktörü</span>
+                            <h3 class="card-title" style="font-size: 20px;">Mahir Sağlamöz</h3>
+                            <p class="card-desc" style="font-size: 14px;">
+                                GitHub: <a href="https://github.com/msaglamoz" target="_blank" style="color:var(--gb-charcoal); font-weight:700; text-decoration:underline;">@msaglamoz</a><br>
+                                Marka Tasarımı, Arayüz Mimarisi ve Topluluk Küratörlüğü.
+                            </p>
+                            <div style="margin-top: auto; padding-top: 14px;">
+                                <a href="index.html" class="nav-arrow-btn" style="text-decoration: none; width: fit-content;">
+                                    <span>Ekosistem Hub'ına Dön</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-footer-meta">
+                    <div class="slide-footer-left">
+                        <span class="gb-prototype-disclaimer" style="margin: 0; padding: 0; border: none; font-size: 11.5px; color: #888;">
+                            Bu sayfadaki etkinlikler, rotalar, fiyatlar ve topluluk verileri marka deneyim prototipi örnekleridir. · Marka Yaratıcısı: <strong>Mahir Sağlamöz</strong> · <a href="https://gezenbiri.com.tr" style="color:inherit;">gezenbiri.com.tr</a>
+                        </span>
+                    </div>
+                    <div class="slide-footer-right">
+                        <span>Slayt 10 / 10 · gezenbiri</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <footer class="deck-nav-bar">
+        <div class="nav-btn-group">
+            <button class="nav-arrow-btn secondary" id="btnPrev" onclick="navigateSlide(-1)" title="Önceki Slayt (Sol Ok / ↑ / PageUp)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span>Önceki</span>
+            </button>
+            <button class="nav-arrow-btn" id="btnNext" onclick="navigateSlide(1)" title="Sonraki Slayt (Sağ Ok / Space / ↓ / PageDown)">
+                <span>Sonraki</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+        </div>
+
+        <div class="nav-slide-indicator">
+            <div class="nav-dots-wrap" id="navDotsWrap">
+                <!-- Dots generated by JS -->
+            </div>
+            <span id="slideCounterText" style="margin-left: 12px; font-variant-numeric: tabular-nums;">01 / 10</span>
+        </div>
+
+        <div class="nav-btn-group">
+            <button class="deck-btn" onclick="goToSlide(1)" title="İlk Slayta Git (Home)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 19l-7-7 7-7m8 14l-7-7 7-7"/></svg>
+                <span>Başa Dön</span>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Speaker Notes Drawer -->
+    <aside class="speaker-notes-drawer" id="speakerNotesDrawer" aria-label="Sunucu Notları">
+        <div class="speaker-notes-header">
+            <div class="speaker-notes-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+                <span>Sunucu Notları (Presenter Notes)</span>
+            </div>
+            <button class="speaker-notes-close" onclick="toggleSpeakerNotes()" aria-label="Kapat">✕</button>
+        </div>
+        <div class="speaker-notes-body" id="speakerNotesContent">
+            <!-- Dynamic notes per slide -->
+        </div>
+    </aside>
+
+    <!-- Overview Modal (All Slides) -->
+    <div class="overview-modal" id="overviewModal" role="dialog" aria-modal="true" aria-labelledby="overviewModalTitle" onclick="handleModalBackdropClick(event)">
+        <div class="overview-content">
+            <div class="overview-header">
+                <div>
+                    <h3 id="overviewModalTitle" style="font-size: 18px; font-weight: 900; color: var(--gb-charcoal);">Slayt Gezgini (Deck Overview)</h3>
+                    <p style="font-size: 13px; color: #777; margin-top: 4px;">Gitmek istediğiniz slaytın üzerine tıklayın veya ESC ile kapatın.</p>
+                </div>
+                <button class="deck-btn" onclick="closeOverviewModal()" style="padding: 6px 12px;">✕ Kapat</button>
+            </div>
+            <div class="overview-grid" id="overviewGrid">
+                <!-- Generated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CENTRAL EVENT DATA -->
+    <script src="data/events.js"></script>
+
+    <!-- PRESENTATION DECK SCRIPT -->
+    <script>
+        const totalSlides = 10;
+        let currentSlide = 1;
+        let lastFocusedElement = null;
+
+        const speakerNotes = {
+            1: "GİRİŞ: gezenbiri'nin sıradan bir tur şirketi olmadığını, yaratıcı atölyeler ve yerel sofralar etrafında kurulan samimi bir sosyal keşif markası olduğunu vurgulayın. 'Bir yere gidelim.' sloganının altındaki spontane ve davetkar hissi hissettirin.",
+            2: "PROBLEM: Şehir insanının yalnızlaşması ve acentelerin 40-50 kişilik kalabalık, aceleci, mesafeli turlarındaki tatminsizliği anlatın. gezenbiri'nin 8-14 kişilik butik ve sıcak çözümünü öne çıkarın.",
+            3: "KARAKTERLER: 5 temel prensibi (Spontane, Sıcak, Meraklı, Sade, Sosyal) kısaca özetleyin. Dilimizin geleneksel acente kalıplarından ve yapay vaatlerden tamamen arındırıldığını belirtin.",
+            4: "TASARIM & SYSTEM DOT: 'gezen' (eylem) + 'biri' (insan/özne) + 'System Dot' (mühür/karar) anatomisini açıklayın. System Dot'un sadece bir nokta değil, gitmeye karar veren o insan olduğunu vurgulayın.",
+            5: "İKONOGRAFİ: 8 kanonik monoline SVG glyph'in Motion Lab'den çıktığını ve her birinin kalbinde turuncu System Dot taşıdığını aktarın.",
+            6: "KATEGORİLER: Alt kolların yalın isimlendirmesini (gezenbiri atölye, sofra, rota vb.) ve data/events.js tek doğruluk kaynağını özetleyin.",
+            7: "DİJİTAL ÜRÜNLER: Web portalı, editoryal rota kartları, WhatsApp dijital bileti ve Instagram paketinin nasıl entegre bir ekosistem oluşturduğunu gösterin.",
+            8: "İŞ MODELİ: Butik bilet satışları, yerel üretici ortaklıkları, kaliteli merch satışı ve kurumsal özel kaçamakların karlı ve sürdürülebilir modelini açıklayın.",
+            9: "ROADMAP: Faz 1'deki dijital ve tasarım sisteminin tamamlandığını, Faz 2'de PWA ve WhatsApp bot ile lansmanın geleceğini, Faz 3'te ise bölgesel genişleme hedeflendiğini aktarın.",
+            10: "KAPANIŞ: 'Arada bir gitmek lazım. Biz de sadece gezenbiriyiz.' manifestosuyla teşekkür edip resmi kanallara ve GitHub bağlantısına yönlendirin."
+        };
+
+        const slideTitles = [
+            "Kapak & Manifesto Girişi",
+            "Problem & Fırsat Analizi",
+            "Marka Felsefesi & 5 Karakter",
+            "Tasarım Sistemi & System Dot",
+            "Kanonik İkonografi Ailesi",
+            "Deneyim Mimarisi & Kategoriler",
+            "Entegre Dijital Ekosistem",
+            "İş Modeli & Gelir Akışları",
+            "Gelecek Yol Haritası (Roadmap)",
+            "Kapanış & İletişim"
+        ];
+
+        function initPresentation() {
+            // Build dot indicators
+            const dotsWrap = document.getElementById('navDotsWrap');
+            dotsWrap.innerHTML = '';
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.className = `nav-dot-pill ${i === currentSlide ? 'active' : ''}`;
+                dot.setAttribute('aria-label', `Slayt ${i}: ${slideTitles[i-1]}`);
+                dot.onclick = () => goToSlide(i);
+                dotsWrap.appendChild(dot);
+            }
+
+            // Build Overview Grid
+            const overviewGrid = document.getElementById('overviewGrid');
+            overviewGrid.innerHTML = '';
+            for (let i = 1; i <= totalSlides; i++) {
+                const card = document.createElement('div');
+                card.className = `overview-card ${i === currentSlide ? 'current' : ''}`;
+                card.onclick = () => {
+                    goToSlide(i);
+                    closeOverviewModal();
+                };
+                card.innerHTML = `
+                    <span class="overview-card-num">SLAYT ${String(i).padStart(2, '0')}</span>
+                    <h4 class="overview-card-title">${slideTitles[i-1]}</h4>
+                `;
+                overviewGrid.appendChild(card);
+            }
+
+            updateSlideUI();
+            setupKeyboardListeners();
+            setupTouchGestures();
+        }
+
+        function updateSlideUI() {
+            // Update active slide
+            document.querySelectorAll('.slide-content').forEach(slide => {
+                const slideNum = parseInt(slide.getAttribute('data-slide'), 10);
+                if (slideNum === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Update Progress Bar
+            const pct = (currentSlide / totalSlides) * 100;
+            document.getElementById('progressFill').style.width = pct + '%';
+
+            // Update Counter
+            document.getElementById('slideCounterText').textContent = `${String(currentSlide).padStart(2, '0')} / ${String(totalSlides).padStart(2, '0')}`;
+
+            // Update Nav Buttons
+            document.getElementById('btnPrev').disabled = (currentSlide === 1);
+            document.getElementById('btnNext').disabled = (currentSlide === totalSlides);
+
+            // Update Dot Pills
+            const dots = document.querySelectorAll('.nav-dot-pill');
+            dots.forEach((dot, idx) => {
+                if (idx + 1 === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            // Update Overview Cards
+            const cards = document.querySelectorAll('.overview-card');
+            cards.forEach((card, idx) => {
+                if (idx + 1 === currentSlide) {
+                    card.classList.add('current');
+                } else {
+                    card.classList.remove('current');
+                }
+            });
+
+            // Update Speaker Notes
+            document.getElementById('speakerNotesContent').textContent = speakerNotes[currentSlide] || "Bu slayt için özel not bulunmamaktadır.";
+        }
+
+        function navigateSlide(direction) {
+            const next = currentSlide + direction;
+            if (next >= 1 && next <= totalSlides) {
+                currentSlide = next;
+                updateSlideUI();
+            }
+        }
+
+        function goToSlide(num) {
+            if (num >= 1 && num <= totalSlides) {
+                currentSlide = num;
+                updateSlideUI();
+            }
+        }
+
+        function toggleSpeakerNotes() {
+            const drawer = document.getElementById('speakerNotesDrawer');
+            const btn = document.getElementById('btnNotesToggle');
+            drawer.classList.toggle('open');
+            btn.classList.toggle('active');
+        }
+
+        function openOverviewModal() {
+            lastFocusedElement = document.activeElement;
+            const modal = document.getElementById('overviewModal');
+            modal.classList.add('open');
+            const firstBtn = modal.querySelector('button, .overview-card');
+            if (firstBtn) firstBtn.focus();
+        }
+
+        function closeOverviewModal() {
+            const modal = document.getElementById('overviewModal');
+            modal.classList.remove('open');
+            if (lastFocusedElement) {
+                lastFocusedElement.focus();
+            }
+        }
+
+        function handleModalBackdropClick(e) {
+            if (e.target.id === 'overviewModal') {
+                closeOverviewModal();
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log('Fullscreen request failed:', err);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        function setupKeyboardListeners() {
+            window.addEventListener('keydown', (e) => {
+                const modal = document.getElementById('overviewModal');
+                const isModalOpen = modal.classList.contains('open');
+
+                if (isModalOpen) {
+                    if (e.key === 'Escape') {
+                        closeOverviewModal();
+                        return;
+                    }
+                    // Modal focus trap
+                    if (e.key === 'Tab') {
+                        const focusables = modal.querySelectorAll('button, .overview-card, [tabindex]:not([tabindex="-1"])');
+                        const first = focusables[0];
+                        const last = focusables[focusables.length - 1];
+                        if (e.shiftKey && document.activeElement === first) {
+                            e.preventDefault();
+                            last.focus();
+                        } else if (!e.shiftKey && document.activeElement === last) {
+                            e.preventDefault();
+                            first.focus();
+                        }
+                    }
+                    return;
+                }
+
+                // Global Deck shortcuts
+                switch (e.key) {
+                    case 'ArrowRight':
+                    case 'ArrowDown':
+                    case ' ':
+                    case 'PageDown':
+                        e.preventDefault();
+                        navigateSlide(1);
+                        break;
+                    case 'ArrowLeft':
+                    case 'ArrowUp':
+                    case 'PageUp':
+                        e.preventDefault();
+                        navigateSlide(-1);
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        goToSlide(1);
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        goToSlide(totalSlides);
+                        break;
+                    case 'f':
+                    case 'F':
+                        e.preventDefault();
+                        toggleFullscreen();
+                        break;
+                    case 'n':
+                    case 'N':
+                        e.preventDefault();
+                        toggleSpeakerNotes();
+                        break;
+                    case 'o':
+                    case 'O':
+                        e.preventDefault();
+                        openOverviewModal();
+                        break;
+                    case 'Escape':
+                        const drawer = document.getElementById('speakerNotesDrawer');
+                        if (drawer.classList.contains('open')) {
+                            toggleSpeakerNotes();
+                        }
+                        break;
+                }
+            });
+        }
+
+        function setupTouchGestures() {
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            const stage = document.getElementById('slideStage');
+            stage.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            stage.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleGesture();
+            }, { passive: true });
+
+            function handleGesture() {
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 45) {
+                    if (diff > 0) {
+                        navigateSlide(1); // Swipe left -> Next
+                    } else {
+                        navigateSlide(-1); // Swipe right -> Prev
+                    }
+                }
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initPresentation);
+    </script>
+</body>
+</html>
