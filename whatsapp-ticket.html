@@ -1967,7 +1967,8 @@ gezenbiri</div>
             document.getElementById('ticketTitle').textContent = currentEvent.title;
             document.getElementById('ticketVenueLoc').textContent = venueFull;
             document.getElementById('ticketDate').textContent = eventDateFormatted;
-            document.getElementById('ticketTime').textContent = currentEvent.time;
+            const eventTimeOrDuration = currentEvent.time || currentEvent.duration || 'Tüm Gün';
+            document.getElementById('ticketTime').textContent = eventTimeOrDuration;
             document.getElementById('ticketPassenger').textContent = customerName;
             document.getElementById('ticketPax').textContent = `${pax} Kişi`;
             document.getElementById('ticketInstructor').textContent = currentEvent.instructor || 'gezenbiri Rehberi';
@@ -1979,7 +1980,12 @@ gezenbiri</div>
             document.getElementById('simHeroImg').src = currentEvent.image || 'assets/v2/workshop_seramik.jpg';
             document.getElementById('simMiniPnr').textContent = pnr;
             document.getElementById('simMiniTitle').textContent = currentEvent.title;
-            document.getElementById('simMiniDateText').textContent = `${eventDateFormatted} · ${currentEvent.time.split('–')[0].trim()}`;
+            const displayTime = (currentEvent.time && currentEvent.time.includes('–'))
+                ? currentEvent.time.split('–')[0].trim()
+                : ((currentEvent.time && currentEvent.time.includes('-'))
+                    ? currentEvent.time.split('-')[0].trim()
+                    : (currentEvent.time || currentEvent.duration || ''));
+            document.getElementById('simMiniDateText').textContent = displayTime ? `${eventDateFormatted} · ${displayTime}` : eventDateFormatted;
             document.getElementById('simMiniLocText').textContent = venueFull;
             document.getElementById('simMapsBtn').href = mapsQueryUrl;
 
@@ -1992,7 +1998,7 @@ katılımınız onaylandı. dijital bilet kartınız bu mesajın ekinde yer alma
 
 etkinlik: ${currentEvent.title}
 tarih: ${eventDateFormatted}
-saat: ${currentEvent.time}
+saat: ${eventTimeOrDuration}
 buluşma noktası: ${venueFull}
 kontenjan: ${pax} Kişi
 rezervasyon (PNR): ${pnr}
@@ -2226,7 +2232,7 @@ END:VCALENDAR`;
             const pnr = document.getElementById('inputPnr').value.trim() || 'GB-84920-TR';
             const eventDateFormatted = formatEventDate(currentEvent.startDate);
             const venueFull = `${currentEvent.location} · ${currentEvent.venue || 'Buluşma Noktası'}`;
-            const time = currentEvent.time;
+            const time = currentEvent.time || currentEvent.duration || 'Tüm Gün';
             const instructor = currentEvent.instructor || 'gezenbiri Rehberi';
             const category = currentEvent.categoryLabel || 'Deneyim';
 
@@ -2237,7 +2243,7 @@ END:VCALENDAR`;
             const notchR = 24;
 
             // Theme Palette
-            let bgTheme = '#FAF8F5';
+            let bgTheme = '#F6F3ED';
             let textColor = '#202020';
             let labelColor = '#777777';
             let subColor = 'rgba(32,32,32,0.7)';

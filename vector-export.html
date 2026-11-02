@@ -1056,7 +1056,7 @@
 
         <!-- Prototype Disclaimer -->
         <div class="gb-prototype-disclaimer">
-            gezenbiri™ Tasarım Sistemi ve Vektörel Varlık Kütüphanesi Prototype v2.1.0 · Resmî İletişim: <a href="https://gezenbiri.com" style="color:var(--text-main); font-weight:700;">gezenbiri.com</a> · <a href="https://gezenbiri.com.tr" style="color:var(--text-main); font-weight:700;">gezenbiri.com.tr</a> · <a href="https://gezenbiri.co" style="color:var(--text-main); font-weight:700;">gezenbiri.co</a>
+            gezenbiri Tasarım Sistemi ve Vektörel Varlık Kütüphanesi Prototype v2.1.0 · Resmî İletişim: <a href="https://gezenbiri.com" style="color:var(--text-main); font-weight:700;">gezenbiri.com</a> · <a href="https://gezenbiri.com.tr" style="color:var(--text-main); font-weight:700;">gezenbiri.com.tr</a> · <a href="https://gezenbiri.co" style="color:var(--text-main); font-weight:700;">gezenbiri.co</a>
         </div>
 
     </main>
@@ -1250,9 +1250,11 @@
         }
 
         // Generate Master SVGs with 100% Pure Vector Outlines (Zero External Font Dependencies)
-        function getAssetSVG(type) {
+        function getAssetSVG(type, isCuttingMaster = false) {
             const colors = getColors();
-            const bgRect = colors.hasDarkBg ? '<rect width="100%" height="100%" fill="#202020"/>\n  ' : '';
+            const bgRect = (!isCuttingMaster && colors.hasDarkBg) 
+                ? '<!-- Sunum Zemini (Lazer/folyo/CNC kesim için bu katmanı kaldırabilirsiniz) -->\n  <rect id="bg-presentation" width="100%" height="100%" fill="#202020"/>\n  ' 
+                : '';
 
             if (type === 'logo-wordmark') {
                 return `
@@ -1261,7 +1263,8 @@
   <g transform="translate(37, 90) scale(0.092)">
     <path d="${vectorOutlines.wordmark}" fill="${colors.primary}" />
   </g>
-  <!-- Canonical 1:1 System Dot (size: 0.15em = 13.8px, gap: 0.12em = 11.04px, bottom on baseline) -->
+  <!-- Canonical 1:1 System Dot (size: 0.15em = 13.8px, gap: 0.12em = 11.04px advance kerning, bottom on baseline) -->
+  <!-- Optik Açıklama: 0.12em (11.04px) tipografik advance boşluğudur; 'i' harfinin glif gövde sınır kutusuyla daire kenarı arasındaki optik mesafe ~12.42px'dir. -->
   <circle cx="439.5" cy="83.1" r="6.9" fill="${colors.dot}" />
 </svg>`.trim();
             }
@@ -1395,194 +1398,51 @@
             showToast(`İndirildi: gezenbiri-${type}-${currentMode}.svg`);
         }
 
-        // High-Resolution 4K PNG Generator via HTML5 Canvas 2D
+        // High-Resolution 4K PNG Generator via Pure Vector SVG & HTML5 Canvas 2D
         async function downloadPNG(type, targetWidth = 4000) {
-            await document.fonts.ready;
             const colors = getColors();
+            const svgContent = getAssetSVG(type);
 
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
+            // Extract native viewBox dimensions
+            const vbMatch = svgContent.match(/viewBox=["']\s*0\s+0\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s*["']/);
+            const vbW = vbMatch ? parseFloat(vbMatch[1]) : 100;
+            const vbH = vbMatch ? parseFloat(vbMatch[2]) : 100;
+            const targetHeight = Math.round(targetWidth * (vbH / vbW));
 
-            function initCanvas(w, h) {
-                canvas.width = w;
-                canvas.height = h;
+            // Generate high-resolution SVG blob with explicit target dimensions
+            const highResSvg = svgContent
+                .replace(/width="[^"]+"/, `width="${targetWidth}"`)
+                .replace(/height="[^"]+"/, `height="${targetHeight}"`);
+
+            const blob = new Blob([highResSvg], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const img = new Image();
+
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                canvas.width = targetWidth;
+                canvas.height = targetHeight;
+                const ctx = canvas.getContext('2d');
+
                 if (colors.hasDarkBg) {
                     ctx.fillStyle = '#202020';
-                    ctx.fillRect(0, 0, w, h);
+                    ctx.fillRect(0, 0, targetWidth, targetHeight);
                 } else {
-                    ctx.clearRect(0, 0, w, h);
+                    ctx.clearRect(0, 0, targetWidth, targetHeight);
                 }
-            }
 
-            if (type === 'logo-wordmark') {
-                // Aspect Ratio 480x130 (Snug & Centered)
-                initCanvas(targetWidth, Math.round(targetWidth * (130 / 480))); // 4000 x 1083
+                ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
+                triggerDownload(canvas, type, targetWidth);
+                URL.revokeObjectURL(url);
+            };
 
-                const fontSize = Math.round(targetWidth * (92 / 480));
-                ctx.font = `900 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
-                ctx.fillStyle = colors.primary;
-                ctx.textBaseline = 'alphabetic';
-                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
+            img.onerror = function(err) {
+                console.error('PNG render hatası:', err);
+                URL.revokeObjectURL(url);
+                showToast('PNG oluşturulurken bir hata oluştu.');
+            };
 
-                const metrics = ctx.measureText('gezenbiri');
-                const textVisualWidth = ('actualBoundingBoxRight' in metrics && metrics.actualBoundingBoxRight > 0)
-                    ? metrics.actualBoundingBoxRight
-                    : metrics.width;
-                const dotRadius = (fontSize * 0.15) / 2;
-                const dotGap = fontSize * 0.12;
-                const totalWidth = textVisualWidth + dotGap + (dotRadius * 2);
-
-                const textX = Math.round((canvas.width - totalWidth) / 2);
-                const textY = Math.round(canvas.height * (90 / 130));
-                ctx.fillText('gezenbiri', textX, textY);
-
-                const dotX = textX + textVisualWidth + dotGap + dotRadius;
-                const dotY = textY - dotRadius;
-
-                ctx.fillStyle = colors.dot;
-                ctx.beginPath();
-                ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
-                ctx.fill();
-            } else if (type === 'logo-monogram') {
-                // Aspect Ratio 260x170 (Snug & Centered)
-                initCanvas(targetWidth, Math.round(targetWidth * (170 / 260))); // 4000 x 2615
-
-                const fontSize = Math.round(targetWidth * (120 / 260));
-                ctx.font = `900 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
-                ctx.fillStyle = colors.primary;
-                ctx.textBaseline = 'alphabetic';
-                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
-
-                const metrics = ctx.measureText('gb');
-                const textVisualWidth = ('actualBoundingBoxRight' in metrics && metrics.actualBoundingBoxRight > 0)
-                    ? metrics.actualBoundingBoxRight
-                    : metrics.width;
-                const dotRadius = (fontSize * 0.15) / 2;
-                const dotGap = fontSize * 0.12;
-                const totalWidth = textVisualWidth + dotGap + (dotRadius * 2);
-
-                const textX = Math.round((canvas.width - totalWidth) / 2);
-                const textY = Math.round(canvas.height * (122 / 170));
-                ctx.fillText('gb', textX, textY);
-
-                const dotX = textX + textVisualWidth + dotGap + dotRadius;
-                const dotY = textY - dotRadius;
-
-                ctx.fillStyle = colors.dot;
-                ctx.beginPath();
-                ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
-                ctx.fill();
-            } else if (type === 'logo-combo') {
-                // Aspect Ratio 530x230 (Snug & Proportional)
-                initCanvas(targetWidth, Math.round(targetWidth * (230 / 530))); // 4000 x 1736
-
-                const scale = targetWidth / 530;
-                const textX = Math.round(40 * scale);
-
-                // gezenbiri
-                const logoSize = Math.round(80 * scale);
-                ctx.font = `900 ${logoSize}px "Plus Jakarta Sans", sans-serif`;
-                ctx.fillStyle = colors.primary;
-                ctx.textBaseline = 'alphabetic';
-                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
-                const logoY = Math.round(85 * scale);
-                ctx.fillText('gezenbiri', textX, logoY);
-
-                const metrics = ctx.measureText('gezenbiri');
-                const logoVisualWidth = ('actualBoundingBoxRight' in metrics && metrics.actualBoundingBoxRight > 0)
-                    ? metrics.actualBoundingBoxRight
-                    : metrics.width;
-                const dotRadius = (logoSize * 0.15) / 2;
-                const dotGap = logoSize * 0.12;
-                const dotX = textX + logoVisualWidth + dotGap + dotRadius;
-                const dotY = logoY - dotRadius;
-                ctx.fillStyle = colors.dot;
-                ctx.beginPath();
-                ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Bir yere gidelim.
-                const sloganSize = Math.round(44 * scale);
-                ctx.font = `800 ${sloganSize}px "Plus Jakarta Sans", sans-serif`;
-                ctx.fillStyle = colors.primary;
-                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.03em';
-                ctx.fillText('Bir yere gidelim.', textX, Math.round(148 * scale));
-
-                // Subline
-                const subSize = Math.round(20 * scale);
-                ctx.font = `600 ${subSize}px "Plus Jakarta Sans", sans-serif`;
-                ctx.fillStyle = colors.primary;
-                ctx.globalAlpha = 0.85;
-                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.01em';
-                ctx.fillText('Gitmeye değer yerler. Tanışmaya değer insanlar.', textX, Math.round(192 * scale));
-                ctx.globalAlpha = 1.0;
-            } else if (type === 'slogan-main') {
-                // Aspect Ratio 530x110 (Snug & Centered)
-                initCanvas(targetWidth, Math.round(targetWidth * (110 / 530))); // 4000 x 830
-
-                const scale = targetWidth / 530;
-                const fontSize = Math.round(64 * scale);
-                ctx.font = `800 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
-                ctx.fillStyle = colors.primary;
-                ctx.textBaseline = 'alphabetic';
-                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.03em';
-
-                const textWidth = ctx.measureText('Bir yere gidelim.').width;
-                const textX = Math.round((canvas.width - textWidth) / 2);
-                const textY = Math.round(canvas.height * (78 / 110));
-                ctx.fillText('Bir yere gidelim.', textX, textY);
-            } else if (type === 'slogan-sub') {
-                // Aspect Ratio 655x80 (Snug & Centered)
-                initCanvas(targetWidth, Math.round(targetWidth * (80 / 655))); // 4000 x 488
-
-                const scale = targetWidth / 655;
-                const fontSize = Math.round(27 * scale);
-                ctx.font = `600 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
-                ctx.fillStyle = colors.primary;
-                ctx.textBaseline = 'alphabetic';
-                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.01em';
-
-                const textWidth = ctx.measureText('Gitmeye değer yerler. Tanışmaya değer insanlar.').width;
-                const textX = Math.round((canvas.width - textWidth) / 2);
-                const textY = Math.round(canvas.height * (52 / 80));
-                ctx.fillText('Gitmeye değer yerler. Tanışmaya değer insanlar.', textX, textY);
-            } else if (type === 'slogan-manifesto') {
-                // Aspect Ratio 550x150 (Snug & Proportional)
-                initCanvas(targetWidth, Math.round(targetWidth * (150 / 550))); // 4000 x 1091
-
-                const scale = targetWidth / 550;
-                const textX = Math.round(30 * scale);
-
-                const serifSize = Math.round(56 * scale);
-                ctx.font = `italic ${serifSize}px "Instrument Serif", Georgia, serif`;
-                ctx.fillStyle = colors.primary;
-                ctx.textBaseline = 'alphabetic';
-                ctx.fillText('Arada bir gitmek lazım.', textX, Math.round(65 * scale));
-
-                const sansSize = Math.round(30 * scale);
-                ctx.font = `800 ${sansSize}px "Plus Jakarta Sans", sans-serif`;
-                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.02em';
-                ctx.fillText('Biz de sadece gezenbiriyiz.', textX, Math.round(118 * scale));
-            } else {
-                // High-Res Vector SVG render for System Dot Glyphs (32x32) & Standard Icons (24x24)
-                const svgContent = getAssetSVG(type);
-                const highResSvg = svgContent
-                    .replace(/width="[^"]+"/, `width="${targetWidth}"`)
-                    .replace(/height="[^"]+"/, `height="${targetWidth}"`);
-                const blob = new Blob([highResSvg], { type: 'image/svg+xml;charset=utf-8' });
-                const url = URL.createObjectURL(blob);
-                const img = new Image();
-                img.onload = function() {
-                    initCanvas(targetWidth, targetWidth);
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    triggerDownload(canvas, type, targetWidth);
-                    URL.revokeObjectURL(url);
-                };
-                img.src = url;
-                return;
-            }
-
-            triggerDownload(canvas, type, targetWidth);
+            img.src = url;
         }
 
         function triggerDownload(canvas, type, targetWidth) {
@@ -1634,18 +1494,30 @@
             });
 
             // 5. Production Specs Readme
-            const readme = `gezenbiri Marka Sistemi - Reklamcı & Baskıcı Üretim Notları
-=============================================================
+            const readme = `gezenbiri Marka Sistemi — Reklamcı, Tabela & Baskıcı Üretim Notları
+================================================================================
 Tarih: 2026-11-02
-Renk Kodu 1: Charcoal (#202020 / RAL 9004)
-Renk Kodu 2: Action Coral (#FF4D3D / RAL 3028)
-Tipografi: Plus Jakarta Sans (900 Wordmark, 800 Slogan, 600 Alt Slogan) & Instrument Serif (Manifesto İtalik)
-System Dot: 1:1 mekanik tam daire. 0.12em optik harf boşluğu.
-Slogan Kuralı: "Bir yere gidelim." sonundaki nokta tipografiktir.
-System Dot Glifleri: icon-morph-motion.html standartı 32x32 pikto ailesi; çekirdek Action Coral rengi içerir.
 
-Tüm dosyalar vektörel SVG formatında olup CNC router, dekota, lazer kesim,
-tabela, folyo ve serigrafi için hazır durumdadır.
+1. RENK STANDARTLARI:
+- Resmî Kurumsal Koyu Renk: Dark Charcoal (#202020 / RAL 9004 / Pantone Black 6 C)
+- Resmî Aksiyon & System Dot: Action Coral (#FF4D3D / RAL 3028 / Pantone 1788 C)
+- Mono Siyah Modu: Saf Siyah (#000000 / RAL 9005) — Yalnızca tek renk serigrafi, kaşe ve ofset için.
+- Zemin Tuvali: Warm Cream (#F6F3ED / Pantone 7527 C)
+
+2. VEKTÖREL KESİM & SUNUM ZEMİNİ AYRIMI (CNC / LAZER / FOLYO):
+- Koyu zeminli dosyalarda önizleme için yerleştirilen zemin katmanı <rect id="bg-presentation"> olarak etiketlenmiştir.
+- CNC router, lazer kesim ve plotter folyo kesim makinelerinde bu katmanı gizleyerek/kaldırarak doğrudan saf kesim hattını kullanınız.
+
+3. SYSTEM DOT VE TİPOGRAFİK OPTİK BOŞLUK:
+- System Dot: 1:1 mekanik tam daire (0.15em çap). Asla ovalleştirilemez veya logo içine gömülemez.
+- Harf Boşluğu: 0.12em (11.04px) 'i' harfinin tipografik advance kerning değeridir.
+- Görsel Mesafe Notu: 'i' harfinin glif gövde konturu (actualBoundingBoxRight) ile System Dot kenarı arasındaki optik boşluk ~12.42px'dir.
+
+4. DİĞER KURALLAR:
+- Slogan Kuralı: "Bir yere gidelim." sonundaki nokta tipografiktir, turuncu System Dot değildir.
+- Kanonik Glifler: 8 Kanonik System Dot Glifi (32x32), kalbinde Action Coral (#FF4D3D) çekirdek içerir.
+- Yardımcı İkonlar: 16 Minimal & Bölgesel İkon (24x24) 1.8px monoline çizgilidir.
+
 İletişim & Onay: selam@gezenbiri.com.tr · gezenbiri.com · gezenbiri.com.tr
 `;
             zip.file('URETIM_VE_BASKI_NOTLARI.txt', readme);

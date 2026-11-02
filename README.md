@@ -139,7 +139,7 @@ Tasarım sistemi kuralları [`brand.css`](file:///c:/Users/Mahir/Desktop/gezenbi
 * `--gb-radius-sm`: `8px` *(Butonlar, küçük etiketler)*
 * `--gb-radius-md`: `12px` *(Giriş kutuları, açılır pencereler)*
 * `--gb-radius-lg`: `20px` *(Seyahat ve atölye kartları)*
-* `--gb-radius-pill`: `100px` *(Hap butonlar, filtreler, navigasyon sekmeleri)*
+* `--gb-radius-pill`: `999px` *(Hap butonlar, filtreler, navigasyon sekmeleri)*
 * `--gb-shadow-subtle`: `0 4px 20px rgba(0, 0, 0, 0.04)`
 * `--gb-shadow-floating`: `0 16px 40px rgba(0, 0, 0, 0.12)`
 
@@ -181,20 +181,20 @@ Markanın fiziksel dünyadaki dokunsal varlığı için 6 çekirdek ürün tanı
 
 gezenbiri piktogram sisteminde System Dot, dekoratif bir dolgu değil; her glifin taşıdığı anlamın **“geometrik çekirdeği” (nucleus)** ve eylem odağıdır.
 
-### 8 Özel Monoline Glif:
+### 8 Özel Monoline Glif (Tier 1 Piktogram Ailesi):
 1. **01. Konum & Rota (Pin):** Harita pininin kalbindeki hedef koordinat noktası.
 2. **02. Takvim & Tarih:** Ayın 16'sını ve rezervasyon gününü kilitleyen aksiyon noktası.
-3. **03. Kahve & Fincan:** Dumanı tüten kahve fincanının lezzet damlası.
-4. **04. Kadeh & Sofra:** Şarap kadehinin merkezindeki bağ bozumu damlası.
-5. **05. Çanta & Bavul:** Hafta sonu kaçamak çantasının kilit düğmesi.
-6. **06. Objektif & Kamera:** Vizörün ve deklanşörün odak noktası.
-7. **07. Pusula & Yön:** Kuzeyi ve rotayı gösteren manyetik iğne ucu.
-8. **08. Bilet & Giriş:** Katılımcı kartının üzerindeki onaylanmış mühür.
+3. **03. Kamera & An (Objektif):** Vizörün ve deklanşörün odak noktası.
+4. **04. Kahve & Mola (Fincan):** Dumanı tüten kahve fincanının lezzet damlası.
+5. **05. Kadeh & Tadım (Sofra):** Şarap kadehinin merkezindeki bağ bozumu damlası.
+6. **06. Pusula & Yön:** Kuzeyi ve rotayı gösteren manyetik iğne ucu.
+7. **07. Topluluk & İnsan:** Yol arkadaşlığını ve sosyal bağı kenetleyen merkez nokta.
+8. **08. Bilet & Rezervasyon:** Katılımcı kartının üzerindeki onaylanmış mühür.
 
 ### Motion Lab Özellikleri:
 * **Hız Kontrolü:** `0.5x` (Detaylı inceleme), `1.0x` (Canlı ritim), `2.0x` (Hızlı geçiş).
 * **Format Seçici:** `Story (9:16)` dikey şablon & `Post (1:1)` kare önizleme.
-* **Tipografik Kanca Motoru:** 4 editoryal kanca cümlesiyle dinamik başlık senkronizasyonu.
+* **Tipografik Kanca Motoru:** 5 editoryal kanca cümlesiyle dinamik başlık senkronizasyonu.
 
 ---
 
