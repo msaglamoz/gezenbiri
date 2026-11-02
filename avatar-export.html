@@ -240,13 +240,19 @@
             flex-shrink: 0;
         }
 
+        .sim-avatar-wrap > span {
+            display: inline-flex;
+            align-items: baseline;
+        }
+
         .sim-avatar-dot {
             display: inline-block;
-            width: 4px;
-            height: 4px;
+            width: 0.15em;
+            height: 0.15em;
             background-color: #FF4D3D;
             border-radius: 50%;
-            margin-left: 2px;
+            margin-left: 0.12em;
+            vertical-align: baseline;
         }
 
         .sim-stats {
@@ -373,8 +379,8 @@ Gitmeye değer yerler. Tanışmaya değer insanlar.
         </div>
     </div>
 
-    <!-- Hidden Rendering Canvas -->
-    <canvas id="renderCanvas" width="1080" height="1080"></canvas>
+    <!-- OUTLINED VECTOR MASTER LIBRARY -->
+    <script src="data/vector_outlines.js"></script>
 
     <script>
         // Ensure fonts are loaded before canvas rendering
@@ -383,7 +389,9 @@ Gitmeye değer yerler. Tanışmaya değer insanlar.
         });
 
         function exportAvatar(type) {
-            const canvas = document.getElementById('renderCanvas');
+            const canvas = document.createElement('canvas');
+            canvas.width = 1080;
+            canvas.height = 1080;
             const ctx = canvas.getContext('2d');
             const size = 1080;
 
@@ -399,38 +407,50 @@ Gitmeye değer yerler. Tanışmaya değer insanlar.
             ctx.fillStyle = bgColor;
             ctx.fillRect(0, 0, size, size);
 
-            // 2. Set Font
-            ctx.fillStyle = textColor;
-            ctx.font = '900 440px "Plus Jakarta Sans", sans-serif';
-            ctx.textBaseline = 'alphabetic';
+            // 2. Render Pure Vector Path or Font Fallback
+            if (typeof vectorOutlines !== 'undefined' && vectorOutlines.monogram) {
+                const path = new Path2D(vectorOutlines.monogram);
+                ctx.save();
+                ctx.translate(207.6, 680);
+                ctx.scale(0.44, 0.44);
+                ctx.fillStyle = textColor;
+                ctx.fill(path);
+                ctx.restore();
 
-            // Measure Text with letter-spacing
-            if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
-            const text = 'gb';
-            const textMetrics = ctx.measureText(text);
-            const textWidth = ('actualBoundingBoxRight' in textMetrics && textMetrics.actualBoundingBoxRight > 0)
-                ? textMetrics.actualBoundingBoxRight
-                : textMetrics.width;
+                // 3. Draw Master System Dot (bottom edge rests on baseline y=680)
+                ctx.beginPath();
+                ctx.fillStyle = dotColor;
+                ctx.arc(839.4, 647, 33, 0, Math.PI * 2);
+                ctx.fill();
+            } else {
+                ctx.fillStyle = textColor;
+                ctx.font = '900 440px "Plus Jakarta Sans", sans-serif';
+                ctx.textBaseline = 'alphabetic';
 
-            // Canonical System Dot geometry (size: 0.15em = 66px, gap: 0.12em = 52.8px, bottom on baseline)
-            const dotRadius = (440 * 0.15) / 2; // 33px
-            const dotGap = 440 * 0.12;          // 52.8px
-            const totalWidth = textWidth + dotGap + (dotRadius * 2);
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
+                const text = 'gb';
+                const textMetrics = ctx.measureText(text);
+                const textWidth = ('actualBoundingBoxRight' in textMetrics && textMetrics.actualBoundingBoxRight > 0)
+                    ? textMetrics.actualBoundingBoxRight
+                    : textMetrics.width;
 
-            // Optical center
-            const textX = Math.round((size - totalWidth) / 2);
-            const textY = Math.round(size / 2 + 140); // baseline
+                const dotRadius = (440 * 0.15) / 2; // 33px
+                const dotGap = 440 * 0.12;          // 52.8px
+                const totalWidth = textWidth + dotGap + (dotRadius * 2);
 
-            ctx.fillText(text, textX, textY);
+                const textX = Math.round((size - totalWidth) / 2);
+                const textY = Math.round(size / 2 + 140); // 680
 
-            // 3. Draw Master System Dot (Pure 1:1 circular ratio on baseline)
-            const dotX = textX + textWidth + dotGap + dotRadius;
-            const dotY = textY - dotRadius; // Bottom edge rests on baseline
+                ctx.fillText(text, textX, textY);
 
-            ctx.beginPath();
-            ctx.fillStyle = dotColor;
-            ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
-            ctx.fill();
+                const dotX = textX + textWidth + dotGap + dotRadius;
+                const dotY = textY - dotRadius;
+
+                ctx.beginPath();
+                ctx.fillStyle = dotColor;
+                ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
+                ctx.fill();
+            }
 
             // 4. Trigger Download
             const link = document.createElement('a');
