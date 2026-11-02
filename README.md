@@ -170,7 +170,7 @@ Markanın fiziksel dünyadaki dokunsal varlığı için 6 çekirdek ürün tanı
 6. **Mat Vinil Mühür Paketi:** 90 mikron ekstra dayanıklı dış mekan vinil çıkartmalar (Suya ve UV ışınlarına %100 dayanıklı).
 
 ### Pantone & Serigrafi Üretim Matrisi:
-* **Action Coral:** `PANTONE 1788 C` · CMYK: `0 / 84 / 77 / 0` · Serigrafi & Tekstil
+* **Action Coral:** `PANTONE 1788 C` · CMYK: `0 / 85 / 75 / 0` · Serigrafi & Tekstil
 * **Dark Charcoal:** `PANTONE Black 6 C` · CMYK: `70 / 65 / 60 / 75` · Metal & Kumaş
 * **Warm Cream:** `PANTONE 7527 C` · CMYK: `4 / 5 / 10 / 0` · Doku & Porselen
 * **Sage Green:** `PANTONE 5645 C` · CMYK: `35 / 15 / 30 / 10` · Rozet & Detay

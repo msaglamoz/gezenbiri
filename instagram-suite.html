@@ -1666,18 +1666,18 @@
                                     <div class="ig-ui-thumb-badge">
                                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFF" stroke-width="2.5"><rect x="6" y="2" width="16" height="16" rx="2"></rect><path d="M2 6v14a2 2 0 0 0 2 2h14"></path></svg>
                                     </div>
-                                    <div class="ig-ui-thumb-hover"><span>1.8k</span><span>💬 94</span></div>
+                                    <div class="ig-ui-thumb-hover"><span>1.8k</span><span><svg width="11" height="11" viewBox="0 0 24 24" fill="#FFF" style="vertical-align:-1px; margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>94</span></div>
                                 </div>
                                 <!-- 2: Alaçatı (Pinned) -->
                                 <div class="ig-ui-thumb" style="background-image: url('assets/alacati.jpg');">
                                     <div class="ig-ui-thumb-badge">
                                         <svg width="12" height="12" viewBox="0 0 24 24" fill="#FFF"><path d="M16 12V4h1V2H7v2h1v8l-2 2v2h5.2v6h1.6v-6H18v-2l-2-2z"/></svg>
                                     </div>
-                                    <div class="ig-ui-thumb-hover"><span>2.4k</span><span>💬 142</span></div>
+                                    <div class="ig-ui-thumb-hover"><span>2.4k</span><span><svg width="11" height="11" viewBox="0 0 24 24" fill="#FFF" style="vertical-align:-1px; margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>142</span></div>
                                 </div>
                                 <!-- 3: Erciyes -->
                                 <div class="ig-ui-thumb" style="background-image: url('assets/erciyes.jpg');">
-                                    <div class="ig-ui-thumb-hover"><span>1.1k</span><span>💬 63</span></div>
+                                    <div class="ig-ui-thumb-hover"><span>1.1k</span><span><svg width="11" height="11" viewBox="0 0 24 24" fill="#FFF" style="vertical-align:-1px; margin-right:3px;"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>63</span></div>
                                 </div>
                                 <!-- 4: Çeşme (Reel) -->
                                 <div class="ig-ui-thumb" style="background-image: url('assets/v2/escape_cesme.jpg');">
@@ -1857,16 +1857,16 @@
                     </div>
                 </div>
 
-                <!-- Avatar 6: Editorial Serif Monogram -->
+                <!-- Avatar 6: Sand Warm Monogram -->
                 <div class="item-card">
-                    <div class="avatar-cover-circle theme-sand" onclick="setLiveMockupAvatar('#D8CCBC', '#202020', 'gb.', 'serif')">
-                        <div class="avatar-serif-text">gb<span class="brand-system-dot"></span></div>
+                    <div class="avatar-cover-circle theme-sand" onclick="setLiveMockupAvatar('#D8CCBC', '#202020', 'gb.', 'mono')">
+                        <span class="avatar-mono-text" style="color:var(--charcoal);">gb<span class="brand-system-dot"></span></span>
                     </div>
-                    <div class="item-label">06. Editoryal Serif</div>
-                    <div class="item-sub">Kum zemin / İtalik gb. &amp; System Dot</div>
+                    <div class="item-label">06. Sıcak Kum Zemin</div>
+                    <div class="item-sub">Kum (#D8CCBC) zemin / gb. &amp; System Dot</div>
                     <div style="display:flex; gap:6px;">
-                        <button class="btn-mini-download" onclick="setLiveMockupAvatar('#D8CCBC', '#202020', 'gb.', 'serif')">Dene</button>
-                        <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-serif', 'gezenbiri-avatar-editoryal-serif', 'gb', '#D8CCBC', '#202020')">PNG</button>
+                        <button class="btn-mini-download" onclick="setLiveMockupAvatar('#D8CCBC', '#202020', 'gb.', 'mono')">Dene</button>
+                        <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-mono', 'gezenbiri-avatar-sicak-kum', 'gb', '#D8CCBC', '#202020')">PNG</button>
                     </div>
                 </div>
 
@@ -2703,42 +2703,45 @@
             if (type === 'avatar-full') {
                 ctx.fillStyle = primaryColor;
                 ctx.font = '900 160px "Plus Jakarta Sans", sans-serif';
-                const textWidth = ctx.measureText("gezenbiri").width;
-                const startX = 540 - (textWidth + 30) / 2;
+                ctx.textBaseline = 'alphabetic';
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
+                const textMetrics = ctx.measureText("gezenbiri");
+                const textWidth = ('actualBoundingBoxRight' in textMetrics && textMetrics.actualBoundingBoxRight > 0) ? textMetrics.actualBoundingBoxRight : textMetrics.width;
+                const dotRadius = (160 * 0.15) / 2;
+                const dotGap = 160 * 0.12;
+                const totalWidth = textWidth + dotGap + (dotRadius * 2);
+                const startX = Math.round((1080 - totalWidth) / 2);
+                const baselineY = 590;
                 ctx.textAlign = 'left';
-                ctx.fillText("gezenbiri", startX, 550);
-                // Draw 1:1 System Dot
+                ctx.fillText("gezenbiri", startX, baselineY);
+                // Draw Canonical 1:1 System Dot (Action Coral, bottom on baseline)
                 ctx.fillStyle = '#FF4D3D';
                 ctx.beginPath();
-                ctx.arc(startX + textWidth + 14, 528, 14, 0, Math.PI * 2);
+                ctx.arc(startX + textWidth + dotGap + dotRadius, baselineY - dotRadius, dotRadius, 0, Math.PI * 2);
                 ctx.fill();
             } else if (type === 'avatar-mono' || type === 'avatar-mono-inv') {
                 ctx.fillStyle = primaryColor;
                 ctx.font = '900 380px "Plus Jakarta Sans", sans-serif';
-                const textWidth = ctx.measureText("gb").width;
-                const startX = 540 - (textWidth + 60) / 2;
+                ctx.textBaseline = 'alphabetic';
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
+                const textMetrics = ctx.measureText("gb");
+                const textWidth = ('actualBoundingBoxRight' in textMetrics && textMetrics.actualBoundingBoxRight > 0) ? textMetrics.actualBoundingBoxRight : textMetrics.width;
+                const dotRadius = (380 * 0.15) / 2;
+                const dotGap = 380 * 0.12;
+                const totalWidth = textWidth + dotGap + (dotRadius * 2);
+                const startX = Math.round((1080 - totalWidth) / 2);
+                const baselineY = 640;
                 ctx.textAlign = 'left';
-                ctx.fillText("gb", startX, 570);
-                // Draw 1:1 System Dot (Warm Cream on coral bg, else Water Coral)
+                ctx.fillText("gb", startX, baselineY);
+                // Draw Canonical 1:1 System Dot (bottom on baseline)
                 ctx.fillStyle = (type === 'avatar-mono-inv') ? '#F6F3ED' : '#FF4D3D';
                 ctx.beginPath();
-                ctx.arc(startX + textWidth + 30, 520, 32, 0, Math.PI * 2);
+                ctx.arc(startX + textWidth + dotGap + dotRadius, baselineY - dotRadius, dotRadius, 0, Math.PI * 2);
                 ctx.fill();
             } else if (type === 'avatar-app-icon') {
                 ctx.fillStyle = '#FF4D3D';
                 ctx.beginPath();
                 ctx.arc(540, 540, 240, 0, Math.PI * 2);
-                ctx.fill();
-            } else if (type === 'avatar-serif') {
-                ctx.font = 'italic 460px "Instrument Serif", Georgia, serif';
-                ctx.fillStyle = primaryColor;
-                const textWidth = ctx.measureText("gb").width;
-                const startX = 540 - (textWidth + 50) / 2;
-                ctx.textAlign = 'left';
-                ctx.fillText("gb", startX, 570);
-                ctx.fillStyle = '#FF4D3D';
-                ctx.beginPath();
-                ctx.arc(startX + textWidth + 24, 524, 30, 0, Math.PI * 2);
                 ctx.fill();
             } else if (type === 'avatar-ring') {
                 // Outer subtle ring
@@ -2752,13 +2755,20 @@
 
                 ctx.fillStyle = primaryColor;
                 ctx.font = '900 340px "Plus Jakarta Sans", sans-serif';
-                const textWidth = ctx.measureText("gb").width;
-                const startX = 540 - (textWidth + 50) / 2;
+                ctx.textBaseline = 'alphabetic';
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
+                const textMetrics = ctx.measureText("gb");
+                const textWidth = ('actualBoundingBoxRight' in textMetrics && textMetrics.actualBoundingBoxRight > 0) ? textMetrics.actualBoundingBoxRight : textMetrics.width;
+                const dotRadius = (340 * 0.15) / 2;
+                const dotGap = 340 * 0.12;
+                const totalWidth = textWidth + dotGap + (dotRadius * 2);
+                const startX = Math.round((1080 - totalWidth) / 2);
+                const baselineY = 630;
                 ctx.textAlign = 'left';
-                ctx.fillText("gb", startX, 560);
+                ctx.fillText("gb", startX, baselineY);
                 ctx.fillStyle = '#FF4D3D';
                 ctx.beginPath();
-                ctx.arc(startX + textWidth + 24, 516, 26, 0, Math.PI * 2);
+                ctx.arc(startX + textWidth + dotGap + dotRadius, baselineY - dotRadius, dotRadius, 0, Math.PI * 2);
                 ctx.fill();
             } else if (type === 'hl-serif') {
                 ctx.font = 'italic 500px "Instrument Serif", Georgia, serif';

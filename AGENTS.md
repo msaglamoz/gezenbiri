@@ -219,29 +219,35 @@ Use the canonical radius and shadow tokens from `brand.css` rather than inventin
 
 ## 10. Canonical icon system
 
-The only official pictogram family is defined in `icon-morph-motion.html`.
+The iconography operates in two distinct, non-conflicting tiers:
 
-The eight canonical monoline glyphs are:
-1. Konum & Rota
-2. Takvim & Tarih
-3. Kahve & Fincan
-4. Kadeh & Sofra
-5. Çanta & Bavul
-6. Objektif & Kamera
-7. Pusula & Yön
-8. Bilet & Giriş
+### Tier 1: 8 Kanonik System Dot Glifi (Master 32×32 Piktogram Ailesi)
+The primary brand pictogram family is defined exclusively in `icon-morph-motion.html`. Each glyph embeds an Action Coral (`#FF4D3D`) System Dot nucleus:
+1. **Konum & Rota** (Hedef Koordinat & Çapa)
+2. **Takvim & Tarih** (Planlama & Buluşma)
+3. **Kamera & An** (Objektif & Görsel Hafıza)
+4. **Kahve & Mola** (Fincan & Buhar)
+5. **Kadeh & Tadım** (Lokal Sofra & Lezzet Damlası)
+6. **Pusula & Yön** (Keşif & Merkez İğne)
+7. **Topluluk & İnsan** (Sosyal Bağlantı & Birliktelik)
+8. **Bilet & Rezervasyon** (Giriş Kartı & Onay Mührü)
+
+### Tier 2: 16 Minimal Arayüz & Bölgesel Rota İkonu (Yardımcı 24×24 İkon Ailesi)
+Monoline (1.8px) interface and destination-specific pictograms without an embedded System Dot nucleus:
+- Konum, Takvim, Topluluk, Fotoğraf, Kahve, Rota, Çanta, Tabela, Butik Otel, Sofra, Müzik, Gün Batımı.
+- Bölgesel Rota İkonları: Erciyes Dağı, Kapadokya Balon, Peri Bacası, Kayseri Saat Kulesi.
 
 Rules:
-- copy the exact SVG geometry from `icon-morph-motion.html`
-- preserve its `viewBox`, paths, ellipses, stroke width, round caps, and round joins
-- preserve the defined System Dot nucleus and its color behavior
+- copy the exact SVG geometry from `icon-morph-motion.html` and `vector-export.html`
+- preserve `viewBox` (32×32 for Tier 1 Glyphs, 24×24 for Tier 2 Icons), paths, stroke width (1.8), round caps, and round joins
+- preserve the defined Action Coral System Dot nucleus in Tier 1 glyphs
 - do not redraw a glyph from memory
 - do not improvise a new route, meeting, location, or community symbol if a canonical glyph already covers the meaning
 - do not use native emoji as icons
 - do not use third-party icon-library substitutes for a canonical glyph
 - use motion only where the Motion Lab defines or permits it
 
-For “Bir yere gidelim.” or route/launch communication, prefer the canonical Konum & Rota glyph. For community gathering, use the canonical social/meeting implementation already present in the Motion Lab rather than an invented connection diagram.
+For “Bir yere gidelim.” or route/launch communication, prefer the canonical Konum & Rota glyph. For community gathering, use the canonical Topluluk & İnsan glyph already present in the Motion Lab rather than an invented connection diagram.
 
 ## 11. Voice and copy
 

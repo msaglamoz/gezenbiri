@@ -404,28 +404,28 @@ Gitmeye değer yerler. Tanışmaya değer insanlar.
             ctx.font = '900 440px "Plus Jakarta Sans", sans-serif';
             ctx.textBaseline = 'alphabetic';
 
-            // Measure Text
+            // Measure Text with letter-spacing
+            if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
             const text = 'gb';
             const textMetrics = ctx.measureText(text);
-            const textWidth = textMetrics.width;
+            const textWidth = ('actualBoundingBoxRight' in textMetrics && textMetrics.actualBoundingBoxRight > 0)
+                ? textMetrics.actualBoundingBoxRight
+                : textMetrics.width;
 
-            // Precise optical centering
-            // 'g' has descender, 'b' has ascender. 
-            // Optical center for Plus Jakarta Sans 900 at 440px
-            const centerX = size / 2;
-            const centerY = size / 2;
+            // Canonical System Dot geometry (size: 0.15em = 66px, gap: 0.12em = 52.8px, bottom on baseline)
+            const dotRadius = (440 * 0.15) / 2; // 33px
+            const dotGap = 440 * 0.12;          // 52.8px
+            const totalWidth = textWidth + dotGap + (dotRadius * 2);
 
-            // Text positioning
-            const textX = centerX - (textWidth / 2) - 15;
-            const textY = centerY + 140; // baseline
+            // Optical center
+            const textX = Math.round((size - totalWidth) / 2);
+            const textY = Math.round(size / 2 + 140); // baseline
 
             ctx.fillText(text, textX, textY);
 
-            // 3. Draw Master System Dot (Pure 1:1 circular ratio)
-            // System dot is placed directly beside letter 'b'
-            const dotRadius = 35;
-            const dotX = textX + textWidth + 36;
-            const dotY = textY - 210;
+            // 3. Draw Master System Dot (Pure 1:1 circular ratio on baseline)
+            const dotX = textX + textWidth + dotGap + dotRadius;
+            const dotY = textY - dotRadius; // Bottom edge rests on baseline
 
             ctx.beginPath();
             ctx.fillStyle = dotColor;

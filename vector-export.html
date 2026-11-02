@@ -20,6 +20,8 @@
 
     <!-- JSZip for 1-Click ZIP Packaging -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <!-- Pure Vector Outlines (Zero External Font Dependencies) -->
+    <script src="data/vector_outlines.js"></script>
 
     <style>
         :root {
@@ -1247,104 +1249,86 @@
             }
         }
 
-        // Generate Master SVGs with Current Colors & Embedded Web Fonts
+        // Generate Master SVGs with 100% Pure Vector Outlines (Zero External Font Dependencies)
         function getAssetSVG(type) {
             const colors = getColors();
             const bgRect = colors.hasDarkBg ? '<rect width="100%" height="100%" fill="#202020"/>\n  ' : '';
-            const svgStyles = `
-    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800;900&amp;display=swap');
-    .txt-wordmark {
-      font-family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-    }
-    .txt-slogan {
-      font-family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-    }
-    .txt-tagline {
-      font-family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-    .txt-serif {
-      font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-      font-style: italic;
-    }
-    .txt-manifesto-sub {
-      font-family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-  `;
 
             if (type === 'logo-wordmark') {
                 return `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 130" width="480" height="130">
-  <defs>
-    <style>${svgStyles}</style>
-  </defs>
-  ${bgRect}<text x="37" y="90" class="txt-wordmark" font-size="92" fill="${colors.primary}">gezenbiri</text>
+  ${bgRect}<!-- Canonical Wordmark (Outlined Pure Vector: Plus Jakarta Sans 900) -->
+  <g transform="translate(37, 90) scale(0.092)">
+    <path d="${vectorOutlines.wordmark}" fill="${colors.primary}" />
+  </g>
   <!-- Canonical 1:1 System Dot (size: 0.15em = 13.8px, gap: 0.12em = 11.04px, bottom on baseline) -->
-  <circle cx="436.2" cy="83.1" r="6.9" fill="${colors.dot}" />
+  <circle cx="439.5" cy="83.1" r="6.9" fill="${colors.dot}" />
 </svg>`.trim();
             }
 
             if (type === 'logo-monogram') {
                 return `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 170" width="260" height="170">
-  <defs>
-    <style>${svgStyles}</style>
-  </defs>
-  ${bgRect}<text x="38" y="122" class="txt-wordmark" font-size="120" fill="${colors.primary}">gb</text>
+  ${bgRect}<!-- Canonical Monogram (Outlined Pure Vector: Plus Jakarta Sans 900) -->
+  <g transform="translate(38, 122) scale(0.12)">
+    <path d="${vectorOutlines.monogram}" fill="${colors.primary}" />
+  </g>
   <!-- Canonical 1:1 System Dot (size: 0.15em = 18px, gap: 0.12em = 14.4px, bottom on baseline) -->
-  <circle cx="212.4" cy="113" r="9" fill="${colors.dot}" />
+  <circle cx="210.3" cy="113" r="9" fill="${colors.dot}" />
 </svg>`.trim();
             }
 
             if (type === 'logo-combo') {
                 return `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 230" width="530" height="230">
-  <defs>
-    <style>${svgStyles}</style>
-  </defs>
-  ${bgRect}<text x="40" y="85" class="txt-wordmark" font-size="80" fill="${colors.primary}">gezenbiri</text>
+  ${bgRect}<!-- gezenbiri wordmark (Outlined Pure Vector) -->
+  <g transform="translate(40, 85) scale(0.08)">
+    <path d="${vectorOutlines.wordmark}" fill="${colors.primary}" />
+  </g>
   <!-- Canonical 1:1 System Dot (size: 0.15em = 12px, gap: 0.12em = 9.6px, bottom on baseline) -->
-  <circle cx="386.6" cy="79" r="6" fill="${colors.dot}" />
-  <text x="40" y="148" class="txt-slogan" font-size="44" fill="${colors.primary}">Bir yere gidelim.</text>
-  <text x="40" y="192" class="txt-tagline" font-size="20" fill="${colors.primary}" opacity="0.85">Gitmeye değer yerler. Tanışmaya değer insanlar.</text>
+  <circle cx="390" cy="79" r="6" fill="${colors.dot}" />
+  <!-- Bir yere gidelim. slogan (Outlined Pure Vector) -->
+  <g transform="translate(40, 148) scale(0.044)">
+    <path d="${vectorOutlines.slogan}" fill="${colors.primary}" />
+  </g>
+  <!-- Subline (Outlined Pure Vector) -->
+  <g transform="translate(40, 192) scale(0.02)" opacity="0.85">
+    <path d="${vectorOutlines.subline}" fill="${colors.primary}" />
+  </g>
 </svg>`.trim();
             }
 
             if (type === 'slogan-main') {
                 return `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 110" width="530" height="110">
-  <defs>
-    <style>${svgStyles}</style>
-  </defs>
-  ${bgRect}<text x="29" y="78" class="txt-slogan" font-size="64" fill="${colors.primary}">Bir yere gidelim.</text>
+  ${bgRect}<!-- Bir yere gidelim. slogan (Outlined Pure Vector: Plus Jakarta Sans 800) -->
+  <g transform="translate(27, 78) scale(0.064)">
+    <path d="${vectorOutlines.slogan}" fill="${colors.primary}" />
+  </g>
 </svg>`.trim();
             }
 
             if (type === 'slogan-sub') {
                 return `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 655 80" width="655" height="80">
-  <defs>
-    <style>${svgStyles}</style>
-  </defs>
-  ${bgRect}<text x="25" y="52" class="txt-tagline" font-size="27" fill="${colors.primary}">Gitmeye değer yerler. Tanışmaya değer insanlar.</text>
+  ${bgRect}<!-- Gitmeye değer yerler. Tanışmaya değer insanlar. (Outlined Pure Vector: Plus Jakarta Sans 600) -->
+  <g transform="translate(22, 52) scale(0.027)">
+    <path d="${vectorOutlines.subline}" fill="${colors.primary}" />
+  </g>
 </svg>`.trim();
             }
 
             if (type === 'slogan-manifesto') {
                 return `
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 150" width="550" height="150">
-  <defs>
-    <style>${svgStyles}</style>
-  </defs>
-  ${bgRect}<text x="30" y="65" class="txt-serif" font-size="56" fill="${colors.primary}">Arada bir gitmek lazım.</text>
-  <text x="30" y="118" class="txt-manifesto-sub" font-size="30" fill="${colors.primary}">Biz de sadece gezenbiriyiz.</text>
+  ${bgRect}<!-- Arada bir gitmek lazım. (Outlined Pure Vector: Instrument Serif Italic) -->
+  <g transform="translate(30, 65) scale(0.056)">
+    <path d="${vectorOutlines.manifesto1}" fill="${colors.primary}" />
+  </g>
+  <!-- Biz de sadece gezenbiriyiz. (Outlined Pure Vector: Plus Jakarta Sans 800) -->
+  <g transform="translate(30, 118) scale(0.03)">
+    <path d="${vectorOutlines.manifesto2}" fill="${colors.primary}" />
+  </g>
 </svg>`.trim();
             }
 
