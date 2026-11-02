@@ -434,10 +434,9 @@
         .wa-avatar-dot {
             position: absolute;
             width: 5px;
-            height: 5.15px;
+            height: 5px;
             background-color: var(--gb-coral);
             border-radius: 50%;
-            transform: scaleY(1.03);
             bottom: 12px;
             right: 8px;
         }
@@ -1213,6 +1212,7 @@
             <a href="packing-guide.html">Yol &amp; Bavul Rehberi</a>
             <a href="merch-guidelines.html">Merchandise Kiti</a>
             <a href="whatsapp-ticket.html" class="active">WhatsApp Bilet</a>
+            <a href="vector-export.html">Vektör &amp; Baskı ↗</a>
             <a href="gezenbiri_website.html" style="color:var(--coral); font-weight:800;">Web Sitesi ↗</a>
         </div>
     </div>
@@ -2320,10 +2320,10 @@ END:VCALENDAR`;
                 ctx.fillText('gezenbiri', 48, 64);
                 const brandWidth = ctx.measureText('gezenbiri').width;
 
-                // %3 Elliptical System Dot
+                // 1:1 Circular System Dot
                 ctx.fillStyle = '#FF4D3D';
                 ctx.beginPath();
-                ctx.ellipse(48 + brandWidth + 7, 60, 5, 5.15, 0, 0, Math.PI * 2);
+                ctx.arc(48 + brandWidth + 7, 60, 5, 0, Math.PI * 2);
                 ctx.fill();
 
                 // Status Pill (Onaylı Bilet)

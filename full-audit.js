@@ -20,6 +20,8 @@ const productionFiles = [
     'coming-soon.html',
     'whatsapp-ticket.html',
     'sunum.html',
+    'vector-export.html',
+    'avatar-export.html',
     'brand.css',
     'data/events.js'
 ];
@@ -184,11 +186,14 @@ check('systemDotGeometry', 'Single Source of Truth: Geometry defined ONLY in bra
     return errs;
 });
 
-check('systemDotGeometry', 'Master brand.css applies exact width: 0.15em, height: 0.15em, 0.12em gap, and scaleY(1.03)', () => {
+check('systemDotGeometry', 'Master brand.css applies exact width: 0.15em, height: 0.15em, 0.12em gap, and 1:1 circular ratio', () => {
     const errs = [];
     const brandCss = fs.readFileSync(path.join(rootDir, 'brand.css'), 'utf8');
-    if (!brandCss.includes('0.15em') || !brandCss.includes('0.12em') || !brandCss.includes('scaleY(1.03)')) {
-        errs.push('brand.css is missing official System Dot tokens (0.15em / 0.12em / scaleY(1.03)).');
+    if (!brandCss.includes('0.15em') || !brandCss.includes('0.12em')) {
+        errs.push('brand.css is missing official System Dot tokens (0.15em / 0.12em).');
+    }
+    if (brandCss.includes('scaleY(1.03)')) {
+        errs.push('brand.css still contains legacy scaleY(1.03) stretch.');
     }
     if (brandCss.includes('0.155em')) {
         errs.push('brand.css contains 0.155em double-stretch bug.');
@@ -400,12 +405,12 @@ check('assetAndLinkIntegrity', 'Standard prototype disclaimer is present across 
     return errs;
 });
 
-check('assetAndLinkIntegrity', 'Brand domains (gezenbiri.com.tr / gezenbiri.co) and Instagram are present in Hub & Website', () => {
+check('assetAndLinkIntegrity', 'Brand domains (gezenbiri.com / gezenbiri.com.tr / gezenbiri.co) and Instagram are present in Hub & Website', () => {
     const errs = [];
     const hubPages = ['index.html', 'gezenbiri_website.html'];
     hubPages.forEach(f => {
         const content = fs.readFileSync(path.join(rootDir, f), 'utf8');
-        if (!content.includes('gezenbiri.com.tr') || !content.includes('gezenbiri.co')) {
+        if (!content.includes('gezenbiri.com') || !content.includes('gezenbiri.com.tr') || !content.includes('gezenbiri.co')) {
             errs.push(`${f} is missing official domain references.`);
         }
         if (!content.includes('instagram.com/gezenbiri')) {

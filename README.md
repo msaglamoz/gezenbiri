@@ -15,8 +15,9 @@ Bu repository; markanın kimlik kılavuzunu (`brand-guidelines.html`), tasarım 
 
 gezenbiri, klasik bir turizm acentesi veya standart bir etkinlik takvimi değildir. Markanın temel felsefesi; **mekânın kendisinden çok, o mekânda birlikte yaşanan samimi deneyim ve kurulan sosyal bağın değerli olduğu** fikrine dayanır.
 
-### 4 Kanallı Resmi Dijital Ekosistem:
-* **Birincil Web Portalı:** [`gezenbiri.com.tr`](https://gezenbiri.com.tr) — Atölye kayıtları, deneyim ve rota portalı.
+### 5 Kanallı Resmi Dijital Ekosistem:
+* **Global Web Portalı:** [`gezenbiri.com`](https://gezenbiri.com) — Uluslararası ana alan adı ve küresel topluluk merkezi.
+* **Birincil Türkiye Portalı:** [`gezenbiri.com.tr`](https://gezenbiri.com.tr) — Atölye kayıtları, deneyim ve rota portalı.
 * **Yeni Nesil .TR Alan Adı:** [`gezenbiri.tr`](https://gezenbiri.tr) — Doğrudan ve yalın ulusal erişim kapısı.
 * **Kısa Link & Yönlendirme:** [`gezenbiri.co`](https://gezenbiri.co) — Sosyal bio bağlantıları ve QR yönlendirmeleri.
 * **Resmi Sosyal Kanal:** [`@gezenbiri` (Instagram)](https://instagram.com/gezenbiri) — Topluluk anları ve hikaye yayınları.
@@ -79,9 +80,8 @@ System Dot, logodaki sıradan bir nokta işareti değildir; **“Logodaki nokta 
 
 ```
        ┌─────────── width: 0.15em
-       │  ┌──────── height: 0.15em
-       │  │  ┌───── transform: scaleY(1.03)  (%103 Optik Dikey Esneme)
-       ▼  ▼  ▼
+       │  ┌──────── height: 0.15em  (1:1 Saf Daire)
+       ▼  ▼
   gezenbiri●
            ▲
            └─────── margin-left: 0.12em  (Master Boşluk ~2.5px Optik Kilit)
@@ -97,7 +97,7 @@ System Dot, logodaki sıradan bir nokta işareti değildir; **“Logodaki nokta 
 * **Genişlik (`width`):** `0.15em`
 * **Yükseklik (`height`):** `0.15em`
 * **Harf Boşluğu (`margin-left`):** `0.12em` (~2.5px)
-* **Optik Form (`transform`):** `scaleY(1.03)` *(Dikeyde %3 esnetilmiş özel elips).*
+* **Optik Form:** `1:1 Tam Daire` *(Dikey eğim ve esneme içermeyen saf dairesel form).*
 * **Köşe Ovalliği (`border-radius`):** `50%`
 * **Renk:** `var(--gb-coral)` (`#FF4D3D`)
 
@@ -222,6 +222,7 @@ msaglamoz/gezenbiri/
 ├── trip-cards.html              # Çift Yüzlü Editoryal Seyahat Kartları Vitrini
 ├── instagram-suite.html         # Instagram Story (9:16) & Feed (1:1) Master Şablon Paketi
 ├── packing-guide.html           # Gezgin Yol & Bavul Hazırlık Rehberi
+├── vector-export.html           # Vektörel Baskı & Reklamcı Stüdyosu (SVG / 4K PNG)
 ├── brand.css                    # Tek Doğruluk Kaynağı: Master Design Tokens & CSS
 ├── data/
 │   └── events.js                # Merkezi Etkinlik & Rota Verisi (Single Source of Truth)
@@ -333,7 +334,7 @@ node qa-check.js
 ## 14. Katkı ve Geliştirme Kuralları (Contribution Rules)
 
 1. **Marka Renklerini Değiştirmeyin:** `#F6F3ED`, `#202020`, `#FF4D3D` ve `#A8B89A` master değerlerdir; rastgele tonlar eklenemez.
-2. **System Dot Geometrisini Ezmeyin:** System Dot geometrisi (`0.15em`, `0.12em`, `scaleY(1.03)`) yalnızca [`brand.css`](file:///c:/Users/Mahir/Desktop/gezenbiri/brand.css) içinde tanımlıdır.
+2. **System Dot Geometrisini Ezmeyin:** System Dot geometrisi (`0.15em`, `0.12em`, 1:1 tam daire) yalnızca [`brand.css`](file:///c:/Users/Mahir/Desktop/gezenbiri/brand.css) içinde tanımlıdır.
 3. **Etkinlik Verisini Duplicate Etmeyin:** Yeni etkinlikler doğrudan [`data/events.js`](file:///c:/Users/Mahir/Desktop/gezenbiri/data/events.js) dosyasına eklenmeli ve sayfalar bu veriyi dinamik hydrate etmelidir.
 4. **Marka İsmini Küçük Harf Tutun:** `gezenbiri` her zaman tek kelime ve küçük harftir.
 5. **Emojileri Kesinlikle Kullanmayın:** Native/dekoratif emojiler yasaktır; yalnızca 8 monoline SVG glif ve temiz tipografi kullanılır.
@@ -346,7 +347,7 @@ node qa-check.js
 
 * **Marka Yaratıcısı & Tasarım Direktörü:** [**Mahir Sağlamöz**](https://github.com/msaglamoz) ([@msaglamoz](https://github.com/msaglamoz))
 * **GitHub Repository:** [github.com/msaglamoz/gezenbiri](https://github.com/msaglamoz/gezenbiri)
-* **İletişim & Portfolyo:** `selam@gezenbiri.com.tr` · [gezenbiri.com.tr](https://gezenbiri.com.tr) · [gezenbiri.tr](https://gezenbiri.tr)
+* **İletişim & Portfolyo:** `selam@gezenbiri.com.tr` · [gezenbiri.com](https://gezenbiri.com) · [gezenbiri.com.tr](https://gezenbiri.com.tr) · [gezenbiri.tr](https://gezenbiri.tr)
 
 ---
 
@@ -354,4 +355,4 @@ node qa-check.js
 
 Bu repository içindeki tüm görsel, tipografik ve metinsel marka varlıkları **gezenbiri** topluluk projesine aittir.
 
-* © 2026 **gezenbiri** (`gezenbiri.com.tr` · `gezenbiri.tr` · `gezenbiri.co`). Tasarım ve marka mimarisi: **Mahir Sağlamöz**. Tüm hakları saklıdır.
+* © 2026 **gezenbiri** (`gezenbiri.com` · `gezenbiri.com.tr` · `gezenbiri.tr` · `gezenbiri.co`). Tasarım ve marka mimarisi: **Mahir Sağlamöz**. Tüm hakları saklıdır.

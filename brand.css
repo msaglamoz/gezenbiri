@@ -7,7 +7,7 @@
  * 3. SPACING & RADIUS TOKENS (4/8/12/16/24/32/48/64/96)
  * 4. SHADOW & MOTION TOKENS (180ms fast / 240ms standard / 350ms slow)
  * 5. 12/8/4 MASTER RESPONSIVE GRID TOKENS & UTILITIES
- * 6. MASTER SYSTEM DOT SPECIFICATION (Exact 1.03 optical scale)
+ * 6. MASTER SYSTEM DOT SPECIFICATION (Pure 1:1 circular ratio)
  * 7. ACCESSIBILITY & FOCUS-VISIBLE
  * 8. CORE UI COMPONENT LIBRARY (Buttons, Cards, Badges, Modals, Statuses, Toasts)
  */
@@ -110,7 +110,7 @@
 }
 
 /* ================= 6. MASTER SYSTEM DOT SPECIFICATION ================= */
-/* Single Source of Truth for gezenbiri wordmark & dot geometry (Exact 1.03 optical scale) */
+/* Single Source of Truth for gezenbiri wordmark & dot geometry (Pure 1:1 circular ratio) */
 
 .gb-logo,
 .brand-logo,
@@ -136,7 +136,6 @@
     background-color: var(--gb-coral);
     border-radius: 50%;
     margin-left: 0.12em; /* Master 0.12em gap standard */
-    transform: scaleY(1.03); /* Master 103% optical stretch */
     flex-shrink: 0;
     vertical-align: baseline;
 }
@@ -156,7 +155,6 @@
     height: 7px;
     border-radius: 50%;
     background-color: var(--gb-coral);
-    transform: scaleY(1.03);
     position: relative;
     flex-shrink: 0;
 }

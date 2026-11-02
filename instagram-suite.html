@@ -1494,6 +1494,7 @@
             <a href="packing-guide.html">Yol &amp; Bavul Rehberi</a>
             <a href="merch-guidelines.html">Merchandise Kiti</a>
             <a href="whatsapp-ticket.html">WhatsApp Bilet</a>
+            <a href="vector-export.html">Vektör &amp; Baskı ↗</a>
             <a href="gezenbiri_website.html" style="color:var(--coral); font-weight:800;">Web Sitesi ↗</a>
         </div>
     </div>
@@ -1810,7 +1811,7 @@
                         <span class="avatar-mono-text">gb<span class="brand-system-dot"></span></span>
                     </div>
                     <div class="item-label">02. Koyu Monogram</div>
-                    <div class="item-sub">Antrasit zemin / %3 Action Coral gb.</div>
+                    <div class="item-sub">Antrasit zemin / 1:1 Action Coral gb.</div>
                     <div style="display:flex; gap:6px;">
                         <button class="btn-mini-download" onclick="setLiveMockupAvatar('#202020', '#F6F3ED', 'gb.', 'mono')">Dene</button>
                         <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-mono', 'gezenbiri-avatar-antrasit', 'gb', '#202020', '#F6F3ED')">PNG</button>
@@ -1846,10 +1847,10 @@
                 <!-- Avatar 5: Primary App Icon (System Dot) -->
                 <div class="item-card">
                     <div class="avatar-cover-circle theme-dark" onclick="setLiveMockupAvatar('#202020', '#FF4D3D', '', 'app-icon')">
-                        <div style="width:64px; height:66px; background:var(--coral); border-radius:50%; transform:scaleY(1.03);"></div>
+                        <div style="width:64px; height:64px; background:var(--coral); border-radius:50%;"></div>
                     </div>
                     <div class="item-label">05. Primary App Icon</div>
-                    <div class="item-sub">Koyu zemin / Saf %3 System Dot</div>
+                    <div class="item-sub">Koyu zemin / Saf 1:1 System Dot</div>
                     <div style="display:flex; gap:6px;">
                         <button class="btn-mini-download" onclick="setLiveMockupAvatar('#202020', '#FF4D3D', '', 'app-icon')">Dene</button>
                         <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-app-icon', 'gezenbiri-avatar-app-icon', '', '#202020', '#FF4D3D')">PNG</button>
@@ -1875,7 +1876,7 @@
                         <span class="avatar-mono-text" style="color:var(--charcoal);">gb<span class="brand-system-dot"></span></span>
                     </div>
                     <div class="item-label">07. Minimal Saf Beyaz</div>
-                    <div class="item-sub">Beyaz zemin / %3 Water Coral gb.</div>
+                    <div class="item-sub">Beyaz zemin / 1:1 Action Coral gb.</div>
                     <div style="display:flex; gap:6px;">
                         <button class="btn-mini-download" onclick="setLiveMockupAvatar('#FFFFFF', '#202020', 'gb.', 'mono')">Dene</button>
                         <button class="btn-mini-download" style="background:var(--coral); color:#FFF; border-color:var(--coral);" onclick="downloadGraphicPNG('avatar-mono', 'gezenbiri-avatar-saf-beyaz', 'gb', '#FFFFFF', '#202020')">PNG</button>
@@ -2671,7 +2672,7 @@
                 const dotColor = (bg === '#FF4D3D') ? '#F6F3ED' : '#FF4D3D';
                 avatarEl.innerHTML = `gb<span class="brand-system-dot" style="background-color:${dotColor};"></span>`;
             } else if (styleType === 'app-icon') {
-                avatarEl.innerHTML = `<div style="width:34px; height:35px; background:#FF4D3D; border-radius:50%; transform:scaleY(1.03);"></div>`;
+                avatarEl.innerHTML = `<div style="width:34px; height:34px; background:#FF4D3D; border-radius:50%;"></div>`;
             } else if (styleType === 'serif') {
                 avatarEl.style.fontFamily = "'Instrument Serif', Georgia, serif";
                 avatarEl.style.fontStyle = "italic";
@@ -2706,10 +2707,10 @@
                 const startX = 540 - (textWidth + 30) / 2;
                 ctx.textAlign = 'left';
                 ctx.fillText("gezenbiri", startX, 550);
-                // Draw %3 System Dot
+                // Draw 1:1 System Dot
                 ctx.fillStyle = '#FF4D3D';
                 ctx.beginPath();
-                ctx.ellipse(startX + textWidth + 14, 528, 14, 14.42, 0, 0, Math.PI * 2);
+                ctx.arc(startX + textWidth + 14, 528, 14, 0, Math.PI * 2);
                 ctx.fill();
             } else if (type === 'avatar-mono' || type === 'avatar-mono-inv') {
                 ctx.fillStyle = primaryColor;
@@ -2718,15 +2719,15 @@
                 const startX = 540 - (textWidth + 60) / 2;
                 ctx.textAlign = 'left';
                 ctx.fillText("gb", startX, 570);
-                // Draw %3 System Dot (Warm Cream on coral bg, else Water Coral)
+                // Draw 1:1 System Dot (Warm Cream on coral bg, else Water Coral)
                 ctx.fillStyle = (type === 'avatar-mono-inv') ? '#F6F3ED' : '#FF4D3D';
                 ctx.beginPath();
-                ctx.ellipse(startX + textWidth + 30, 520, 32, 33, 0, 0, Math.PI * 2);
+                ctx.arc(startX + textWidth + 30, 520, 32, 0, Math.PI * 2);
                 ctx.fill();
             } else if (type === 'avatar-app-icon') {
                 ctx.fillStyle = '#FF4D3D';
                 ctx.beginPath();
-                ctx.ellipse(540, 540, 240, 247.2, 0, 0, Math.PI * 2);
+                ctx.arc(540, 540, 240, 0, Math.PI * 2);
                 ctx.fill();
             } else if (type === 'avatar-serif') {
                 ctx.font = 'italic 460px "Instrument Serif", Georgia, serif';
@@ -2737,7 +2738,7 @@
                 ctx.fillText("gb", startX, 570);
                 ctx.fillStyle = '#FF4D3D';
                 ctx.beginPath();
-                ctx.ellipse(startX + textWidth + 24, 524, 30, 31, 0, 0, Math.PI * 2);
+                ctx.arc(startX + textWidth + 24, 524, 30, 0, Math.PI * 2);
                 ctx.fill();
             } else if (type === 'avatar-ring') {
                 // Outer subtle ring
@@ -2757,7 +2758,7 @@
                 ctx.fillText("gb", startX, 560);
                 ctx.fillStyle = '#FF4D3D';
                 ctx.beginPath();
-                ctx.ellipse(startX + textWidth + 24, 516, 26, 26.8, 0, 0, Math.PI * 2);
+                ctx.arc(startX + textWidth + 24, 516, 26, 0, Math.PI * 2);
                 ctx.fill();
             } else if (type === 'hl-serif') {
                 ctx.font = 'italic 500px "Instrument Serif", Georgia, serif';
@@ -2868,7 +2869,7 @@
             
             if (mode === 'app-icon') {
                 avatar.style.fontSize = "0";
-                avatar.innerHTML = `<div style="width:28px; height:29px; background:#FF4D3D; border-radius:50%; transform:scaleY(1.03);"></div>`;
+                avatar.innerHTML = `<div style="width:28px; height:28px; background:#FF4D3D; border-radius:50%;"></div>`;
             } else if (mode === 'serif') {
                 avatar.style.fontFamily = "'Instrument Serif', Georgia, serif";
                 avatar.style.fontStyle = "italic";

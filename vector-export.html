@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#F6F3ED">
+    <title>gezenbiri — Vektörel Baskı, Tabela &amp; Reklamcı İndirme Stüdyosu</title>
+
+    <!-- Standardized Brand Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='4' y='22' font-family='Plus Jakarta Sans, sans-serif' font-weight='900' font-size='18' fill='%23202020'%3Egb%3C/text%3E%3Cellipse cx='25' cy='10' rx='3' ry='3.09' fill='%23FF4D3D'/%3E%3C/svg%3E">
+
+    <!-- Canonical Design Tokens & System Dot -->
+    <link rel="stylesheet" href="brand.css">
+
+    <!-- Google Fonts: Instrument Serif (Italic) & Plus Jakarta Sans (All Weights) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- JSZip for 1-Click ZIP Packaging -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+    <style>
+        :root {
+            --bg-canvas: var(--gb-cream);
+            --text-main: var(--gb-charcoal);
+            --color-coral: var(--gb-coral);
+            --surface-card: #FFFFFF;
+            --border-card: var(--gb-stone);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            padding: 0 0 80px 0;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Navigation Bar */
+        .export-header {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border-card);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-back-hub {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 13px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: var(--gb-cream);
+            transition: background 0.18s ease;
+        }
+
+        .btn-back-hub:hover {
+            background: var(--gb-sand);
+        }
+
+        .header-title-wrap h1 {
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-title-wrap .badge-reklamci {
+            font-size: 10.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            background: rgba(255, 77, 61, 0.12);
+            color: var(--color-coral);
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-zip-all {
+            background: var(--color-coral);
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+            box-shadow: 0 4px 14px rgba(255, 77, 61, 0.25);
+        }
+
+        .btn-zip-all:hover {
+            background: var(--gb-coral-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(255, 77, 61, 0.35);
+        }
+
+        /* Container */
+        .export-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 32px 24px 0 24px;
+        }
+
+        /* Technical Info Banner */
+        .tech-specs-banner {
+            background: #FFFFFF;
+            border: 1px solid var(--border-card);
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin-bottom: 32px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .spec-item h3 {
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 6px;
+        }
+
+        .spec-item p {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-main);
+            line-height: 1.45;
+        }
+
+        /* Kurumsal Renk Kodları & Üretim Matrisi Stilleri */
+        .spec-colors-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .spec-color-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 6px 0;
+        }
+
+        .chip-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--gb-cream);
+            border: 1px solid rgba(0,0,0,0.06);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--gb-charcoal);
+            font-family: monospace;
+        }
+
+        .color-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .spec-color-link {
+            font-size: 11.5px;
+            font-weight: 800;
+            color: var(--gb-coral);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .spec-color-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Palette Grid for Corporate Colors */
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .color-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .color-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .color-swatch-stage {
+            height: 90px;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            padding: 10px 12px;
+        }
+
+        .color-role-badge {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 8px;
+            border-radius: 100px;
+            backdrop-filter: blur(4px);
+        }
+
+        .color-card-body {
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .color-card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .color-name-tr {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--gb-charcoal);
+        }
+
+        .color-name-en {
+            font-size: 11px;
+            font-weight: 600;
+            color: #888;
+        }
+
+        .color-specs-list {
+            background: var(--gb-cream);
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 11px;
+            font-family: monospace;
+            color: #444;
+        }
+
+        .color-spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .color-spec-row strong {
+            color: var(--gb-charcoal);
+            font-weight: 700;
+        }
+
+        .color-material-note {
+            font-size: 11px;
+            font-weight: 600;
+            color: #666;
+            line-height: 1.35;
+        }
+
+        .btn-copy-color {
+            background: #FFFFFF;
+            border: 1px solid var(--border-card);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--gb-charcoal);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .btn-copy-color:hover {
+            border-color: var(--gb-coral);
+            color: var(--gb-coral);
+            background: rgba(255, 77, 61, 0.04);
+        }
+
+        /* Controls & Color Scheme Switcher */
+        .controls-toolbar {
+            background: #FFFFFF;
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .toolbar-title {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .color-mode-pills {
+            display: flex;
+            gap: 8px;
+            background: var(--gb-cream);
+            padding: 4px;
+            border-radius: 100px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .btn-mode {
+            background: transparent;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.18s ease;
+        }
+
+        .btn-mode.active {
+            background: #FFFFFF;
+            color: var(--text-main);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        /* Section Headings */
+        .section-header {
+            margin: 40px 0 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .section-header span {
+            font-size: 12px;
+            color: #777;
+            font-weight: 600;
+        }
+
+        /* Cards Grid */
+        .assets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .icons-grid-wide {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        /* Asset Card */
+        .asset-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-card);
+            border-radius: 14px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .asset-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .preview-box {
+            min-height: 140px;
+            background: var(--gb-cream);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            padding: 20px;
+            overflow: hidden;
+            transition: background 0.2s ease, border-color 0.2s ease;
+            position: relative;
+        }
+
+        .preview-box.theme-dark {
+            background: #202020 !important;
+        }
+
+        .preview-box.theme-white {
+            background: #FFFFFF !important;
+            border: 1.5px dashed var(--border-card);
+        }
+
+        .icon-preview-box {
+            height: 96px;
+            background: var(--gb-cream);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            transition: background 0.2s ease;
+        }
+
+        .icon-preview-box.theme-dark {
+            background: #202020 !important;
+        }
+
+        .icon-preview-box.theme-white {
+            background: #FFFFFF !important;
+            border: 1.5px dashed var(--border-card);
+        }
+
+        .icon-preview-box svg {
+            transition: stroke 0.2s ease, fill 0.2s ease;
+        }
+
+        /* Exact Typography Styles Bound to Brand System */
+        .preview-wordmark {
+            font-family: var(--font-sans);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            display: inline-flex;
+            align-items: baseline;
+            color: var(--text-main);
+            line-height: 1;
+            text-transform: lowercase;
+            transition: color 0.2s ease;
+            user-select: none;
+        }
+
+        .preview-slogan {
+            font-family: var(--font-sans);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-main);
+            line-height: 1.15;
+            transition: color 0.2s ease;
+            user-select: none;
+        }
+
+        .preview-tagline {
+            font-family: var(--font-sans);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text-main);
+            line-height: 1.35;
+            transition: color 0.2s ease;
+            user-select: none;
+        }
+
+        .asset-info {
+            margin-bottom: 14px;
+        }
+
+        .asset-name {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 3px;
+        }
+
+        .asset-meta {
+            font-size: 11.5px;
+            color: #777;
+            font-weight: 500;
+        }
+
+        /* Download Buttons */
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-download {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid var(--border-card);
+            background: #FFFFFF;
+            color: var(--text-main);
+            transition: all 0.16s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .btn-download:hover {
+            background: var(--gb-cream);
+            border-color: #BBB;
+        }
+
+        .btn-download.primary {
+            background: var(--text-main);
+            color: #FFFFFF;
+            border-color: var(--text-main);
+        }
+
+        .btn-download.primary:hover {
+            background: #000000;
+        }
+
+        /* Toast Notifications */
+        .toast-box {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #202020;
+            color: #FFFFFF;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+
+        .toast-box.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Prototype Disclaimer */
+        .gb-prototype-disclaimer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-card);
+            font-size: 12px;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .export-header {
+                padding: 14px 18px;
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+            }
+            .header-left {
+                justify-content: space-between;
+            }
+            .assets-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="export-header">
+        <div class="header-left">
+            <a href="index.html" class="btn-back-hub">
+                <span>←</span>
+                <span>Brand Hub</span>
+            </a>
+            <div class="header-title-wrap">
+                <h1>
+                    <span>gezenbiri</span>
+                    <span class="badge-reklamci">Vektörel Baskı &amp; Reklamcı Stüdyosu</span>
+                </h1>
+            </div>
+        </div>
+        <div class="header-actions">
+            <a href="icon-morph-motion.html" class="btn-back-hub" style="background:#FFFFFF; border:1px solid var(--border-card);">
+                <span>Motion Lab ↗</span>
+            </a>
+            <button class="btn-zip-all" onclick="packageAndDownloadZip()">
+                <span>Tüm Vektör Paketini İndir (.ZIP)</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="export-container">
+
+        <!-- TECHNICAL INSTRUCTIONS & PRODUCTION STANDARDS -->
+        <div class="tech-specs-banner">
+            <div class="spec-item">
+                <h3>Vektör Formatı (SVG)</h3>
+                <p>
+                    CNC dekota, lazer kesim, pleksi oyma, folyo kesim (plotter) ve serigrafi için saf milimetrik vektör çıktısı.
+                </p>
+            </div>
+            <div class="spec-item">
+                <h3>Yüksek Çözünürlük (4K PNG)</h3>
+                <p>
+                    Ofset matbaa, kuşe afiş, rollup banner, bez çanta ve billboard baskıları için <strong>4000 piksel şeffaf</strong> format.
+                </p>
+            </div>
+            <div class="spec-item spec-colors-card">
+                <h3>Kurumsal Renk Kodları</h3>
+                <div class="spec-color-chips">
+                    <span class="chip-item" title="Dark Charcoal (RAL 9004)"><span class="color-dot" style="background:#202020;"></span> #202020</span>
+                    <span class="chip-item" title="Action Coral (RAL 3028)"><span class="color-dot" style="background:#FF4D3D;"></span> #FF4D3D</span>
+                    <span class="chip-item" title="Warm Cream (RAL 9001)"><span class="color-dot" style="background:#F6F3ED; border:1px solid #D9D6D1;"></span> #F6F3ED</span>
+                    <span class="chip-item" title="Sage Green (RAL 7032)"><span class="color-dot" style="background:#A8B89A;"></span> #A8B89A</span>
+                </div>
+                <a href="#kurumsal-renk-matrisi" class="spec-color-link">Tüm Renk Matrisini İncele ↓</a>
+            </div>
+            <div class="spec-item">
+                <h3>System Dot Kuralı</h3>
+                <p>
+                    Nokta saf <strong>1:1 tam dairedir</strong> (dikey eğim ve esneme içermez). Harf arası <strong>0.12em</strong> optik boşluk kilitlidir.
+                </p>
+            </div>
+        </div>
+
+        <!-- KURUMSAL RENK KODLARI & ÜRETİM STANDARTLARI -->
+        <section id="kurumsal-renk-matrisi">
+            <div class="section-header">
+                <h2>Kurumsal Renk Kodları &amp; Üretim Standartları</h2>
+                <span>Ofset Matbaa (CMYK), Folyo &amp; Tabela (RAL / Oracal), Tekstil (Pantone) &amp; Dijital (HEX)</span>
+            </div>
+
+            <div class="palette-grid">
+
+                <!-- 01: Dark Charcoal -->
+                <div class="color-card">
+                    <div class="color-swatch-stage" style="background-color: #202020;">
+                        <span class="color-role-badge" style="background: rgba(255,255,255,0.2); color: #FFFFFF;">%20 Ana Yapı</span>
+                    </div>
+                    <div class="color-card-body">
+                        <div class="color-card-title">
+                            <span class="color-name-tr">Koyu Kömür</span>
+                            <span class="color-name-en">Dark Charcoal</span>
+                        </div>
+                        <div class="color-specs-list">
+                            <div class="color-spec-row"><span>HEX:</span> <strong>#202020</strong></div>
+                            <div class="color-spec-row"><span>RAL:</span> <strong>RAL 9004 (Sinyal Siyahı)</strong></div>
+                            <div class="color-spec-row"><span>PANTONE:</span> <strong>Black 6 C</strong></div>
+                            <div class="color-spec-row"><span>CMYK:</span> <strong>70 / 65 / 60 / 75</strong></div>
+                            <div class="color-spec-row"><span>RGB:</span> <strong>32, 32, 32</strong></div>
+                        </div>
+                        <div class="color-material-note">
+                            Mat Siyah Folyo, Pleksi Harf, Siyah Alüminyum Tabela Kasası
+                        </div>
+                        <button class="btn-copy-color" onclick="copyColorCode('#202020', 'Dark Charcoal')">
+                            <span>Kodu Kopyala (#202020)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 02: Action Coral -->
+                <div class="color-card">
+                    <div class="color-swatch-stage" style="background-color: #FF4D3D;">
+                        <span class="color-role-badge" style="background: rgba(0,0,0,0.2); color: #FFFFFF;">%10 System Dot</span>
+                    </div>
+                    <div class="color-card-body">
+                        <div class="color-card-title">
+                            <span class="color-name-tr">Aksiyon Mercanı</span>
+                            <span class="color-name-en">Action Coral</span>
+                        </div>
+                        <div class="color-specs-list">
+                            <div class="color-spec-row"><span>HEX:</span> <strong>#FF4D3D</strong></div>
+                            <div class="color-spec-row"><span>RAL:</span> <strong>RAL 3028 (Saf Kırmızı)</strong></div>
+                            <div class="color-spec-row"><span>PANTONE:</span> <strong>1788 C</strong></div>
+                            <div class="color-spec-row"><span>CMYK:</span> <strong>0 / 85 / 75 / 0</strong></div>
+                            <div class="color-spec-row"><span>RGB:</span> <strong>255, 77, 61</strong></div>
+                        </div>
+                        <div class="color-material-note">
+                            Oracal 651-032, Şeffaf Kırmızı Pleksi, Neon Akrilik Nokta
+                        </div>
+                        <button class="btn-copy-color" onclick="copyColorCode('#FF4D3D', 'Action Coral')">
+                            <span>Kodu Kopyala (#FF4D3D)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 03: Warm Cream -->
+                <div class="color-card">
+                    <div class="color-swatch-stage" style="background-color: #F6F3ED; border-bottom: 1px solid var(--border-card);">
+                        <span class="color-role-badge" style="background: rgba(32,32,32,0.08); color: #202020;">%65 Ana Zemin</span>
+                    </div>
+                    <div class="color-card-body">
+                        <div class="color-card-title">
+                            <span class="color-name-tr">Sıcak Krem</span>
+                            <span class="color-name-en">Warm Cream</span>
+                        </div>
+                        <div class="color-specs-list">
+                            <div class="color-spec-row"><span>HEX:</span> <strong>#F6F3ED</strong></div>
+                            <div class="color-spec-row"><span>RAL:</span> <strong>RAL 9001 (Krem)</strong></div>
+                            <div class="color-spec-row"><span>PANTONE:</span> <strong>7527 C</strong></div>
+                            <div class="color-spec-row"><span>CMYK:</span> <strong>4 / 5 / 10 / 0</strong></div>
+                            <div class="color-spec-row"><span>RGB:</span> <strong>246, 243, 237</strong></div>
+                        </div>
+                        <div class="color-material-note">
+                            Doğal Kraft / Ham Kumaş, Tabela Arka Zemin Mat Boya
+                        </div>
+                        <button class="btn-copy-color" onclick="copyColorCode('#F6F3ED', 'Warm Cream')">
+                            <span>Kodu Kopyala (#F6F3ED)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 04: Sage Green -->
+                <div class="color-card">
+                    <div class="color-swatch-stage" style="background-color: #A8B89A;">
+                        <span class="color-role-badge" style="background: rgba(0,0,0,0.15); color: #FFFFFF;">%5 Doğa &amp; Rota</span>
+                    </div>
+                    <div class="color-card-body">
+                        <div class="color-card-title">
+                            <span class="color-name-tr">Adaçayı Yeşili</span>
+                            <span class="color-name-en">Sage Green</span>
+                        </div>
+                        <div class="color-specs-list">
+                            <div class="color-spec-row"><span>HEX:</span> <strong>#A8B89A</strong></div>
+                            <div class="color-spec-row"><span>RAL:</span> <strong>RAL 7032 (Çakıl Grisi)</strong></div>
+                            <div class="color-spec-row"><span>PANTONE:</span> <strong>5645 C</strong></div>
+                            <div class="color-spec-row"><span>CMYK:</span> <strong>35 / 15 / 30 / 10</strong></div>
+                            <div class="color-spec-row"><span>RGB:</span> <strong>168, 184, 154</strong></div>
+                        </div>
+                        <div class="color-material-note">
+                            Organik Pamuk Kumaş, Doğa Rozetleri, Açık Hava Vurguları
+                        </div>
+                        <button class="btn-copy-color" onclick="copyColorCode('#A8B89A', 'Sage Green')">
+                            <span>Kodu Kopyala (#A8B89A)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 05: Sky Blue -->
+                <div class="color-card">
+                    <div class="color-swatch-stage" style="background-color: #A9D5E8;">
+                        <span class="color-role-badge" style="background: rgba(0,0,0,0.12); color: #202020;">Destek Paleti</span>
+                    </div>
+                    <div class="color-card-body">
+                        <div class="color-card-title">
+                            <span class="color-name-tr">Gökyüzü Mavisi</span>
+                            <span class="color-name-en">Sky Blue</span>
+                        </div>
+                        <div class="color-specs-list">
+                            <div class="color-spec-row"><span>HEX:</span> <strong>#A9D5E8</strong></div>
+                            <div class="color-spec-row"><span>PANTONE:</span> <strong>290 C</strong></div>
+                            <div class="color-spec-row"><span>CMYK:</span> <strong>30 / 5 / 5 / 0</strong></div>
+                            <div class="color-spec-row"><span>RGB:</span> <strong>169, 213, 232</strong></div>
+                        </div>
+                        <div class="color-material-note">
+                            Kıyı &amp; Deniz Kaçış Rotaları, Su Geçirmez Çanta Vurguları
+                        </div>
+                        <button class="btn-copy-color" onclick="copyColorCode('#A9D5E8', 'Sky Blue')">
+                            <span>Kodu Kopyala (#A9D5E8)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 06: Sand Beige -->
+                <div class="color-card">
+                    <div class="color-swatch-stage" style="background-color: #D8CCBC;">
+                        <span class="color-role-badge" style="background: rgba(0,0,0,0.12); color: #202020;">Destek Paleti</span>
+                    </div>
+                    <div class="color-card-body">
+                        <div class="color-card-title">
+                            <span class="color-name-tr">Kum Beji</span>
+                            <span class="color-name-en">Sand Beige</span>
+                        </div>
+                        <div class="color-specs-list">
+                            <div class="color-spec-row"><span>HEX:</span> <strong>#D8CCBC</strong></div>
+                            <div class="color-spec-row"><span>PANTONE:</span> <strong>7528 C</strong></div>
+                            <div class="color-spec-row"><span>CMYK:</span> <strong>15 / 15 / 25 / 0</strong></div>
+                            <div class="color-spec-row"><span>RGB:</span> <strong>216, 204, 188</strong></div>
+                        </div>
+                        <div class="color-material-note">
+                            Toprak &amp; Sıcak Kart Yüzeyleri, Seramik &amp; Mantar Tıpa
+                        </div>
+                        <button class="btn-copy-color" onclick="copyColorCode('#D8CCBC', 'Sand Beige')">
+                            <span>Kodu Kopyala (#D8CCBC)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 07: Stone Grey -->
+                <div class="color-card">
+                    <div class="color-swatch-stage" style="background-color: #D9D6D1;">
+                        <span class="color-role-badge" style="background: rgba(0,0,0,0.12); color: #202020;">Destek Paleti</span>
+                    </div>
+                    <div class="color-card-body">
+                        <div class="color-card-title">
+                            <span class="color-name-tr">Taş Grisi</span>
+                            <span class="color-name-en">Stone Grey</span>
+                        </div>
+                        <div class="color-specs-list">
+                            <div class="color-spec-row"><span>HEX:</span> <strong>#D9D6D1</strong></div>
+                            <div class="color-spec-row"><span>PANTONE:</span> <strong>Warm Gray 1 C</strong></div>
+                            <div class="color-spec-row"><span>CMYK:</span> <strong>12 / 10 / 12 / 0</strong></div>
+                            <div class="color-spec-row"><span>RGB:</span> <strong>217, 214, 209</strong></div>
+                        </div>
+                        <div class="color-material-note">
+                            Nötr Bölücü Çizgiler, Kılavuz Çizgileri, Kart Kenarlıkları
+                        </div>
+                        <button class="btn-copy-color" onclick="copyColorCode('#D9D6D1', 'Stone Grey')">
+                            <span>Kodu Kopyala (#D9D6D1)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 08: Pure White -->
+                <div class="color-card">
+                    <div class="color-swatch-stage" style="background-color: #FFFFFF; border-bottom: 1px solid var(--border-card);">
+                        <span class="color-role-badge" style="background: rgba(32,32,32,0.08); color: #202020;">Destek Paleti</span>
+                    </div>
+                    <div class="color-card-body">
+                        <div class="color-card-title">
+                            <span class="color-name-tr">Saf Beyaz</span>
+                            <span class="color-name-en">Pure White</span>
+                        </div>
+                        <div class="color-specs-list">
+                            <div class="color-spec-row"><span>HEX:</span> <strong>#FFFFFF</strong></div>
+                            <div class="color-spec-row"><span>RAL:</span> <strong>RAL 9016 (Trafik Beyazı)</strong></div>
+                            <div class="color-spec-row"><span>CMYK:</span> <strong>0 / 0 / 0 / 0</strong></div>
+                            <div class="color-spec-row"><span>RGB:</span> <strong>255, 255, 255</strong></div>
+                        </div>
+                        <div class="color-material-note">
+                            Negatif Zemin Baskıları, Yüksek Kontrastlı Kart Yüzeyleri
+                        </div>
+                        <button class="btn-copy-color" onclick="copyColorCode('#FFFFFF', 'Pure White')">
+                            <span>Kodu Kopyala (#FFFFFF)</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTROLS & COLOR SCHEME SWITCHER -->
+        <div class="controls-toolbar">
+            <div class="toolbar-title">Vektörel Varlık Kütüphanesi</div>
+            <div class="color-mode-pills">
+                <button class="btn-mode active" onclick="switchColorMode('original', this)">Orijinal (Açık Zemin)</button>
+                <button class="btn-mode" onclick="switchColorMode('original-dark', this)">Orijinal (Siyah Zemin)</button>
+                <button class="btn-mode" onclick="switchColorMode('mono-dark', this)">Tek Renk Siyah (RAL 9004)</button>
+                <button class="btn-mode" onclick="switchColorMode('mono-white', this)">Tek Renk Beyaz (Negatif)</button>
+            </div>
+        </div>
+
+        <!-- 1. LOGO & WORDMARK GRUBU -->
+        <section>
+            <div class="section-header">
+                <h2>1. Logo &amp; Monogram Grubu</h2>
+                <span>CNC Dekota, Işıklı Tabela &amp; Kaşe / Mühür Baskıları</span>
+            </div>
+            <div class="assets-grid">
+
+                <!-- 01: Ana Wordmark -->
+                <div class="asset-card">
+                    <div class="preview-box" id="prev-box-logo">
+                        <span class="preview-wordmark" id="prev-text-logo" style="font-size: 56px;">gezenbiri<span class="system-dot" id="prev-dot-logo"></span></span>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">gezenbiri Ana Logo</div>
+                        <div class="asset-meta">Plus Jakarta Sans 900 + 1:1 System Dot</div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-download primary" onclick="downloadSVG('logo-wordmark')">SVG Vektör</button>
+                        <button class="btn-download" onclick="downloadPNG('logo-wordmark', 4000)">4K PNG</button>
+                    </div>
+                </div>
+
+                <!-- 02: Monogram gb -->
+                <div class="asset-card">
+                    <div class="preview-box" id="prev-box-mono">
+                        <span class="preview-wordmark" id="prev-text-mono" style="font-size: 78px;">gb<span class="system-dot" id="prev-dot-mono"></span></span>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">gb. Monogram Mührü</div>
+                        <div class="asset-meta">İmza damgası, nakış, emaye &amp; mikro baskı</div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-download primary" onclick="downloadSVG('logo-monogram')">SVG Vektör</button>
+                        <button class="btn-download" onclick="downloadPNG('logo-monogram', 4000)">4K PNG</button>
+                    </div>
+                </div>
+
+                <!-- 03: Logo + Slogan Kombo -->
+                <div class="asset-card">
+                    <div class="preview-box" id="prev-box-combo" style="flex-direction: column; align-items: flex-start; justify-content: center; padding: 22px 28px;">
+                        <span class="preview-wordmark" id="prev-text-combo-logo" style="font-size: 38px; margin-bottom: 12px;">gezenbiri<span class="system-dot" id="prev-dot-combo"></span></span>
+                        <div class="preview-slogan" id="prev-text-combo-slogan" style="font-size: 22px; margin-bottom: 6px;">Bir yere gidelim.</div>
+                        <div class="preview-tagline" id="prev-text-combo-sub" style="font-size: 13.5px; opacity: 0.85;">Gitmeye değer yerler. Tanışmaya değer insanlar.</div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Logo + Slogan Kompozisyonu</div>
+                        <div class="asset-meta">Ofis duvarı, totem tabela &amp; ana cephe</div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-download primary" onclick="downloadSVG('logo-combo')">SVG Vektör</button>
+                        <button class="btn-download" onclick="downloadPNG('logo-combo', 4000)">4K PNG</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2. SLOGAN & EDİTORYAL GRUBU -->
+        <section>
+            <div class="section-header">
+                <h2>2. Slogan &amp; Manifesto Grubu</h2>
+                <span>Duvar Yazıları, Posterler &amp; Cephe Tipografisi</span>
+            </div>
+            <div class="assets-grid">
+
+                <!-- 01: Bir yere gidelim. -->
+                <div class="asset-card">
+                    <div class="preview-box" id="prev-box-slogan">
+                        <div class="preview-slogan" id="prev-text-slogan" style="font-size: 38px;">Bir yere gidelim.</div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Bir yere gidelim.</div>
+                        <div class="asset-meta">Ana Slogan (Plus Jakarta Sans 800)</div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-download primary" onclick="downloadSVG('slogan-main')">SVG Vektör</button>
+                        <button class="btn-download" onclick="downloadPNG('slogan-main', 4000)">4K PNG</button>
+                    </div>
+                </div>
+
+                <!-- 02: Alt Slogan -->
+                <div class="asset-card">
+                    <div class="preview-box" id="prev-box-subline">
+                        <div class="preview-tagline" id="prev-text-subline" style="font-size: 19px;">Gitmeye değer yerler. Tanışmaya değer insanlar.</div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Alt Slogan Cümlesi</div>
+                        <div class="asset-meta">Gitmeye değer yerler. Tanışmaya değer insanlar.</div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-download primary" onclick="downloadSVG('slogan-sub')">SVG Vektör</button>
+                        <button class="btn-download" onclick="downloadPNG('slogan-sub', 4000)">4K PNG</button>
+                    </div>
+                </div>
+
+                <!-- 03: Manifesto Çifti -->
+                <div class="asset-card">
+                    <div class="preview-box" id="prev-box-manifesto" style="flex-direction: column; align-items: flex-start; justify-content: center; padding: 22px 28px;">
+                        <div id="prev-text-manifesto-serif" style="font-family: var(--font-serif); font-style: italic; font-size: 32px; line-height: 1.25; margin-bottom: 8px;">Arada bir gitmek lazım.</div>
+                        <div id="prev-text-manifesto-sans" style="font-family: var(--font-sans); font-weight: 800; font-size: 18px; letter-spacing: -0.02em;">Biz de sadece gezenbiriyiz.</div>
+                    </div>
+                    <div class="asset-info">
+                        <div class="asset-name">Editoryal Manifesto</div>
+                        <div class="asset-meta">Arada bir gitmek lazım. Biz de sadece gezenbiriyiz.</div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-download primary" onclick="downloadSVG('slogan-manifesto')">SVG Vektör</button>
+                        <button class="btn-download" onclick="downloadPNG('slogan-manifesto', 4000)">4K PNG</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. KANONİK SYSTEM DOT GLİFLERİ (32x32 MOTION LAB STANDARDI) -->
+        <section>
+            <div class="section-header">
+                <h2>3. Kanonik System Dot Glifleri (32x32 Standart)</h2>
+                <span>Aksiyon Çapası, Odak Noktası &amp; Coral Çekirdekli Resmi Glifler (icon-morph-motion.html)</span>
+            </div>
+            <div class="icons-grid-wide" id="glyphs-container">
+                <!-- Dynamically Generated System Dot Glyph Cards -->
+            </div>
+        </section>
+
+        <!-- 4. MİNİMAL ÇİZGİ İKONLARI & BÖLGESEL GLİFLER (24x24) -->
+        <section>
+            <div class="section-header">
+                <h2>4. Minimal Çizgi İkonları &amp; Bölgesel Glifler (24x24 Standart)</h2>
+                <span>Tabela Piktogramları, Yönlendirme, Rota Kartları &amp; Merch Baskı</span>
+            </div>
+            <div class="icons-grid-wide" id="icons-container">
+                <!-- Dynamically Generated 24x24 Icon Cards -->
+            </div>
+        </section>
+
+        <!-- Prototype Disclaimer -->
+        <div class="gb-prototype-disclaimer">
+            gezenbiri™ Tasarım Sistemi ve Vektörel Varlık Kütüphanesi Prototype v2.1.0 · Resmî İletişim: <a href="https://gezenbiri.com" style="color:var(--text-main); font-weight:700;">gezenbiri.com</a> · <a href="https://gezenbiri.com.tr" style="color:var(--text-main); font-weight:700;">gezenbiri.com.tr</a> · <a href="https://gezenbiri.co" style="color:var(--text-main); font-weight:700;">gezenbiri.co</a>
+        </div>
+
+    </main>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast-box" id="toast">
+        <span id="toast-msg">Dosya indirildi</span>
+    </div>
+
+    <!-- EXPORT ENGINE JAVASCRIPT -->
+    <script>
+        // Current selected color mode: 'original' | 'mono-dark' | 'mono-white'
+        let currentMode = 'original';
+
+        // 1. CANONICAL SYSTEM DOT GLYPHS (32x32 ViewBox - As Defined in icon-morph-motion.html)
+        const systemDotGlyphsDatabase = [
+            {
+                id: 'glyph-konum',
+                name: '01. Konum & Rota',
+                tag: 'Çapa & Hedef Koordinat',
+                bodySvg: '<path d="M16 28C16 28 25 19.5 25 13A9 9 0 1 0 7 13C7 19.5 16 28 16 28Z"/>',
+                dotSvg: '<circle cx="16" cy="13" r="3.5"/>'
+            },
+            {
+                id: 'glyph-takvim',
+                name: '02. Takvim & Tarih',
+                tag: 'Buluşma & Kaçış Günü',
+                bodySvg: '<rect x="5" y="6" width="22" height="21" rx="4"/><line x1="16" y1="3" x2="16" y2="7"/><line x1="10" y1="3" x2="10" y2="7"/><line x1="22" y1="3" x2="22" y2="7"/><line x1="5" y1="12" x2="27" y2="12"/><circle cx="10" cy="17" r="1.5" fill="currentColor" stroke="none"/><circle cx="16" cy="17" r="1.5" fill="currentColor" stroke="none"/><circle cx="22" cy="17" r="1.5" fill="currentColor" stroke="none"/><circle cx="10" cy="22" r="1.5" fill="currentColor" stroke="none"/>',
+                dotSvg: '<circle cx="16" cy="22" r="2.8"/>'
+            },
+            {
+                id: 'glyph-kamera',
+                name: '03. Kamera & An',
+                tag: 'Objektif & Vizör Odağı',
+                bodySvg: '<path d="M6 10H10L12 7H20L22 10H26C27.1 10 28 10.9 28 12V24C28 25.1 27.1 26 26 26H6C4.9 26 4 25.1 4 24V12C4 10.9 4.9 10 6 10Z"/><circle cx="16" cy="18" r="6"/>',
+                dotSvg: '<circle cx="16" cy="18" r="3.2"/>'
+            },
+            {
+                id: 'glyph-kahve',
+                name: '04. Kahve & Mola',
+                tag: 'Fincan & Yükselen Buhar',
+                bodySvg: '<path d="M5 11H23V20C23 23.3 20.3 26 17 26H11C7.7 26 5 23.3 5 20V11Z"/><path d="M23 14H25C26.7 14 28 15.3 28 17C28 18.7 26.7 20 25 20H23"/><path d="M3 29H25"/><path d="M10 8C10 7 11 6 11 5"/><path d="M18 8C18 7 17 6 17 5"/>',
+                dotSvg: '<circle cx="14" cy="6" r="2.5"/>'
+            },
+            {
+                id: 'glyph-kadeh',
+                name: '05. Kadeh & Tadım',
+                tag: 'Lokal Bağ & Masa Damlası',
+                bodySvg: '<path d="M8 5H24C24 13 19 17 16 17C13 17 8 13 8 5Z"/><line x1="16" y1="17" x2="16" y2="27"/><line x1="11" y1="27" x2="21" y2="27"/>',
+                dotSvg: '<circle cx="16" cy="12" r="3.2"/>'
+            },
+            {
+                id: 'glyph-pusula',
+                name: '06. Pusula & Yön',
+                tag: 'Dönüş & Merkez İğne',
+                bodySvg: '<circle cx="16" cy="16" r="12"/><polygon points="16,8 19,16 16,15 13,16" fill="currentColor" stroke="none"/><polygon points="16,24 19,16 16,17 13,16"/>',
+                dotSvg: '<circle cx="16" cy="16" r="2.8"/>'
+            },
+            {
+                id: 'glyph-topluluk',
+                name: '07. Topluluk & İnsan',
+                tag: 'Sosyal Ağ & Bağlantı Kıvılcımı',
+                bodySvg: '<path d="M6 25V23C6 20.8 7.8 19 10 19H14C16.2 19 18 20.8 18 23V25"/><circle cx="12" cy="13" r="4"/><path d="M19 19.3C20.8 19.8 22 21.3 22 23V25"/><circle cx="21" cy="12" r="3"/>',
+                dotSvg: '<circle cx="17" cy="16" r="2.6"/>'
+            },
+            {
+                id: 'glyph-bilet',
+                name: '08. Bilet & Giriş',
+                tag: 'Perfore Kupon & Onay Mührü',
+                bodySvg: '<path d="M5 9C5 7.9 5.9 7 7 7H25C26.1 7 27 7.9 27 9V14C25.5 14 24.5 15 24.5 16C24.5 17 25.5 18 27 18V23C27 24.1 26.1 25 25 25H7C5.9 25 5 24.1 5 23V18C6.5 18 7.5 17 7.5 16C7.5 15 6.5 14 5 14V9Z"/><line x1="12" y1="8" x2="12" y2="24" stroke-dasharray="2 2"/>',
+                dotSvg: '<circle cx="20" cy="16" r="3.5"/>'
+            }
+        ];
+
+        // 2. STANDARD MINIMAL & REGIONAL ICONS (24x24 Monoline Vectors)
+        const iconDatabase = [
+            { id: 'icon-konum', name: 'Konum & Rota', tag: 'Hedef Koordinat', svg: '<path d="M12 21s-6-5.33-6-10a6 6 0 0 1 12 0c0 4.67-6 10-6 10z"/><circle cx="12" cy="11" r="2"/>' },
+            { id: 'icon-takvim', name: 'Takvim & Tarih', tag: 'Planlama', svg: '<rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>' },
+            { id: 'icon-topluluk', name: 'Topluluk & İnsan', tag: 'Sosyal Keşif', svg: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>' },
+            { id: 'icon-fotograf', name: 'Objektif & Kamera', tag: 'Anı Yakalama', svg: '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>' },
+            { id: 'icon-kahve', name: 'Kahve & Fincan', tag: 'Buluşma & Mola', svg: '<path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>' },
+            { id: 'icon-rota', name: 'Yol & Rota', tag: 'Yolculuk', svg: '<path d="M19 21L12 4 5 21h14z"/><path d="M12 4v17"/>' },
+            { id: 'icon-canta', name: 'Çanta & Bavul', tag: 'Kaçış Ekipmanı', svg: '<rect x="4" y="8" width="16" height="13" rx="2"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/>' },
+            { id: 'icon-tabela', name: 'Tabela & Yön', tag: 'Rehber', svg: '<path d="M12 2v20M4 6h16l-3 4 3 4H4"/>' },
+            { id: 'icon-otel', name: 'Butik Otel', tag: 'Özel Konaklama', svg: '<path d="M3 20h18M3 14h18M4 10h16a2 2 0 0 1 2 2v8H2v-8a2 2 0 0 1 2-2z"/>' },
+            { id: 'icon-sofra', name: 'Kadeh & Sofra', tag: 'Lokal Masa', svg: '<path d="M3 2v7c0 2.21 1.79 4 4 4s4-1.79 4-4V2"/><line x1="7" y1="2" x2="7" y2="22"/><path d="M21 6c0-2-1-4-3-4s-3 2-3 4c0 1.5 1 2.8 2.5 3.4V22h1V9.4C20 8.8 21 7.5 21 6z"/>' },
+            { id: 'icon-muzik', name: 'Müzik & Akustik', tag: 'Canlı Akşam', svg: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>' },
+            { id: 'icon-gunbatimi', name: 'Gün Batımı', tag: 'Seyir Terası', svg: '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>' },
+            { id: 'icon-erciyes', name: 'Erciyes Dağı', tag: 'Volkanik Zirve & Kar', svg: '<path d="M2 20L10 5l4 6 3-3 5 12H2z"/><path d="M7.5 10.5l2.5-2 2.5 2"/>' },
+            { id: 'icon-balon', name: 'Kapadokya Balon', tag: '3D Sıcak Hava Balonu', svg: '<path d="M12 2C7.5 2 4.5 5.5 4.5 9.5c0 3.2 2.2 5.8 5 7h5c2.8-1.2 5-3.8 5-7C19.5 5.5 16.5 2 12 2z"/><path d="M12 2c-2.8 0-4.8 3.5-4.8 7.5s2 6.5 4.8 7"/><path d="M12 2c2.8 0 4.8 3.5 4.8 7.5s-2 6.5-4.8 7"/><line x1="9.5" y1="16.5" x2="14.5" y2="16.5"/><line x1="10.2" y1="16.5" x2="10.8" y2="19.5"/><line x1="13.8" y1="16.5" x2="13.2" y2="19.5"/><rect x="10" y="19.5" width="4" height="2.5" rx="0.6"/>' },
+            { id: 'icon-peribacasi', name: 'Peri Bacası', tag: 'İkili Paşabağı Silüeti', svg: '<line x1="2" y1="21" x2="22" y2="21"/><path d="M4 6c-.4-1.8 1.8-3 4.5-3s5 1.2 4.5 3c-.3 1.2-2 1.6-4.5 1.6S4.3 7.2 4 6z"/><path d="M6.5 7.4c.4 4-.4 8.6-1.5 13.6h6.8c-.8-5-1.4-9.6-1-13.6"/><path d="M7.8 14.5v1a1 1 0 0 0 2 0v-1"/><path d="M13.5 11.5c-.3-1.4 1.5-2.2 3.5-2.2s3.8.8 3.5 2.2c-.3 1-1.5 1.5-3.5 1.5s-3.2-.5-3.5-1.5z"/><path d="M15 13c.3 2.5 0 5-.5 8h4.5c-.3-2.5-.5-5-.2-8"/>' },
+            { id: 'icon-saatkulesi', name: 'Kayseri Saat Kulesi', tag: 'Muvakkithaneli Mimari', svg: '<path d="M2 22h18"/><path d="M3.5 22v-7.5h6.5v7.5"/><path d="M2.5 14.5h7.5"/><line x1="6.5" y1="17.5" x2="6.5" y2="19.5"/><path d="M10 22V5.5h8V22"/><path d="M12.5 22v-2.5a1.5 1.5 0 0 1 3 0V22"/><line x1="9.5" y1="14.5" x2="18.5" y2="14.5"/><line x1="14" y1="11.5" x2="14" y2="13"/><line x1="8.5" y1="9.5" x2="19.5" y2="9.5"/><circle cx="14" cy="7.2" r="1.3"/><line x1="9" y1="5.5" x2="19" y2="5.5"/><path d="M10 5.5L14 1.8l4 3.7"/><line x1="14" y1="1.8" x2="14" y2="0.6"/><line x1="12.7" y1="1.2" x2="15.3" y2="1.2"/>' }
+        ];
+
+        // Color definitions for active scheme
+        function getColors() {
+            if (currentMode === 'original-dark') {
+                return { primary: '#FFFFFF', dot: '#FF4D3D', bgPrev: '#202020', isDarkBox: true, hasDarkBg: true };
+            } else if (currentMode === 'mono-dark') {
+                return { primary: '#000000', dot: '#000000', bgPrev: '#FFFFFF', isDarkBox: false, hasDarkBg: false };
+            } else if (currentMode === 'mono-white') {
+                return { primary: '#FFFFFF', dot: '#FFFFFF', bgPrev: '#202020', isDarkBox: true, hasDarkBg: false };
+            } else {
+                return { primary: '#202020', dot: '#FF4D3D', bgPrev: '#F6F3ED', isDarkBox: false, hasDarkBg: false };
+            }
+        }
+
+        // Render Previews Across the Page using Authentic HTML Elements
+        function renderAllPreviews() {
+            const colors = getColors();
+
+            // Wordmark & Slogans Text Color
+            const textElements = document.querySelectorAll('.preview-wordmark, .preview-slogan, .preview-tagline, #prev-text-manifesto-serif, #prev-text-manifesto-sans');
+            textElements.forEach(el => {
+                el.style.color = colors.primary;
+            });
+
+            // System Dots Color
+            const dots = document.querySelectorAll('.preview-box .system-dot');
+            dots.forEach(dot => {
+                dot.style.backgroundColor = colors.dot;
+            });
+
+            // Preview Box Theme Classes
+            const previewBoxes = document.querySelectorAll('.preview-box, .icon-preview-box');
+            previewBoxes.forEach(box => {
+                box.classList.remove('theme-dark', 'theme-white');
+                if (colors.isDarkBox) {
+                    box.classList.add('theme-dark');
+                } else if (currentMode === 'mono-dark') {
+                    box.classList.add('theme-white');
+                }
+            });
+
+            // 1. System Dot Glyphs Container (32x32)
+            const glyphsContainer = document.getElementById('glyphs-container');
+            if (glyphsContainer) {
+                glyphsContainer.innerHTML = '';
+                systemDotGlyphsDatabase.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'asset-card';
+                    card.innerHTML = `
+                        <div class="icon-preview-box ${colors.isDarkBox ? 'theme-dark' : (currentMode === 'mono-dark' ? 'theme-white' : '')}">
+                            <svg viewBox="0 0 32 32" width="46" height="46" fill="none">
+                                <g stroke="${colors.primary}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" color="${colors.primary}">
+                                    ${item.bodySvg}
+                                </g>
+                                <g fill="${colors.dot}" stroke="none">
+                                    ${item.dotSvg}
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">${item.name}</div>
+                            <div class="asset-meta">${item.tag}</div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-download primary" onclick="downloadSVG('${item.id}')">SVG</button>
+                            <button class="btn-download" onclick="downloadPNG('${item.id}', 4000)">PNG</button>
+                        </div>
+                    `;
+                    glyphsContainer.appendChild(card);
+                });
+            }
+
+            // 2. Standard 24x24 Icons Container
+            const container = document.getElementById('icons-container');
+            if (container) {
+                container.innerHTML = '';
+                iconDatabase.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'asset-card';
+                    card.innerHTML = `
+                        <div class="icon-preview-box ${colors.isDarkBox ? 'theme-dark' : (currentMode === 'mono-dark' ? 'theme-white' : '')}">
+                            <svg viewBox="0 0 24 24" width="42" height="42" stroke="${colors.primary}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
+                                ${item.svg}
+                            </svg>
+                        </div>
+                        <div class="asset-info">
+                            <div class="asset-name">${item.name}</div>
+                            <div class="asset-meta">${item.tag}</div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn-download primary" onclick="downloadSVG('${item.id}')">SVG</button>
+                            <button class="btn-download" onclick="downloadPNG('${item.id}', 2000)">PNG</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+        }
+
+        // Generate Master SVGs with Current Colors & Embedded Web Fonts
+        function getAssetSVG(type) {
+            const colors = getColors();
+            const bgRect = colors.hasDarkBg ? '<rect width="100%" height="100%" fill="#202020"/>\n  ' : '';
+            const svgStyles = `
+    @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800;900&amp;display=swap');
+    .txt-wordmark {
+      font-family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+    .txt-slogan {
+      font-family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .txt-tagline {
+      font-family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .txt-serif {
+      font-family: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+      font-style: italic;
+    }
+    .txt-manifesto-sub {
+      font-family: Plus Jakarta Sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+  `;
+
+            if (type === 'logo-wordmark') {
+                return `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 130" width="480" height="130">
+  <defs>
+    <style>${svgStyles}</style>
+  </defs>
+  ${bgRect}<text x="37" y="90" class="txt-wordmark" font-size="92" fill="${colors.primary}">gezenbiri</text>
+  <!-- Canonical 1:1 System Dot (size: 0.15em = 13.8px, gap: 0.12em = 11.04px, bottom on baseline) -->
+  <circle cx="436.2" cy="83.1" r="6.9" fill="${colors.dot}" />
+</svg>`.trim();
+            }
+
+            if (type === 'logo-monogram') {
+                return `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 170" width="260" height="170">
+  <defs>
+    <style>${svgStyles}</style>
+  </defs>
+  ${bgRect}<text x="38" y="122" class="txt-wordmark" font-size="120" fill="${colors.primary}">gb</text>
+  <!-- Canonical 1:1 System Dot (size: 0.15em = 18px, gap: 0.12em = 14.4px, bottom on baseline) -->
+  <circle cx="212.4" cy="113" r="9" fill="${colors.dot}" />
+</svg>`.trim();
+            }
+
+            if (type === 'logo-combo') {
+                return `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 230" width="530" height="230">
+  <defs>
+    <style>${svgStyles}</style>
+  </defs>
+  ${bgRect}<text x="40" y="85" class="txt-wordmark" font-size="80" fill="${colors.primary}">gezenbiri</text>
+  <!-- Canonical 1:1 System Dot (size: 0.15em = 12px, gap: 0.12em = 9.6px, bottom on baseline) -->
+  <circle cx="386.6" cy="79" r="6" fill="${colors.dot}" />
+  <text x="40" y="148" class="txt-slogan" font-size="44" fill="${colors.primary}">Bir yere gidelim.</text>
+  <text x="40" y="192" class="txt-tagline" font-size="20" fill="${colors.primary}" opacity="0.85">Gitmeye değer yerler. Tanışmaya değer insanlar.</text>
+</svg>`.trim();
+            }
+
+            if (type === 'slogan-main') {
+                return `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 110" width="530" height="110">
+  <defs>
+    <style>${svgStyles}</style>
+  </defs>
+  ${bgRect}<text x="29" y="78" class="txt-slogan" font-size="64" fill="${colors.primary}">Bir yere gidelim.</text>
+</svg>`.trim();
+            }
+
+            if (type === 'slogan-sub') {
+                return `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 655 80" width="655" height="80">
+  <defs>
+    <style>${svgStyles}</style>
+  </defs>
+  ${bgRect}<text x="25" y="52" class="txt-tagline" font-size="27" fill="${colors.primary}">Gitmeye değer yerler. Tanışmaya değer insanlar.</text>
+</svg>`.trim();
+            }
+
+            if (type === 'slogan-manifesto') {
+                return `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 150" width="550" height="150">
+  <defs>
+    <style>${svgStyles}</style>
+  </defs>
+  ${bgRect}<text x="30" y="65" class="txt-serif" font-size="56" fill="${colors.primary}">Arada bir gitmek lazım.</text>
+  <text x="30" y="118" class="txt-manifesto-sub" font-size="30" fill="${colors.primary}">Biz de sadece gezenbiriyiz.</text>
+</svg>`.trim();
+            }
+
+            // Check if it's a System Dot Glyph (32x32 Canonical ViewBox)
+            const glyphItem = systemDotGlyphsDatabase.find(g => g.id === type);
+            if (glyphItem) {
+                return `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
+  ${bgRect}<!-- Canonical Monoline Stroke Geometry -->
+  <g stroke="${colors.primary}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" color="${colors.primary}">
+    ${glyphItem.bodySvg}
+  </g>
+  <!-- Master System Dot Nucleus (Action Coral #FF4D3D) -->
+  <g fill="${colors.dot}" stroke="none">
+    ${glyphItem.dotSvg}
+  </g>
+</svg>`.trim();
+            }
+
+            // Fallback for Standard 24x24 Icon (24x24 Canonical ViewBox)
+            const iconItem = iconDatabase.find(i => i.id === type);
+            if (iconItem) {
+                return `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="${colors.primary}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  ${bgRect}${iconItem.svg}
+</svg>`.trim();
+            }
+
+            return '';
+        }
+
+        // Switch Color Modes (Orijinal Açık Zemin, Orijinal Siyah Zemin, Siyah, Beyaz)
+        function switchColorMode(mode, btnElement) {
+            currentMode = mode;
+            const buttons = document.querySelectorAll('.btn-mode');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (btnElement) {
+                btnElement.classList.add('active');
+            } else if (window.event && window.event.target) {
+                window.event.target.classList.add('active');
+            }
+            renderAllPreviews();
+            const modeNames = {
+                'original': 'Orijinal (Açık Zemin)',
+                'original-dark': 'Orijinal (Siyah Zemin)',
+                'mono-dark': 'Tek Renk Siyah (RAL 9004)',
+                'mono-white': 'Tek Renk Beyaz (Negatif)'
+            };
+            showToast(`Renk modu güncellendi: ${modeNames[mode] || mode}`);
+        }
+
+        // Direct SVG Downloader
+        function downloadSVG(type) {
+            const svgContent = getAssetSVG(type);
+            const blob = new Blob([svgContent], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `gezenbiri-${type}-${currentMode}.svg`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast(`İndirildi: gezenbiri-${type}-${currentMode}.svg`);
+        }
+
+        // High-Resolution 4K PNG Generator via HTML5 Canvas 2D
+        async function downloadPNG(type, targetWidth = 4000) {
+            await document.fonts.ready;
+            const colors = getColors();
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            function initCanvas(w, h) {
+                canvas.width = w;
+                canvas.height = h;
+                if (colors.hasDarkBg) {
+                    ctx.fillStyle = '#202020';
+                    ctx.fillRect(0, 0, w, h);
+                } else {
+                    ctx.clearRect(0, 0, w, h);
+                }
+            }
+
+            if (type === 'logo-wordmark') {
+                // Aspect Ratio 480x130 (Snug & Centered)
+                initCanvas(targetWidth, Math.round(targetWidth * (130 / 480))); // 4000 x 1083
+
+                const fontSize = Math.round(targetWidth * (92 / 480));
+                ctx.font = `900 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
+                ctx.fillStyle = colors.primary;
+                ctx.textBaseline = 'alphabetic';
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
+
+                const metrics = ctx.measureText('gezenbiri');
+                const textVisualWidth = ('actualBoundingBoxRight' in metrics && metrics.actualBoundingBoxRight > 0)
+                    ? metrics.actualBoundingBoxRight
+                    : metrics.width;
+                const dotRadius = (fontSize * 0.15) / 2;
+                const dotGap = fontSize * 0.12;
+                const totalWidth = textVisualWidth + dotGap + (dotRadius * 2);
+
+                const textX = Math.round((canvas.width - totalWidth) / 2);
+                const textY = Math.round(canvas.height * (90 / 130));
+                ctx.fillText('gezenbiri', textX, textY);
+
+                const dotX = textX + textVisualWidth + dotGap + dotRadius;
+                const dotY = textY - dotRadius;
+
+                ctx.fillStyle = colors.dot;
+                ctx.beginPath();
+                ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (type === 'logo-monogram') {
+                // Aspect Ratio 260x170 (Snug & Centered)
+                initCanvas(targetWidth, Math.round(targetWidth * (170 / 260))); // 4000 x 2615
+
+                const fontSize = Math.round(targetWidth * (120 / 260));
+                ctx.font = `900 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
+                ctx.fillStyle = colors.primary;
+                ctx.textBaseline = 'alphabetic';
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
+
+                const metrics = ctx.measureText('gb');
+                const textVisualWidth = ('actualBoundingBoxRight' in metrics && metrics.actualBoundingBoxRight > 0)
+                    ? metrics.actualBoundingBoxRight
+                    : metrics.width;
+                const dotRadius = (fontSize * 0.15) / 2;
+                const dotGap = fontSize * 0.12;
+                const totalWidth = textVisualWidth + dotGap + (dotRadius * 2);
+
+                const textX = Math.round((canvas.width - totalWidth) / 2);
+                const textY = Math.round(canvas.height * (122 / 170));
+                ctx.fillText('gb', textX, textY);
+
+                const dotX = textX + textVisualWidth + dotGap + dotRadius;
+                const dotY = textY - dotRadius;
+
+                ctx.fillStyle = colors.dot;
+                ctx.beginPath();
+                ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
+                ctx.fill();
+            } else if (type === 'logo-combo') {
+                // Aspect Ratio 530x230 (Snug & Proportional)
+                initCanvas(targetWidth, Math.round(targetWidth * (230 / 530))); // 4000 x 1736
+
+                const scale = targetWidth / 530;
+                const textX = Math.round(40 * scale);
+
+                // gezenbiri
+                const logoSize = Math.round(80 * scale);
+                ctx.font = `900 ${logoSize}px "Plus Jakarta Sans", sans-serif`;
+                ctx.fillStyle = colors.primary;
+                ctx.textBaseline = 'alphabetic';
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.04em';
+                const logoY = Math.round(85 * scale);
+                ctx.fillText('gezenbiri', textX, logoY);
+
+                const metrics = ctx.measureText('gezenbiri');
+                const logoVisualWidth = ('actualBoundingBoxRight' in metrics && metrics.actualBoundingBoxRight > 0)
+                    ? metrics.actualBoundingBoxRight
+                    : metrics.width;
+                const dotRadius = (logoSize * 0.15) / 2;
+                const dotGap = logoSize * 0.12;
+                const dotX = textX + logoVisualWidth + dotGap + dotRadius;
+                const dotY = logoY - dotRadius;
+                ctx.fillStyle = colors.dot;
+                ctx.beginPath();
+                ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Bir yere gidelim.
+                const sloganSize = Math.round(44 * scale);
+                ctx.font = `800 ${sloganSize}px "Plus Jakarta Sans", sans-serif`;
+                ctx.fillStyle = colors.primary;
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.03em';
+                ctx.fillText('Bir yere gidelim.', textX, Math.round(148 * scale));
+
+                // Subline
+                const subSize = Math.round(20 * scale);
+                ctx.font = `600 ${subSize}px "Plus Jakarta Sans", sans-serif`;
+                ctx.fillStyle = colors.primary;
+                ctx.globalAlpha = 0.85;
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.01em';
+                ctx.fillText('Gitmeye değer yerler. Tanışmaya değer insanlar.', textX, Math.round(192 * scale));
+                ctx.globalAlpha = 1.0;
+            } else if (type === 'slogan-main') {
+                // Aspect Ratio 530x110 (Snug & Centered)
+                initCanvas(targetWidth, Math.round(targetWidth * (110 / 530))); // 4000 x 830
+
+                const scale = targetWidth / 530;
+                const fontSize = Math.round(64 * scale);
+                ctx.font = `800 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
+                ctx.fillStyle = colors.primary;
+                ctx.textBaseline = 'alphabetic';
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.03em';
+
+                const textWidth = ctx.measureText('Bir yere gidelim.').width;
+                const textX = Math.round((canvas.width - textWidth) / 2);
+                const textY = Math.round(canvas.height * (78 / 110));
+                ctx.fillText('Bir yere gidelim.', textX, textY);
+            } else if (type === 'slogan-sub') {
+                // Aspect Ratio 655x80 (Snug & Centered)
+                initCanvas(targetWidth, Math.round(targetWidth * (80 / 655))); // 4000 x 488
+
+                const scale = targetWidth / 655;
+                const fontSize = Math.round(27 * scale);
+                ctx.font = `600 ${fontSize}px "Plus Jakarta Sans", sans-serif`;
+                ctx.fillStyle = colors.primary;
+                ctx.textBaseline = 'alphabetic';
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.01em';
+
+                const textWidth = ctx.measureText('Gitmeye değer yerler. Tanışmaya değer insanlar.').width;
+                const textX = Math.round((canvas.width - textWidth) / 2);
+                const textY = Math.round(canvas.height * (52 / 80));
+                ctx.fillText('Gitmeye değer yerler. Tanışmaya değer insanlar.', textX, textY);
+            } else if (type === 'slogan-manifesto') {
+                // Aspect Ratio 550x150 (Snug & Proportional)
+                initCanvas(targetWidth, Math.round(targetWidth * (150 / 550))); // 4000 x 1091
+
+                const scale = targetWidth / 550;
+                const textX = Math.round(30 * scale);
+
+                const serifSize = Math.round(56 * scale);
+                ctx.font = `italic ${serifSize}px "Instrument Serif", Georgia, serif`;
+                ctx.fillStyle = colors.primary;
+                ctx.textBaseline = 'alphabetic';
+                ctx.fillText('Arada bir gitmek lazım.', textX, Math.round(65 * scale));
+
+                const sansSize = Math.round(30 * scale);
+                ctx.font = `800 ${sansSize}px "Plus Jakarta Sans", sans-serif`;
+                if ('letterSpacing' in ctx) ctx.letterSpacing = '-0.02em';
+                ctx.fillText('Biz de sadece gezenbiriyiz.', textX, Math.round(118 * scale));
+            } else {
+                // High-Res Vector SVG render for System Dot Glyphs (32x32) & Standard Icons (24x24)
+                const svgContent = getAssetSVG(type);
+                const highResSvg = svgContent
+                    .replace(/width="[^"]+"/, `width="${targetWidth}"`)
+                    .replace(/height="[^"]+"/, `height="${targetWidth}"`);
+                const blob = new Blob([highResSvg], { type: 'image/svg+xml;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const img = new Image();
+                img.onload = function() {
+                    initCanvas(targetWidth, targetWidth);
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    triggerDownload(canvas, type, targetWidth);
+                    URL.revokeObjectURL(url);
+                };
+                img.src = url;
+                return;
+            }
+
+            triggerDownload(canvas, type, targetWidth);
+        }
+
+        function triggerDownload(canvas, type, targetWidth) {
+            canvas.toBlob(function(pngBlob) {
+                const pngUrl = URL.createObjectURL(pngBlob);
+                const a = document.createElement('a');
+                a.href = pngUrl;
+                a.download = `gezenbiri-${type}-${targetWidth}px-${currentMode}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(pngUrl);
+                showToast(`Yüksek çözünürlük 4K PNG (${targetWidth}px) hazırlandı!`);
+            }, 'image/png');
+        }
+
+        // Package Entire Suite into 1 Clean ZIP File
+        async function packageAndDownloadZip() {
+            if (typeof JSZip === 'undefined') {
+                showToast('ZIP kütüphanesi yükleniyor, lütfen bekleyin...');
+                return;
+            }
+
+            showToast('Tüm vektör paketi ZIP olarak hazırlanıyor...');
+            const zip = new JSZip();
+
+            // 1. Logos Folder
+            const fLogos = zip.folder('01_Logolar_ve_Monogram');
+            fLogos.file(`gezenbiri-ana-logo-${currentMode}.svg`, getAssetSVG('logo-wordmark'));
+            fLogos.file(`gb-monogram-${currentMode}.svg`, getAssetSVG('logo-monogram'));
+            fLogos.file(`gezenbiri-logo-slogan-kombo-${currentMode}.svg`, getAssetSVG('logo-combo'));
+
+            // 2. Slogans Folder
+            const fSlogans = zip.folder('02_Sloganlar_ve_Manifesto');
+            fSlogans.file(`bir-yere-gidelim-slogan-${currentMode}.svg`, getAssetSVG('slogan-main'));
+            fSlogans.file(`alt-slogan-${currentMode}.svg`, getAssetSVG('slogan-sub'));
+            fSlogans.file(`manifesto-${currentMode}.svg`, getAssetSVG('slogan-manifesto'));
+
+            // 3. System Dot Glyphs Folder (32x32 Canonical Suite from icon-morph-motion.html)
+            const fGlyphs = zip.folder('03_Kanonik_System_Dot_Glifleri_32x32');
+            systemDotGlyphsDatabase.forEach(item => {
+                fGlyphs.file(`${item.id}-${currentMode}.svg`, getAssetSVG(item.id));
+            });
+
+            // 4. Standard & Regional Icons Folder (24x24)
+            const fIcons = zip.folder('04_Minimal_ve_Yerel_Ikonlar_24x24');
+            iconDatabase.forEach(item => {
+                fIcons.file(`${item.id}-${currentMode}.svg`, getAssetSVG(item.id));
+            });
+
+            // 5. Production Specs Readme
+            const readme = `gezenbiri Marka Sistemi - Reklamcı & Baskıcı Üretim Notları
+=============================================================
+Tarih: 2026-11-02
+Renk Kodu 1: Charcoal (#202020 / RAL 9004)
+Renk Kodu 2: Action Coral (#FF4D3D / RAL 3028)
+Tipografi: Plus Jakarta Sans (900 Wordmark, 800 Slogan, 600 Alt Slogan) & Instrument Serif (Manifesto İtalik)
+System Dot: 1:1 mekanik tam daire. 0.12em optik harf boşluğu.
+Slogan Kuralı: "Bir yere gidelim." sonundaki nokta tipografiktir.
+System Dot Glifleri: icon-morph-motion.html standartı 32x32 pikto ailesi; çekirdek Action Coral rengi içerir.
+
+Tüm dosyalar vektörel SVG formatında olup CNC router, dekota, lazer kesim,
+tabela, folyo ve serigrafi için hazır durumdadır.
+İletişim & Onay: selam@gezenbiri.com.tr · gezenbiri.com · gezenbiri.com.tr
+`;
+            zip.file('URETIM_VE_BASKI_NOTLARI.txt', readme);
+
+            const content = await zip.generateAsync({ type: 'blob' });
+            const url = URL.createObjectURL(content);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `gezenbiri-baski-vektor-paketi-${currentMode}.zip`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(pngUrl => URL.revokeObjectURL(url));
+            showToast('Tüm vektör paketi (.ZIP) başarıyla indirildi!');
+        }
+
+        // Toast Helper
+        function copyColorCode(code, name) {
+            navigator.clipboard.writeText(code).then(() => {
+                showToast(`${name} kodu kopyalandı: ${code}`);
+            }).catch(() => {
+                showToast(`${code} kopyalandı!`);
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2600);
+        }
+
+        // Initialize Previews on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderAllPreviews();
+        });
+    </script>
+</body>
+</html>

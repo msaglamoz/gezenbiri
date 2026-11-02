@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>gezenbiri — Yakında Instagram Story Şablonları</title>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="theme-color" content="#F6F3ED">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23202020'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-weight='900' font-size='15' fill='%23F6F3ED' text-anchor='middle'%3Egb%3C/text%3E%3Cellipse cx='25' cy='10' rx='3' ry='3.09' fill='%23FF4D3D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="brand.css">
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: var(--font-main);
+    background: var(--gb-cream);
+    color: var(--gb-charcoal);
+    min-height: 100vh;
+    padding: 40px 24px 100px;
+    -webkit-font-smoothing: antialiased;
+}
+.page-nav {
+    max-width: 800px;
+    margin: 0 auto 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--gb-charcoal);
+    font-size: 12.5px;
+    font-weight: 800;
+    background: var(--gb-white);
+    border: 1px solid var(--gb-border);
+    padding: 8px 18px;
+    border-radius: 100px;
+    box-shadow: var(--gb-shadow-subtle);
+    transition: all var(--gb-motion-fast);
+}
+.btn-back:hover { background: var(--gb-coral); color: var(--gb-white); border-color: var(--gb-coral); transform: translateX(-2px); }
+.page-meta { font-size: 11.5px; font-weight: 600; color: #999; letter-spacing: 0.08em; text-transform: uppercase; }
+
+.section-header { max-width: 800px; margin: 0 auto 40px; padding-bottom: 24px; border-bottom: 1px solid var(--gb-border); }
+.section-header h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; color: var(--gb-charcoal); margin-bottom: 8px; display: inline-flex; align-items: baseline; }
+.section-header p { font-size: 13.5px; color: #888; }
+.hint { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; background: var(--gb-white); border: 1px solid var(--gb-border); padding: 6px 14px; border-radius: var(--gb-radius-pill); font-size: 11.5px; color: #666; }
+
+.stories-grid { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(2, 360px); gap: 48px 32px; justify-content: center; }
+@media (max-width: 780px) { .stories-grid { grid-template-columns: 360px; } }
+
+.story-item { display: flex; flex-direction: column; gap: 14px; }
+.story-label { display: flex; align-items: center; justify-content: space-between; }
+.story-name { font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gb-charcoal); }
+.story-dims { font-size: 10.5px; color: #aaa; font-weight: 500; }
+
+.story-frame {
+    width: 360px; height: 640px;
+    border-radius: 18px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.14), 0 4px 16px rgba(0,0,0,0.06);
+    flex-shrink: 0;
+}
+
+.btn-export {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; width: 100%; padding: 13px 0;
+    border-radius: 100px;
+    font-family: var(--font-main); font-size: 13px; font-weight: 700;
+    cursor: pointer; border: none;
+    background: var(--gb-charcoal); color: var(--gb-cream);
+    transition: all var(--gb-motion-fast);
+}
+.btn-export:hover { background: var(--gb-coral); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,77,61,0.28); }
+.btn-export:disabled { background: var(--gb-stone); color: #999; cursor: wait; transform: none; box-shadow: none; }
+.btn-export svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+.export-all-wrap {
+    max-width: 800px; margin: 56px auto 0;
+    border-top: 1px solid var(--gb-border); padding-top: 36px;
+    display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.export-all-note { font-size: 12.5px; color: #999; text-align: center; }
+.btn-export-all {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 36px; border-radius: 100px;
+    font-family: var(--font-main); font-size: 13.5px; font-weight: 700;
+    cursor: pointer; border: 2px solid var(--gb-charcoal);
+    background: transparent; color: var(--gb-charcoal);
+    transition: all var(--gb-motion-fast);
+}
+.btn-export-all:hover { background: var(--gb-charcoal); color: var(--gb-cream); }
+.btn-export-all svg { width: 15px; height: 15px; fill: currentColor; }
+
+.progress-bar-wrap {
+    width: 100%; max-width: 360px; height: 3px;
+    background: var(--gb-stone); border-radius: 100px;
+    overflow: hidden; opacity: 0; transition: opacity 240ms;
+}
+.progress-bar-wrap.visible { opacity: 1; }
+.progress-bar { height: 100%; background: var(--gb-coral); border-radius: 100px; width: 0%; transition: width 300ms ease; }
+
+.prototype-note { max-width: 800px; margin: 40px auto 0; text-align: center; font-size: 11.5px; color: #bbb; }
+
+/* ============================================================
+   STORY CANVAS
+   DOM size: 360 x 640 px
+   Export scale x3  =>  1080 x 1920 px (Instagram 9:16)
+   ============================================================ */
+.sc {
+    width: 360px; height: 640px;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.sc::before { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+
+.sc-inner {
+    position: relative; z-index: 1;
+    width: 100%; height: 100%;
+    padding: 30px 30px 26px;
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.sc-top { display: flex; justify-content: space-between; align-items: flex-start; }
+
+/* Monogram gb + dot */
+.sc-mono { font-size: 15px; font-weight: 900; letter-spacing: -0.02em; line-height: 1; display: inline-flex; align-items: baseline; }
+
+/* System Dot — canonical geometry from AGENTS.md / brand.css
+   width:0.15em  height:0.15em  margin-left:0.12em  (1:1 circle) */
+.sc-dot {
+    display: inline-block;
+    width: 0.15em; height: 0.15em;
+    margin-left: 0.12em;
+    border-radius: 50%;
+    background: #FF4D3D;
+    flex-shrink: 0;
+    vertical-align: baseline;
+}
+
+.sc-pill {
+    font-size: 7.5px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 4px 10px;
+    border-radius: 100px; line-height: 1; display: inline-block;
+}
+
+/* Top accent bar */
+.sc-bar { position: absolute; top: 0; left: 30px; width: 22px; height: 3px; border-radius: 0 0 3px 3px; }
+
+/* Middle */
+.sc-mid { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 12px 0; }
+.sc-region { font-size: 8px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 14px; }
+
+/* Hero — "Çok yakında." period is standard typography */
+.sc-hero { font-size: 58px; font-weight: 900; letter-spacing: -0.04em; line-height: 0.92; margin-bottom: 18px; }
+.sc-editorial { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 19.5px; line-height: 1.38; margin-bottom: 14px; }
+.sc-secondary { font-size: 12px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.4; }
+
+/* Bottom */
+.sc-bottom { display: flex; flex-direction: column; gap: 3px; }
+.sc-wordmark { font-size: 17px; font-weight: 900; letter-spacing: -0.03em; line-height: 1; display: inline-flex; align-items: baseline; }
+.sc-handle { font-size: 9.5px; font-weight: 600; margin-top: 2px; }
+.sc-tags { font-size: 8.5px; font-weight: 400; margin-top: 5px; }
+
+/* Decorative large number */
+.sc-num { position: absolute; right: -8px; bottom: 72px; font-size: 170px; font-weight: 900; letter-spacing: -0.07em; line-height: 1; pointer-events: none; user-select: none; z-index: 0; }
+
+/* ── VARIANT 1: KREM (Alaçatı) ── */
+.sc-krem { background: #F6F3ED; }
+.sc-krem::before { background: radial-gradient(ellipse 85% 55% at 85% 15%, rgba(216,204,188,0.45) 0%, transparent 60%), radial-gradient(ellipse 55% 40% at 15% 85%, rgba(168,184,154,0.12) 0%, transparent 50%); }
+.sc-krem .sc-bar { background: #FF4D3D; }
+.sc-krem .sc-mono, .sc-krem .sc-hero, .sc-krem .sc-editorial, .sc-krem .sc-wordmark { color: #202020; }
+.sc-krem .sc-pill { color: #202020; border: 1px solid rgba(32,32,32,0.22); }
+.sc-krem .sc-region { color: #FF4D3D; }
+.sc-krem .sc-secondary { color: rgba(32,32,32,0.65); }
+.sc-krem .sc-handle { color: rgba(32,32,32,0.45); }
+.sc-krem .sc-tags { color: rgba(32,32,32,0.3); }
+.sc-krem .sc-num { color: rgba(32,32,32,0.03); }
+
+/* ── VARIANT 2: KOYU (Kapadokya) ── */
+.sc-koyu { background: #202020; }
+.sc-koyu::before { background: radial-gradient(ellipse 70% 50% at 25% 15%, rgba(255,77,61,0.09) 0%, transparent 60%), radial-gradient(ellipse 60% 45% at 85% 85%, rgba(169,213,232,0.05) 0%, transparent 55%); }
+.sc-koyu .sc-bar { background: #F6F3ED; }
+.sc-koyu .sc-mono, .sc-koyu .sc-hero, .sc-koyu .sc-wordmark { color: #F6F3ED; }
+.sc-koyu .sc-editorial { color: rgba(246,243,237,0.88); }
+.sc-koyu .sc-pill { color: rgba(246,243,237,0.75); border: 1px solid rgba(246,243,237,0.2); }
+.sc-koyu .sc-region { color: #FF4D3D; }
+.sc-koyu .sc-secondary { color: rgba(246,243,237,0.7); }
+.sc-koyu .sc-handle { color: rgba(246,243,237,0.38); }
+.sc-koyu .sc-tags { color: rgba(246,243,237,0.22); }
+.sc-koyu .sc-num { color: rgba(246,243,237,0.03); }
+
+/* ── VARIANT 3: DOGA (Bozcaada) ── */
+.sc-doga { background: #F6F3ED; }
+.sc-doga::before { background: radial-gradient(ellipse 90% 65% at 50% 0%, rgba(168,184,154,0.28) 0%, transparent 55%), radial-gradient(ellipse 60% 50% at 90% 100%, rgba(169,213,232,0.18) 0%, transparent 55%); }
+.sc-doga .sc-bar { background: #A8B89A; }
+.sc-doga .sc-mono, .sc-doga .sc-hero, .sc-doga .sc-editorial, .sc-doga .sc-wordmark { color: #202020; }
+.sc-doga .sc-pill { color: #202020; border: 1px solid rgba(32,32,32,0.18); }
+.sc-doga .sc-region { color: #A8B89A; }
+.sc-doga .sc-secondary { color: rgba(32,32,32,0.65); }
+.sc-doga .sc-handle { color: rgba(32,32,32,0.42); }
+.sc-doga .sc-tags { color: rgba(32,32,32,0.28); }
+.sc-doga .sc-num { color: rgba(32,32,32,0.025); }
+
+/* ── VARIANT 4: KUM (Urla) ── */
+.sc-kum { background: #D8CCBC; }
+.sc-kum::before { background: radial-gradient(ellipse 75% 55% at 15% 10%, rgba(246,243,237,0.55) 0%, transparent 55%), radial-gradient(ellipse 55% 45% at 85% 90%, rgba(32,32,32,0.06) 0%, transparent 50%); }
+.sc-kum .sc-bar { background: #FF4D3D; }
+.sc-kum .sc-mono, .sc-kum .sc-hero, .sc-kum .sc-editorial, .sc-kum .sc-wordmark { color: #202020; }
+.sc-kum .sc-pill { color: #202020; border: 1px solid rgba(32,32,32,0.2); }
+.sc-kum .sc-region { color: #FF4D3D; }
+.sc-kum .sc-secondary { color: rgba(32,32,32,0.68); }
+.sc-kum .sc-handle { color: rgba(32,32,32,0.42); }
+.sc-kum .sc-tags { color: rgba(32,32,32,0.3); }
+.sc-kum .sc-num { color: rgba(32,32,32,0.04); }
+</style>
+</head>
+<body>
+
+<nav class="page-nav" aria-label="Gezinme">
+  <a href="index.html" class="btn-back">← Geri</a>
+  <span class="page-meta">Story Şablonları</span>
+</nav>
+
+<div class="section-header">
+  <h1>Yakında Story<span class="system-dot" aria-hidden="true"></span></h1>
+  <p>Instagram 9:16 · Her varyant 1080 × 1920 px PNG olarak export edilir.</p>
+  <span class="hint"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg> Fontlar yüklenince PNG İndir butonunu kullanın.</span>
+</div>
+
+<div class="stories-grid" role="list" aria-label="Story varyantları">
+
+    <div class="story-item" role="listitem">
+      <div class="story-label">
+        <span class="story-name">01 — Krem</span>
+        <span class="story-dims">1080 × 1920 px</span>
+      </div>
+      <div class="story-frame">
+        <div class="sc sc-krem" id="story-01" role="img" aria-label="Çok yakında — Krem story">
+          <span class="sc-bar" aria-hidden="true"></span>
+          <div class="sc-inner">
+            <div class="sc-top">
+              <span class="sc-mono">gb<span class="sc-dot" aria-hidden="true"></span></span>
+              <span class="sc-pill">Yeni Sezon</span>
+            </div>
+            <div class="sc-mid">
+              <div class="sc-region">Rota Fısıltısı &middot; Güneybatı</div>
+              <div class="sc-hero">Çok<br>yakında.</div>
+              <div class="sc-editorial">“Belki Alaçatı’da<br>bir taş avluya...”</div>
+              <div class="sc-secondary">Bir yere gidelim.</div>
+            </div>
+            <div class="sc-bottom">
+              <span class="sc-wordmark">gezenbiri<span class="sc-dot" aria-hidden="true"></span></span>
+              <span class="sc-handle">@gezenbiri</span>
+              <span class="sc-tags">#biryeregidelim &nbsp; #gezenbiri &nbsp; #haftasonukaçamağı</span>
+            </div>
+          </div>
+          <span class="sc-num" aria-hidden="true">01</span>
+        </div>
+      </div>
+      <button id="btn-01" class="btn-export"
+        onclick="exportStory('story-01', 'gezenbiri-story-krem.png', 'btn-01')"
+        aria-label="Krem varyantı PNG olarak indir">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg> PNG İndir
+      </button>
+    </div>
+
+    <div class="story-item" role="listitem">
+      <div class="story-label">
+        <span class="story-name">02 — Koyu</span>
+        <span class="story-dims">1080 × 1920 px</span>
+      </div>
+      <div class="story-frame">
+        <div class="sc sc-koyu" id="story-02" role="img" aria-label="Çok yakında — Koyu story">
+          <span class="sc-bar" aria-hidden="true"></span>
+          <div class="sc-inner">
+            <div class="sc-top">
+              <span class="sc-mono">gb<span class="sc-dot" aria-hidden="true"></span></span>
+              <span class="sc-pill">Yeni Sezon</span>
+            </div>
+            <div class="sc-mid">
+              <div class="sc-region">Rota Fısıltısı &middot; Anadolu</div>
+              <div class="sc-hero">Çok<br>yakında.</div>
+              <div class="sc-editorial">“Belki Kapadokya’da<br>vadi gün doğumuna...”</div>
+              <div class="sc-secondary">Bir yere gidelim.</div>
+            </div>
+            <div class="sc-bottom">
+              <span class="sc-wordmark">gezenbiri<span class="sc-dot" aria-hidden="true"></span></span>
+              <span class="sc-handle">@gezenbiri</span>
+              <span class="sc-tags">#biryeregidelim &nbsp; #gezenbiri &nbsp; #kapadokya</span>
+            </div>
+          </div>
+          <span class="sc-num" aria-hidden="true">02</span>
+        </div>
+      </div>
+      <button id="btn-02" class="btn-export"
+        onclick="exportStory('story-02', 'gezenbiri-story-koyu.png', 'btn-02')"
+        aria-label="Koyu varyantı PNG olarak indir">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg> PNG İndir
+      </button>
+    </div>
+
+    <div class="story-item" role="listitem">
+      <div class="story-label">
+        <span class="story-name">03 — Doğa</span>
+        <span class="story-dims">1080 × 1920 px</span>
+      </div>
+      <div class="story-frame">
+        <div class="sc sc-doga" id="story-03" role="img" aria-label="Çok yakında — Doğa story">
+          <span class="sc-bar" aria-hidden="true"></span>
+          <div class="sc-inner">
+            <div class="sc-top">
+              <span class="sc-mono">gb<span class="sc-dot" aria-hidden="true"></span></span>
+              <span class="sc-pill">Yeni Sezon</span>
+            </div>
+            <div class="sc-mid">
+              <div class="sc-region">Rota Fısıltısı &middot; Ege Adaları</div>
+              <div class="sc-hero">Çok<br>yakında.</div>
+              <div class="sc-editorial">“Belki Bozcaada’da<br>rüzgar güllerine karşı...”</div>
+              <div class="sc-secondary">Bir yere gidelim.</div>
+            </div>
+            <div class="sc-bottom">
+              <span class="sc-wordmark">gezenbiri<span class="sc-dot" aria-hidden="true"></span></span>
+              <span class="sc-handle">@gezenbiri</span>
+              <span class="sc-tags">#biryeregidelim &nbsp; #gezenbiri &nbsp; #bozcaada</span>
+            </div>
+          </div>
+          <span class="sc-num" aria-hidden="true">03</span>
+        </div>
+      </div>
+      <button id="btn-03" class="btn-export"
+        onclick="exportStory('story-03', 'gezenbiri-story-doga.png', 'btn-03')"
+        aria-label="Doğa varyantı PNG olarak indir">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg> PNG İndir
+      </button>
+    </div>
+
+    <div class="story-item" role="listitem">
+      <div class="story-label">
+        <span class="story-name">04 — Kum</span>
+        <span class="story-dims">1080 × 1920 px</span>
+      </div>
+      <div class="story-frame">
+        <div class="sc sc-kum" id="story-04" role="img" aria-label="Çok yakında — Kum story">
+          <span class="sc-bar" aria-hidden="true"></span>
+          <div class="sc-inner">
+            <div class="sc-top">
+              <span class="sc-mono">gb<span class="sc-dot" aria-hidden="true"></span></span>
+              <span class="sc-pill">Yeni Sezon</span>
+            </div>
+            <div class="sc-mid">
+              <div class="sc-region">Rota Fısıltısı &middot; Ege</div>
+              <div class="sc-hero">Çok<br>yakında.</div>
+              <div class="sc-editorial">“Belki Urla’da gün batımı<br>ve bir bağ sofrasına...”</div>
+              <div class="sc-secondary">Bir yere gidelim.</div>
+            </div>
+            <div class="sc-bottom">
+              <span class="sc-wordmark">gezenbiri<span class="sc-dot" aria-hidden="true"></span></span>
+              <span class="sc-handle">@gezenbiri</span>
+              <span class="sc-tags">#biryeregidelim &nbsp; #gezenbiri &nbsp; #urla</span>
+            </div>
+          </div>
+          <span class="sc-num" aria-hidden="true">04</span>
+        </div>
+      </div>
+      <button id="btn-04" class="btn-export"
+        onclick="exportStory('story-04', 'gezenbiri-story-kum.png', 'btn-04')"
+        aria-label="Kum varyantı PNG olarak indir">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg> PNG İndir
+      </button>
+    </div>
+</div>
+
+<div class="export-all-wrap">
+  <p class="export-all-note">Tüm varyantlar ayrı PNG dosyası olarak indirilir.</p>
+  <div class="progress-bar-wrap" id="progressWrap" aria-hidden="true">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <button id="btn-export-all" class="btn-export-all" onclick="exportAll()" aria-label="Tüm varyantları PNG olarak indir">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg> Tümünü İndir (4×)
+  </button>
+</div>
+
+<p class="prototype-note">
+  gezenbiri® marka ve deneyim konsepti prototip tasarımıdır.
+  &nbsp;·&nbsp;
+  <a href="index.html" style="color:inherit;">gezenbiri.com.tr</a>
+</p>
+
+<script>
+'use strict';
+
+async function exportStory(storyId, filename, btnId) {
+    await document.fonts.ready;
+    const el  = document.getElementById(storyId);
+    const btn = btnId ? document.getElementById(btnId) : null;
+    if (!el) { console.error('Not found:', storyId); return; }
+
+    const DL_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/></svg>';
+
+    if (btn) { btn.disabled = true; btn.textContent = 'Hazırlanıyor...'; }
+
+    try {
+        const canvas = await html2canvas(el, {
+            scale: 3,
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: null,
+            logging: false,
+            imageTimeout: 0,
+            width: 360,
+            height: 640
+        });
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png', 1.0);
+        link.click();
+    } catch (err) {
+        console.error('Export hatası:', err);
+        alert('PNG export sırasında hata. F12 konsolunu kontrol edin.');
+    }
+
+    if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = DL_SVG + ' PNG İndir';
+    }
+}
+
+async function exportAll() {
+    const stories = [
+        { id: 'story-01', fn: 'gezenbiri-story-krem.png' },
+        { id: 'story-02', fn: 'gezenbiri-story-koyu.png' },
+        { id: 'story-03', fn: 'gezenbiri-story-doga.png' },
+        { id: 'story-04', fn: 'gezenbiri-story-kum.png'  },
+    ];
+    const allBtn   = document.getElementById('btn-export-all');
+    const progWrap = document.getElementById('progressWrap');
+    const progBar  = document.getElementById('progressBar');
+
+    allBtn.disabled = true;
+    allBtn.textContent = 'İndiriliyor...';
+    progWrap.classList.add('visible');
+
+    for (let i = 0; i < stories.length; i++) {
+        progBar.style.width = ((i / stories.length) * 100) + '%';
+        await exportStory(stories[i].id, stories[i].fn, null);
+        await new Promise(r => setTimeout(r, 700));
+    }
+
+    progBar.style.width = '100%';
+    await new Promise(r => setTimeout(r, 400));
+    progWrap.classList.remove('visible');
+    progBar.style.width = '0%';
+    allBtn.disabled = false;
+    allBtn.textContent = 'Tümünü İndir (4×)';
+}
+</script>
+</body>
+</html>

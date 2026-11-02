@@ -20,7 +20,7 @@
     <!-- Monogram gb -->
     <text x="-40" y="145" class="avatar-text" text-anchor="middle">gb</text>
     
-    <!-- Master System Dot (1.03 Optical Vertical Stretch, Action Coral #FF4D3D) -->
-    <ellipse cx="235" cy="-80" rx="35" ry="36.05" fill="#FF4D3D" />
+    <!-- Master System Dot (1:1 Daire, Action Coral #FF4D3D) -->
+    <circle cx="235" cy="-80" r="35" fill="#FF4D3D" />
   </g>
 </svg>

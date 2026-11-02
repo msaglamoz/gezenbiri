@@ -20,6 +20,7 @@ The active system includes:
 - `trip-cards.html` — route-card application example
 - `packing-guide.html` — packing and journey-guide application example
 - `whatsapp-ticket.html` — WhatsApp ticket and digital pass experience
+- `vector-export.html` — vector & print asset library (SVG / 4K PNG) for signage and production
 - `data/events.js` — canonical event and trip data
 - `full-audit.js` and `qa-check.js` — automated conformance checks
 
@@ -112,7 +113,6 @@ height: 0.15em;
 margin-left: 0.12em;
 border-radius: 50%;
 background: var(--gb-coral); /* #FF4D3D */
-transform: scaleY(1.03);
 ```
 
 Rules:
@@ -149,7 +149,7 @@ Therefore:
 - Add the final wordmark, System Dot, copy, hashtag, and glyphs deterministically using HTML/CSS, SVG, Canvas, or a layout tool.
 - Use Plus Jakarta Sans 900 for the wordmark and the exact System Dot geometry from `brand.css`.
 - Inspect the final composite at 100% scale before delivery.
-- Reject and redo any output with a wrong letterform, oversized dot, circular dot without the 1.03 optical correction, altered slogan punctuation, or improvised icon.
+- Reject and redo any output with a wrong letterform, oversized dot, non-canonical dot geometry, altered slogan punctuation, or improvised icon.
 - Never approve an image merely because it looks visually close. Exact identity geometry takes precedence over aesthetic similarity.
 
 ## 7. Color system
@@ -364,6 +364,7 @@ This repository is a brand-system repository. Preserve its prototype/privacy pos
 - do not change domain, social handle, contact address, copyright, or ownership information without explicit confirmation
 
 Current official references in the repository include:
+- `gezenbiri.com`
 - `gezenbiri.com.tr`
 - `gezenbiri.tr`
 - `gezenbiri.co`
@@ -402,7 +403,7 @@ Do not claim success when an audit fails. Fix the issue or report the exact bloc
 Every agent must confirm all applicable items:
 - [ ] `gezenbiri` is lowercase and one word
 - [ ] wordmark uses Plus Jakarta Sans 900
-- [ ] System Dot uses `0.15em` / `0.15em` / `0.12em` / `scaleY(1.03)`
+- [ ] System Dot uses `0.15em` / `0.15em` / `0.12em` (1:1 daire)
 - [ ] slogan period is ordinary punctuation, not a System Dot
 - [ ] logo System Dot is static
 - [ ] colors use canonical tokens and exact values

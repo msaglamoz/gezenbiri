@@ -14,8 +14,13 @@ const productionFiles = [
     'system-dot.html',
     'trip-cards.html',
     'instagram-suite.html',
+    'icon-morph-motion.html',
+    'packing-guide.html',
+    'merch-guidelines.html',
     'whatsapp-ticket.html',
     'sunum.html',
+    'vector-export.html',
+    'avatar-export.html',
     'brand.css',
     'data/events.js'
 ];

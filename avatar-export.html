@@ -139,7 +139,6 @@
             background-color: var(--gb-coral);
             border-radius: 50%;
             margin-left: 0.12em;
-            transform: scaleY(1.03);
             vertical-align: baseline;
         }
 
@@ -244,11 +243,10 @@
         .sim-avatar-dot {
             display: inline-block;
             width: 4px;
-            height: 4.12px;
+            height: 4px;
             background-color: #FF4D3D;
             border-radius: 50%;
             margin-left: 2px;
-            transform: scaleY(1.03);
         }
 
         .sim-stats {
@@ -423,16 +421,15 @@ Gitmeye değer yerler. Tanışmaya değer insanlar.
 
             ctx.fillText(text, textX, textY);
 
-            // 3. Draw Master System Dot (Exact 1.03 scale ratio)
+            // 3. Draw Master System Dot (Pure 1:1 circular ratio)
             // System dot is placed directly beside letter 'b'
-            const dotRadiusX = 35;
-            const dotRadiusY = dotRadiusX * 1.03; // 1.03 optical vertical stretch
+            const dotRadius = 35;
             const dotX = textX + textWidth + 36;
             const dotY = textY - 210;
 
             ctx.beginPath();
             ctx.fillStyle = dotColor;
-            ctx.ellipse(dotX, dotY, dotRadiusX, dotRadiusY, 0, 0, Math.PI * 2);
+            ctx.arc(dotX, dotY, dotRadius, 0, Math.PI * 2);
             ctx.fill();
 
             // 4. Trigger Download
