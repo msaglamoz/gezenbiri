@@ -2,26 +2,27 @@
 
 This file is the operating contract for every AI agent, code assistant, designer, image model, automation, and human contributor working in this repository.
 
-Its purpose is to preserve the gezenbiri brand system. Do not treat this repository as a generic travel website template. It is a living brand system for a contemporary Turkish experience and social-discovery community.
+Its purpose is to preserve the gezenbiri brand system. Do not treat this repository as a generic travel agency or social-discovery/dating community. It is a living brand system for a contemporary Turkish destination growth and experience company (Destinasyon Geliştirme ve Deneyim Şirketi).
 
 ## 1. Scope
 
 These instructions apply to the repository root and every active subdirectory unless a more specific nested `AGENTS.md` explicitly adds stricter rules.
 
 The active system includes:
-- `index.html` — ecosystem hub, navigation index, and design showcase
-- `brand-guidelines.html` — brand philosophy, identity, usage, voice, and standards
+- `index.html` — ecosystem hub, navigation index, and corporate showcase
+- `brand-guidelines.html` — brand philosophy, identity, corporate functions, usage, voice, and standards
+- `sunum.html` — corporate pitch and destination development deck (B2B/B2C)
 - `brand.css` — canonical design tokens and System Dot implementation
 - `system-dot.html` — System Dot meaning, geometry, and usage demonstrations
 - `icon-morph-motion.html` — canonical monoline glyphs and motion behavior
 - `instagram-suite.html` — social formats, captions, hashtags, and publishing examples
 - `merch-guidelines.html` — physical production and merchandise standards
-- `gezenbiri_website.html` — website application example
-- `trip-cards.html` — route-card application example
-- `packing-guide.html` — packing and journey-guide application example
-- `whatsapp-ticket.html` — WhatsApp ticket and digital pass experience
+- `gezenbiri_website.html` — destination experience booking portal example
+- `trip-cards.html` — destination route-card application example
+- `packing-guide.html` — destination journey-guide application example
+- `whatsapp-ticket.html` — WhatsApp digital pass and concierge confirmation experience
 - `vector-export.html` — vector & print asset library (SVG / 4K PNG) for signage and production
-- `data/events.js` — canonical event and trip data
+- `data/events.js` — canonical destination programs and experience data
 - `full-audit.js` and `qa-check.js` — automated conformance checks
 
 Files in `archive/` and raw references in `örnekler/` are historical or exploratory. Never copy rules from them into active files unless the user explicitly requests restoration of a historical version.
@@ -34,41 +35,85 @@ When sources disagree, use this priority order:
 3. `brand.css` for exact tokens and System Dot implementation
 4. `icon-morph-motion.html` for exact glyph geometry and motion
 5. `brand-guidelines.html` and `system-dot.html` for identity usage
-6. `instagram-suite.html` for social copy, hashtag, Story, and Feed conventions
-7. `data/events.js` for event facts and dynamic content
-8. `README.md` for architecture and repository overview
-9. Existing active implementation patterns
+6. `sunum.html` for B2B/B2C business model and problem-solution narrative
+7. `instagram-suite.html` for social copy, hashtag, Story, and Feed conventions
+8. `data/events.js` for event facts and dynamic content
+9. `README.md` for architecture and repository overview
+10. Existing active implementation patterns
 
 If a requested change conflicts with a non-negotiable brand rule, do not silently improvise. Explain the conflict and ask whether the user wants an intentional exception.
 
-## 3. Brand essence
+## 3. Brand essence & business model
 
-### Positioning
-gezenbiri is a modern lifestyle, experience, and social-discovery community. It brings people together around creative workshops, local tables, cultural gatherings, and carefully curated small escapes.
+### Approved Brand Definition (Onaylı Marka Tanımı)
+gezenbiri, faaliyet gösterdiği destinasyonlara ziyaretçi ve talep kazandıran, o bölgeye özgü deneyimleri yerel iş ortaklarıyla geliştirip rezervasyona hazır hâle getiren ve Türkiye’de ve uluslararası pazarlarda satışa sunan bir **destinasyon geliştirme ve deneyim şirketidir**.
+
+- **İngilizce kurumsal unvan:** `Destination Growth & Experience Company`
+- **Başlangıç coğrafyası:** `Kayseri–Erciyes–Kapadokya` (model farklı destinasyonlara uygulanabilir; `Alaçatı–Çeşme` genişleme örneği olarak kullanılır).
+- **Çıkış sorusu:** *“Bir ziyaretçiye buraya gelmesi için hangi özgün nedeni sunabiliriz?”* Önce bu neden ve deneyim tasarlanır. Ulaşım, rehberlik, ekipman, konaklama ve diğer hizmetler deneyimin gerektirdiği ölçüde bir araya getirilir.
 
 It must not resemble:
-- a conventional travel agency
-- a cheap tour operator
+- a conventional mass travel agency or tour operator
 - an airline campaign
 - a backpacker blog
-- a generic booking portal
+- an amateur social club or dating/friend-making meetup group
+- a generic online booking portal
 - a cliché tourism advertisement
 
-### Core language
-- **Brand name:** `gezenbiri`
-- **Main slogan:** `Bir yere gidelim.`
-- **Secondary line:** `Gitmeye değer yerler. Tanışmaya değer insanlar.`
-- **Manifesto closing:** `Arada bir gitmek lazım. Biz de sadece gezenbiriyiz.`
+### Three Complementary Functions (Üç Tamamlayıcı İşlev)
+Bunlar üç ayrı şirket değildir; tek bir iş modeli içinde birbirine bağlı kurumsal işlevlerdir:
+1. **gezenbiri Destinations:** Destinasyonun ziyaret edilme nedenlerini belirler. İçerik, kampanya ve satış ortaklıklarıyla Türkiye’de ve dış pazarlarda bölgeye talep yaratır.
+2. **gezenbiri Experiences:** Yerel kültür, gastronomi, doğa, spor ve atölyelerden satın alınabilir deneyimler ve gezenbiri’ye özgü imza programları geliştirir.
+3. **gezenbiri DMC:** Transfer sağlayıcıları, oteller, rehberler, eğitmenler, restoranlar ve atölyelerden oluşan yerel tedarik ağını kurar. Programları ulusal ve uluslararası acenteler ile tur operatörlerinin satabileceği ve sahada gerçekleştirilebilecek hâle getirir.
 
-### Character
-Every output should feel:
-- spontaneous
-- warm and sincere
-- curious
-- simple and editorial
-- social and inclusive
+**Tekleştirici Örnek (Örnek Program):**
+Kapadokya’da konaklayan bir ziyaretçiye Erciyes’te bir kar günü önerilir:
+- *Destinations*, ziyaretçiye kışın neden Erciyes’e gitmeye değer olduğunu anlatır ve talep oluşturur.
+- *Experiences*, dağda geçirilecek günü tasarlar (ekipman, pist rehberliği, dağ lezzetleri).
+- *DMC*, Kayseri–Erciyes transferini, yerel kayak hocasını ve dağ operasyonunu koordine eder.
+*(Bu program bir konsept örneğidir; canlı satışta olduğu izlenimi verilmez).*
 
-Prefer an inviting first-person or collective voice. The user should feel they are joining real people, not purchasing a packaged holiday.
+### Problem–Solution Narrative (Somut Destinasyon Fırsatı)
+- **Problem (Eski "şehir insanının yalnızlığı" DEĞİLDİR):** Ziyaretçi gittiği bölgede ne yapabileceğini, nereye gideceğini ve o yerin ruhunu nasıl yaşayacağını göremeyebilir. Yerel üreticinin veya ustanın çok iyi bir deneyimi olabilir; ancak bunun ürün tanımı, operasyonel standardı, rezervasyon sistemi ve ulusal/uluslararası satış kanalı eksiktir.
+- **Çözüm:** gezenbiri bu iki tarafı deneyim tasarımı, destinasyon pazarlaması ve yerel DMC operasyonuyla bir araya getirir.
+
+### Anti-Patterns: No Social Matching or Friend-Making Promises
+Aşağıdaki ifadeler ana vaat, kampanya kancası veya başarı ölçütü olarak KESİNLİKLE kullanılamaz:
+- ❌ *"anında arkadaş ol"*
+- ❌ *"yalnız gel, arkadaşlarla dön"*
+- ❌ *"ilk 10 dakikada gruba ait hisset"*
+- ❌ *"şehir insanının yalnızlığına son"*
+- ❌ *"sosyal eşleşme / arkadaş bulma kulübü"*
+
+Sıcak ve davetkâr editoryal dil korunur. Bir sofrada buluşmak, yerel bir ustayla çalışmak veya vadiyi yürümek anlatılır; ancak sahneler şu soruya yanıt verir: **Misafir burada ne yaşayacak ve bu deneyim neden bu yere özgü?**
+
+### Core language & slogans
+- **Brand name:** `gezenbiri` (always lowercase, single word, with System Dot)
+- **Main slogan:** `Bir yere gidelim.` (aynen korunur; sonundaki nokta tipografiktir).
+- **Manifesto closing:** `Arada bir gitmek lazım. Biz de sadece gezenbiriyiz.` (aynen korunur).
+- **Secondary line status:** Eski `Gitmeye değer yerler. Tanışmaya değer insanlar.` cümlesi artık zorunlu bir marka imzası DEĞİLDİR. Yerine kendiliğinden yeni bir resmî slogan uydurulmaz; logo+slogan kompozisyonlarında ana slogan `Bir yere gidelim.` temel alınır.
+
+### Brand Architecture & Taxonomy
+- **Kurumsal İşlevler:** `Destinations`, `Experiences`, `DMC`
+- **Deneyim Formatları (Ziyaretçinin seçtiği format):** `atölye`, `sofra`, `doğa yürüyüşü`, `kültür & keşif`, `spor`
+- **Zaman Bilgisi:** `hafta sonu`, `günübirlik`, `çok günlük` (alt marka değildir).
+- **Hizmet Biçimi:** `özel (private)` veya `paylaşımlı (shared)` (alt marka değildir).
+
+### Product & Booking Principles
+- **Mobil Öncelikli & Üyeliksiz:** Ziyaretçi üye olmadan, zahmetsizce rezervasyon adımlarına geçebilir.
+- **Hizmet Seçenekleri (Modüler Esneklik):**
+  1. *Yalnız Transfer:* Destinasyon içi veya havalimanı–vadi–dağ shuttle.
+  2. *Transfer + Deneyim:* Gidiş-dönüş ulaşım ve yerinde rehberli/atölyeli deneyim.
+  3. *Özel Araç + Deneyim:* Gruba/aileye tahsis edilmiş özel araç ve kişiselleştirilmiş program.
+  4. *Paket Program:* İhtiyaca göre konaklama, transfer ve deneyim kombinasyonu. Konaklama her üründe ZORUNLU DEĞİLDİR; günübirlik ve hafta sonu kaçışları desteklenir.
+- **WhatsApp Concierge:** Satış baskısı kurmayan, danışmanlık, bilet iletimi ve buluşma koordinasyonu kanalıdır.
+- **Paylaşımlı Seferler (Shared):** Kişi başı fiyatlandırılır. Onaylanmış sefer **tek yolcuyla dahi olsa kesin kalkışlıdır**; düşük doluluk gerekçesiyle iptal edilmez. Başlangıçta Cuma, Cumartesi ve Pazar günleri belirli saatlerde düzenlenir.
+- **Özel Hizmetler (Private):** Haftanın 7 günü talep üzerine planlanır; araç veya grup bazında fiyatlandırılır.
+
+### Three Distinct Narrative Angles (3 Farklı Paydaş Anlatımı)
+1. **Bireysel Ziyaretçi İçin:** "Bölgeye geldiğinde yüzeysel bir turist gibi hissetme. Erciyes'in saklı pistlerini, Kapadokya'nın en eski çömlek ustasını veya bağ evinin yerel sofrasını tek tıkla, garantili ulaşım ve kusursuz rehberlikle yaşa."
+2. **Satış Ortağı & Acente İçin:** "Misafirlerinize bölgede hazır, operasyonu test edilmiş ve yerel güvenceye sahip niş deneyimler sunun. gezenbiri DMC altyapısı sayesinde transferden rehberliğe tüm zincir tek noktadan ve komisyonlu satışa hazır olarak sağlanır."
+3. **Yerel Sağlayıcı & Üretici İçin:** "Atölyenizi, bağınızı veya mutfağınızı dünyaya açın. gezenbiri deneyiminizi tasarlar, dijital rezervasyona açar ve nitelikli yerli-yabancı ziyaretçiyi kapınıza getirir."
 
 ## 4. Wordmark and naming rules
 

@@ -1,76 +1,83 @@
 # gezenbiri
 
 > **“Bir yere gidelim.”**  
-> Gitmeye değer yerler. Tanışmaya değer insanlar.  
+> *Destination Growth & Experience Company* (Destinasyon Geliştirme ve Deneyim Şirketi)  
 > 
 > **Tasarım & Marka Yaratıcısı:** [**Mahir Sağlamöz**](https://github.com/msaglamoz) ([@msaglamoz](https://github.com/msaglamoz))
 
-`gezenbiri`; insanları yaratıcı atölyeler, yerel sofralar, kültürel buluşmalar ve özenle kürate edilmiş butik geziler & kaçamaklar etrafında bir araya getiren modern bir deneyim ve topluluk markasıdır.
+`gezenbiri`, faaliyet gösterdiği destinasyonlara ziyaretçi ve talep kazandıran, o bölgeye özgü deneyimleri yerel iş ortaklarıyla geliştirip rezervasyona hazır hâle getiren ve Türkiye’de ve uluslararası pazarlarda satışa sunan bir **destinasyon geliştirme ve deneyim şirketidir** (*Destination Growth & Experience Company*).
 
-Bu repository; markanın kimlik kılavuzunu (`brand-guidelines.html`), tasarım sistemini (`brand.css`), web sitesi portalını (`gezenbiri_website.html`), sosyal medya şablon paketini (`instagram-suite.html`), çift yüzlü seyahat kartı vitrinini (`trip-cards.html`), adaptif morphing ikon laboratuvarını (`icon-morph-motion.html`), gezgin bavul & hazırlık rehberini (`packing-guide.html`), fiziksel ürün ve stüdyo çekimi kitini (`merch-guidelines.html`), merkezi etkinlik veri mimarisini (`data/events.js`) ve 25 testlik otomatik marka denetleyicisini (`full-audit.js`) içeren entegre bir marka ekosistemidir.
+Başlangıç coğrafyası **Kayseri–Erciyes–Kapadokya** üçgenidir; model farklı destinasyonlara uygulanabilir niteliktedir (Alaçatı–Çeşme genişleme modeli olarak örneklendirilir).
 
----
-
-## 1. Proje Hakkında & Dijital Varlıklar
-
-gezenbiri, klasik bir turizm acentesi veya standart bir etkinlik takvimi değildir. Markanın temel felsefesi; **mekânın kendisinden çok, o mekânda birlikte yaşanan samimi deneyim ve kurulan sosyal bağın değerli olduğu** fikrine dayanır.
-
-### 5 Kanallı Resmi Dijital Ekosistem:
-* **Global Web Portalı:** [`gezenbiri.com`](https://gezenbiri.com) — Uluslararası ana alan adı ve küresel topluluk merkezi.
-* **Birincil Türkiye Portalı:** [`gezenbiri.com.tr`](https://gezenbiri.com.tr) — Atölye kayıtları, deneyim ve rota portalı.
-* **Yeni Nesil .TR Alan Adı:** [`gezenbiri.tr`](https://gezenbiri.tr) — Doğrudan ve yalın ulusal erişim kapısı.
-* **Kısa Link & Yönlendirme:** [`gezenbiri.co`](https://gezenbiri.co) — Sosyal bio bağlantıları ve QR yönlendirmeleri.
-* **Resmi Sosyal Kanal:** [`@gezenbiri` (Instagram)](https://instagram.com/gezenbiri) — Topluluk anları ve hikaye yayınları.
-* **İletişim:** `selam@gezenbiri.com.tr`
-* **Yayın Mimarisi:** Tamamen statik HTML5, saf Vanilla CSS (`brand.css`) ve hafif Vanilla JavaScript. Dış derleyici veya runtime bağımlılığı gerektirmez; GitHub Pages ve CDN platformlarıyla %100 uyumludur.
+İş modelinin temel çıkış sorusu şudur:  
+**“Bir ziyaretçiye buraya gelmesi için hangi özgün nedeni sunabiliriz?”**  
+Önce bu neden ve deneyim tasarlanır. Ulaşım, rehberlik, ekipman, konaklama ve diğer hizmetler deneyimin gerektirdiği ölçüde bir araya getirilir.
 
 ---
 
-## 2. Marka Özeti & Felsefe
+## 1. Üç Tamamlayıcı İşlev (Kurumsal Mimari)
+
+gezenbiri üç ayrı şirket değil; tek bir entegre destinasyon modelini işleten birbirine bağlı üç kurumsal işlevden oluşur:
+
+1. **gezenbiri Destinations:** Destinasyonun ziyaret edilme nedenlerini belirler. İçerik, kampanya ve dağıtım ortaklıklarıyla Türkiye’de ve dış pazarlarda bölgeye doğrudan talep yaratır.
+2. **gezenbiri Experiences:** Yerel kültür, gastronomi, doğa, spor ve atölyelerden satın alınabilir deneyimler ve gezenbiri’ye özgü imza programları tasarlar.
+3. **gezenbiri DMC:** Transfer sağlayıcıları, oteller, rehberler, eğitmenler, restoranlar ve atölyelerden oluşan yerel tedarik ağını kurar. Programları ulusal/uluslararası acenteler ile tur operatörlerinin satabileceği ve sahada kusursuz uygulanabileceği operasyonel güvenceye kavuşturur.
+
+### Tekleştirici Örnek Program (Kapadokya ➔ Erciyes Kar Günü):
+* *Örnek Senaryo:* Kapadokya’da konaklayan bir ziyaretçiye kışın Erciyes’te bir kar günü önerilir.
+* *Destinations:* Ziyaretçiye Kapadokya seyahatindeyken 1 saat mesafedeki Erciyes Dağı'na neden gitmeye değer olduğunu anlatır ve talep oluşturur.
+* *Experiences:* Dağda geçirilecek günü tasarlar (pist rehberliği, ekipman kiralama, yerel dağ lezzetleri tadımı).
+* *DMC:* Kayseri–Erciyes transferini, yerel kayak hocasını, ekipman sağlayıcısını ve dönüş lojistiğini tek elden koordine eder.  
+*(Not: Bu kurgu konsept bir örnek programdır; fiilen canlı satışta olduğu izlenimi verilmez).*
+
+---
+
+## 2. Problem, Çözüm & Değer Vaadi
+
+* **Destinasyondaki Somut Fırsat (Problem):** Ziyaretçi bölgeye geldiğinde ne yapabileceğini, nereye gideceğini ve o yerin ruhunu nasıl yaşayacağını göremeyebilir. Yerel üreticinin veya zanaatkarın (ör. Avanos'ta çömlek ustası, bağ evi işletmecisi, dağ rehberi) çok iyi bir deneyimi olabilir; ancak bunun ürünleştirilmiş tanımı, standart operasyonu, dijital rezervasyon altyapısı ve ulusal/uluslararası satış kanalları eksiktir.
+* **gezenbiri Çözümü:** gezenbiri bu iki tarafı deneyim tasarımı, destinasyon pazarlaması ve yerel operasyon (DMC) güvencesiyle bir araya getirir.
+* **Sosyal Vaat Sınırları:** gezenbiri bir "arkadaş bulma kulübü" veya "yalnızları eşleştirme platformu" değildir. *"Anında arkadaş ol"*, *"yalnız gel arkadaşlarla dön"* gibi yüzeysel arkadaşlık vaatleri kullanılmaz. Sıcak, samimi ve davetkâr editoryal dil korunur; bir yerel sofrada buluşmak veya bir ustayla çamuru şekillendirmek anlatılırken daima asıl soruya odaklanılır: **Misafir burada ne yaşayacak ve bu deneyim neden bu yere özgü?**
+
+---
+
+## 3. Rezervasyon & Ürün İlkeleri
+
+* **Mobil Öncelikli & Üyeliksiz:** Misafir üyelik zorunluluğu olmadan, doğrudan rezervasyon adımlarına geçebilir.
+* **Modüler Hizmet Seçenekleri:**
+  1. *Yalnız Transfer:* Destinasyon içi ringler veya havalimanı–vadi–otel transferleri.
+  2. *Transfer + Deneyim:* Gidiş-dönüş ulaşım ile yerel rehberlik/atölye deneyimi.
+  3. *Özel Araç + Deneyim:* Kişiye veya aileye tahsis edilmiş özel araç ve özel planlanmış gün.
+  4. *Paket Program:* İhtiyaca göre konaklama, transfer ve deneyim entegrasyonu (Konaklama her üründe zorunlu değildir).
+* **WhatsApp Danışmanlık Hattı:** Satış baskısı kurmayan; soru yanıtlama, bilet kartı iletimi ve buluşma lojistiği sağlayan canlı koordinasyon kanalıdır.
+* **Kesin Kalkışlı Paylaşımlı Seferler (Shared):** Kişi başı fiyatlandırılır. Onaylanmış paylaşımlı sefer **tek yolcuyla dahi olsa kesin kalkışlıdır**; düşük doluluk gerekçesiyle asla iptal edilmez. Başlangıçta Cuma, Cumartesi ve Pazar günleri belirli saatlerde düzenlenir.
+* **Kişiye Özel Hizmetler (Private):** Haftanın 7 günü talep üzerine planlanır; araç veya grup bazında fiyatlandırılır.
+
+---
+
+## 4. Marka Mimarisi & Hiyerarşi
+
+* **Kurumsal İşlevler:** `Destinations`, `Experiences`, `DMC`
+* **Deneyim Formatları (Ziyaretçinin seçtiği format):** `atölye`, `sofra`, `doğa yürüyüşü`, `kültür & keşif`, `spor`
+* **Zaman Bilgisi:** `hafta sonu`, `günübirlik`, `çok günlük` (alt marka değildir).
+* **Hizmet Biçimi:** `özel (private)` veya `paylaşımlı (shared)` (alt marka değildir).
+
+### 3 Farklı Paydaş İçin Anlatım Modeli:
+1. **Bireysel Ziyaretçi:** "Kayseri ve Kapadokya'ya geldiğinde sıradan bir turist gibi hissetme. Erciyes'in saklı rotalarını, vadideki gün doğumunu veya Avanos'ta 5 kuşaktır süregelen çömlek atölyesini kesin kalkışlı transfer ve yerel rehberlikle deneyimle."
+2. **Satış Ortağı & Acente:** "Misafirlerinize bölgede operasyonu test edilmiş, yerel DMC güvencesine sahip niş deneyimler sunun. Transferden yerel ustaya tüm zincir tek noktadan ve komisyonlu satışa hazır."
+3. **Yerel Sağlayıcı & Üretici:** "Atölyenizi, bağınızı veya mutfağınızı dünyaya açın. gezenbiri deneyiminizi tasarlar, dijital rezervasyona açar ve nitelikli misafirleri kapınıza getirir."
+
+---
+
+## 5. Marka Özeti & Felsefe
 
 * **Ana Slogan:** `Bir yere gidelim.` *(Cümle sonundaki nokta tipografiktir; turuncu System Dot'a dönüştürülmez).*
-* **İkincil Marka Cümlesi:** `Gitmeye değer yerler. Tanışmaya değer insanlar.`
 * **Manifesto Kapanışı:** `Arada bir gitmek lazım. Biz de sadece gezenbiriyiz.`
 * **5 Marka Karakteri:**
-  1. **Spontane:** Katı planlar yerine akışa ve anın sürprizlerine açık.
-  2. **Sıcak & Samimi:** Mesafeli kurumsal dil yerine birinci tekil/çoğul davetkar ton.
-  3. **Meraklı:** Popüler turistik noktalar yerine yerel hikâyeleri ve arka sokakları arayan.
-  4. **Sade & Minimal:** Gösterişten uzak, tipografi ve boşluklarla nefes alan editoryal duruş.
-  5. **Sosyal:** Tek başına katılan birinin bile ilk 10 dakikada ait hissettiği topluluk kültürü.
-
----
-
-## 3. Marka Varlıkları & Tipografik Anatomi
-
-### Wordmark (Logo)
-* **Kural:** Her zaman küçük harf (`lowercase`) ve tek kelime yazılır: `gezenbiri`.
-* **Tipografi:** Plus Jakarta Sans 900 (Black).
-* **Bileşen:** `gezenbiri<span class="system-dot"></span>`
-* **Yasaklar:** `GEZENBİRİ` (tümü büyük harf), `Gezen Biri` (ayrık iki kelime) veya `Gezenbiri` (baş harfi büyük) kullanımı marka kurallarına aykırıdır.
-
-### Resmi Monogram
-* **Kural:** Küçük harf `gb` ve bitişiğinde System Dot: `gb<span class="system-dot"></span>`
-* **Kullanım:** Favicon, mobil uygulama ikonu, mühür damgaları ve sosyal medya profil avatarlarında tercih edilir.
-
-### Tipografik Anatomi Çözümlemesi
-```
-   gezen                biri                ● (System Dot)
-┌──────────────┐     ┌──────────────┐     ┌────────────────────────────────┐
-│ Eylem & Hareket│     │ Özne & İnsan │     │ O İnsanın Ayak İzi & Varlığı   │
-│ Keşif & Rota  │     │ Sen, Biz, O  │     │ Aksiyon ve Karar Mührü         │
-└──────────────┘     └──────────────┘     └────────────────────────────────┘
-```
-
-### Alt Seri / Kategori İsimlendirmesi
-Tüm alt deneyim kolları tek tip, küçük harf ve boşluklu formülle adlandırılır:
-* `gezenbiri atölye` — Seramik, koku, linol, gastronomi atölyeleri.
-* `gezenbiri sofra` — Bağ evlerinde ve yerel restoranlarda uzun masa buluşmaları.
-* `gezenbiri hafta sonu` — 1-2 günlük yakın rota kaçamakları.
-* `gezenbiri rota` — Alaçatı, Kapadokya, Bozcaada, Urla butik seyahatleri.
-* `gezenbiri yerel` — Yerel üreticilerle zeytin hasadı, bağ bozumu, peynir tadımı.
-* `gezenbiri sürpriz` — Rotası son ana kadar gizli tutulan spontane yolculuklar.
-* `gezenbiri buluşma` — Şehir içi kahve, sergi ve yürüyüş toplanmaları.
-* `gezenbiri gece` — Açık hava sineması, kamp ateşi ve gece sohbetleri.
+  1. **Spontane:** Katı kalıplar yerine yerel akışa ve anın sürprizlerine açık.
+  2. **Sıcak & Samimi:** Mesafeli kurumsal dil yerine birinci tekil/çoğul davetkâr editoryal ton.
+  3. **Meraklı:** Popüler turistik noktalar yerine yerel hikâyeleri, zanaatkârları ve arka sokakları arayan.
+  4. **Sade & Minimal:** Gösterişten uzak, tipografi ve negatif alanlarla nefes alan çağdaş duruş.
+  5. **Yerel & Kapsayıcı:** Destinasyonun kültürel dokusuna ve yerel üreticisine saygılı, kapsayıcı yaklaşım.
 
 ---
 
