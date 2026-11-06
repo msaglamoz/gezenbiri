@@ -372,12 +372,12 @@
         /* 03. Brand Assets Grid (4 Kanallı Ekosistem) */
         .assets-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: var(--gb-gutter-desktop);
             margin-bottom: var(--gb-space-8);
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1200px) {
             .assets-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -549,7 +549,36 @@
 
         <div class="tools-grid">
 
-            <!-- 00: CANLI WEB SİTESİ (Tek Birleşik Kart - Master & V1 Arşiv) -->
+            <!-- 00A: CANLI REZERVASYON & BİLETLEME MOTORU (Amiral Gemisi - book.gezenbiri) -->
+            <div class="tool-card featured-card" style="border: 2px solid var(--gb-coral); background: linear-gradient(135deg, #FFFFFF 0%, #FFF5F4 100%); margin-bottom: 24px;">
+                <div>
+                    <div class="featured-preview-tag" style="background: var(--gb-coral); color: #FFFFFF;">Canlı Ürün · Rezervasyon &amp; Biletleme Motoru</div>
+                    <h2 class="tool-title" style="font-size: 32px; margin-bottom: 8px;">gezenbiri Rezervasyon Motoru</h2>
+                    <p class="tool-desc" style="margin-bottom: 0;">
+                        Kayseri, Erciyes ve Kapadokya rotalarında 4 adımlı anında teyitli rezervasyon akışı, kapıdan transfer, tarifeli uçak bileti entegrasyonu ve dijital biniş kartı sistemi.
+                    </p>
+                </div>
+                <div>
+                    <div class="mini-badge-list" style="margin-bottom: 20px;">
+                        <span class="mini-badge">4 Adımlı Rezervasyon</span>
+                        <span class="mini-badge">Kapıdan Alınış</span>
+                        <span class="mini-badge">Uçuş Entegrasyonu</span>
+                        <span class="mini-badge">TÜRSAB Güvencesi</span>
+                    </div>
+                    <div class="website-actions-row">
+                        <a href="https://book.gezenbiri.com" target="_blank" rel="noopener noreferrer" class="btn-website-primary">
+                            <span>Rezervasyon Motorunu Aç (book.gezenbiri)</span>
+                            <span style="font-size:16px;">↗</span>
+                        </a>
+                        <a href="https://book.gezenbiri.com/nasil-calisir" target="_blank" rel="noopener noreferrer" class="btn-website-secondary">
+                            <span>Nasıl Çalışır? (Sistem &amp; Rehber)</span>
+                            <span style="font-size:14px;">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 00B: CANLI WEB SİTESİ (Tek Birleşik Kart - Master & V1 Arşiv) -->
             <div class="tool-card featured-card">
                 <div>
                     <div class="featured-preview-tag">Canlı Web Portalı · Production Master</div>
@@ -762,6 +791,21 @@
 
         <div class="assets-grid">
             
+            <!-- Asset 00: book.gezenbiri.com (Rezervasyon Motoru) -->
+            <a href="https://book.gezenbiri.com" target="_blank" rel="noopener noreferrer" class="asset-card" style="border: 1.5px solid var(--gb-coral);">
+                <div>
+                    <span class="asset-tag" style="background:var(--gb-coral); color:#FFFFFF; font-weight:800;">Rezervasyon &amp; Biletleme</span>
+                    <h3 class="asset-title">book.gezenbiri.com</h3>
+                    <p class="asset-desc">
+                        Canlı rezervasyon motoru. 4 adımlı biletleme, seans seçimi, otel/havalimanı transferi ve dijital biniş kartı sistemi.
+                    </p>
+                </div>
+                <div class="asset-link-row">
+                    <span>book.gezenbiri.com</span>
+                    <span>Rezervasyon Yap ↗</span>
+                </div>
+            </a>
+
             <!-- Asset 0: gezenbiri.com -->
             <a href="https://gezenbiri.com" target="_blank" rel="noopener noreferrer" class="asset-card">
                 <div>
